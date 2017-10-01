@@ -56,12 +56,12 @@ order by *column 0, column 1* [ desc ] <br>
 order by species, name --> first result table is sorted by 'species' column in ascending order, then by 'name'. <br>
 QUERY = "select * from animals where species = 'orangutan' order by birthdate;" <br>
 
-#### Insert
+#### insert
 Used to add a values to database <br>
 insert into *table* [ *( column1, column2, ... )* ] values *( val1, val2, ... )* <br>
 INSERT = "insert into animals (name,species,birthdate) values ('Luck','opossum','1970-01-01');"
 
-#### Join
+#### join
 select *columns of 2 tables* from *table 1* join *table 2* on *condition* <br>
 select A.column_0, B.column_0 from A join B on A.column_1 = B.column_1 <br>
 or <br>
