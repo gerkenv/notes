@@ -13,7 +13,7 @@ https://classroom.udacity.com/courses/ud197/lessons/3423258756/concepts/33885287
 
 
 #### Select Clauses:
-The query to get a complete table:
+The query to get a complete table: <br>
 select * from *table*;
 
 Query in python presented as a string: <br>
@@ -67,4 +67,23 @@ select A.column_0, B.column_0 from A join B on A.column_1 = B.column_1 <br>
 or <br>
 select *columns of 2 tables* from *tables* where *restriction* <br>
 select A.column_0, B.column_0 from A, B where A.column_1 = B.column_1 <br>
+
+select ordernames.name, count( * ) as num <br>
+from (animals join taxonomy <br>
+              on animals.species = taxonomy.name) <br>
+              as ani_tax <br>
+                  join ordernames <br>
+                  on ani_tax.t_order = ordernames.t_order <br>
+group by ordernames.name <br>
+order by num desc <br>
+
+or
+
+select ordernames.name, count( * ) as num <br>
+from animals, taxonomy, ordernames <br>
+where animals.species = taxonomy.name <br>
+and taxonomy.t_order = ordernames.t_order <br>
+group by ordernames.name <br>
+order by num desc
+
 
