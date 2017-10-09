@@ -86,4 +86,8 @@ and taxonomy.t_order = ordernames.t_order <br>
 group by ordernames.name <br>
 order by num desc
 
-
+#### update / like
+update *table* set *column* = *newValue* where *restriction* <br>
+update animals set name = 'new name of llama' where species = 'llama' <br>
+update animals set name = 'new name of llama' where species like '%lam%' <br>
+% - replaces any sequence of letters, like .* in regex
