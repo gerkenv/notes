@@ -37,7 +37,8 @@ QUERY = "select * from animals limit 10;"
 
 ##### group
 group by *columns* <br>
-Change the behavior of aggregations such as max, count, and sum. With group by, the aggregation will return one row for each distinct value in columns. <br>
+Change the behavior of aggregations such as max, count, and sum. <br>
+With group by, the aggregation will return one row for each distinct value in columns. <br>
 QUERY = "select species, min(birthdate) from animals group by species;"
 
 ##### count
@@ -95,5 +96,6 @@ update animals set name = 'new name of llama' where species like '%lam%' <br>
 #### delete
 delete from *table* where *restriction* <br>
 delete from animals where species = 'llama' <br>
-__Hint__: it is better to check first, what are you going to delete 
-select * from *table* where *restriction* <br>
+__Hint__: it is better to check first, what are you going to delete <br>
+select * from *table* where *restriction* 
+
