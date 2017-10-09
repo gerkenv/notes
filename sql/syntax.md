@@ -91,3 +91,9 @@ update *table* set *column* = *newValue* where *restriction* <br>
 update animals set name = 'new name of llama' where species = 'llama' <br>
 update animals set name = 'new name of llama' where species like '%lam%' <br>
 % - replaces any sequence of letters, like .* in regex
+
+#### delete
+delete from *table* where *restriction* <br>
+delete from animals where species = 'llama' <br>
+__Hint__: it is better to check first, what are you going to delete 
+select * from *table* where *restriction* <br>
