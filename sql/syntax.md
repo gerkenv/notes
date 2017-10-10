@@ -12,7 +12,7 @@ Lesson 2 :: Quiz 8 <br>
 https://classroom.udacity.com/courses/ud197/lessons/3423258756/concepts/33885287060923
 
 
-#### Select Clauses:
+#### select
 The query to get a complete table: <br>
 select * from *table*;
 
@@ -59,11 +59,11 @@ QUERY = "select * from animals where species = 'orangutan' order by birthdate;" 
 
 #### insert
 Used to add a values to database <br>
-insert into *table* [ *( column1, column2, ... )* ] values *( val1, val2, ... )* <br>
+insert into *table* [ *( column1, column2, ... )* ] values *( val1, val2, ... )*; <br>
 INSERT = "insert into animals (name,species,birthdate) values ('Luck','opossum','1970-01-01');"
 
 #### join
-select *columns of 2 tables* from *table 1* join *table 2* on *condition* <br>
+select *columns of 2 tables* from *table 1* join *table 2* on *condition* <br>;
 select A.column_0, B.column_0 from A join B on A.column_1 = B.column_1 <br>
 or <br>
 select *columns of 2 tables* from *tables* where *restriction* <br>
@@ -88,14 +88,81 @@ group by ordernames.name <br>
 order by num desc
 
 #### update / like
-update *table* set *column* = *newValue* where *restriction* <br>
+update *table* set *column* = *newValue* where *restriction* <br>;
 update animals set name = 'new name of llama' where species = 'llama' <br>
 update animals set name = 'new name of llama' where species like '%lam%' <br>
 % - replaces any sequence of letters, like .* in regex
 
 #### delete
-delete from *table* where *restriction* <br>
+delete from *table* where *restriction* <br>;
 delete from animals where species = 'llama' <br>
 __Hint__: it is better to check first, what are you going to delete <br>
 select * from *table* where *restriction* 
 
+#### create table
+create table *name* ( <br>
+    *column_0*  *type_0*, <br>
+    *column_1*  *type_1*, <br>
+    *column_n*  *type_n* <br>
+); <br>
+https://www.postgresql.org/docs/9.4/static/sql-createtable.html <br>
+https://www.postgresql.org/docs/9.4/static/datatype.html
+
+#### primary key
+##### Single-column primary key
+create table *name* ( <br>
+    id serial primary key, <br>
+    *column_1* *type_1*, <br>
+    *column_n* *type_n* <br>
+); <br>
+A database will throw an error if a duplicate of existing primary key will be inserted into a primary key column.
+
+##### Multi-column primary key
+create table *name* ( <br>
+    *column_0* *type_0*, <br>
+    *column_1* *type_1*, <br>
+    *column_n* *type_n*, <br>
+    primary key ( *column_0*, *column_1* ) <-- the first two columns are primary keys <br>
+);
+
+#### relationships between tables
+create table *name* ( <br>
+    *column_0* *type_0* references *referenceTable*, <br>
+    *column_1* *type_1*, <br>
+    *column_n* *type_n* <br>
+); <br>
+Means that a *column_0* can have only the values of a *column_0* in a *referenceTable* <br>
+Warning: the name *column_0* should be the same in a referenced table 
+and an actual table which uses reference key ( __foreign key__ ) <br>
+
+If the names are different between a tables, then the such kind of definition can be used: <br>
+create table *name* ( <br>
+    *column_0* *type_0* references *referenceTable*(*referenceColumn*), <br>
+    *column_1* *type_1*, <br>
+    *column_n* *type_n* <br>
+); <br>
+
+#### create database ( PostgreSQL )
+create database *name* [options] <br>
+then connect to database: <br>
+\c *dbname* <br>
+https://www.postgresql.org/docs/9.4/static/sql-createdatabase.html
+
+#### drop database ( PostgreSQL )
+drop database *name* [options] <br>
+It is impossible to drop a database you're currently connected to. <br>
+https://www.postgresql.org/docs/9.4/static/sql-dropdatabase.html
+
+#### drop table
+drop table *name* [options] <br>
+https://www.postgresql.org/docs/9.4/static/sql-droptable.html <br>
+
+#### subqueries
+select avg(maxScore) from <br>
+    ( select max(score) as maxScore <br>
+    from mooseball <br>
+    group by team ) <br>
+    as maxTeamScores; <br>
+https://www.postgresql.org/docs/9.4/static/sql-expressions.html#SQL-SYNTAX-SCALAR-SUBQUERIES <br>
+https://www.postgresql.org/docs/9.4/static/functions-subquery.html <br>
+https://www.postgresql.org/docs/9.4/static/sql-select.html#SQL-FROM <br>
