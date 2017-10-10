@@ -10,7 +10,10 @@ in a database then all rows of the database will be deleted. <br>
 
 http://bobby-tables.com/
 
-#### Cleaning javascript & html in entries of database <br>
+#### Cleaning javascript & html in entries of database 
 http://bleach.readthedocs.io/en/latest/
+
+#### Database Normalisation
+http://www.bkent.net/Doc/simple5.htm
 
 
