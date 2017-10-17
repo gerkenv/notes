@@ -166,3 +166,24 @@ select avg(maxScore) from <br>
 https://www.postgresql.org/docs/9.4/static/sql-expressions.html#SQL-SYNTAX-SCALAR-SUBQUERIES <br>
 https://www.postgresql.org/docs/9.4/static/functions-subquery.html <br>
 https://www.postgresql.org/docs/9.4/static/sql-select.html#SQL-FROM <br>
+
+    select id, name, wins_, matches_
+    from 
+    (
+        select id, name, count(idWinner) as matches_ 
+        from players 
+        left join matches 
+        on (id = idWinner or id = idLoser) 
+        group by id
+    ) as rounds 
+    join 
+    (
+        select id as id_, count(idWinner) as wins_ 
+        from players 
+        left join matches 
+        on id = idWinner 
+        group by id
+    ) as wins 
+    on rounds.id = wins.
+
+
