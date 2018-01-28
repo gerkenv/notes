@@ -630,3 +630,128 @@ Use indexedDB.deleteDatabase('wittr') if your database is corrupted.
 
 #### 4.7 Quiz: Using IDB 2
 
+git checkout task-show-stored
+
+wittr/public/js/main/indexController.js
+
+  // TODO: get all of the wittr message objects from indexeddb,
+  // then pass them to:
+  // indexController._postsView.addPosts(messages)
+  // in order of date, starting with the latest.
+  // Remember to return a promise that does all this,
+  // so the websocket isn't opened until you're done!
+  var byTimeIndex = db.transaction('wittrs').objectStore('wittrs')
+                    .index('by-date');
+  return byTimeIndex.getAll().then(function(messages) {
+    indexController._postsView.addPosts(messages.reverse());
+  })
+
+#### 4.8 Quiz: Cleaning IDB
+
+git checkout task-clean-db
+
+wittr/public/js/main/indexController.js
+
+  // TODO: keep the newest 30 entries in 'wittrs',
+  // but delete the rest.
+  //
+  // Hint: you can use .openCursor(null, 'prev') to
+  // open a cursor that goes through an index/store
+  // backwards.
+  store.index('by-date').openCursor(null, 'prev').then(function(cursor) {
+    if (!cursor) return;
+    return cursor.advance(30); // skip 30 items
+  }).then(function deleteEntry(cursor) {
+    if (!cursor) return;
+    cursor.delete();
+    return cursor.continue().then(deleteEntry);
+  }).then(function() {
+    console.log('Only 30 items are let in a database');
+  });
+
+#### 4.9 Cache Photos
+
+The body of the response can be used only once, when response.json() is called once,
+response.blob() cannot be called because the original data is already gone.
+Also event.respondWith(response) using the original body of the response, so
+you cannot later read it again.
+
+This problem an be solved if you're cloning the original request:
+
+event.respondWith(
+  caches.open('wittr-content-imgs').then(function(cache) {
+    return fetch(request).then(function(response) {
+      cache.put(request, response.clone()); // A clone of response is cached
+      return response;                      // An original response is returned
+    })
+  })
+)
+
+#### 4.10 Quiz: Cache Photos
+
+git checkout task-cache-photos
+
+wittr/public/js/sw/index.js
+
+  // HINT: cache.put supports a plain url as the first parameter
+  return caches.open(contentImgsCache).then(function(cache) {
+    return cache.match(storageUrl).then(function(cacheResponse) {
+      if (cacheResponse) return cacheResponse;
+      return fetch(request).then(function(networkResponse) {
+        cache.put( storageUrl, networkResponse.clone() );
+        return networkResponse;
+      });
+    });
+  });
+
+#### 4.11 Cleaning Photo Cache
+
+cache.delete(request) // delete specific entry
+cache.keys().then(function(requests) {
+  // ... all requests for entries in a cache
+});
+
+#### 4.12 Quiz: Cleaning Photo Cache
+
+git checkout task-clean-photos
+
+wittr/public/js/main/indexController.js
+
+  var imagesNeeded = [];
+
+  var tx = db.transaction('wittrs');
+  return tx.objectStore('wittrs').getAll().then(function(messages) {
+    messages.forEach(function(message) {
+      if (message.photo) {
+        imagesNeeded.push(message.photo);
+      }
+      imagesNeeded.push(message.avatar);
+    });
+
+    return caches.open('wittr-content-imgs');
+  }).then(function(cache) {
+    return cache.keys().then(function(requests) {
+      requests.forEach(function(request) {
+        var url = new URL(request.url);
+        if (!imagesNeeded.includes(url.pathname)) cache.delete(request);
+      });
+    });
+  });
+
+#### 4.13 Quiz: Caching Avatars
+
+git checkout task-cache-avatars
+
+wittr/public/js/sw/index.js
+
+  return caches.open(contentImgsCache).then(function(cache) {
+    return cache.match(storageUrl).then(function(cacheResponse) {
+      var networkFetch = fetch(request).then(function(networkResponse) {
+        cache.put(storageUrl, networkResponse.clone());
+        return networkResponse;
+      });
+
+      return cacheResponse || networkFetch;
+    });
+  });
+
