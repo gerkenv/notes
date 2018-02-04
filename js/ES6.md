@@ -1983,3 +1983,340 @@ getEmployee();
 
 ...umm, what? Where's the "the function has started" text from the top of the function? And why didn't we get any names printed to the console?
 
+#### 8.25 Generators & Iterators
+
+__WARNING:__ We looked at iteration in a previous section, so if you're rusty on it, better check it out again because they're resurfacing here with generators!
+
+When a generator is invoked, it doesn't actually run any of the code inside the function. Instead, it creates and returns an iterator. This iterator can then be used to execute the actual generator's inner code.
+```js
+const generatorIterator = getEmployee();
+generatorIterator.next();
+```
+Produces the code we expect:
+
+> the function has started \
+Amanda \
+Diego \
+Farrin \
+James \
+Kagure \
+Kavita \
+Orit \
+Richard \
+the function has ended
+
+Now if you tried the code out for yourself, the first time the iterator's `.next()` method was called it ran all of the code inside the generator. Did you notice anything? The code never paused! So how do we get this magical, pausing functionality?
+
+##### The Yield Keyword
+The `yield` keyword is new and was introduced with ES6. It can only be used inside generator functions. yield is what causes the generator to pause. Let's add yield to our generator and give it a try:
+```js
+function* getEmployee() {
+    console.log('the function has started');
+
+    const names = ['Amanda', 'Diego', 'Farrin', 'James', 'Kagure', 'Kavita', 'Orit', 'Richard'];
+
+    for (const name of names) {
+        console.log(name);
+        yield;
+    }
+
+    console.log('the function has ended');
+}
+```
+Notice that there's now a `yield` inside the `for...of` loop. Let's invoke the generator (which produces an iterator) and then call `.next()`
+```js
+const generatorIterator = getEmployee();
+generatorIterator.next();
+```
+Logs the following to the console:
+> the function has started \
+Amanda
+
+It's paused! But to really be sure, let's check out the next iteration:
+Logs the following to the console:
+> Diego
+
+So it remembered exactly where we left off! It took the next item in the array (Diego), logged it, and then hit the `yield` again, so it paused again.
+
+Now pausing is all well and good, but what if we could send data from the generator back to the "outside" world? We can do this with `yield`.
+
+##### Yielding Data to the "Outside" World
+Instead of logging the names to the console and then pausing, let's have the code "return" the name and then pause.
+```js
+function* getEmployee() {
+    console.log('the function has started');
+
+    const names = ['Amanda', 'Diego', 'Farrin', 'James', 'Kagure', 'Kavita', 'Orit', 'Richard'];
+
+    for (const name of names) {
+        yield name;
+    }
+
+    console.log('the function has ended');
+}
+```
+Notice that now instead of `console.log(name);` that it's been switched to `yield name;`. With this change, when the generator is run, it will "yield" the `name` back out to the function and then pause its execution. Let's see this in action:
+```js
+const generatorIterator = getEmployee();
+let result = generatorIterator.next();
+result.value // is "Amanda"
+
+generatorIterator.next().value // is "Diego"
+generatorIterator.next().value // is "Farrin"
+```
+
+##### QUIZ QUESTION
+How many times will the iterator's .next() method need to be called to fully complete/"use up" the udacity generator function below:
+```js
+function* udacity() {
+    yield 'Richard';
+    yield 'James'
+}
+```
+Answer - 3 times. \
+It will be called one more time than there are yield expressions in the generator function.
+
+The first call to `.next()` will start the function and run to the first yield. The second call to `.next()` will pick up where things left off and run to the second yield. The third and final call to `.next()` will pick up where things left off again and run to the end of the function.
+
+#### 8.26 Sending Data into/out of a Generator
+
+So we can get data out of a generator by using the `yield` keyword. We can also send data back into the generator, too. We do this using the `.next()` method:
+```js
+function* displayResponse() {
+    const response = yield;
+    console.log(`Your response is "${response}"!`);
+}
+
+const iterator = displayResponse();
+
+iterator.next(); // starts running the generator function
+iterator.next('Hello Udacity Student'); // send data into the generator
+// the line above logs to the console: Your response is "Hello Udacity Student"!
+```
+Calling `.next()` with data (i.e. `.next('Richard')`) will send data into the generator function where it last left off. \
+__It will "replace" the `yield` keyword with the data that you provided__.
+
+So the `yield` keyword is used to pause a generator and used to send data outside of the generator, and then the `.next()` method is used to pass data into the generator. Here's an example that makes use of both of these to cycle through a list of names one at a time:
+```js
+function* getEmployee() {
+    const names = ['Amanda', 'Diego', 'Farrin', 'James', 'Kagure', 'Kavita', 'Orit', 'Richard'];
+    const facts = [];
+
+    for (const name of names) {
+        // yield *out* each name AND store the returned data into the facts array
+        facts.push(yield name);
+    }
+
+    return facts;
+}
+
+const generatorIterator = getEmployee();
+
+// get the first name out of the generator
+let name = generatorIterator.next().value;
+
+// pass data in *and* get the next name
+name = generatorIterator.next(`${name} is cool!`).value;
+
+// pass data in *and* get the next name
+name = generatorIterator.next(`${name} is awesome!`).value;
+
+// pass data in *and* get the next name
+name = generatorIterator.next(`${name} is stupendous!`).value;
+
+// you get the idea
+name = generatorIterator.next(`${name} is rad!`).value;
+name = generatorIterator.next(`${name} is impressive!`).value;
+name = generatorIterator.next(`${name} is stunning!`).value;
+name = generatorIterator.next(`${name} is awe-inspiring!`).value;
+
+// pass the last data in, generator ends and returns the array
+const positions = generatorIterator.next(`${name} is magnificent!`).value;
+
+// displays each name with description on its own line
+positions.join('\n');
+```
+> "Amanda is cool! \
+Diego is awesome! \
+Farrin is stupendous! \
+James is rad! \
+Kagure is impressive! \
+Kavita is stunning! \
+Orit is awe-inspiring! \
+Richard is magnificent!"
+
+Generators are a powerful new kind of function that is able to pause its execution while also maintaining its own state. Generators are great for iterating over a list of items one at a time so you can handle each item on its own before moving on to the next one. You can also use generators to handle nested callbacks. For example, let's say that an app needs to get a list of all repositories and the number of times they've been starred. Well, before you can get the number of stars for each repository, you'd need to get the user's information. Then after retrieving the user's profile the code can then take that information to find all of the repositories.
+
+Generators will also be used heavily in upcoming additions to the JavaScript language. One upcoming feature that will make use of them is [async functions](https://github.com/tc39/ecmascript-asyncawait).
+
+#### 9.2 Old and New Browsers
+
+##### Code doesn't work in old browsers
+The code we've been looking at in this course is not supported by older browsers. Older browsers that were developed prior to the release of ES6 were developed to support the version of JavaScript at the time (which was ES5.1). If you try running any ES6 code in an older browser, it won't work.
+
+![Alt text](https://d17h27t6h515a5.cloudfront.net/topher/2017/April/59012473_ud356-l4-es6-code-safari-error/ud356-l4-es6-code-safari-error.png)
+
+_An arrow function runs and causes a syntax error in a Safari 9_
+
+It makes sense that code doesn't work in older browsers that were developed prior to the release of ES6, but there are some browsers that have been released after ES6 that don't support the new JavaScript syntax and functionality yet.
+
+Try using an arrow function in your code and opening it up in IE 11, and it won't work. There'll be an error on the console saying that it doesn't recognize the syntax.
+
+![Alt text](https://d17h27t6h515a5.cloudfront.net/topher/2017/April/59012490_ud356-l4-es6-code-ie-error/ud356-l4-es6-code-ie-error.png)
+
+_An arrow function runs and causes a syntax error in a IE11_
+
+Most of us don't think much about the browser and all it can do...until it doesn't work! But really, browser makers have a tough time. Think about HTML, CSS, and JavaScript - these languages are fluid and are always improving. Browser makers have to keep up with all of these changes.
+
+But how do they know about these changes?
+
+They learn (or actually build) the language specifications!
+
+Just like the [World Wide Web Consortium (W3C)](https://www.w3.org/) is the standards body for things like HTML, CSS, and SVG, [Ecma International](https://www.ecma-international.org/) is an industry association that develops and oversees standards like JavaScript and JSON. You can find the specifications for ES6 [here](http://www.ecma-international.org/ecma-262/6.0/index.html).
+
+Further info
+Ecma International is an important industry community and definitely worth checking out in more detail:
+
+* https://en.wikipedia.org/wiki/Ecma_International
+* http://www.ecma-international.org/memento/index.html
+
+__NOTE__: The code we've been looking at in this course is not supported by older browsers. Older browsers that were developed prior to the release of ES6 were developed to support the version of JavaScript at the time (which was ES5.1). If you try running any ES6 code in an older browser, it won't work.
+
+#### 9.4 Supported Features
+
+With new language specifications coming out every year and with browsers updating every other month, it can be quite challenging to know what browser supports which language features. Each browser maker (except for Safari) has a website that tracks its development status. Checkout the platform feature updates for each browser:
+
+* Google Chrome - https://www.chromestatus.com/features#ES6
+* Microsoft Edge - https://developer.microsoft.com/en-us/microsoft-edge/platform/status/?q=ES6
+* Mozilla Firefox - https://platform-status.mozilla.org/
+
+__NOTE__: Safari doesn't have it's own platform status website. Under the hood, though, Safari is powered by the open source browser engine, Webkit. The status for Webkit features can be found [here](https://webkit.org/status/).
+
+This can be a lot of information to track down. If you prefer a birdseye view of all the feature support for all JavaScript code, check out the ECMAScript Compatibility Table built by [@kangax](https://twitter.com/kangax):
+
+* http://kangax.github.io/compat-table/es6/
+
+![Alt text](https://d17h27t6h515a5.cloudfront.net/topher/2017/January/5888ff26_es6-compatibility-tables/es6-compatibility-tables.png)
+
+_Compatibility table of browser support for ECMAScript features._
+
+#### 9.6 Polyfills
+
+##### What is a polyfill?
+A polyfill, or polyfiller, is a piece of code (or plugin) that provides the technology that you, the developer, expect the browser to provide natively.
+
+Coined by [Remy Sharp](https://twitter.com/rem) - https://remysharp.com/2010/10/08/what-is-a-polyfill
+
+We, as developers, should be able to develop with the HTML5 APIs, and scripts can create the methods and objects that should exist. Developing in this future-proof way means as users upgrade, your code doesn't have to change but users will move to the better, native experience cleanly. From the HTML5 Boilerplate team on polyfills - https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills
+
+##### Further research:
+https://en.wikipedia.org/wiki/Polyfill
+
+##### An example polyfill
+The code below is a polyfill for the new ES6 String method, `startsWith()`:
+```js
+if (!String.prototype.startsWith) {
+  String.prototype.startsWith = function (searchString, position) {
+    position = position || 0;
+    return this.substr(position, searchString.length) === searchString;
+  };
+}
+```
+As you can see, a polyfill is just regular JavaScript.
+
+This code is a simple polyfill (check it out on MDN), but there's also a significantly more robust one, [here](https://github.com/mathiasbynens/String.prototype.startsWith/blob/master/startswith.js)
+
+#### 9.9 Other Uses for Polyfills
+
+##### Polyfills aren't only for patching missing JavaScript features
+JavaScript is the language used to create a polyfill, but a polyfill doesn't just patch up missing JavaScript features! There are polyfills for all sorts of browser features:
+
+* SVG
+* Canvas
+* Web Storage (local storage / session storage)
+* Video
+* HTML5 elements
+* Accessibility
+* Web Sockets
+* and many more!
+
+For a more-complete list of polyfills, check out [this link](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills)
+
+#### 9.11 Transpiling Using Babel
+
+__Transpiling__ - convertion of one language to another, i.e. ES6 to ES5.
+
+The most popular JavaScript transpiler is called [Babel](https://babeljs.io/).
+
+Babel's original name was slightly more descriptive - 6to5. This was because, originally, Babel converted ES6 code to ES5 code. Now, Babel does a lot more. It'll convert ES6 to ES5, JSX to JavaScript, and Flow to JavaScript.
+
+Before we look at transpiling code on our computer, let's do a quick test by transpiling some ES6 code into ES5 code directly on the Babel website. Check out [Babel's REPL](http://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015) and paste the following code into the section on the left:
+```js
+class Student {
+  constructor (name, major) {
+    this.name = name;
+    this.major = major;
+  }
+
+  displayInfo() {
+    console.log(`${this.name} is a ${this.major} student.`);
+  }
+}
+
+const richard = new Student('Richard', 'Music');
+const james = new Student('James', 'Electrical Engineering');
+```
+
+![Alt text](https://d17h27t6h515a5.cloudfront.net/topher/2017/January/5888fc24_babel-es6-to-es5/babel-es6-to-es5.png)
+
+_ES6 code on the left that's being transpiled to ES5 code on the right._
+
+##### Transpiling project locally
+If you check in (clone) the [repo for this project](https://github.com/udacity/course-es6s), inside the Lesson 4 directory is a little project that's all set up for transpiling ES6 code to ES5 code. There's an "ES6" directory that contains the ES6 code we'll be transpiling (using Babel) to ES5 code that will be able to run in every browser.
+
+![Alt text](https://d17h27t6h515a5.cloudfront.net/topher/2017/January/5888fd20_es6-code-in-project/es6-code-in-project.png)
+
+_Code editor with ES6 code that will be transpiled._
+
+The way Babel transforms code from one language to another is through plugins. There are plugins that transform ES6 arrow functions to regular ES5 functions (the [ES2015 arrow function plugin](http://babeljs.io/docs/plugins/transform-es2015-arrow-functions/)). There are plugins that transform ES6 template literals to regular string concatenation (the [ES2015 template literals transform](http://babeljs.io/docs/plugins/transform-es2015-template-literals/)). For a full list, check out [all of Babel's plugins](http://babeljs.io/docs/plugins/).
+
+Now, you're busy and you don't want to have to sift through a big long list of plugins to see which ones you need to convert your code from ES6 to ES5. So instead of having to use a bunch of individual plugins, Babel has presets which are groups of plugins bundled together. So instead of worrying about which plugins you need to install, we'll just use the [ES2015 preset](http://babeljs.io/docs/plugins/preset-es2015/) that is a collection of all the plugins we'll need to convert all of our ES6 code to ES5.
+
+You can see that the project has a `.babelrc` file. This is where you'd put all of the plugins and/or presets that the project will use. Since we want to convert all ES6 code, we've set it up so that it has the ES2015 preset.
+
+![Alt text](https://d17h27t6h515a5.cloudfront.net/topher/2017/January/5888fdb4_es6-preset-in-project/es6-preset-in-project.png)
+
+_Code editor with `.babelrc` file that has ES2015 preset listed._
+
+__WARNING__: Babel uses both [Node](https://nodejs.org/) and [NPM](https://www.npmjs.com/) to distribute its plugins. So before you can install anything, make sure you have both of these tools installed:
+
+Install [Node](https://nodejs.org/) (which will automatically install NPM)
+
+#### Babel installation
+
+Babel installation following instructions can be found [here](http://babeljs.io/docs/setup/#installation) - choose CLI option.
+
+Remember that your `package.json` and `.babalrc` files are already configured.
+
+Briefly you need to perform following steps:
+* open a terminal
+* navigate to "walk-through-transpiling" folder
+* execute `npm install --save-dev babel-cli`
+* execute `npm install --save-dev babel-preset-es2015`
+
+##### Babel Usage
+
+Now you can use Babel locally:
+* open a terminal
+* navigate to "walk-through-transpiling" folder
+* execute `npm run build`
+
+Result of a transpiling can be found in "walk-through-transpiling/ES5"
+
+#### 9.13 Transpiling Recap
+
+__NOTE__: As of the creation of this course (circa Winter 2016), most of ES6 is supported by the current set of browsers. But that's "most", not "all", unfortunately. And that's also referring to "current" browsers. There are plenty of older browsers that do not support many, if any, of the new ES6 additions. However, it is safe to say that pretty much every browser supports the previous version of the language (ES5.1).
+
+##### Transpiling Recap
+It's important to stay on top of all the changes JavaScript is going through. The best way to do that is to start making use of the new features that are added. The problem is that not all browsers support these new features. So to have your cake and eat it too, you can write in ES6 and then use a transpiler to convert it to ES5 code. This lets you transform your project's code base to the newest version of the language while still letting it run everywhere. Then, once all of the browsers your app has to run on fully support ES6 code, you can stop transpiling your code and just serve the straight ES6 code, directly!
+
