@@ -1856,7 +1856,7 @@ In the code above, notice that the `set` trap checks to see if the `payRate` pro
 
 So we've looked at the `get` and `set` traps (which are probably the ones you'll use most often), but there are actually a total of 13 different traps that can be used in a `handler`!
 
-Check [All methods of a handler](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler).
+Check [all methods of a handler](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler):
 
 1. the `get` trap - lets the proxy handle calls to property access
 2. the `set` trap - lets the proxy handle setting the property to a new value
