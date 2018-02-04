@@ -1,6 +1,6 @@
 
-All provided content is a copy of a ES6 JavaScript course at Udacity.com.
-So if you prefer an interactive way of studying - go register there and find up this course.
+All provided content is a copy of a [ES6 JavaScript course](https://www.udacity.com/course/es6-javascript-improved--ud356) at [Udacity.com](https://www.udacity.com/).
+So if you prefer an interactive way of studying - go register there and check out this course.
 
 #### 6.2 Let and Const
 
