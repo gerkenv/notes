@@ -13,8 +13,7 @@ function getClothing(isCold) {
   }
 }
 
-Output:
-undefined
+> undefined
 
 ##### Hoisting
 Hoisting is a result of how JavaScript is interpreted by your browser. Essentially, before any JavaScript code is executed, all variables are "hoisted", which means they're raised to the top of the function scope. So at run-time, the getClothing() function actually looks more like this…
@@ -31,8 +30,7 @@ function getClothing(isCold) {
 
 Variables declared with _let_ and _const_ eliminate this specific issue of hoisting because they’re scoped to the block, not to the function. Previously, when you used _var_, variables were either scoped globally or locally to an entire function scope.
 
-Output:
-ReferenceError: freezing is not defined
+> ReferenceError: freezing is not defined
 
 #### 6.4 Template literals
 
@@ -614,7 +612,7 @@ So arrow functions are awesome!
 * and they automatically return when using the concise body syntax!
 WARNING: Everything's not all ponies and rainbows though, and there are definitely times when you might not want to use an arrow function. So before you wipe from your memory how to write a traditional function, check out these implications:
 
-*there's a gotcha with the this keyword in arrow functions
+* there's a gotcha with the `this` keyword in arrow functions
   * go to the next lesson to find out the details!
 * arrow functions are only expressions
   * there's no such thing as an arrow function declaration
@@ -1038,19 +1036,19 @@ NOTE: A little hazy on how constructor functions, class methods, or prototypal i
 
 Benefits of classes
 1. Less setup
-  1. There's a lot less code that you need to write to create a function
+    1. There's a lot less code that you need to write to create a function
 2. Clearly defined constructor function
-  1. Inside the class definition, you can clearly specify the constructor function.
+    1. Inside the class definition, you can clearly specify the constructor function.
 3. Everything's contained
-  1. All code that's needed for the class is contained in the class declaration. Instead of having the constructor  function in one place, then adding methods to the prototype one-by-one, you can do everything all at once!
+    1. All code that's needed for the class is contained in the class declaration. Instead of having the constructor  function in one place, then adding methods to the prototype one-by-one, you can do everything all at once!
 
 Things to look out for when using classes
 1. class is not magic
-  1. The class keyword brings with it a lot of mental constructs from other, class-based languages. It doesn't magically add this functionality to JavaScript classes.
+    1. The class keyword brings with it a lot of mental constructs from other, class-based languages. It doesn't magically add this functionality to JavaScript classes.
 2. class is a mirage over prototypal inheritance
-  1. We've said this many times before, but under the hood, a JavaScript class just uses prototypal inheritance.
+    1. We've said this many times before, but under the hood, a JavaScript class just uses prototypal inheritance.
 3. Using classes requires the use of new
-  1. When creating a new instance of a JavaScript class, the new keyword must be used
+    1. When creating a new instance of a JavaScript class, the new keyword must be used
 
 For example,
 ```js
@@ -1199,8 +1197,7 @@ const sym2 = Symbol('banana');
 const sym3 = Symbol('banana');
 console.log(sym2 === sym3);
 ```
-Results:
-false
+> false
 
 ...then the result is false because the description is only used to described the symbol. It’s not used as part of the symbol itself—each time a new symbol is created, regardless of the description.
 
@@ -1222,8 +1219,7 @@ const bowl = {
 };
 console.log(bowl);
 ```
-Results:
-Object {apple: Object, banana: Object, orange: Object}
+> Object {apple: Object, banana: Object, orange: Object}
 
 Instead of adding another banana to the bowl, our previous banana is overwritten by the new banana being added to the bowl. To fix this problem, we can use symbols.
 ```js
@@ -1235,8 +1231,7 @@ const bowl = {
 };
 console.log(bowl);
 ```
-Results
-Object {Symbol(apple): Object, Symbol(banana): Object, Symbol(orange): Object, Symbol(banana): Object}
+> Object {Symbol(apple): Object, Symbol(banana): Object, Symbol(orange): Object, Symbol(banana): Object}
 
 By changing the bowl’s properties to use symbols, each property is a unique Symbol and the first banana doesn’t get overwritten by the second banana.
 
@@ -1255,8 +1250,7 @@ for (const digit of digits) {
   console.log(digit);
 }
 ```
-Results:
-0
+> 0
 1
 2
 3
@@ -1280,10 +1274,10 @@ The iterator protocol is used to define a standard way that an object produces a
 How it Works
 An object becomes an iterator when it implements the .next() method. The .next() method is a zero arguments function that returns an object with two properties:
 
-value : the data representing the next value in the sequence of values within the object
-done : a boolean representing if the iterator is done going through the sequence of values
-If done is true, then the iterator has reached the end of its sequence of values.
-If done is false, then the iterator is able to produce another value in its sequence of values.
+1. `value` : the data representing the next value in the sequence of values within the object
+2. `done` : a boolean representing if the iterator is done going through the sequence of values
+    1. If `done` is true, then the iterator has reached the end of its sequence of values.
+    2. If `done` is false, then the iterator is able to produce another value in its sequence of values.
 Here’s the example from earlier, but instead we are using the array’s default iterator to step through the each value in the array.
 ```js
 const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -1293,8 +1287,572 @@ console.log(arrayIterator.next());
 console.log(arrayIterator.next());
 console.log(arrayIterator.next());
 ```
-Results:
-Object {value: 0, done: false}
+> Object {value: 0, done: false}
 Object {value: 1, done: false}
 Object {value: 2, done: false}
+
+#### 8.5 Sets
+
+##### A Set in Mathematics
+If you think back to mathematics, a set is a collection of distinct items. For example, {2, 4, 5, 6} is a set because each number is unique and appears only once. However, {1, 1, 2, 4} is not a set because it contains duplicate entries (the 1 is in there more than once!).
+
+In JavaScript, we can already represent something similar to a mathematical set using an array.
+```js
+const nums = [2, 4, 5, 6];
+```
+However, arrays do not enforce items to be unique. If we try to add another 2 to nums, JavaScript won't complain and will add it without any issue.
+```js
+nums.push(2);
+console.log(nums);
+```
+[2, 4, 5, 6, 2]
+…and now nums is no longer a set in the mathematical sense.
+
+##### Sets
+In ES6, there’s a new built-in object that behaves like a mathematical set and works similarly to an array. This new object is conveniently called a "Set". The biggest differences between a set and an array are:
+
+* Sets are not indexed-based - you do not refer to items in a set based on their position in the set
+* Items in a Set can’t be accessed individually
+Basically, a Set is an object that lets you store unique items. You can add items to a Set, remove items from a Set, and loop over a Set. These items can be either primitive values or objects.
+
+How to Create a Set
+There’s a couple of different ways to create a Set. The first way, is pretty straightforward:
+```js
+const games = new Set();
+console.log(games);
+```
+> Set {}
+
+This creates an empty Set games with no items.
+
+If you want to create a Set from a list of values, you use an array:
+```js
+const games = new Set(['Super Mario Bros.', 'Banjo-Kazooie', 'Mario Kart', 'Super Mario Bros.']);
+console.log(games);
+```
+> Set {'Super Mario Bros.', 'Banjo-Kazooie', 'Mario Kart'}
+
+Notice the example above automatically removes the duplicate entry "Super Mario Bros." when the Set is created. Pretty neat!
+
+#### 8.6 Modifying Sets
+
+After you’ve created a Set, you’ll probably want to add and delete items from the Set. So how do you that? You use the appropriately named, .add() and .delete() methods:
+```js
+const games = new Set(['Super Mario Bros.', 'Banjo-Kazooie', 'Mario Kart', 'Super Mario Bros.']);
+
+games.add('Banjo-Tooie');
+games.add('Age of Empires');
+games.delete('Super Mario Bros.');
+
+console.log(games);
+```
+> Set {'Banjo-Kazooie', 'Mario Kart', 'Banjo-Tooie', 'Age of Empires'}
+
+On the other hand, if you want to delete all the items from a Set, you can use the .clear() method.
+```js
+games.clear()
+console.log(games);
+```
+> Set {}
+
+__TIP__: If you attempt to .add() a duplicate item to a Set, you won’t receive an error, but the item will not be added to the Set. Also, if you try to .delete() an item that is not in a Set, you won’t receive an error, and the Set will remain unchanged.
+
+.add() returns the Set if an item is successfully added. On the other hand, .delete() returns a Boolean (true or false) depending on successful deletion.
+
+#### Working With Sets
+
+##### Checking The Length
+Once you’ve constructed your Set, there are a couple of different properties and methods you can use to work with Sets.
+
+Use the .size property to return the number of items in a Set:
+```js
+const months = new Set(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+console.log(months.size);
+```
+> 12
+
+Remember, Sets can’t be accessed by their index like an array, so you use the .size property instead of .length property to get the size of the Set.
+
+Checking If An Item Exists
+Use the .has() method to check if an item exists in a Set. If the item is in the Set, then .has() will return true. If the item doesn’t exist in the Set, then .has() will return false.
+```js
+console.log(months.has('September'));
+```
+> true
+
+Retrieving All Values
+Finally, use the .values() method to return the values in a Set. The return value of the .values() method is a SetIterator object.
+```js
+console.log(months.values());
+```
+> SetIterator {'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'}
+
+More on the SetIterator object in a second!
+
+__TIP__: The .keys() method will behave the exact same way as the .values() method by returning the values of a Set within a new Iterator Object. The .keys() method is an alias for the .values() method for similarity with maps. You’ll see the .keys() method later in this lesson during the Maps section.
+
+#### Sets & Iterators
+
+The last step to working with Sets is looping over them.
+
+If you remember back to our discussion on the new iterable and iterator protocols in ES6, then you’ll recall that Sets are built-in iterables. This means two things in terms of looping:
+
+You can use the Set’s default iterator to step through each item in a Set, one by one.
+You can use the new for...of loop to loop through each item in a Set.
+Using the SetIterator
+Because the .values() method returns a new iterator object (called SetIterator), you can store that iterator object in a variable and loop through each item in the Set using .next().
+```js
+const iterator = months.values();
+iterator.next();
+```
+> Object {value: 'January', done: false}
+
+And if you run .next() again?
+```js
+iterator.next();
+```
+> Object {value: 'February', done: false}
+
+And so on until done equals true which marks the end of the Set.
+
+##### Using a for...of Loop
+An easier method to loop through the items in a Set is the for...of loop.
+```js
+const colors = new Set(['red', 'orange', 'yellow', 'green', 'blue', 'violet', 'brown', 'black']);
+for (const color of colors) {
+  console.log(color);
+}
+```
+> red
+orange
+yellow
+green
+blue
+violet
+brown
+black
+
+#### 8.10 WeakSet
+
+##### What is a WeakSet?
+A WeakSet is just like a normal Set with a few key differences:
+
+1. a WeakSet can only contain objects
+2. a WeakSet is not iterable which means it can’t be looped over
+3. a WeakSet does not have a .clear() method
+You can create a WeakSet just like you would a normal Set, except that you use the WeakSet constructor.
+```js
+const student1 = { name: 'James', age: 26, gender: 'male' };
+const student2 = { name: 'Julia', age: 27, gender: 'female' };
+const student3 = { name: 'Richard', age: 31, gender: 'male' };
+
+const roster = new WeakSet([student1, student2, student3]);
+console.log(roster);
+```
+> WeakSet {Object {name: 'Julia', age: 27, gender: 'female'}, Object {name: 'Richard', age: 31, gender: 'male'}, Object {name: 'James', age: 26, gender: 'male'}}
+
+…but if you try to add something other than an object, you’ll get an error!
+```js
+roster.add('Amanda');
+```
+> Uncaught TypeError: Invalid value used in weak set(…)
+
+This is expected behavior because WeakSets can only contain objects. But why should it only contain objects? Why would you even use a WeakSet if normal Sets can contain objects and other types of data? Well, the answer to that question has more to do with why WeakSets do not have a .clear() method...
+
+##### Garbage Collection
+In JavaScript, memory is allocated when new values are created and is "automatically" freed up when those values are no longer needed. This process of freeing up memory after it is no longer needed is what is known as garbage collection.
+
+WeakSets take advantage of this by exclusively working with objects. If you set an object to null, then you’re essentially deleting the object. And when JavaScript’s garbage collector runs, the memory that object previously occupied will be freed up to be used later in your program.
+```js
+student3 = null;
+console.log(roster);
+```
+> WeakSet {Object {name: 'Julia', age: 27, gender: 'female'}, Object {name: 'James', age: 26, gender: 'male'}}
+
+What makes this so useful is you don’t have to worry about deleting references to deleted objects in your WeakSets, JavaScript does it for you! When an object is deleted, the object will also be deleted from the WeakSet when garbage collection runs. This makes WeakSets useful in situations where you want an efficient, lightweight solution for creating groups of objects.
+
+The point in time when garbage collection happens depends on a lot of different factors. Check out MDN’s documentation to learn more about the algorithms used to handle garbage collection in JavaScript.
+
+#### 8.13 Creating & Modifying Maps
+
+If Sets are similar to Arrays, then Maps are similar to Objects because Maps store key-value pairs similar to how objects contain named properties with values.
+
+Essentially, a Map is an object that lets you store key-value pairs where both the keys and the values can be objects, primitive values, or a combination of the two.
+
+##### How to Create a Map
+To create a Map, simply type:
+```js
+const employees = new Map();
+console.log(employees);
+```
+> Map {}
+
+This creates an empty Map employee with no key-value pairs.
+
+##### Modifying Maps
+Unlike Sets, you can’t create Maps from a list of values; instead, you add key-values by using the Map’s .set() method.
+```js
+const employees = new Map();
+
+employees.set('james.parkes@udacity.com', {
+    firstName: 'James',
+    lastName: 'Parkes',
+    role: 'Content Developer'
+});
+employees.set('julia@udacity.com', {
+    firstName: 'Julia',
+    lastName: 'Van Cleve',
+    role: 'Content Developer'
+});
+employees.set('richard@udacity.com', {
+    firstName: 'Richard',
+    lastName: 'Kalehoff',
+    role: 'Content Developer'
+});
+
+console.log(employees);
+```
+> Map {'james.parkes@udacity.com' => Object {...}, 'julia@udacity.com' => Object {...}, 'richard@udacity.com' => Object {...}}
+
+The .set() method takes two arguments. The first argument is the key, which is used to reference the second argument, the value.
+
+To remove key-value pairs, simply use the .delete() method.
+```js
+employees.delete('julia@udacity.com');
+employees.delete('richard@udacity.com');
+console.log(employees);
+```
+> Map {'james.parkes@udacity.com' => Object {firstName: 'James', lastName: 'Parkes', role: 'Course Developer'}}
+
+Again, similar to Sets, you can use the .clear() method to remove all key-value pairs from the Map.
+```js
+employees.clear()
+console.log(employees);
+```
+> Map {}
+
+__TIP__: If you .set() a key-value pair to a Map that already uses the same key, you won’t receive an error, but the key-value pair will overwrite what currently exists in the Map. Also, if you try to .delete() a key-value that is not in a Map, you won’t receive an error, and the Map will remain unchanged.
+
+The .delete() method returns true if a key-value pair is successfully deleted from the Map object, and false if unsuccessful. The return value of .set() is the Map object itself if successful.
+
+#### 8.14 Working with Maps
+
+After you’ve built your Map, you can use the .has() method to check if a key-value pair exists in your Map by passing it a key.
+```js
+const members = new Map();
+
+members.set('Evelyn', 75.68);
+members.set('Liam', 20.16);
+members.set('Sophia', 0);
+members.set('Marcus', 10.25);
+
+console.log(members.has('Xavier'));
+console.log(members.has('Marcus'));
+```
+> false
+true
+
+And you can also retrieve values from a Map, by passing a key to the .get() method.
+```js
+console.log(members.get('Evelyn'));
+```
+> 75.68
+
+#### 8.15 Looping Through Maps
+
+You’ve created a Map, added some key-value pairs, and now you want to loop through your Map. Thankfully, you’ve got three different options to choose from:
+
+1. Step through each key or value using the Map’s default iterator
+2. Loop through each key-value pair using the new for...of loop
+3. Loop through each key-value pair using the Map’s .forEach() method
+
+##### 1. Using the MapIterator
+Using both the .keys() and .values() methods on a Map will return a new iterator object called MapIterator. You can store that iterator object in a new variable and use .next() to loop through each key or value. Depending on which method you use, will determine if your iterator has access to the Map’s keys or the Map’s values.
+```js
+let iteratorObjForKeys = members.keys();
+iteratorObjForKeys.next();
+```
+> Object {value: 'Evelyn', done: false}
+
+Use .next() to the get the next key value.
+```js
+iteratorObjForKeys.next();
+```
+> Object {value: 'Liam', done: false}
+
+And so on.
+```js
+iteratorObjForKeys.next();
+```
+> Object {value: 'Sophia', done: false}
+
+On the flipside, use the .values() method to access the Map’s values, and then repeat the same process.
+```js
+let iteratorObjForValues = members.values();
+iteratorObjForValues.next();
+```
+> Object {value: 75.68, done: false}
+
+##### 2. Using a for...of Loop
+Your second option for looping through a Map is with a for...of loop.
+```js
+for (const member of members) {
+  console.log(member);
+}
+```
+>  ['Evelyn', 75.68]
+ ['Liam', 20.16]
+ ['Sophia', 0]
+ ['Marcus', 10.25]
+
+However, when you use a for...of loop with a Map, you don’t exactly get back a key or a value. Instead, the key-value pair is split up into an array where the first element is the key and the second element is the value.
+
+##### 3. Using a forEach Loop
+Your last option for looping through a Map is with the .forEach() method.
+```js
+members.forEach((key, value) => console.log(key, value));
+```
+>  'Evelyn' 75.68
+ 'Liam' 20.16
+ 'Sophia' 0
+ 'Marcus' 10.25
+
+Notice how with the help of an arrow function, the forEach loop reads fairly straightforward. For each value and key in members, log the value and key to the console.
+
+#### 8.16 WeakMaps
+
+__TIP__: If you’ve gone through the WeakSets section, then this section should be somewhat of a review. WeakMaps exhibit the same behavior as a WeakSets, except WeakMaps work with key-values pairs instead of individual items.
+
+##### What is a WeakMap?
+A WeakMap is just like a normal Map with a few key differences:
+
+1. a WeakMap can only contain objects as keys,
+2. a WeakMap is not iterable which means it can’t be looped and
+3. a WeakMap does not have a .clear() method.
+You can create a WeakMap just like you would a normal Map, except that you use the WeakMap constructor.
+```js
+const book1 = { title: 'Pride and Prejudice', author: 'Jane Austen' };
+const book2 = { title: 'The Catcher in the Rye', author: 'J.D. Salinger' };
+const book3 = { title: 'Gulliver’s Travels', author: 'Jonathan Swift' };
+
+const library = new WeakMap();
+library.set(book1, true);
+library.set(book2, false);
+library.set(book3, true);
+
+console.log(library);
+```
+> WeakMap {Object {title: 'Pride and Prejudice', author: 'Jane Austen'} => true, Object {title: 'The Catcher in the Rye', author: 'J.D. Salinger'} => false, Object {title: 'Gulliver’s Travels', author: 'Jonathan Swift'} => true}
+
+
+…but if you try to add something other than an object as a key, you’ll get an error!
+```js
+library.set('The Grapes of Wrath', false);
+```
+> Uncaught TypeError: Invalid value used as weak map key(…)
+
+This is expected behavior because WeakMap can only contain objects as keys. Again, similar to WeakSets, WeakMaps leverage garbage collection for easier use and maintainability.
+
+Garbage Collection
+In JavaScript, memory is allocated when new values are created and is "automatically" freed up when those values are no longer needed. This process of freeing up memory after it is no longer needed is what is known as garbage collection.
+
+WeakMaps take advantage of this by exclusively working with objects as keys. If you set an object to null, then you’re essentially deleting the object. And when JavaScript’s garbage collector runs, the memory that object previously occupied will be freed up to be used later in your program.
+```js
+book1 = null;
+console.log(library);
+```
+> WeakMap {Object {title: 'The Catcher in the Rye', author: 'J.D. Salinger'} => false, Object {title: 'Gulliver’s Travels', author: 'Jonathan Swift'} => true}
+
+What makes this so useful is you don’t have to worry about deleting keys that are referencing deleted objects in your WeakMaps, JavaScript does it for you! When an object is deleted, the object key will also be deleted from the WeakMap when garbage collection runs. This makes WeakMaps useful in situations where you want an efficient, lightweight solution for creating groupings of objects with metadata.
+
+The point in time when garbage collection happens is dependent on a lot of different factors. Check out [MDN’s documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management#Garbage_collection) to learn more about the algorithms used to handle garbage collection in JavaScript.
+
+#### 8.18 Promises
+
+A JavaScript Promise is created with the new Promise constructor function - new Promise(). A promise will let you start some work that will be done asynchronously and let you get back to your regular work. When you create the promise, you must give it the code that will be run asynchronously. You provide this code as the argument of the constructor function:
+```js
+new Promise(function () {
+    window.setTimeout(function createSundae(flavor = 'chocolate') {
+        const sundae = {};
+        // request ice cream
+        // get cone
+        // warm up ice cream scoop
+        // scoop generous portion into cone!
+    }, Math.random() * 2000);
+});
+```
+This code creates a promise that will start in a few seconds after I make the request. Then there are a number of steps that need to be made in the createSundae function.
+
+Indicated a Successful Request or a Failed Request
+But once that's all done, how does JavaScript notify us that it's finished and ready for us to pick back up? It does that by passing two functions into our initial function. Typically we call these `resolve` and `reject`.
+
+The function gets passed to the function we provide the Promise constructor - typically the word "resolve" is used to indicate that this function should be called when the request completes successfully. Notice the `resolve` on the first line:
+```js
+new Promise(function (resolve, reject) {
+    window.setTimeout(function createSundae(flavor = 'chocolate') {
+        const sundae = {};
+        // request ice cream
+        // get cone
+        // warm up ice cream scoop
+        // scoop generous portion into cone!
+        resolve(sundae);
+    }, Math.random() * 2000);
+});
+```
+Now when the `sundae` has been successfully created, it calls the `resolve` method and passes it the data we want to return - in this case the data that's being returned is the completed `sundae`. So the resolve method is used to indicate that the request is complete and that it completed successfully.
+
+If there is a problem with the request and it couldn't be completed, then we could use the second function that's passed to the function. Typically, this function is stored in an identifier called "reject" to indicate that this function should be used if the request fails for some reason. Check out the `reject` on the first line:
+```js
+new Promise(function (resolve, reject) {
+    window.setTimeout(function createSundae(flavor = 'chocolate') {
+        const sundae = {};
+        // request ice cream
+        // get cone
+        // warm up ice cream scoop
+        // scoop generous portion into cone!
+        if ( /* iceCreamConeIsEmpty(flavor) */ ) {
+            reject(`Sorry, we're out of that flavor :-(`);
+        }
+        resolve(sundae);
+    }, Math.random() * 2000);
+});
+```
+So the `reject` method is used when the request could not be completed. Notice that even though the request fails, we can still return data - in this case we're just returning text that says we don't have the desired ice cream flavor.
+
+A Promise constructor takes a function that will run and then, after some amount of time, will either complete successfully (using the `resolve` method) or unsuccessfully (using the `reject` method). When the outcome has been finalized (the request has either completed successfully or unsuccessfully), the promise is now fulfilled and will notify us so we can decide what to do with the response.
+
+##### Promises Return Immediately
+The first thing to understand is that a Promise will immediately return an object.
+```js
+const myPromiseObj = new Promise(function (resolve, reject) {
+    // sundae creation code
+});
+```
+That object has a `.then()` method on it that we can use to have it notify us if the request we made in the promise was either successful or failed. The `.then()` method takes two functions:
+
+1. the function to run if the request completed successfully
+2. the function to run if the request failed to complete
+```js
+mySundae.then(function(sundae) {
+    console.log(`Time to eat my delicious ${sundae}`);
+}, function(msg) {
+    console.log(msg);
+    self.goCry(); // not a real method
+});
+```
+As you can see, the first function that's passed to `.then()` will be called and passed the data that the Promise's `resolve` function used. In this case, the function would receive the `sundae` object. The second function will be called and passed the data that the Promise's `reject` function was called with. In this case, the function receives the error message "Sorry, we're out of that flavor :-(" that the `reject` function was called with in the Promise code above.
+
+#### 3.21 Proxies
+
+To create a proxy object, we use the Proxy constructor - `new Proxy();`. The proxy constructor takes two items:
+
+1. the object that it will be the proxy for
+2. an object containing the list of methods it will handle for the proxied object
+The second object is called the handler.
+
+##### A Pass Through Proxy
+The simplest way to create a proxy is to provide an object and then an empty handler object.
+```js
+var richard = {status: 'looking for work'};
+var agent = new Proxy(richard, {});
+
+agent.status; // returns 'looking for work'
+```
+The above doesn't actually do anything special with the proxy - it just passes the request directly to the source object! If we want the proxy object to actually intercept the request, that's what the handler object is for!
+
+The key to making Proxies useful is the handler object that's passed as the second object to the Proxy constructor. The handler object is made up of a methods that will be used for property access. Let's look at the `get`:
+
+##### Get Trap
+The `get` trap is used to "intercept" calls to properties:
+```js
+const richard = {status: 'looking for work'};
+const handler = {
+    get(target, propName) {
+        console.log(target); // the `richard` object, not `handler` and not `agent`
+        console.log(propName); // the name of the property the proxy (`agent` in this case) is checking
+    }
+};
+const agent = new Proxy(richard, handler);
+agent.status; // logs out the richard object (not the agent object!) and the name of the property being accessed (`status`)
+```
+> {status: 'looking for work'}
+'looking for work'
+
+In the code above, the `handler` object has a `get` method (called a "trap" since it's being used in a Proxy). When the code `agent.status;` is run on the last line, because the `get` trap exists, it "intercepts" the call to get the `status` property and runs the `get` trap function. This will log out the target object of the proxy (the `richard` object) and then logs out the name of the property being requested (the `status` property). And that's all it does! It doesn't actually log out the property! This is important - _if a trap is used, you need to make sure you provide all the functionality for that specific trap._
+
+##### Accessing the Target object from inside the proxy
+If we wanted to actually provide the real result, we would need to return the property on the target object:
+```js
+const richard = {status: 'looking for work'};
+const handler = {
+    get(target, propName) {
+        console.log(target);
+        console.log(propName);
+        return target[propName];
+    }
+};
+const agent = new Proxy(richard, handler);
+agent.status; // (1)logs the richard object, (2)logs the property being accessed, (3)returns the text in richard.status
+```
+> {status: 'looking for work'}
+'looking for work'
+
+Notice we added the `return target[propName];` as the last line of the `get` trap. This will access the property on the target object and will return it.
+
+##### Having the proxy return info, directly
+Alternatively, we could use the proxy to provide direct feedback:
+```js
+const richard = {status: 'looking for work'};
+const handler = {
+    get(target, propName) {
+        return `He's following many leads, so you should offer a contract as soon as possible!`;
+    }
+};
+const agent = new Proxy(richard, handler);
+agent.status; // returns the text `He's following many leads, so you should offer a contract as soon as possible!`
+```
+With this code, the Proxy doesn't even check the target object, it just directly responds to the calling code.
+
+So the `get` trap will take over whenever any property on the proxy is accessed. If we want to intercept calls to change properties, then the set trap needs to be used!
+
+The `set` trap is used for intercepting code that will change a property. The `set` trap receives: the object it proxies the property that is being set the new value for the proxy
+```js
+const richard = {status: 'looking for work'};
+const handler = {
+    set(target, propName, value) {
+        if (propName === 'payRate') { // if the pay is being set, take 15% as commission
+            value = value * 0.85;
+        }
+        target[propName] = value;
+    }
+};
+const agent = new Proxy(richard, handler);
+agent.payRate = 1000; // set the actor's pay to $1,000
+agent.payRate; // $850 the actor's actual pay
+```
+In the code above, notice that the `set` trap checks to see if the `payRate` property is being set. If it is, then the proxy (the `agent`) takes 15 percent off the top for her own commission! Then, when the actor's pay is set to one thousand dollars, since the `payRate` property was used, the code took 15% off the top and set the actual `payRate` property to 850;
+
+
+##### Other Traps
+
+So we've looked at the `get` and `set` traps (which are probably the ones you'll use most often), but there are actually a total of 13 different traps that can be used in a `handler`!
+
+Check [All methods of a handler](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler).
+
+1. the `get` trap - lets the proxy handle calls to property access
+2. the `set` trap - lets the proxy handle setting the property to a new value
+3. the `apply` trap - lets the proxy handle being invoked (the object being proxied is a function)
+4. the `has` trap - lets the proxy handle the using `in` operator
+5. the `deleteProperty` trap - lets the proxy handle if a property is deleted
+6. the `ownKeys` trap - lets the proxy handle when all keys are requested
+7. the `construct` trap - lets the proxy handle when the proxy is used with the `new` keyword as a constructor
+8. the `defineProperty` trap - lets the proxy handle when `defineProperty` is used to create a new property on the object
+9. the `getOwnPropertyDescriptor` trap - lets the proxy handle getting the property's descriptors
+10. the `preventExtenions` trap - lets the proxy handle calls to `Object.preventExtensions()` on the proxy object
+11. the `isExtensible` trap - lets the proxy handle calls to `Object.isExtensible` on the proxy object
+12. the `getPrototypeOf` trap - lets the proxy handle calls to `Object.getPrototypeOf` on the proxy object
+13. the `setPrototypeOf` trap - lets the proxy handle calls to `Object.setPrototypeOf` on the proxy object
+
+As you can see, there are a lot of traps that let the proxy manage how it handles calls back and forth to the proxied object.
+
 
