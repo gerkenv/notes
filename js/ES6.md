@@ -1855,4 +1855,131 @@ Check [All methods of a handler](https://developer.mozilla.org/en-US/docs/Web/Ja
 
 As you can see, there are a lot of traps that let the proxy manage how it handles calls back and forth to the proxied object.
 
+#### 8.22 Proxies vs. ES5 Getter/Setter
+
+Initially, it can be a bit unclear as to why proxies are all that beneficial when there are already getter and setter methods provided in ES5. With ES5's getter and setter methods, you need to know before hand the properties that are going to be `get`/`set`:
+```js
+var obj = {
+    _age: 5,
+    _height: 4,
+    get age() {
+        console.log(`getting the "age" property`);
+        console.log(this._age);
+        return this._age;
+    },
+    get height() {
+        console.log(`getting the "height" property`);
+        console.log(this._height);
+        return this._height;
+    }
+};
+```
+With the code above, notice that we have to set `get age()` and `get height()` when initializing the object. So when we call the code below, we'll get the following results:
+```js
+obj.age; // logs 'getting the "age" property' & 5
+obj.height; // logs 'getting the "height" property' & 4
+```
+But look what happens when we now add a new property to the object:
+```js
+obj.weight = 120; // set a new property on the object
+obj.weight; // logs just 120
+```
+Notice that a `getting the "weight" property` message wasn't displayed like the `age` and `height` properties produced.
+
+With ES6 Proxies, we do not need to know the properties beforehand:
+```js
+let obj = {age: 5, height: 4};
+let objHandler = {
+  get(targetObj, property) {
+    console.log(`getting the ${property} property`);
+    console.log(targetObj[property]);
+    return targetObj[property];
+  }
+}
+const objProxy = new Proxy(obj, objHandler);
+
+objProxy.age; // logs 'getting the age property' & 5
+objProxy.height; // logs 'getting the height property' & 4
+```
+All well and good, just like the ES5 code, but look what happens when we add a new property:
+```js
+objProxy.weight = 120; // set a new property on the object
+objProxy.weight; // logs 'getting the weight property' & 120
+```
+See that?!? A `weight` property was added to the proxy object, and when it was later retrieved, it displayed a log message!
+
+So some functionality of proxy objects may seem similar to existing ES5 getter/setter methods. But with proxies, you do not need to initialize the object with getters/setters for each property when the object is initialized.
+
+#### 8.23 Proxies Recap
+
+A proxy object sits between a real object and the calling code. The calling code interacts with the proxy instead of the real object. To create a proxy:
+
+* use the `new Proxy()` constructor
+pass the object being proxied as the first item
+  * the second object is a handler object
+  * the handler object is made up of 1 of 13 different "_traps_"
+
+A _trap_ is a function that will intercept calls to properties let you run code
+  * if a trap is not defined, the default behavior is sent to the target object
+
+Proxies are a powerful new way to create and manage the interactions between objects.
+
+#### 8.24 Generators
+
+Whenever a function is invoked, the JavaScript engine starts at the top of the function and runs every line of code until it gets to the bottom. There's no way to stop the execution of the function in the middle and pick up again at some later point. This "__run-to-completion__" is the way it's always been:
+```js
+function getEmployee() {
+    console.log('the function has started');
+
+    const names = ['Amanda', 'Diego', 'Farrin', 'James', 'Kagure', 'Kavita', 'Orit', 'Richard'];
+
+    for (const name of names) {
+        console.log(name);
+    }
+
+    console.log('the function has ended');
+}
+
+getEmployee();
+```
+Running the code above produces the following output on the console:
+
+> the function has started \
+Amanda \
+Diego \
+Farrin \
+James \
+Kagure \
+Kavita \
+Orit \
+Richard \
+the function has ended
+
+But what if you want to print out the first 3 employee names then stop for a bit, then, at some later point, you want to continue where you left off and print out more employee names. With a regular function, you can't do this since there's no way to "pause" a function in the middle of its execution.
+
+##### Pausable Functions
+If we _do_ want to be able to pause a function mid-execution, then we'll need a new type of function available to us in ES6 - generator functions! Let's look at one:
+```js
+function* getEmployee() {
+    console.log('the function has started');
+
+    const names = ['Amanda', 'Diego', 'Farrin', 'James', 'Kagure', 'Kavita', 'Orit', 'Richard'];
+
+    for (const name of names) {
+        console.log( name );
+    }
+
+    console.log('the function has ended');
+}
+```
+Notice the asterisk (i.e. `*`) right after the `function` keyword? That asterisk indicates that this function is actually a generator!
+
+Now check out what happens when we try running this function:
+```js
+getEmployee();
+// this is the response I get in Chrome:
+```
+> getEmployee {[[GeneratorStatus]]: "suspended", [[GeneratorReceiver]]: Window}
+
+...umm, what? Where's the "the function has started" text from the top of the function? And why didn't we get any names printed to the console?
 
