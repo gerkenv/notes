@@ -4,6 +4,10 @@ install node v4.2.1
 
 git clone https://github.com/jakearchibald/wittr
 
+if not avilable use
+
+git clone https://github.com/gerkenv/wittr
+
 #### 2.9 Running the Demo App
 
 npm install
