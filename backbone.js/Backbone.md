@@ -223,3 +223,314 @@ function template( text, options) {
 }
 ```
 
+#### 2.13 addEventListener
+
+###### The Browser's Event System
+
+The browser has an event system that announces everything you do on the page. An important step in learning how frameworks handle user interaction is to understand this event system and how developers can hook into it.
+
+The `addEventListener` method is an incredibly important part of the DOM API. This method allows you to listen in on the browser's event system. Here's its signature:
+```js
+target.addEventListener( type, listener );
+```
+The `target` can be anything that implements the `EventTarget` interface. This could be element on the page, the document object, the window object, even an XHR object. `addEventListener` can be used as a hook on any of these elements to listen in on the events that are occurring on them.
+
+The type is a string of the kind of event `addEventListener` will listen for. An example might be `click`,`animationend`, or `keyup`. Make sure to look through the list of standard events.
+
+The `listener` is anything that implements the `EventListener` interface or just a function.
+
+For example:
+```js
+document.addEventListener( 'keydown', function () {
+    console.log( 'A keyboard button was pressed.' );
+});
+```
+or
+```js
+document.querySelector('#orderForm').addEventListener( 'submit', function () {
+    console.log( 'The form has been submitted.' );
+});
+```
+##### Event Object
+What if we wanted to set up an event listener to listen for when the escape key is pressed, verify the contents in a form before it is sent to the server, or check the status of an XHR call? The browser passes an event object when it calls the listener function. We can use this event object to gather information about the event that occurred.
+
+If we want to listen for when the escape key is pressed we would use the event object:
+```js
+document.addEventListener( 'keydown', function ( eventObject ) {
+    if (eventObject.keyCode == 27) {
+        // the escape key was pressed
+    }
+});
+```
+##### Custom Events
+The type of event we've looked at so far are the standard events that are built into the browser. What if we wanted to create our own kind of event, like the `partyTime` event? We use the CustomEvent API to do this!
+```js
+// create the custom `partyTime` event
+var myCustomEvent= new CustomEvent( 'partyTime', {timeToParty: true, partyYear: 1999} );
+
+// listen to the `document` for the `partyTime` event
+document.addEventListener('partyTime', function(evt) {
+    if (evt.partyYear) {
+        console.log( "Partying like it's " + evt.partyYear + "!");
+    }
+
+    document.body.style.backgroundImage = 'linear-gradient(90deg, orange, blue)';
+});
+
+// trigger the custom event
+document.dispatchEvent( myCustomEvent );
+```
+The browser's event system, `addEventListener`, and custom events give us a ton of power in dealing with interactions and events that occur in our web apps.
+
+##### Further Research
+* [`element.addEventListener()` on MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+* [Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)
+
+#### 2.14 Setting Up Backbone Events
+
+```js
+var obj = [];
+_.extend( obj, Backbone.Events );
+obj.on( 'log', function(message) {
+  console.log( 'Triggered ' + message );
+});
+obj.on( 'log', 'an event' );
+// 'Triggered an event'
+```
+#### 2.16 Adding Events Quiz
+
+Backbone's [event documentation](http://backbonejs.org/#Events)
+
+##### Available Code:
+```js
+function purchase( present ) {
+  console.log('buying ' + present);
+}
+function build( gift ) {
+  console.log('Building ' + gift);
+}
+var jack = {};
+_.extend(jack, Backbone.Events);
+```
+##### Task:
+Use only two function to add the following events to the `jack` object:
+```js
+jack._events = {
+  birthday: [{callback: purchase}],
+  party: [{callback: purchase}],
+  presents: [
+    {callback: purchase},
+    {callback: build}
+  ]
+}
+```
+##### Solution:
+```js
+jack.on('birthday party presents', purchase);
+jack.on('presents', build);
+```
+
+#### 2.19 Build Your Own Event System Quiz
+
+##### Task:
+Create your own Event Tracker system:
+1. create an `EventTracker` object
+   • it should accept a name when constructed
+2. extend the `EventTracker` prototype with:
+   • an `on` method
+   • a `notify` method
+   • a `trigger` method
+
+##### Example data:
+```js
+function purchase(item) { console.log( 'purchasing ' + item); }
+function celebrate() { console.log( this.name + ' says birthday parties are awesome!' ); }
+
+var nephewParties = new EventTracker( 'nephews ');
+var richard = new EventTracker( 'Richard' );
+
+nephewParties.on( 'mainEvent', purchase );
+richard.on( 'mainEvent', celebrate );
+nephewParties.notify( richard, 'mainEvent' );
+
+nephewParties.trigger( 'mainEvent', 'ice cream' );
+```
+
+##### Solution 1:
+```js
+// Create an object
+function EventTracker( name ) {
+  this.name = name || '';
+  this.notifications = []; // store pairs { 'event' : object }
+  this.events = []; // store pairs { 'event' : callback }
+}
+// Define 'on' method
+EventTracker.prototype.on = function( event , callback ) {
+  this.events.push( {event : event, callback : callback} );
+}
+// Define 'notify' method
+EventTracker.prototype.notify = function( object, event ) {
+  this.notifications.push( {event : event, object : object} );
+}
+// Define '' method
+EventTracker.prototype.trigger = function( event, argument ) {
+  if ( this.events !== undefined ) {
+    this.events.forEach( function( entry ) {
+      if ( event === entry.event ) {
+        // '.call(this, ...)' can be applied to a function to change 'this' in the scope
+        entry.callback.call(this, argument );
+      }
+      // second argument 'this' here is required to save the initial object in scope
+    }, this);
+  }
+  if ( this.notifications !== undefined ) {
+    this.notifications.forEach( function( entry ) {
+      if ( event === entry.event ) {
+        entry.object.trigger( event, argument );
+      }
+    });
+  }
+}
+```
+
+##### Solution 2 (Memory effective):
+```js
+function EventTracker( name ) {
+  this.name = name || '';
+  this._events = {};
+  this._notify = {};
+}
+
+EventTracker.prototype.on = function(event, callback) {
+  if (this._events[event] === undefined ) {
+    this._events[event] = [];
+  }
+  this._events[event].push(callback);
+}
+
+EventTracker.prototype.notify = function(object, event) {
+  if (this._notify[event] === undefined ) {
+    this._notify[event] = [];
+  }
+  this._notify[event].push(object);
+}
+
+EventTracker.prototype.trigger = function( event, data ) {
+  var callbacks = this._events[event] || 0;
+  var objects = this._notify[event] || 0;
+  var i;
+
+  for ( i = 0; i < callbacks.length; i++ ) {
+    callbacks[i].call(this, data);
+  }
+
+  for ( i = 0; i < objects.length; i++ ) {
+    objects[i].trigger(event, data);
+  }
+}
+```
+
+#### 2.20 A Router & The Backbone.history Object
+
+#### 2.21 Routing Quiz
+
+Check out Backbone's documentation on [route parameters](http://backbonejs.org/#Router-routes)
+```js
+var MountainRouter = Backbone.Router.extend({
+
+  routes: {
+    '': 'home',
+    'mountain/:id': 'mountain', // ':param' to catch an argument for a `montain` function
+    'download/*brochure': 'download' // '*splat' to get everything that stands after 'download/' as one parameter
+  },
+
+  home:function() { ... },
+  mountain: function(id) { ... },
+  download: function(brochure) { ... }
+
+});
+```
+
+#### 2.22 hashchange & pushState
+A common URL can be broken down into several parts:
+
+[https://en.wikipedia.org/wiki/Udacity#History](https://en.wikipedia.org/wiki/Udacity#History)
+
+1. `https://` - protocol
+2. `en.wikipedia.org` - domain
+3. `/wiki/Udacity` - path
+4. `#History` - fragment identifier
+
+Whenever the protocol, domain, or path parts are altered, the whole page is refreshed with new content. However, if the _fragment identifier_ is changed, an event is fired but the page __does not refresh__. To learn more about these parts of a URL, check out Mozilla's article on Understanding URLs and their structure.
+
+##### hashchange
+The event that's fired when the fragment identifier is added or changed is the `hashchange` event. Frameworks use this event to power routing in single page apps.
+```html
+<!-- new.html -->
+
+<h1>New Page Heading</h1>
+<p>New page content. Lorem ipsum...</p>
+```
+
+...and then in a JavaScript file:
+```js
+// app.js
+// when the fragment changes, update the page's content with new data
+
+$(window).on('hashchange', function() {
+    var newPageUrl = getFragmentIdentifier();
+
+    $.get( newPageUrl, function( pageContents ) {
+        $('#content').html( pageContents );
+    })
+});
+```
+If our website were located at http://example.com/, changing the URL to http://example.com/#page.html will load the new page's content into #content element.
+
+##### pushState
+With the advancement of HTML5, the `window.history.pushState()` object was created. This method will update the contents of the browser's history stack. The signature for pushState is:
+```js
+window.history.pushState( state, title, url );
+```
+The `state` is an object containing information that will be associated with the new entry on the history stack.
+
+The `title` is a string. This field is currently ignored.
+
+The `url` is a string. The provided URL can be an absolute or relative URL but must be of the same origin as the current page.
+
+Let's assume the following about a recent browser session:
+* the current page is: https://developer.mozilla.org/en-US/docs/Web/API/History_API
+* your browser's history stack is:
+  * https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
+  * https://developer.mozilla.org/
+  * New Tab
+
+...where #3 is the new tab you started from and #1 is the page you were just on before navigating to the current page.
+
+Running the following code in the console:
+```js
+var state = { 'userId': 13579, 'secret': 'HTML5 is awesome' };
+var title = 'A secret page!';
+var url = 'https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5';
+
+history.pushState(state, title, url);
+```
+...will change the URL to be https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5. It does this silently, meaning the page does not reload. The updated history stack is now:
+
+1. https://developer.mozilla.org/en-US/docs/Web/API/History_API (← notice this one)
+2. https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
+3. https://developer.mozilla.org/
+4. New Tab
+
+Notice that the URL for the page that you are on is the most recent one in the stack. If you navigate to the `window.history` page, the HTML5 URL will be added to the history stack even though the page was never actually visited. The usefulness of this is that if you press the Back button, the browser will actually load MDN's HTML5 page since that was the most recent location in its history.
+
+The way frameworks handle URL management using pushState is that they listen for clicks on links in the application, load new content into the page, and use pushState to update the URL to match the information the page is now displaying.
+
+Further Research
+* [Manipulating the browser history](https://developer.mozilla.org/en-US/docs/Web/API/History_API)
+* [History.pushState()](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState)
+* [WindowEventHandlers.onhashchange](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onhashchange)
+
+#### 2.23 Stepping through Backbone.history.start()
+
+Backbone.hystory.start() set ups an event listener to watch the URL for changes. When it does change backbone cycles through a list of handlers looking for a one that matches the URL, when it finds one it executes the callback function associated with this URL.
