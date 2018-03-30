@@ -205,7 +205,7 @@ Notice that the `ng-controller` attribute is just `MenuCtrl` instead of `MenuCtr
 
 We shouldn't fiddle with the scope object, but let Angular handle it as much as possible. So when you make your controllers and templates, make sure you do __not__ use `$scope` in your controller but make sure to use `this` and the [controller as syntax](https://toddmotto.com/digging-into-angulars-controller-as-syntax/).
 
-#### 3.23 The Long Awaited Directives
+#### 3.24 The Long Awaited Directives
 Check out all of the built-in Directives that Angular offers - [Angular Directives](https://docs.angularjs.org/api/ng/directive).
 
 Directives:
@@ -238,19 +238,297 @@ Otherwise you will only see comment in a page source:
   <div class="item-container">
     <div class="col-md-4">
       <h4>{{menu.name}}</h4>
-      <p> Rating: {{menu.rating}} <span ng-if="menu.rating > 4.0" ng-class="{highlight: menu.rating > 4.5}"> - People love this item!</span> </p>
+      <p> Rating: {{menu.rating}} <span ng-class="{highlight: menu.rating > 4.5}"> - People love this item!</span> </p>
       <p>Image: {{menu.img}}</p>
     </div>
   </div>
 </div>
 ```
-The `span` tag is assigned to class `highlight` only if the `menu.rating` is higher than 4.
+The `span` tag is assigned to class `highlight` only if the `menu.rating` is higher than 4.5.
 
-Of course it is possible to combine those directives:
+##### Combinations of Directives
+It is possible to combine directives in order to create a custom view logic. Let's change the existing rating element.
 ```html
-      <p> Rating: {{menu.rating}} <span  ng-class="{highlight: menu.rating > 4.0}"> - People love this item!</span> </p>
+      <p> Rating: {{menu.rating}} <span ng-if="menu.rating > 4.0" ng-class="{highlight: menu.rating > 4.0}"> - People love this item!</span> </p>
 ```
 
 ##### `ng-model`
 This directive applies to `<input/>`, `<select/>` and `<textarea/>` elements.
+To see this in action let's add a new section for reviews.
+Insert following code right after `image` property.
+```html
+      <p>
+        <textarea ng-model="menu.newReview" name="menu.reviewTextArea" rows="3" cols="40"></textarea>
+      </p>
+      <p>
+        {{menu.newReview}}
+        <span ng-if="!menu.newReview">Why not write a review!</span>
+      </p>
+```
+We used `ng-if` to display some text while the `reviewTextArea` box is empty.
+Typing something in a text box will create a new property on a `menu` object in a scope.
+
+`ng-model` has a lot of moving parts to it and can do a lot, so definitely check-out its [documentation](https://docs.angularjs.org/api/ng/directive).
+
+##### `ng-repeat`
+This directive is incredibly usefull if you need to loop over the item in an array.
+
+Let's update our controller and create the array `items` containing a multiple property for a certain objects.
+```js
+// app/controllers/menu.js
+
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', function () {
+    // old item
+    this.id = 'strawberry-pudding';
+    this.name = 'Strawberry Pudding';
+    this.img = 'strawberry-pudding.jpg';
+    this.rating = 4.6;
+    // new items
+    this.items = [
+      {
+        id : 'chicken-pomegranate-salad',
+        name : 'Chicken Pomegranate Salad',
+        img : 'chicken-pomegranate-salad.jpg',
+        calories : 430,
+        rating : 4.1
+      },
+      {
+        id : 'apple-pudding',
+        name : 'Apple Pudding',
+        img : 'apple-pudding.jpg',
+        calories : 220,
+        rating : 4.3
+      },
+      {
+        id : 'ham-goat-cheese-croissant',
+        name : 'Ham Goat Cheese Croissant',
+        img : 'ham-goat-cheese-croissant.jpg',
+        calories : 280,
+        rating : 3.9
+      },
+    ];
+  });
+```
+Now to display all of the new items we need to specify an additional element at the menu view.
+```html
+<div class="row">
+  <div class="item-container" ng-repeat="item in menu.items">
+    <div class="col-md-4">
+      <h4>{{item.name}}</h4>
+      <p>Rating: {{item.rating}} <span ng-class="{highlight: item.rating > 4.5}"> - People love this item!</span></p>
+      <p>Image: {{item.img}}</p>
+      <p>
+        <textarea ng-model="item.rating" name="item.ratingTextArea" rows="1" cols="10"></textarea>
+      </p>
+    </div>
+  </div>
+</div>
+```
+
+##### `ng-src`
+Because angular expressions are compiled after the html is downloaded and parsed by browser just sticking an image path in a following manner
+```html
+<img src="images/{{item.img}}" alt="{{item.name}}" />
+```
+will not make any sence because the `src` is resolved before the property itself.
+
+So we should use `ng-src` directive instead, it waits to add an image to the `src` after a compilation step.
+```html
+<img class="item__image" src="images/{{item.img}}" alt="{{item.name}}" />
+```
+
+##### `ng-click`
+Let's add two buttons to our view template, one to increment the rating and second one to decrement it.
+```html
+<button ng-click="menu.increment(item)">+</button>
+<button ng-click="menu.decrement(item)">-</button>
+```
+We need also to create the corresponding function in our controller:
+```js
+this.increment = function(item) {
+  // item.rating +=0.1
+  item.rating = ((item.rating * 10) + 1) / 10;
+};
+this.decrement = function(item) {
+  // item.rating -=0.1
+  item.rating = ((item.rating * 10) - 1) / 10;
+};
+```
+We have to use this type of calculation in order to avoid the JavaScript issue connected with a floating calculations: \
+```js
+1 + 0.1 = 1.0999999999999996
+```
+
+#### 3.26 Dependency Injection
+Dependency Injection is a way to design software so the code like function does not have its dependencies hard coded into it. Instead the information that the function needs is given to a function when it is called. \
+There are numbers of reasons for this:
+* It decreases a coupling between a function and its dependencies.
+* It can decrease the complexity of that function.
+* It makes it easier to configure the function if it needs a new or different dependency.
+
+
+#### 3.27 Service
+Service - is a place where you can put a view independent logic. At first services are seem very similar to controllers. Both of them provide a data to an application. A major difference is that services are not intended for just one view. \
+A service is not tied to a specific controller. It can be used by any number of controllers.
+
+We can generate a service use the command:
+```
+yo angular:service foodFinder
+```
+The service is implemented in `app/scripts/services/foodfinder.js`.
+
+The service starts out exactly like a controller:
+```js
+'use strict'
+angular.module('udaciMealsApp')
+  .service('foodFinder', function () {
+    // Service properties and methods
+    }
+  });
+```
+Just like with controllers when we call service on the module, the name `foodFinder` and the function are being stored with angular injector.
+
+When the controller asks for the service with name `foodFinder` - angular knows where is it located and how to create it.
+
+The `foodFinder` service will be in charge of all menu information - let's move menu items data to a .json file.
+First we need to create the file here
+`app/model/menu.json`.
+```json
+[
+  {
+    "id" : "chicken-pomegranate-salad",
+    "name" : "Chicken Pomegranate Salad",
+    "img" : "chicken-pomegranate-salad.jpg",
+    "calories" : 430,
+    "rating" : 4.1
+  },
+  {
+    "id" : "strawberry-pudding",
+    "name" : "Strawberry Pudding",
+    "img" : "strawberry-pudding.jpg",
+    "calories" : 280,
+    "rating" : 5
+  },
+  {
+    "id" : "ham-goat-cheese-croissant",
+    "name" : "Ham Goat Cheese Croissant",
+    "img" : "ham-goat-cheese-croissant.jpg",
+    "calories" : 670,
+    "rating" : 3.9
+  }
+]
+```
+We will use a `foodFinder` service to fetch this file.
+Let's create a `getMenu` function and use the jquery to fetch the .json file.
+```js
+angular.module('udaciMealsApp')
+  .service('foodFinder', function () {
+    this.getMenu = function() {
+      return $.get('/models/menu.json');
+    }
+  });
+```
+Now we need to extract the menu out of the `menu` controller.
+```js
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', function (foodFinder) {
+    this.items = '';
+
+    this.increment = function(item) {
+       item.rating +=0.1
+      //item.rating = ((item.rating * 10) + 1) / 10;
+    };
+    this.decrement = function(item) {
+       item.rating -=0.1
+      //item.rating = ((item.rating * 10) - 1) / 10;
+    };
+  });
+```
+So we extracted the menu to json file and set up the service - now we need to hook up the service in the controller.
+
+The format to inject the service in to a controler looks a little odd. So let's take a look:
+To inject something in to the controller we need to pass an array of things to inject as the second argument in controller constructor.
+```js
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', ['foodFinder', function () {
+
+  }]);
+```
+The service is now being injected into the controller as an argument, to use the service thou the controller needs to store it in a variable.
+```js
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', ['foodFinder', function (menu) {
+    var vm = this;  // view model
+
+    menu.getMenu().then(function(data) {
+        vm.items = data;
+    });
+  }]);
+```
+We have to use a context variable `vm` since `this` inside of `controller` and `this` inside of anonymous function `function(data)` are refer to two different objects.
+
+Since we refer `vm` in anonimous scope - the change to the model made there is not visible to `$scope`, so we need to trigger the `$scope` synchronisation manually.
+
+##### Manual `$scope` Refreshment
+We can update the view model within the context of Angular using the `$scope.$apply` [method](https://docs.angularjs.org/guide/scope). In this way, only the `menu` controller requires an update. We can wrap the current contents of the `.then` function with the `$scope.$apply` function so the update is made within the context of Angular.
+```js
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', ['$scope', 'foodFinder', function ($scope, menu) {
+    var vm = this;
+
+    menu.getMenu().then(function(data) {
+      $scope.$apply(function() {
+        vm.items = data;
+      });
+
+      // Further implementation
+    });
+```
+##### Another Way to Get .json File
+We could also take another way to solve the view update caused by change made out of angular context. Instead of fixing the scope, we could replace the jquery request by angular `$http` [service](https://docs.angularjs.org/api/ng/service/%24http).
+The `foodFinder` service implementation stays mostly the same, however, we need to inject the `$http` service in order to use it (this is done the same way we injected our service into the `menu` controller) and then make the request with it rather than jQuery.
+```js
+angular.module('udaciMealsApp')
+  .service('foodFinder', ['$http', function ($http) {
+    this.getMenu = function() {
+      return $http({ method: 'GET', url: '/menu/menu.json' });
+    };
+  }]);
+```
+The data available in the `.then` callback of `$http` service is a little different and would also require us to update the `menu` controller. The first parameter is no longer the `data` rather it is an object holding more information about the request. You can refer to the `$http` service [documentation](https://docs.angularjs.org/api/ng/service/%24http)to see that the first parameter is actually an object and the `data` is a property of that object. So we could rename the variable from `data` to `response` and set our `vm.items` property to `response.data`.
+```js
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', ['foodFinder', function (menu) {
+    var vm = this;
+
+    menu.getMenu().then(function(response) {
+      vm.items = response.data;
+    });
+    // Rest of the implementation...
+```
+##### Using Several Services
+
+If you need to implement more than one service then you can add more of them into array and create an argument for each of those services.
+```js
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', ['service1', 'service2', 'service3', function (service1, service2, service3) {
+    var vm = this;  // view model
+
+    // service usage
+
+  }]);
+```
+
+#### 3.29 Order Manager Feature
+Let's create an `orderManager` to track what we are eating each day.
+First we need to create a service using the Yeoman.
+```
+yo angular:service orderManager
+```
+
+
+
+
+
 
