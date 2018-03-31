@@ -526,9 +526,205 @@ First we need to create a service using the Yeoman.
 ```
 yo angular:service orderManager
 ```
+We will need to create a service that will be responsible for managing the orders. This service will need to keep track of what is being ordered for each day. \
+To do that we need to create a simple object to keep track of each days items. \
+We also need to keep track of the currently selected day, so the user will know which day to order in the menu item for. \
+For this service to be usefull:
+* It's need to manage this data
+* Consumers of this service should be able to get the current list of orders.
+* They also should be able to get and set the active day.
+* And last, they should be able to choose an item for a meal and then remove an item for a meal.
 
+The order manager is now is capablbe of tracking anything the user wants to eat for any meal. \
+Let's create a template and controller to let the users keep track of their menu items. \
+We need a template that will display our orders and the controller that will set the initial state for the template expressions.
+```
+yo angular:view order
+yo angular:controller order
+```
+Now let's add that template to a page `app/index.html`
+```html
+<div class="container">
+  <div ng-include="'views/order.html'" ng-controller="OrderCtrl as order"></div>
 
+  <div ng-include="'views/menu.html'" ng-controller="MenuCtrl as menu"></div>
+</div>
+```
+To get the data to our template we need to inject the `orderManager` service into the controller.
+```js
+angular.module('udaciMealsApp')
+  .controller('OrderCtrl', ['orderManager', function (orderManager) {
+    this.list = orderManager.getOrders();
+  }]);
+```
+Now we can set the list property of the controller to get orders returned by the `orderManager` service.
 
+In the controller is all set. So we can now start modyfing the template.
+We want to show the orders for each meal and we want to repeat this list for every day. That means we need th `ng-repeat` directive. The first time through the `day` will be `Monday` and `MenuCategory` will be `this` object, so now let's add the data to our template `app/views/order.html`.
+```html
+<div class="row">
+  <div class="col-md-2" ng-repeat="(day, menuCategory) in order.list">
+    {{day}}
+    <dl>
+      <dt>Breakfast</dt>
+      <dd>
+        {{menuCategory.breakfast}}
+      </dd>
+      <dt>Lunch</dt>
+      <dd>
+        {{menuCategory.lunch}}
+      </dd>
+      <dt>Dinner</dt>
+      <dd>
+        {{menuCategory.dinner}}
+      </dd>
+    </dl>
+  </div>
+</div>
+```
+So we can now track orders but the user doen not have any way to track items.
 
+In the `menu` template we will add `select` section
+```html
+<div class="row">
+  <div class="item-container" ng-repeat="item in menu.items">
+    <div class="col-md-4">
+      <img class="item__image" style="width:100%;" ng-src="images/{{item.img}}" alt="{{item.name}}" />
+      <h4>{{item.name}}</h4>
+      <p>
+        Rating: {{item.rating}} <span ng-if="item.rating > 4" ng-class="{highlight: item.rating > 4.5}"> - People love this item!</span>
+        <button ng-click="menu.increment(item)">+</button>
+        <button ng-click="menu.decrement(item)">-</button>
+      </p>
+      <div class="well">
+        <select ng-model="item.meal" name="">
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+```
+where the user can pick when he wants to eat this menu item. \
+And we will need a `button` to let them actually pick the meal.
+```html
+  </select>
+  <button ng-click="menu.chooseItem(item.meal, item.name)">Select Item</button>
+</div>
+```
+When the user clicks on this button we will send along the items name and when they want to eat it.
+We will need to create this `chooseItem` function.
+So in the `app/scripts/controllers/menu.js` we will create it. \
+Order information is managed by the `orderManager` service so we need to inject it into this controller so we can pass along the data. \
+`orderManager` already has a method that allows us to add an item so we will just pass the data to it.
+```js
+angular.module('udaciMealsApp')
+  .controller('MenuCtrl', ['$scope', 'foodFinder', 'orderManager', function ($scope, menu, orderManager) {
+    var vm = this;
+
+    menu.getMenu().then(function(data) {
+      $scope.$apply(function() {
+        vm.items = data;
+      });
+    });
+
+    this.increment = function(item) {
+      // item.rating +=0.1
+      item.rating = ((item.rating * 10) + 1) / 10;
+    };
+    this.decrement = function(item) {
+      // item.rating -=0.1
+      item.rating = ((item.rating * 10) - 1) / 10;
+    };
+    this.chooseItem = function(menuCategory, itemName) {
+      orderManager.chooseMenuOption(menuCategory, itemName);
+    };
+
+  }]);
+```
+Now we can select an item and choose when to eat it and add it to the `orderManager`. \
+But we can only pick item for Monday. Let's fix that in the `order` template we need to make it so that when we click on the specific day we will update the `orderManager` active day to that one.
+```html
+  <div class="col-md-2" ng-repeat="(day, menuCategory) in order.list" ng-click="order.setActiveDay(day)">
+```
+```js
+angular.module('udaciMealsApp')
+  .controller('OrderCtrl', ['orderManager', function (orderManager) {
+    this.list = orderManager.getOrders();
+
+    this.setActiveDay = function(day) {
+      orderManager.setActiveDay(day);
+    };
+  }]);
+```
+
+#### 3.30 A couple of ways to inject in Angular
+As you're probably coming to learn, there are several ways to do things in Angular. But, some ways have more pros than others. In the previous video, we injected a Service into a Controller using the array-style syntax. Notice that `.controller()`'s second argument is an array:
+```js
+angular.module('udaciMealsApp')
+    .controller('MenuCtrl', ['foodFinder', function (menu) {
+        this.count = menu.count;
+        this.chef = menu.chef;
+        this.priceRange = menu.priceRange;
+    }]);
+```
+Another way to inject a Service is by passing a variable with a name that exactly matches the Service's name to directly inject the Service. With this approach, .controller()'s second argument is just the function:
+```js
+angular.module('udaciMealsApp')
+    .controller('MenuCtrl', function (foodFinder) {
+        this.count = foodFinder.count;
+        this.chef = foodFinder.chef;
+        this.priceRange = foodFinder.priceRange;
+    });
+```
+There are a couple differences between these two, and __the recommended approach is to use the array-style of injection__. The array-style of injection let's you name the function's parameters anything you want. So if you don't like the name of the Service, you can still inject it but use a different variable name.
+
+The array-style of injection is also required for minification. Minification takes all variables and makes them as small as possible. So it would convert every instance of `foodFinder` to just the letter `a`, for example. The direct injection approach reads the name of the parameter and injects the Service with that name. So when a Service named `UserService` is used, it might get minified to `c`, but Angular doesn't know of any Service with the name `c`. The minifier won't minify strings, so the array-style of injection is safe.
+
+It can be very confusing reading information on the web that provides totally different ways to create Services. But now you know the different formats to create a Service and when one format might be better than another.
+
+#### 3.21 Routing via UI-Router
+Single page application typically have many different views or screens that you can interact with. \
+A router handles loading this views based on the URL.
+When we generate an Angular app with Yeoman it asks us if we want to include a number of modules. One of the options is `angular-route.js`. This routing module works well but it is kind of limited since it does not allowed for the nested views. \
+We want to have a specific sections of the page update and change while the rest is stays the same.
+So instead of using this Angular router module we will use the community build route module called `ui-router`. The documentation for `ui-router` is incredibly detailed. \
+Make sure to also check out the website and the sample app to see all of the functionality that `ui-router` offers.
+* [ui-router on GitHub](https://github.com/angular-ui/ui-router)
+* [ui-router's website](http://angular-ui.github.io/ui-router/site/#/api/ui.router)
+
+Since `ui-router` does not come as a part of the default installation we need to add it to our project. \
+The angular generator uses bower to install angular. so let use bower to install `ui-roter`.
+```
+bower install -S angular-ui-router
+```
+Do not forgert to `-S` to save `ui-router` to bower config file. \
+One of the files that is created when we generate app with `yo angular` command is a `Gruntfile.js`. This file manages a lot of the development process. From watching files for changes to reloading the browser. One of the cool things that it can pair with other commands like the bower command that we just used. \
+When we installed the `ui-router` with bower, grunt saw that and included it in our `index.html` file.
+```html
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<!-- endbower -->
+```
+Everything that we have been building up to this point has all been inside of our `udaciMeals` module.
+We created the module and then attached controllers and services to it. \
+'ui-router' is a module itself and contains its own inner components. Back when we created our modules we passed an empty array of dependencies. Now we have to add the `ui-router` to that list so we can use it. \
+Just like injecting a service to a controller we just add a name as a string so this is injecting `ui-router` module into our `udaciMeals` app module.
+```js
+// app/scripts/app.js
+angular
+  .module('udaciMealsApp', ['ui.router']);
+```
+A word of caution now: \
+__When you including it is 'ui.router'__.
+A dash has to replaced by a dot.
+
+#### 3.32 Managing Application State
 
 
