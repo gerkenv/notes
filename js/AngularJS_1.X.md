@@ -393,7 +393,7 @@ When the controller asks for the service with name `foodFinder` - angular knows 
 
 The `foodFinder` service will be in charge of all menu information - let's move menu items data to a .json file.
 First we need to create the file here
-`app/model/menu.json`.
+`app/models/menu.json`.
 ```json
 [
   {
@@ -455,7 +455,7 @@ angular.module('udaciMealsApp')
 
   }]);
 ```
-The service is now being injected into the controller as an argument, to use the service thou the controller needs to store it in a variable.
+The service is now being injected into the controller as an argument, to use the service though the controller needs to store it in a variable.
 ```js
 angular.module('udaciMealsApp')
   .controller('MenuCtrl', ['foodFinder', function (menu) {
@@ -726,5 +726,344 @@ __When you including it is 'ui.router'__.
 A dash has to replaced by a dot.
 
 #### 3.32 Managing Application State
+Before the module is created we can use a `.config` method to configure how it gets set up. \
+The `.config` method takes a function.
+`ui-router` includes a lot of functionality. Two componenets will be using our _state proider_ and _URL provider_. We will inject both of this into the `.config` function. \
+Providers are like services but only providers can be used for module configuration.
+We can now use the `$stateProvider` to set up different states of our app. Let's start up with the `default` state and call it `home`. To add a state to our app we call `.state`, give a state a name (1st argument), give it a configuration object (2nd argument) with the URL for this state, the template to use and the controller look for that template.
+```js
+angular
+  .module('udaciMealsApp', ['ui.router'])
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'views/menu.html',
+        controler: 'MenuCtrl as menu'
+      });
+  }]);
+```
+We used a `stateProvider` to set up the state for the app. We need to use `urlRouterProvider` to load the `home` state by default.
+```js
+angular
+  .module('udaciMealsApp', ['ui.router'])
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
 
+    $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'views/menu.html',
+        controler: 'MenuCtrl as menu'
+      });
+  }]);
+```
+So the app state management is all set up. But there is one last thing we nee to tell `ui-router` where to insert this template. \
+We can do that with a directive `ui-view`.
+```html
+<div class="container">
+  <div ng-include="'views/order.html'" ng-controller="OrderCtrl as order"></div>
+
+  <div ui-view></div>
+</div>
+```
+We have access to this directive because we have included `ui-router` module in our project. \
+`ui-router` is now handling our app's state let's add a new state for an individual menu item.
+
+Check out: \
+`ui-router` [configuration example](https://github.com/angular-ui/ui-router/wiki/Quick-Reference#configure-your-states-in-your-modules-config-method)
+
+Let's create an `item` state, we also need to create the template and the controller for this item.
+```js
+angular
+  .module('udaciMealsApp', ['ui.router'])
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'views/menu.html',
+        controller: 'MenuCtrl as menu'
+      })
+      .state('item', {
+        url: '/item/:id',
+        templateUrl: 'views/item.html',
+        controller: 'ItemCtrl as item'
+      });
+  }]);
+```
+Pay attention to `:id` - we can include dynamic content in our router. \
+Let's create a template and a controller for the `item`.
+```
+yo angular:view item
+yo angular:controller item
+```
+We need also to create a few .json model files with more information for each item.
+```json
+// app/models/item/chicken-pomegranate-salad.json
+{
+  "id" : "chicken-pomegranate-salad",
+  "name" : "Chicken Pomegranate Salad",
+  "img" : "chicken-pomegranate-salad.jpg",
+  "calories" : 430,
+  "rating" : 4.1,
+  "description" : "A simple, sweet and delicious salad of chicken, pomegranates, spinach, and spiced candied walnuts. Served with a side of citrus vinaigrette."
+}
+```
+```json
+// app/models/item/ham-goat-cheese-croissant.json
+{
+  "id" : "ham-goat-cheese-croissant",
+  "name" : "Ham Goat Cheese Croissant",
+  "img" : "ham-goat-cheese-croissant.jpg",
+  "calories" : 670,
+  "rating" : 3.9,
+  "description" : "A savory slice of ham topped with a wedge of goat cheese, all on a buttery, flaky croissant."
+}
+```
+```json
+// app/models/item/strawberry-pudding.json
+{
+  "id" : "strawberry-pudding",
+  "name" : "Strawberry Pudding",
+  "img" : "strawberry-pudding.jpg",
+  "calories" : 280,
+  "rating" : 5,
+  "description" : "A sweet and tasty pudding filled with strawyberries, blueberries, and raspberries."
+}
+```
+When the URL is `item/some menu id` the id will be accesible in `item` controller by using the `$stateParams` service. \
+We will also add the `foodFinder` service so we can retreive the item. We will use the `getItem` function and look up the item by uts `id`. Then when it will return a .json file we will set it to `item.data` property.
+```js
+angular.module('udaciMealsApp')
+  .controller('ItemCtrl', ['$stateParams', 'foodFinder', function ($stateParams, foodFinder) {
+    var vm = this;
+
+    foodFinder.getItem($stateParams.id).then(function(data) {
+      vm.data = data;
+    });
+  }]);
+
+```
+The `getItem` function it is very similar to `getMenu` function except that it gets a single item specified by the id.
+```js
+// app/scripts/services/foodfinder.js
+angular.module('udaciMealsApp')
+  .service('foodFinder', function () {
+    this.getMenu = function() {
+      return $.get('./models/menu.json');
+    };
+
+    // this.getItem = function(id) {
+    //   let item = `./models/item/${id}.json`;
+    //   return $.get(item);
+    // };
+
+    this.getItem = (id) => $.get(`./models/item/${id}.json`);
+  });
+```
+Let's make the name a link to that item details page.
+`ui-router` gives us the `ui-sref` directive to switch between states. We want to switch to the `item` state an pass along the value. The state expects an id which will sets to the items id. \
+In `app/vies/menu.html` instead of
+```html
+<h4>{{item.name}}</h4>
+```
+we set a link with directive
+```html
+<h4><a ui-sref="item({id:item.id})">{{item.name}}</a></h4>
+```
+Now let's just fill up the template for the `item`.
+We will show the item's name, the image of the item, its rating and description.
+```html
+<h3>{{item.data.name}}</h3>
+
+<img class="item__name" style="width:100%;" ng-src="images/{{item.data.img}}" alt="item.data.name">
+
+<dl>
+  <dt>Rating</dt>
+  <dd>{{item.data.rating}}</dd>
+  <dt>Description</dt>
+  <dd>{{item.data.description}}</dd>
+</dl>
+```
+
+##### Angular Context Issue #2
+Now we have the same troubes as before due to the fact that current `item` controller implements a function `getItem` that changes `item` data property outside of the angular context.
+So we need to inject `$scope` service into our controller and surround the outer context with the `$apply` method.
+```js
+angular.module('udaciMealsApp')
+  .controller('ItemCtrl', ['$scope','$stateParams', 'foodFinder', function ($scope, $stateParams, foodFinder) {
+    var vm = this;
+
+    foodFinder.getItem($stateParams.id).then(function(data) {
+      $scope.$apply(function() {
+      vm.data = data;
+      });
+    });
+  }]);
+```
+
+#### 3.33 Nested Views
+The true power of the `ui-router` is a nested views.
+Let's add a nested view to the `item`'s detail page.
+Let's add one state to see an item's reviews and one more for its nutrition facts.
+To add the nested view we need the same name as the main view, where it will be nested inside, so that is `item`, then we need a dot `.` and then it's the nested view name.
+```js
+angular
+  .module('udaciMealsApp', ['ui.router'])
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'views/menu.html',
+        controller: 'MenuCtrl as menu'
+      })
+      .state('item', {
+        url: '/item/:id',
+        templateUrl: 'views/item.html',
+        controller: 'ItemCtrl as item'
+      })
+      .state('item.nutrition', {
+        url: '/nutrition',
+        templateUrl: 'views/item-nutrition.html'
+      })
+      .state('item.reviews', {
+        url: '/reviews',
+        templateUrl: 'views/item-reviews.html'
+      });
+  }]);
+```
+We need to generate the `item-nutrition` and the `item-reviews` templates. But we do not need controller because the templates will just inherit the `item`'s data from the parent `router`'s scope.
+```
+yo angular:view item-nutrition
+yo angular:view item-reviews
+```
+Now let's fill up the `item-nutrition` template
+```html
+<h3>Nutrition facts</h3>
+<dl>
+  <dt>Calories</dt>
+  <dd>{{item.data.calories}}</dd>
+</dl>
+```
+and the `item-reviews` template.
+```html
+<h3>Reviews</h3>
+<ul class="reviews-container">
+  <li class="review" ng-repeat="review in item.data.reviews">{{review}}</li>
+</ul>
+```
+Also we have to extend our `item`'s model files and add the `reviews` property to a model.
+```json
+// app/models/item/chicken-pomegranate-salad.json
+{
+  "id" : "chicken-pomegranate-salad",
+  "name" : "Chicken Pomegranate Salad",
+  "img" : "chicken-pomegranate-salad.jpg",
+  "calories" : 430,
+  "rating" : 4.1,
+  "description" : "A simple, sweet and delicious salad of chicken, pomegranates, spinach, and spiced candied walnuts. Served with a side of citrus vinaigrette.",
+  "reviews" : [
+    "Lots of good flavor, filling.",
+    "Pomegranate were tasty and the overall salad was great.",
+    "Would get it again!",
+    "Very good. Lots of lettuce.",
+    "Not bad, not super filling."
+  ]
+}
+```
+```json
+// app/models/item/ham-goat-cheese-croissant.json
+{
+  "id" : "ham-goat-cheese-croissant",
+  "name" : "Ham Goat Cheese Croissant",
+  "img" : "ham-goat-cheese-croissant.jpg",
+  "calories" : 670,
+  "rating" : 3.9,
+  "description" : "A savory slice of ham topped with a wedge of goat cheese, all on a buttery, flaky croissant.",
+  "reviews" : [
+    "Delisious, I love goat cheese!",
+    "Very good.",
+    "Lots of flavor.",
+    "The croissant was dry and kind of chewy."
+  ]
+}
+```
+```json
+// app/models/item/strawberry-pudding.json
+{
+  "id" : "strawberry-pudding",
+  "name" : "Strawberry Pudding",
+  "img" : "strawberry-pudding.jpg",
+  "calories" : 280,
+  "rating" : 5,
+  "description" : "A sweet and tasty pudding filled with strawyberries, blueberries, and raspberries.",
+  "reviews" : [
+    "Perhaps too sweet.",
+    "Would get it again!",
+    "Lots of strawberries!",
+    "One of the best pudddings i have ever eaten."
+  ]
+}
+```
+So `ui-router` knows of the nested items and the templates to use. We need to tell `ui-router` where we want these views to apper thougth.
+We need a view `ui-view` directive again but since we wnat them to display on the item's page we need to add them to `app/views/item.html`.
+Finally we need to create a link for each view.
+
+`ui-router` documentation:
+* [Nested States & Nested Views](https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views)
+
+#### 3.34 Routing Quiz
+##### State Declaration Trick #1
+Let's imagine you need a __several controllers for a one view__, then you can provide a following declaration:
+```js
+  $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'views/instructions.html',
+    })
+    .state('redBrick', {
+      url: '/bricks/red',
+      templateUrl: 'views/bricks.html',
+      controller: 'RedBricksCtrl as brick'
+    })
+    .state('blueBrick', {
+      url: '/bricks/blue',
+      templateUrl: 'views/bricks.html',
+      controller: 'BlueBricksCtrl as brick'
+    })
+    .state('greenBrick', {
+      url: '/bricks/green',
+      templateUrl: 'views/bricks.html',
+      controller: 'GreenBricksCtrl as brick'
+    });
+```
+Using the `controllerProvider` above definition can be replaced by
+```js
+  $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'views/instructions.html',
+    })
+    .state('brick', {
+      url: '/bricks/:color',
+      controllerProvider: function($stateParams) {
+        let color = $stateParams.color;
+        color = color[0].toUpperCase() + color.slice(1);
+        let ctrlName = color + 'BricksCtrl';
+        return ctrlName;
+      },
+      controllerAs: 'brick'
+      })
+    });
+```
+##### Substate Reference Trick #1
+If you have a substate which is connected to several states and you want to use a common template to be able to go into the substate from every controller then you can refer to it without controller name:
+```html
+<a ui-sref="controllerName.property">Cart</a>
+<a ui-sref=".property">Cart</a>
+```
 
