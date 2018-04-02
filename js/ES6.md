@@ -90,7 +90,7 @@ let message = `${student.name} please see ${teacher.name} in ${teacher.room} to 
 
 ...but what about the multi-line example from before?
 ```js
-let note = `${teacher.name},
+let note = `${teacher.name}`,
 
   Please excuse ${student.name}.
   He is recovering from the flu.
