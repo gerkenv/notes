@@ -16,6 +16,8 @@
 `git --version` - shows the installed version of the Git.
 
 ##### configurutaion
+`git config --list` - shows the complete configuration. \
+`git config --edit` - opens an editor to change the configuration. \
 `git config --global user.name "[name]"` - sets an author's `name` for your commits. \
 `git config --global user.email "[email]"` - sets an author's `email` for your commits.
 
@@ -34,9 +36,12 @@
 `git diff HEAD ./` - the same as above. \
 `git diff @ ./` - the same as above. \
 `git diff @~1 @` - shows a difference since previous commit `@~1` up to last commit `@`, where `HEAD` is attached. \
-`git show` - the same as above. \
 `git diff [SHA1-before] [SHA1-after]` - shows a difference since commit ID `SHA1-before` up to commit ID `SHA1-after`. \
 `git diff [branch-1] [branch-2]` - shows a difference since `branch-1` up to `branch-2`.
+
+##### show
+`git show` - the same as `git diff @~1 @`. Show difference between a last commit and its parent. \
+`git show [SHA1]` - shows the difference between the commit with ID `SHA1` and its parent.
 
 ##### stage file
 `git add [path]` - adds a file or directory to staging area at `path`.
@@ -53,6 +58,10 @@ Options:
 
 `git commit [path] -m'commit message'` - works the same way as the previous command but without opening an editor.
 
+##### merge
+`git merge [branch-1] [branch-2]` - merges two `branches`, creating a new commit with merged changes __on the currently checked out branch__. Order of branches in command is not relevant, so \
+`git merge [branch-2] [branch-1]` - produces the same results.
+
 ##### log
 `git log` - shows all of the commits made in repository. \
 If a log is bigger than a current window size then the _log view mode_ will not be not closed automatically.
@@ -66,6 +75,7 @@ Options:
   * a short form of a commit ID `[SHA1]`,
   * and a commit message.
 * git log `--graph` - includes the tree structure of branches into a log, so it helps to see merges.
+* git log `--graph [branch-1] [branch-2]` - includes the tree structure with both `branches` in it.
 
 ##### checkout
 `git checkout` - restores one certain snapshot (state)) of the repository. \
@@ -83,6 +93,8 @@ Option:
 `git checkout -b [name]` - creates a new branch with a `name` and checks it out.
 `git branch -d [name]` - deletes a branch with a `name`.
 
+##### Garbage Collection
+If a branch is deleted and leaves some commits unreachable from existing branches, those commits will continue to be accessible by commit id, until Git’s garbage collection runs. This will happen automatically from time to time, unless you actively turn it off. You can also run this process manually with `git gc`.
 
 ##### Setting Up a Custom Editor
 * [Associating text editors with Git](https://help.github.com/articles/associating-text-editors-with-git/)
