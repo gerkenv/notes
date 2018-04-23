@@ -15,11 +15,15 @@
 ##### version
 `git --version` - shows the installed version of the Git.
 
-##### configurutaion
+##### configuration
 `git config --list` - shows the complete configuration. \
 `git config --edit` - opens an editor to change the configuration. \
 `git config --global user.name "[name]"` - sets an author's `name` for your commits. \
-`git config --global user.email "[email]"` - sets an author's `email` for your commits.
+`git config --global user.email "[email]"` - sets an author's `email` for your commits. \
+`git config --global core.editor "[editor]"` - sets up a [custom editor](https://help.github.com/articles/associating-text-editors-with-git/) for commits, merges, edits, etc.
+`git config --global push.default upstream` - sets up a ['push' mode](http://www.fleekitsolutions.com/git/difference-between-push-default-matching-simple) \
+`git config --global merge.conflictstyle diff3` - sets up a ['merge conflicts' mode](https://stackoverflow.com/questions/27417656/should-diff3-be-default-conflictstyle-on-git)
+
 
 ##### init
 `git init [path]` - creates a repository at `path`.
@@ -95,14 +99,6 @@ Option:
 
 ##### Garbage Collection
 If a branch is deleted and leaves some commits unreachable from existing branches, those commits will continue to be accessible by commit id, until Git’s garbage collection runs. This will happen automatically from time to time, unless you actively turn it off. You can also run this process manually with `git gc`.
-
-##### Setting Up a Custom Editor
-* [Associating text editors with Git](https://help.github.com/articles/associating-text-editors-with-git/)
-```
-git config --global core.editor "'C:/Program Files/Sublime Text 2/sublime_text.exe' -n -w"
-git config --global push.default upstream
-git config --global merge.conflictstyle diff3
-```
 
 #### Vim Text Editor
 Usage:
