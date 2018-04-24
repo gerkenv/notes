@@ -11,6 +11,15 @@
 * `rm [path]` - removes a file at `path`.
 * `rm -r [path]` - removes a directory and all its content recursively at `path`.
 
+#### Vim Text Editor
+Usage:
+* `vim [path]` - opens a file at `path` in editor
+  * `i` - enters the 'insert' mode - editor mode.
+  * `Esc` - leaves the 'insert' mode - view mode.
+    * `:w` - write - saves the file.
+    * `:q` - exit.
+    * `:x` - equivalent of `:wq` - write and exit.
+
 #### Git Commands
 ##### version
 `git --version` - shows the installed version of the Git.
@@ -23,7 +32,6 @@
 `git config --global core.editor "[editor]"` - sets up a [custom editor](https://help.github.com/articles/associating-text-editors-with-git/) for commits, merges, edits, etc.
 `git config --global push.default upstream` - sets up a ['push' mode](http://www.fleekitsolutions.com/git/difference-between-push-default-matching-simple) \
 `git config --global merge.conflictstyle diff3` - sets up a ['merge conflicts' mode](https://stackoverflow.com/questions/27417656/should-diff3-be-default-conflictstyle-on-git)
-
 
 ##### init
 `git init [path]` - creates a repository at `path`.
@@ -42,6 +50,7 @@
 `git diff @~1 @` - shows a difference since previous commit `@~1` up to last commit `@`, where `HEAD` is attached. \
 `git diff [SHA1-before] [SHA1-after]` - shows a difference since commit ID `SHA1-before` up to commit ID `SHA1-after`. \
 `git diff [branch-1] [branch-2]` - shows a difference since `branch-1` up to `branch-2`.
+`git diff master origin/master` - can be usefull after `git fetch origin master`
 
 ##### show
 `git show` - the same as `git diff @~1 @`. Show difference between a last commit and its parent. \
@@ -66,6 +75,11 @@ Options:
 `git merge [branch-1] [branch-2]` - merges two `branches`, creating a new commit with merged changes __on the currently checked out branch__. Order of branches in command is not relevant, so \
 `git merge [branch-2] [branch-1]` - produces the same results.
 
+##### Resolving Conflicts
+* edit all diverged (conflicted) files
+* add them to staging area
+* commit the merged version
+
 ##### log
 `git log` - shows all of the commits made in repository. \
 If a log is bigger than a current window size then the _log view mode_ will not be not closed automatically.
@@ -80,6 +94,7 @@ Options:
   * and a commit message.
 * git log `--graph` - includes the tree structure of branches into a log, so it helps to see merges.
 * git log `--graph [branch-1] [branch-2]` - includes the tree structure with both `branches` in it.
+* git log `--graph --oneline master origin/master` - can be usefull after `git fetch origin master`
 
 ##### checkout
 `git checkout` - restores one certain snapshot (state)) of the repository. \
@@ -92,19 +107,53 @@ Option:
 * git checkout `[branch]` - snapshot of the `[branch]`.
 
 ##### branch
-`git branch` - shows current branches.
+`git branch` - shows current local branches.
+`git branch - a` - shows current local and remote branches.
 `git branch [name]` - creates a new branch with a `name`.
 `git checkout -b [name]` - creates a new branch with a `name` and checks it out.
 `git branch -d [name]` - deletes a branch with a `name`.
+`git branch -f [name]` - moves a branch called `name` to a currently checked out commit
+`git branch -f [name] [SHA1]` - moves a branch called `name` to a commit ID `SHA1`
+
+##### remote
+`git remote` - shows all remote repositories connected to a current one. \
+`git remote -v` - shows all remote repositories more detailed. \
+`git remote add [name] [https]` - used to set a remote reository for a current one. The initial remote is usually called `origin`.
+
+##### fetch
+`git fetch [name] [branch]` - fetches all commits up to the `branch` from the remote repository called `name` to a local repository _without merging the conficts_.
+> `git pull origin master` = `git fetch origin master` + `git merge master origin/master`
+
+`git fetch [branch]` - fetches all commits up to the `branch` from the remote repository called `origin` to a local repository _without merging the conficts_. \
+`git fetch` - fetches all commits up to the current branch from the remote repository called `origin` to a local repository _without merging the conficts_. \
+
+##### push
+`git push [name] [branch]` - sends all commits up to the `branch` from a local repository to the remote repository called `name` _merging the conficts_. \
+`git push [branch]` - sends all commits up to the `branch` from a local repository to the remote repository called `origin` _merging the conficts_. \
+`git push` - sends all commits up to the current branch from a local repository to the remote repository called `origin` _merging the conficts_.
+
+##### pull
+`git pull [name] [branch]` - fetches all commits up to the `branch` from the remote repository called `name` to a local repository _merging the conficts_.
+> `git pull origin master` = `git fetch origin master` + `git merge master origin/master`
+
+`git pull [branch]` - fetches all commits up to the `branch` from the remote repository called `origin` to a local repository _merging the conficts_. \
+`git pull` - fetches all commits up to the current branch from the remote repository called `origin` to a local repository _merging the conficts_.
+
+##### Collaboration using Github
+Workflow to get a feedback on your changes before you're updating a `master` branch.
+1. Fork a repository from `initial origin`
+2. `Clone` to local machine
+3. Create a new branch `name-of-change`
+4. `Push` the new branch into your fork
+5. Use `pull request` to point to exact changes
+  * base fork: `fork/repository`
+  * base: `master`
+  * head fork: `fork/repository`
+  * head: `name-of-change`
+6. Ask for a feedback, repository's collaborators can leave comments
+7. When consent is reached - merge `master` and `name-of-change`
+8.
+
 
 ##### Garbage Collection
 If a branch is deleted and leaves some commits unreachable from existing branches, those commits will continue to be accessible by commit id, until Git’s garbage collection runs. This will happen automatically from time to time, unless you actively turn it off. You can also run this process manually with `git gc`.
-
-#### Vim Text Editor
-Usage:
-* `vim [path]` - opens a file at `path` in editor
-  * `i` - enters the 'insert' mode - editor mode.
-  * `Esc` - leaves the 'insert' mode - view mode.
-    * `:w` - write - saves the file.
-    * `:q` - exit.
-    * `:x` - equivalent of `:wq` - write and exit.
