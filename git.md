@@ -140,11 +140,11 @@ Option:
 `git pull` - fetches all commits up to the current branch from the remote repository called `origin` to a local repository _merging the conficts_.
 
 ##### Collaboration using Github
-Workflow to get a feedback on your changes before you're updating a `master` branch.
-1. Fork a repository from `initial origin`
-2. `Clone` to local machine
+Workflow to get a feedback on your changes before you update a `master` branch.
+1. Fork a repository from `upstream`
+2. `Clone` to local machine your `origin`
 3. Create a new branch `name-of-change`
-4. `Push` the new branch into your fork
+4. `Push` the new branch into `origin`
 5. Use `pull request` to point to exact changes
   * base fork: `fork/repository`
   * base: `master`
@@ -152,8 +152,10 @@ Workflow to get a feedback on your changes before you're updating a `master` bra
   * head: `name-of-change`
 6. Ask for a feedback, repository's collaborators can leave comments
 7. When consent is reached - merge `master` and `name-of-change`
-8.
+8. Create a pull request to `upstream`
 
+##### Rewriting History
+[Git Magic. Chapter 5. Lessons of History](http://www-cs-students.stanford.edu/~blynn/gitmagic/ch05.html)
 
 ##### Garbage Collection
 If a branch is deleted and leaves some commits unreachable from existing branches, those commits will continue to be accessible by commit id, until Git’s garbage collection runs. This will happen automatically from time to time, unless you actively turn it off. You can also run this process manually with `git gc`.
