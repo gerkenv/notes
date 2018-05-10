@@ -1,15 +1,22 @@
 ### Git Cheatsheet
-#### Git-Bash Commands
+#### Bash Commands
 * `mkdir [path]` - creates a new folder at `path`.
 * `cd [path]` - goes to `path`.
+* `cd` - goes to `/home/user` directory at linux and to `c:/users/user` at windows.
 * `ls [path]` - shows shortly files and directories at `path`.
 * `ls -a [path]` - shows also hidden files and directories at `path`.
+* `ls -al [path]` - shows also hidden files and directories at `path` in _long_ format.
 * `ll [path]` - shows details of files and directories at `path`.
 * `cat [path]` - shows a content of a file at `path`.
 * `pwd` - prints a working directory.
 * `diff [path1] [path2]` - compare 2 files at `pathes`.
+* `echo [var]` - prints out a variable `var`, like `$PATH` that stores pathes to sytem binaries.
+* `touch [path]` - creates an empty file at `path`.
+* `echo [text] > [path]` - saves the `text` in a file stored at `path`.
+* `echo [text] >> [path]` - adds the `text` in a file stored at `path`.
 * `rm [path]` - removes a file at `path`.
 * `rm -r [path]` - removes a directory and all its content recursively at `path`.
+* `cp [path1] [path2]` - copies a file at `pathfrom` to `pathto`.
 
 #### Vim Text Editor
 Usage:
@@ -55,6 +62,9 @@ Usage:
 ##### show
 `git show` - the same as `git diff @~1 @`. Show difference between a last commit and its parent. \
 `git show [SHA1]` - shows the difference between the commit with ID `SHA1` and its parent.
+
+##### rename file
+`git move [pathfrom] [pathto]` - moves and renames file at `pathfrom` to `pathto`.
 
 ##### stage file
 `git add [path]` - adds a file or directory to staging area at `path`.
