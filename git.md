@@ -1,5 +1,6 @@
 ### Git Cheatsheet
 #### Bash Commands
+* `clear` - clean up the terminal
 * `mkdir [path]` - creates a new folder at `path`.
 * `cd [path]` - goes to `path`.
 * `cd` - goes to `/home/user` directory at linux and to `c:/users/user` at windows.
@@ -7,6 +8,7 @@
 * `ls -a [path]` - shows also hidden files and directories at `path`.
 * `ls -al [path]` - shows also hidden files and directories at `path` in _long_ format.
 * `ll [path]` - shows details of files and directories at `path`.
+* `ll -a [path]` - shows also hidden files and directories at `path`.
 * `cat [path]` - shows a content of a file at `path`.
 * `pwd` - prints a working directory.
 * `diff [path1] [path2]` - compare 2 files at `pathes`.
