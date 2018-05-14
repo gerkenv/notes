@@ -34,6 +34,7 @@ Before we access our machine, let’s quickly review a few commands that vagrant
 
 Here are a few other important commands that we’ll discuss but you do not need to practice at this time:
 * `vagrant halt` - halts your virtual machine. All of your work is saved and the machine is turned off - think of this as “turning the power off”. It’s much slower to stop and start your virtual machine using this command, but it does free up all of your RAM once the machine has been stopped. You should use this command if you plan to take an extended break from your work, like when you are done for the day. The command vagrant up will turn your machine back on and you can continue your work.
+* `vargant reload` - like `vagrant halt` and `vagrant up` together, restarts your machine to load new vagrant configuration.
 *`vagrant destroy` - destroys your virtual machine. Your work is not saved, the machine is turned off and forgotten about for the most part. Think of this as formatting the hard drive of a computer. You can always use vagrant up to relaunch the machine but you’ll be left with the baseline Linux installation from the beginning of this course. You should not have to use this command at any time during this course unless, at some point in time, you perform a task on the virtual machine that makes it completely inoperable.
 
 ### 1.10 Your Home Directory
@@ -556,5 +557,305 @@ ssh start/running, process 29347
 Now all users will be forced to log in using a key pair. `SSH` will not allow users to log in with a user name and password any longer.
 
 ### 2.27 Introduction to File Permissions
+A bit earlier you changed some permissions on the `authorized_keys` file and the `.ssh` directory using a command called `chmod`. But what exactly does that mean? Let's dive a bit deeper into how Linux manages file permissions. \
+I've listed the contents of the `student`'s home directory. And we're going to look at three pieces of information provided here. The first column we've looked at briefly before. \
+Remember the `d` means that this is a directory. The dash `-` means that it's a file. \
+Now, you might think that there are nine additional spaces here for information, but what's actually happening is
+there are three separate sections and each of those sections has three pieces of information. \
+Let's break out this entry here for `bash.rc`. \
+```
+student@vagrant-ubuntu-trusty-64:~$ ls -al .bashrc
+-rw-r--r-- 1 student student 3637 May  6 15:46 .bashrc
+```
+The three individual entries are `rw-`, `r--`, and `r--`. Let's go ahead and label each of these entries.
+| # | User     | Permissions |
+|---|----------|-------------|
+| 1 | owner    | `rw-`       |
+| 2 | group    | `r--`       |
+| 3 | everyone | `r--`       |
 
+This means the owner can read and write the file. The dash `-` here indicates that the owner cannot execute the file. If they could, there would be an `x` here. Users within the group can read
+this file, but they cannot write or execute it. Finally, everyone can read this file,
+but they cannot write or execute it.
 
+### 2.28 Owners and Groups
+So how do we identify who the owner in the group are? If we look back at our directory listing,
+```
+student@vagrant-ubuntu-trusty-64:~$ ls -al
+total 32
+drwxr-xr-x 4 student student 4096 May 10 18:04 .
+drwxr-xr-x 5 root    root    4096 May  6 15:46 ..
+-rw------- 1 student student  434 May 10 18:41 .bash_history
+-rw-r--r-- 1 student student  220 May  6 15:46 .bash_logout
+-rw-r--r-- 1 student student 3637 May  6 15:46 .bashrc
+drwx------ 2 student student 4096 May  6 16:03 .cache
+-rw-r--r-- 1 student student  675 May  6 15:46 .profile
+drwx------ 2 student student 4096 May 10 18:04 .ssh
+```
+we'll see two columns, here in the middle. Most of the entries read `student student`, but there's one here that reads `root root`, and I'll come back to that one. \
+These two columns identify the `owner` and the `group` for each entry in this list. \
+Now it's important to remember, although each of these has the same word, `student`, listed in the two columns, they're in two entirely different things. The system has a __username__ `student`, which is the owner of the file. \
+And a __group__ name `student`, which was automatically created when we made this user. _This is pre-common practice
+on a Linux system, to have a group name the same as the user._ \
+Just remember that they are two entirely different things. So, what's up with this entry here that has `root root`? We can see that the entry's name is `..`, and that's just a shortcut for the parent directory. And we know we're in our `student`'s home directory. So this entry here, is the equivalent of `/home`. \
+That directory is owned by the `root` user, and has a group of `root`. And if we look at the permissions, we see that only the `root` user can write to that directory. \
+Lets test this out for ourselves. I'll move into the directory using `cd..` And then I'll try to write a file. You'll get a permission denied error, just as this permission system told us we would.
+```
+student@vagrant-ubuntu-trusty-64:~$ cd ..
+student@vagrant-ubuntu-trusty-64:/home$ touch newFile
+touch: cannot touch ‘newFile’: Permission denied
+```
+Only root is allowed to write in this directory. And our current user's definitely not root. We can still list the files in this directory, because we have read access, and we even entered the directory because we have execute. We just can't write.
+
+### 2.30 Octal Permissions [missing dialogue]
+So we know permissions are represented as
+* `r` - read,
+* `w` - write,
+* `x` - execute.
+
+But when we changed the permissions of some files earlier we used numbers. How did the digits we entered translate to these values? We can translate these values as follows.
+* `r` is equal to 4,
+* `w` is equal to 2,
+* `x` is equal to 1,
+* and if we __don't want any permissions__ that will be a 0.
+
+By __adding the numbers__ together, we end up with a __result identifying the full set of permissions__ to apply. \
+For example, if we wanted to give `read` and `execute` permissions, we'd have values of four and one, which when added together, gives us a final value of five. To represent, read, and execute permissions, you would use the number five. \
+But remember, __permissions are done in sets of three__ to identify what permissions are set for the individual user, the group, and everyone. \
+Let's analyze our student's `.bashrc` file once again. And convert its current permissions into octal form. \
+```
+student@vagrant-ubuntu-trusty-64:~$ ls -al .bashrc
+-rw-r--r-- 1 student student 3637 May  6 15:46 .bashrc
+```
+The current permissions for this file are `rw-`, `r--`, and `r--`, `r` is a 4 and `w` is 2. So the user value would be 6. For group, we just have an `r`. So the value is 4. And for everyone we have also a value of 4. To represent this permission set in octal form, we'd use the value 644. \
+Let's look at another example, the `.cache` directory.
+```
+drwx------ 2 student student 4096 May  6 16:03 .cache
+```
+Remember, that `d` does not chance the octal permissions. It just represents that `.cache` is a directory with octal premission set 700.
+
+### 2.32 chgrp and chown
+We've already seen how to change file permissions using the `chmod` command. But what if you need to change
+a files `group` or `owner`? There are also commands that allow you to do that. \
+They are `chown` to change an `owner` and `chgrp` to change `group`. \
+We'll play with this `bash_history` file here located on our home directory. \
+```
+student@vagrant-ubuntu-trusty-64:~$ ls -al .bash_history
+-rw------- 1 student student  434 May 10 18:41 .bash_history
+```
+Its permissions are set so only the `owner` can read and write the file. This file stores a recent history of every command the user has typed, so it's for security reasons only that the user can read and modify the file. If you run `cat` on `bash_history`, you'll see that we can currently read this file. If we change the file's `group` to `root` using this command `sudo chgrp root` and then then name of the file.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo chgrp root .bash_history
+student@vagrant-ubuntu-trusty-64:~$ ls -al .bash_history
+-rw------- 1 student root 434 May 10 18:41 .bash_history
+```
+If we try to `cat` this file again, you'll see that we can still read it.
+The `group` has no permissions on this file, so there's pretty much no effect. Our ability to read this file right now is determined by the `owner` setting, not the `group` setting. \
+But now, if we change the owner to `root` of the `bash_history` file, you'll see that we can no longer read the file.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo chown root .bash_history
+student@vagrant-ubuntu-trusty-64:~$ cat .bash_history
+cat: .bash_history: Permission denied
+```
+Permission is denied, and this is because only the `owner` can read and write the file and that `owner` is `root`. Our current user `student` would fall in the `everyone` category and they have no permission at all to read this file.
+```
+student@vagrant-ubuntu-trusty-64:~$ ls -al .bash_history
+-rw------- 1 root root 434 May 10 18:41 .bash_history
+```
+Go ahead and change the `owner` and the `group` back to `student` on this file. We were just experimenting to show these commands and when you might need to use them. \
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo chown student .bash_history
+student@vagrant-ubuntu-trusty-64:~$ sudo chgrp student .bash_history
+```
+Now let's move on to the last security topic we'll discuss, firewalls.
+
+### 2.33 Intro to Ports
+You now have a server sitting out there on the Internet and this server is doing a lot of different things and talking to other devices on the Internet. \
+Depending on your application it could be responding to web requests, database queries, sending and receiving email, and let's not forget handling the SSH sessions we've been using this whole time. \
+But how does your server know which application is in charge of handling each type of request? \
+The answer is ports. \
+Each of your applications are configured to respond to requests destined for a specific port. \
+For example, a web server would by default respond on port 80, the default port for HTTP. \
+We can control which ports our server is allowed to accept requests for using an application called the __firewall__. We'll do that shortly, but for now let's explore some common ports.
+
+### 2.34 Default Ports for Popular Services
+The default port number for common services on a server:
+* HTTP - port 80
+* HTTPS - port 443
+* SSH - port 22
+* FTP - port 21
+* POP3 - port 110
+* SMTP - port 25
+
+### 2.35 Intro to Firewalls
+Just because our server can listen on every single port, for any type of request, that doesn't mean we should. \
+The rule of least privilege, which we've discussed throughout this entire lesson, tells us we should only listen on the ports required for our application to function correctly. \
+We can configure which ports we want our server to listen to using an application called a __firewall__. \
+Let's imagine this wall is our firewall application. And each of these slots is a port. We currently have all the slots filled, which means I can't pass data from one side, the Internet, to the other, my server. \
+You could say I'm denying all incoming requests, but if I open one of these boxes, we'll choose port 80 here. I can now pass information through. The server on the other side can now fully function as a web server with the added benefit of completely ignoring these requests that we know we're not interested in. Let's go back to our terminal and start configuring our server's firewall now.
+
+### 2.36 Intro to UFW
+Ubuntu comes with a firewall pre-installed called `ufw`, but it's not currently active. You can verify this by typing command, `sudo ufw status`.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw status
+Status: inactive
+```
+Let's start adding some rules to our firewall, then we'll actually turn it on. If we think back to the wall of boxes from our last video, we were initially blocking all incoming requests. \
+This is a good practice, as it makes it much easier to manage your rules. Just block everything coming in, then only allow what you need. We'll establish this __default rule__ by using `default deny incoming` rule. \
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw default deny incoming
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+```
+We can also establish a default rule for our outgoing connections, for any request our server is trying to send out to the internet. \
+We'll set the __default rule__ by using this command, `sudo ufw default allow outgoing`. \
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw default allow outgoing
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+```
+Go ahead and check the status of your firewall by typing, `sudo ufw status`.
+You'll see that it's currently still inactive, which is a good thing. We're just configuring our firewall now. We actually have to turn it on ourselves once we have everything how we want. \
+If we were to turn the firewall on now, we'd we blocking all incoming connections including SSH, which means our server would be dead in the water and completely inaccessible to us. \
+It's now time for us to start configuring the firewall to support the various ports and the applications we know we'll need.
+
+### 2.37 Configuring Ports in UFW
+Let's start allowing the ports we know we'll need for the applications our server will be supporting. \
+First and foremost we know we'll need to support `ssh` so we can continue administering this server. Normally you would do this by typing `sudo ufw allow ssh` and you can go ahead and do that now.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw allow ssh
+Rules updated
+Rules updated (v6)
+```
+But remember, we're using a `vagrant` virtual machine and `vagrant` set up our `ssh` on port 2222. So we'll need to allow all `TCP` connections through port `2222` for SSH to actually work in our scenario here.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw allow 2222/tcp
+Rules updated
+Rules updated (v6)
+```
+For now, the only other application we plan to support is a basic HTTP server, so we can allow this by using `sudo ufw allow www`.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw allow www
+Rules updated
+Rules updated (v6)
+```
+And with that, we can now enable our firewall with `sudo ufw enable`.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw enable
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+```
+This step here can be a little hair raising, because our SSH connection is reliant upon these rules being correct. If all of a sudden you lose your SSH connection to your server, it's a pretty clear indicator that you messed up some of your rules.\
+Some cloud providers do offer a way to regain access to your system through an external control panel. But many others, you're just out of luck at this point. For this reason, I recommend __configuring your firewall pretty early in the server setup process__. \
+Finally, we can confirm all of our rules are set up as we indicated by using the `sudo ufw status` command.
+```
+student@vagrant-ubuntu-trusty-64:~$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22                         ALLOW       Anywhere
+2222/tcp                   ALLOW       Anywhere
+80/tcp                     ALLOW       Anywhere
+22 (v6)                    ALLOW       Anywhere (v6)
+2222/tcp (v6)              ALLOW       Anywhere (v6)
+80/tcp (v6)                ALLOW       Anywhere (v6)
+
+```
+We'll see all of our rules here and that our firewall is currently active.
+
+### 2.38 Conclusion
+Congratulations. You now have a server updated and configured, sitting out there on the wild west that is the internet. Best of all, you can rest easy at night knowing your server is safe and secure. \
+Where you do go from here? It depends on your needs. There are a lot of different types of servers, email servers, chat servers, web application servers. Generally, the only big differences between each of these is the software they have installed and the ports that they have open. \
+I've placed a few server set-up walk throughs in the instructor notes below, that should get you started.
+* ["LAMP" Stack (Linux, Apache, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04)
+* ["LEMP" Stack (Linux, nginx, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04)
+* [PEPS Mail and File Storage](https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-and-file-storage-with-peps-on-ubuntu-14-04)
+* [Mail-in-a-Box Email Server](https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-with-mail-in-a-box-on-ubuntu-14-04)
+* [Lita IRC Chat Bot](https://www.digitalocean.com/community/tutorials/how-to-install-the-lita-chat-bot-for-irc-on-ubuntu-14-04)
+I'd encourage you to start by setting up a web application server, installing Apache in a database server like PostgreSQL. \
+Good luck, have fun, and remember, experiment. This is your own little piece of the Internet.
+
+## 3. Web Application Servers
+### 3.1 Introduction
+Now that you have a shiny new server that is safe and secure, it’s time to turn it into a web application server! By the end of this lesson you will accomplish the following:
+* Use the [Apache HTTP Server](http://httpd.apache.org/) to respond to HTTP requests and serve a static webpage
+* Configure Apache to hand-off specific requests to Python providing the ability to develop dynamic websites
+* Setup [PostgreSQL](http://www.postgresql.org/) and write a simple Python application that generates a data-driven website
+
+At the end of this lesson, the response cycle will resemble this:
+![Alt text](https://lh3.googleusercontent.com/E1lR1gWcjfM8ZmUGaXEZ7X3LejnrTCiseEmN5IFuCF8j5QW4j0YcriUEEbAWuvpGjLtzyzrV53rrj4kCWFE=s0#w=720&h=480)
+
+### 3.2 Vagrant Prerequisites
+If you’re using the Vagrant virtual machine from earlier in this course you will need to make a slight modification to the configuration of this machine to make your web server accessible. This step is not related to configuring a web server in general, it’s just a condition of our current environment. You would not need to complete this step if you were configuring a machine from a cloud provider like Amazon Web Services.
+
+Open the `Vagrantfile` in your project directory and look for the following section near lines 20-23:
+```
+# Create a forwarded port mapping which allows access to a specific port
+# within the machine from a port on the host machine. In the example below,
+# accessing "localhost:8080" will access port 80 on the guest machine.
+# config.vm.network "forwarded_port", guest: 80, host: 8080
+```
+Uncomment the last line:
+```
+config.vm.network "forwarded_port", guest: 80, host: 8080
+```
+Save the file and start your Vagrant virtual machine using the vagrant up command. If your virtual machine is currently running, you can reload it using the `vagrant reload` command.
+
+This configuration change will setup port forwarding from port 8080 on the host machine (your computer) to the guest machine (your Vagrant virtual machine) when your virtual machine is running. This will allow you to access your web server using the URL http://localhost:8080.
+
+#### Compatibility note
+On some Windows systems, you will need to add one more argument to the line to ensure that the VM network connects to the correct interface on your host computer:
+```
+config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+```
+
+### 3.3 Installing Apache
+You’ll setup your web application server one piece at a time, testing each as you progress. The first step is to get your server responding to HTTP requests. To do this, you’ll use Apache HTTP Server - the most commonly installed web server on the Internet with roughly 47% market share.
+
+Install Apache using your package manager with the following command: sudo apt-get install apache2 Confirm Apache is working by visiting http://localhost:8080 in your browser. You should see the following page:
+![Alt text](http://i.imgur.com/kzCukiC.png)
+
+Apache, by default, serves its files from the `/var/www/html` directory. If you explore this directory you will find a file called `index.html` and if you review that file you will see it contains the HTML of the page you see when you visit http://localhost:8080.
+
+#### Exercise
+Update the index.html to simply display “Hello, World!” and refresh your browser to see your new page.
+
+### 3.4 Installing mod_wsgi
+When Apache receives a request it has a number of ways it can respond. What you’ve seen thus far is the simplest method of operation, Apache just returns a file requested or the `index.html` file if no file is defined within the URL.
+
+But, Apache can do so much more! You’ll now configure Apache to hand-off certain requests to an application handler - mod_wsgi. The first step in this process is to install mod_wsgi: `sudo apt-get install libapache2-mod-wsgi`.
+
+You then need to configure Apache to handle requests using the WSGI module. You’ll do this by editing the `/etc/apache2/sites-enabled/000-default.conf` file. This file tells Apache how to respond to requests, where to find the files for a particular site and much more. You can read up on everything this file can do within the [Apache documentation](https://httpd.apache.org/docs/2.2/configuring.html).
+
+For now, add the following line at the end of the `<VirtualHost *:80>` block, right before the closing `</VirtualHost>` line: `WSGIScriptAlias / /var/www/html/myapp.wsgi`
+
+Finally, restart Apache with the `sudo apache2ctl restart` command.
+
+You might get a warning saying "Could not reliably determine the server's fully qualified domain name". If you do, don't worry about it. Check out [this AskUbuntu thread](https://askubuntu.com/questions/256013/apache-error-could-not-reliably-determine-the-servers-fully-qualified-domain-n) for a discussion of the cause of this message.
+
+### 3.5 Your First WSGI Application
+[WSGI](http://wsgi.readthedocs.org/en/latest/) is a specification that describes how a web server communicates with web applications. Most if not all Python web frameworks are WSGI compliant, including [Flask](http://flask.pocoo.org/docs/0.10/deploying/mod_wsgi/) and [Django](https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/); but to quickly test if you have your Apache configuration correct you’ll write a very basic WSGI application.
+
+You just defined the name of the file you need to write within your Apache configuration by using the `WSGIScriptAlias` directive. Despite having the extension `.wsgi`, these are just Python applications. Create the `/var/www/html/myapp.wsgi` file using the command `sudo nano /var/www/html/myapp.wsgi`. Within this file, write the following application:
+```py
+def application(environ, start_response):
+    status = '200 OK'
+    output = 'Hello Udacity!'
+
+    response_headers = [('Content-type', 'text/plain'), ('Content-Length', str(len(output)))]
+    start_response(status, response_headers)
+
+    return [output]
+```
+This application will simply print return `Hello Udacity!` along with the required HTTP response headers. After saving this file you can reload `http://localhost:8080` to see your application run in all its glory!
+
+### 3.6 Installing PostgreSQL
+Most web applications require persistent data storage, typically using a database server. You will now install PostgreSQL to server your data using the command `sudo apt-get install postgresql`.
+
+Since you are installing your web server and database server on the same machine, you do not need to modify your firewall settings. Your web server will communicate with the database via an internal mechanism that does not cross the boundaries of the firewall. If you were installing your database on a separate machine, you would need to modify the firewall settings on both the web server and the database server to permit these requests.
+
+#### Exercise
+Update your /var/www/html/myapp.wsgi application so that it successfully connects to your database, queries a table for data and presents that piece of data rather than the text Hello World!. You will need to create a table and populate it with data of your choosing, then query it from your app.
+
+This task is easier said than done, so use your research skills and don't be afraid to break things. Good luck!
