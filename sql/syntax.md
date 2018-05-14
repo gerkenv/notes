@@ -1,189 +1,327 @@
-#### SQL
+## SQL
 
-##### Theory
+### Theory
 1. Database is a set of tables.
 2. Each table has a name, this name is unique.
 3. A table consist of columns, an each column has a unique name within the table.
 4. SQL query is a string with semicolon at the end ';'.
 5. Result of any query is presented by a table.
+6. [Comments](https://www.w3schools.com/sql/sql_comments.asp)
 
-#### Playground
+### Playground
 Lesson 2 :: Quiz 8 <br>
 https://classroom.udacity.com/courses/ud197/lessons/3423258756/concepts/33885287060923
 
 
-#### select
-The query to get a complete table: <br>
-select * from *table*;
-
-Query in python presented as a string: <br>
+### select
+Reads a requested information from database.
+Notation:
+```sql
+select columns from table
+```
+Example:
+The query to get all columns from a `table`, i.e. get a whole `table`:
+```sql
+select * from table;
+```
+A query in python presented as a string:
+```py
 QUERY = "select * from animals;"
+```
 
-##### where
-Extract a data with a certain restriction (condition) on a _source_ tables <br>
-where *restriction* <br>
+### modifiers
+#### where
+Extract all the data from a certain `table` which satisfies certain `restriction` (condition).
+```sql
+select * from table where restriction
 select * from animals where species = 'llama'
+```
 
-##### min / max
-get a minimal / maximal value from a column <br>
-select min(*column*) from *table* <br>
+#### min / max
+Get a minimal / maximal value from a column <br>
+```sql
+select min(column) from table
+```
+Example:
+```py
 QUERY = "select min(name) from animals;"
+```
 
-##### limit
-limit *rows to return* [ offset *rows to skip* ] <br>
-limit 10 offset 0 --> first ten rows of a result table <br>
-limit 10 offset 5 --> ten rows of a result table - from 6th to 15th <br>
+#### limit
+Show only first `amount` of results with an offset of `count`. \
+Notation:
+```sql
+limit amount [ offset count ]
+```
+Examples:
+* Return first 10 results of a query.
+```sql
+select * from animals limit 10 offset 0
+```
+* Return 10 results from __6th__ up to __15th__.
+```sql
+select * from animals limit 10 offset 5
+```
+```py
 QUERY = "select * from animals limit 10;"
+```
 
-##### group
-group by *columns* <br>
-Change the behavior of aggregations such as max, count, and sum. <br>
-With group by, the aggregation will return one row for each distinct value in columns. <br>
+#### group
+Group the result rows together by certain `column`.
+Notation:
+```sql
+group by column
+```
+__Note__: Changes the behavior of aggregations such as `max`, `count`, `sum`, etc.
+With group by, the aggregation will return one row for each distinct value in columns. \
+Examples:
+```py
 QUERY = "select species, min(birthdate) from animals group by species;"
+```
 
-##### count
-counts a quantity of rows [ depending on a group / where clause ] <br>
-count(*column*) [ as *name of new column* ] <br>
+#### count
+Counts a quantity of rows [ depending on a `group` / `where` clause ]. \
+Notation:
+```sql
+count(column) [ as aliasOfColumn ]
+```
+Examples:
+```py
 QUERY = "select count(species) from animals;"
+```
 
-##### having
-Extract a data with a certain restriction (condition) on a _result_ tables (after aggregation) <br>
-Requires: group modifier <br>
-group by *column* having *restriction* <br>
-QUERY = "select species, count(*) as number from animals group by species having number > 5;"
+#### having
+Extracts a data with a certain `restriction` (condition) from a `result` tables (after aggregation). \
+__Requires__: `group` clause
+Notation:
+```sql
+group by column having restriction
+```
+Examples:
+```py
+QUERY = "select species, count(*) as amount from animals group by species having amount > 5;"
+```
 
-##### order
-order by *column 0, column 1* [ desc ] <br>
-order by species, name --> first result table is sorted by 'species' column in ascending order, then by 'name'. <br>
+#### order
+Orders results of a query. At first a result table is sorted by `column_0` then by `column_1` and so on. \
+If other not specified then column sorted in `asc`ending order. <br>
+Notation:
+```sql
+order by column_0, column_1 [ asc, desc ]
+```
+Examples:
+* Order by birthdate.
+```py
 QUERY = "select * from animals where species = 'orangutan' order by birthdate;" <br>
+```
 
-#### insert
-Used to add a values to database <br>
-insert into *table* [ *( column1, column2, ... )* ] values *( val1, val2, ... )*; <br>
+### insert
+Used to add a values to database. \
+Notation:
+```sql
+insert into table [ ( column1, column2, ... ) ] values ( val1, val2, ... );
+```
+__Note__: Each value : `val1`, `val2`, etc should match corresponding colunm. You can not provide 3 columns and 2 values. \
+Examples:
+```py
 INSERT = "insert into animals (name,species,birthdate) values ('Luck','opossum','1970-01-01');"
+```
 
-#### join
-select *columns of 2 tables* from *table 1* join *table 2* on *condition* <br>;
-select A.column_0, B.column_0 from A join B on A.column_1 = B.column_1 <br>
-or <br>
-select *columns of 2 tables* from *tables* where *restriction* <br>
-select A.column_0, B.column_0 from A, B where A.column_1 = B.column_1 <br>
+### join
+Combines `colums` of `table_a` with `columns` of `table_b` satisfying `condition`.
+Notation:
+```sql
+select columns
+from table_a join table_b
+    on condition;
+select table_a.column, table_b.column from table_a join table_b on condition;
+```
+Examples:
+```sql
+select table_a.column_0, table_b.column_0
+from table_a join table_b
+    on table_a.column_1 = table_b.column_1;
+```
+#### join through 'where' clause
+Notation:
+```sql
+select columns
+from tables
+where restriction;
+```
+Examples:
+```sql
+select table_a.column_0, table_b.column_0
+from table_a, table_b
+where table_a.column_1 = table_b.column_1;
 
-select ordernames.name, count( * ) as num <br>
-from (animals join taxonomy <br>
-              on animals.species = taxonomy.name) <br>
-              as ani_tax <br>
-                  join ordernames <br>
-                  on ani_tax.t_order = ordernames.t_order <br>
-group by ordernames.name <br>
-order by num desc <br>
-
-or
-
-select ordernames.name, count( * ) as num <br>
-from animals, taxonomy, ordernames <br>
-where animals.species = taxonomy.name <br>
-and taxonomy.t_order = ordernames.t_order <br>
-group by ordernames.name <br>
+select ordernames.name, count( * ) as num
+from (
+    animals
+    join taxonomy
+    on animals.species = taxonomy.name
+) as ani_tax
+join ordernames
+    on ani_tax.t_order = ordernames.t_order
+group by ordernames.name
 order by num desc
 
-#### update / like
-update *table* set *column* = *newValue* where *restriction* <br>;
-update animals set name = 'new name of llama' where species = 'llama' <br>
-update animals set name = 'new name of llama' where species like '%lam%' <br>
-% - replaces any sequence of letters, like .* in regex
+--or
 
-#### delete
-delete from *table* where *restriction* <br>;
-delete from animals where species = 'llama' <br>
-__Hint__: it is better to check first, what are you going to delete <br>
-select * from *table* where *restriction* 
+select ordernames.name, count( * ) as num
+from animals, taxonomy, ordernames
+where animals.species = taxonomy.name
+    and taxonomy.t_order = ordernames.t_order
+group by ordernames.name
+order by num desc
+```
 
-#### create table
-create table *name* ( <br>
-    *column_0*  *type_0*, <br>
-    *column_1*  *type_1*, <br>
-    *column_n*  *type_n* <br>
-); <br>
-https://www.postgresql.org/docs/9.4/static/sql-createtable.html <br>
-https://www.postgresql.org/docs/9.4/static/datatype.html
+### update
+Updates the recors of a `table` within a `column` if a `restriction` is satisfied.\
+Notation:
+```sql
+update table set column = newValue where restriction;
+```
+Examples:
+```sql
+update animals set name = 'new name of llama' where species = 'llama';
+```
 
-#### primary key
-##### Single-column primary key
-create table *name* ( <br>
-    id serial primary key, <br>
-    *column_1* *type_1*, <br>
-    *column_n* *type_n* <br>
-); <br>
-A database will throw an error if a duplicate of existing primary key will be inserted into a primary key column.
+#### like
+With `like` modifier you're able yo use a specific `RegEx`, a bit different, but still it is something.
+* `%` - replaces any sequence of letters, like `.*` in RegEx.
+```sql
+update animals set name = 'new name of llama' where species like '%lam%';
+```
 
-##### Multi-column primary key
-create table *name* ( <br>
-    *column_0* *type_0*, <br>
-    *column_1* *type_1*, <br>
-    *column_n* *type_n*, <br>
-    primary key ( *column_0*, *column_1* ) <-- the first two columns are primary keys <br>
+### delete
+Notation:
+```sql
+delete from table where restriction;
+```
+Example:
+```sql
+delete from animals where species = 'llama';
+```
+__Hint__: it is better to check first, what are you going to delete, use following syntax for it:
+```sql
+select * from table where restriction;
+```
+
+### Subqueries
+```sql
+select avg(maxScore) from (
+    select max(score) as maxScore
+    from mooseball
+    group by team
+) as maxTeamScores;
+```
+Links:
+* https://www.postgresql.org/docs/9.4/static/sql-expressions.html#SQL-SYNTAX-SCALAR-SUBQUERIES
+* https://www.postgresql.org/docs/9.4/static/functions-subquery.html
+* https://www.postgresql.org/docs/9.4/static/sql-select.html#SQL-FROM
+
+```sql
+select id, name, wins_, matches_
+from (
+    select id, name, count(idWinner) as matches_
+    from players
+    left join matches
+        on (id = idWinner or id = idLoser)
+    group by id
+) as rounds
+join (
+    select id as id_, count(idWinner) as wins_
+    from players
+    left join matches
+        on id = idWinner
+    group by id
+) as wins
+on rounds.id = wins.
+```
+
+
+## PostgreSQL
+
+### Create Table
+```sql
+create table name (
+    column_0 type_0,
+    column_1 type_1,
+    column_n type_n
 );
+```
+Links:
+* https://www.postgresql.org/docs/9.4/static/sql-createtable.html <br>
+* https://www.postgresql.org/docs/9.4/static/datatype.html
 
-#### relationships between tables
-create table *name* ( <br>
-    *column_0* *type_0* references *referenceTable*, <br>
-    *column_1* *type_1*, <br>
-    *column_n* *type_n* <br>
-); <br>
-Means that a *column_0* can have only the values of a *column_0* in a *referenceTable* <br>
-Warning: the name *column_0* should be the same in a referenced table 
+#### Primary key
+##### Single-Column Primary Key
+```sql
+create table name (
+    id serial primary key,
+    column_1 type_1,
+    column_n type_n
+);
+```
+__Note__: A database will throw an error if a duplicate of existing primary key `id` will be inserted into a primary key `id` column.
+
+##### Multi-column Primary Key
+```sql
+create table name (
+    column_0 type_0,
+    column_1 type_1,
+    column_n type_n,
+    primary key ( column_0, column_1 )
+);
+```
+The `column_0` and `column_1` are primary keys of the `name` table.
+
+#### Relationships Between Tables
+```sql
+create table name (
+    column_0 type_0 references referenceTable,
+    column_1 type_1,
+    column_n type_n
+);
+```
+Means that a `column_0` can have only the values of a `column_0` in a `referenceTable` <br>
+__Warning__: the name `column_0` should be the same in a referenced table
 and an actual table which uses reference key ( __foreign key__ ) <br>
 
 If the names are different between a tables, then the such kind of definition can be used: <br>
-create table *name* ( <br>
-    *column_0* *type_0* references *referenceTable*(*referenceColumn*), <br>
-    *column_1* *type_1*, <br>
-    *column_n* *type_n* <br>
-); <br>
+```sql
+create table name (
+    column_0 type_0 references referenceTable(referenceColumn),
+    column_1 type_1,
+    column_n type_n
+);
+```
 
-#### create database ( PostgreSQL )
+### Create Database
+```
 create database *name* [options] <br>
+```
 then connect to database: <br>
+```
 \c *dbname* <br>
-https://www.postgresql.org/docs/9.4/static/sql-createdatabase.html
+```
+Links:
+* https://www.postgresql.org/docs/9.4/static/sql-createdatabase.html
 
-#### drop database ( PostgreSQL )
-drop database *name* [options] <br>
-It is impossible to drop a database you're currently connected to. <br>
-https://www.postgresql.org/docs/9.4/static/sql-dropdatabase.html
+### Drop Database
+```
+drop database *name* [options]
+```
+It is impossible to drop a database you're currently connected to. \
+Links:
+* https://www.postgresql.org/docs/9.4/static/sql-dropdatabase.html
 
-#### drop table
-drop table *name* [options] <br>
-https://www.postgresql.org/docs/9.4/static/sql-droptable.html <br>
-
-#### subqueries
-select avg(maxScore) from <br>
-    ( select max(score) as maxScore <br>
-    from mooseball <br>
-    group by team ) <br>
-    as maxTeamScores; <br>
-https://www.postgresql.org/docs/9.4/static/sql-expressions.html#SQL-SYNTAX-SCALAR-SUBQUERIES <br>
-https://www.postgresql.org/docs/9.4/static/functions-subquery.html <br>
-https://www.postgresql.org/docs/9.4/static/sql-select.html#SQL-FROM <br>
-
-    select id, name, wins_, matches_
-    from 
-    (
-        select id, name, count(idWinner) as matches_ 
-        from players 
-        left join matches 
-        on (id = idWinner or id = idLoser) 
-        group by id
-    ) as rounds 
-    join 
-    (
-        select id as id_, count(idWinner) as wins_ 
-        from players 
-        left join matches 
-        on id = idWinner 
-        group by id
-    ) as wins 
-    on rounds.id = wins.
+### Drop Table
+```
+drop table *name* [options]
+```
+Links:
+* https://www.postgresql.org/docs/9.4/static/sql-droptable.html
 
 
