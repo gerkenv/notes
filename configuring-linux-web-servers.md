@@ -2,7 +2,7 @@ These notes is one of the parts of the ["Configuring Linux Web Servers" course](
 
 Here is the `RegEx` to clean up a video subtitles from a time stamps. The video subtitles are available in lesson resources.
 ```
-\n{0,3}?(\d){1,2}\n[\n\d,: \->]{30}
+\n{0,3}?(\d){1,2}\n[\n\d,: \->]{30}|\n
 ```
 
 ### 1.5 Getting Started with Vagrant

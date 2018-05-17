@@ -5,7 +5,7 @@ These notes is one of the parts of the ["Client-Server Communication" course](ht
 ##### Clean Up The Subtitles
 For each video there is a subtitle file is avalable, use can use the RegEx to clean up the text:
 ```
-\n{0,3}?(\d){1,2}\n[\n\d,: \->]{30}
+\n{0,3}?(\d){1,2}\n[\n\d,: \->]{30}|\n
 ```
 
 #### 1.1 HTTP Requests
