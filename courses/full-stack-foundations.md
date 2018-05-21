@@ -950,3 +950,90 @@ Links:
 * [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer)
 * [JSON](http://en.wikipedia.org/wiki/JSON)
 
+## Lesson 4
+### 4.3 Checklist
+The first step to having an awesome web application is having an awesome game plan. Let's define what our prototype should do after completing each iteration. Let's do some brainstorming to make a checklist of deliverables that we want to achieve with each iteration of development, by breaking down the project into smaller, easier to manage mini-projects.
+1. In the first pass at this project, we'll create mock-ups for every page in the restaurant menu app, and design URLs for each page as well. When I finish this iteration, I can show my designs to my friends or colleagues for feedback, and that's enough work for our first iteration.
+2. In the second iteration, you'll set up all of the routings for your application in Flask, making sure you can navigate to all of the URLs you want to create for your application. At the end of this iteration, you should be able to navigate to all of your URLs, even if the pages are not yet created.
+3. After that, you will build on top of what you made in the previous iteration by creating all of your templates and forms, and making sure that they are properly functioning within your application. Once you have created and filled out all of your HTML templates and see them rendering in your application, we can move on to the next iteration.
+4. Now that you have a good grasp of how your front-end code should look, you will add the back-end functionality, making sure all of the actions on the web page are retrieving data from your database. When all of the code operations work on all of your web pages, you'll be finished with this iteration.
+5. You will then add some endpoints that allow the data to be sent if the client requests a menu or specific menu item in JSON form. You will test these API calls from within your browser to know you have successfully finished this step.
+6. Finally, you will add some styling with CSS, JavaScript, and a few static images, to give your application an appealing layout. In this step, you will also incorporate message flashing into your application.
+
+I chose these steps to create our application because I feel they naturally build on top of each other, and have a clear deliverable at the end of each iteration. By keeping this in mind, when you plan future projects, you'll be better prepared for all kinds of new challenges.
+
+-[ ] Mock-ups \
+-[ ] Routing \
+-[ ] Templates & Forms \
+-[ ] Back-end (CRUD) \
+-[ ] RESTful API Endpoints \
+-[ ] Styling & Notifications
+
+### 4.4 Mockups Exercise
+So before we start getting coded, let's take a second to draft up our page designs. There are a ton of good mock-up and wireframing applications, that you can download and use to design webpages, but for me, pencil and paper is perfect for the first draft. \
+So the first question that comes to mind is, how many types of pages this app will have.
+So when the user lands on the root of my site, they should see a list of all the restaurants `1` stored in my database. From here, they can click on a specific restaurant that will show the menu for that restaurant `2`. \
+I also want them to be able to
+* add new restaurants `3`,
+* and edit `4`
+* or delete existing restaurants `5` from the list `1`.
+
+On a specific menu page `2`, the user can view the menu for each restaurant. Similarly, they will have the option to
+* add `6`,
+* edit, `7`
+* and delete menu items `8` from a specific menu `2`.
+
+So it looks like we need to create eight different webpages for our web app. I will go ahead and specify what I want the URL for each webpage to look like as well. \
+Draw markup pages for these eight URLs using pencil and paper or your own favorite markup application. \
+It doesn't have to be anything fancy, just a sketch to communicate how you want your webpages to look. Share you markups, get feedback from a friend or colleague, and then continue on to the next step of our project.
+
+### 4.5 Adding Routes
+Now it's time to set up the routing for application. \
+In the mock-ups, we specify routes for the following pages. Note that landing on the root page of our site will now route us to the page that shows all of the restaurants. And, visiting `/restaurants/restaurant_id` will automatically take us to the menu page. \
+* Create a new Python file called, `finalproject.py` in the same directory as all of our other files.
+* Import the `flask` module and the `app.run` code, like in the previous lesson.
+* Add the routing for all pages into `finalproject.py`
+* and create the following methods that return the appropriate messages in the browser.
+
+When you save and fire up your browser, you should be able to visit all of the URLs like so. At the end of this iteration, you have shown that you can get a Flask application up and running, accounting for all the necessary pages your app will have.
+
+### 4.6 Adding Templates and Forms
+In this section, you're going to go ahead and replace those strings in your return statements with templates.
+* In your templates directory, make eight new files with the names corresponding to 8 routes. \
+* Replace the previous return statements such that they now return render templates for each of your methods in `finalproject.py`. \
+But wait a second, if we design our templates before connecting to a database, Python will throw an error message when we try to refer to restaurants and menu items that don't yet exist in our application. To get around this problem, we can temporarily make a fake database out of dictionaries inside of our `finalproject.py` file. \
+I have made some dictionaries which will serve as dummy variables for one restaurant, a collection of restaurants, one menu item, and a collection of menu items. The source code for these dictionaries is available in the [instructor notes](https://www.udacity.com/api/nodes/3607568911/supplemental_media/fakemenuitemstxt/download). \
+* Go ahead and leave hashtags `#` in the `<form>` `action` and `href` path, since we are focusing more on the structure of our pages in this step, and not so much their functionality. \
+Now, when a user revisits these links in a browser, they should see something like this. The functionality isn't going to be in place just yet, but we've just created another prototype that we can use to present our progress thus far. \
+* Your template should also return a different message to the user if there's an empty menu, or empty list of restaurants, maybe something like this. Try and see if you can accommodate for this corner case in your templates as well.
+
+### 4.7 CRUD Functionality
+With our routes and database in place, we can now add the actual CRUD Functionality to our page.
+* Write in the appropriate SQLAlchemy statements for the following methods.
+* We also need to add `url_for` and `redirect`s to our application, when necessary. \
+* Some of our routes need to be able to respond to `GET`, and `POST` requests. Be sure to add this functionality, as well. \
+
+When you are done with this step, you should have a prototype, where all the CRUD operations are fully functional. This might be a time consuming iteration to get everything working, but I encourage you to stick with it, and not give up.
+Use the documentation on the Python Flask in SQLAlchemy websites if needed, as well. Also do not hesitate to reach out to your fellow students.
+
+### 4.8 API Endpoints
+Now that we have a functioning application, let's add some API endpoints to it. \
+The API request should return a JSON object for
+* a list of all restaurants,
+* the menu of a specific restaurant,
+* and a specific menu item,
+
+when a client sends a `GET` request to one of three corresponding URLs. \
+Remember to import `jsonify` into your project and add a serializable property to your database set up file where needed. Your JSON request should return pages like these when you're finished.
+
+### 4.9 Styling Your App
+In this last section let's put our focus on styling and improving the user experience. Make a `static` folder and add some CSS files, JavaScript, or images to your application to make it more aesthetically pleasing. Also, add message flashing to your app with the 6 messages corresponding to 6 CUD actions. \
+In the instructor notes, I've provided a [CSS file for reference](https://github.com/udacity/Full-Stack-Foundations/blob/master/Lesson-4/Final-Project/static/styles.css) but I strongly encourage you to establish project on your own and give it a more personal touch.
+
+### 4.10 Wrap-Up
+Congratulations. You've finished the final project, and reached the end of this course. You've created a data-driven web application, and have a beautiful restaurant menu app to show for it. However, we've only scratched the surface of web development, so keep going from here. If you're interested in learning more about the Flask framework, the [Flask documentation](http://flask.pocoo.org/) is a great place to start. \
+Add more features to the restaurant menu application, or create a new application of your own, using some of the more advanced features of Flask. \
+I will also provide some links in the instruction notes, on [deploying a Flask application](http://flask.pocoo.org/docs/0.10/deploying/), to be shared with the outside world, but I highly recommend adding some [security](https://pythonhosted.org/Flask-Security/) to your application before publishing it on the internet. If you're interested in adding more HTML, CSS, and JavaScript features to your website, take some time to check out some of Udacity's awesome frontend classes. \
+Wherever you decide to go next from here, I strongly encourage you to immerse yourself in the web development community. Read blogs, experiment, and share your work with other web developers and enthusiasts like yourself. \
+Well, sounds like it's dinner time for me over here. Thanks for helping me show what's on the menu.
+A basic version of the final project can be found [here](https://github.com/lobrown/Full-Stack-Foundations/tree/master/Lesson-4/Final-Project).
