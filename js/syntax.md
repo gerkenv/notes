@@ -1,6 +1,7 @@
 # JS
 
 ### Strict Mode
+Always place it in the beginning of the file or the world will collapse.
 ```js
 'use strict'
 ```
@@ -286,8 +287,8 @@ console.log(person);
 ```
 https://www.hackerrank.com/challenges/js10-objects/topics
 
-### Classes
-* Using object literals
+### Classes (ES5)
+1.1 Using object literals
 ```js
 let chuck = {                         // create a class  - option # 2 is extended
     firstName : 'Chuck',
@@ -303,7 +304,8 @@ console.log('Age: ', chuck.getAge());
 console.log('F.N.: ', chuck.getFirstName());
 ```
 
-* Using Functions
+1.2 Using Functions \
+  __Function declarations are hoisted__. Can be referenced before they are declared.
 ```js
 function Person(firstName, lastName, age) {
     this.firstName = firstName;
@@ -330,7 +332,7 @@ console.log('L.N.: ', chuck.getLastName());
 console.log('L.N.2: ', chuck.getLastName2());
 ```
 
-* Singleton Class Using a Function
+1.2.1 Singleton Class Using a Function
 ```js
 let chuck = new function() {
     this.firstName = 'Chuck';
@@ -348,5 +350,137 @@ console.log('F.N.: ', chuck.getFirstName());
 chuck.constructor.prototype.getLastName = function() { return this.lastName; }
 console.log('L.N.: ', chuck.getLastName());
 ```
+https://www.hackerrank.com/challenges/js10-class/topics
 
-* Using Classes (ES6)
+### Classes (ES6)
+2.1. Using Classes (ES6) \
+  __Class declarations are not hoisted__. Cannot be referenced before they are declared.
+```js
+try {
+    let someone = new Person('name', 'surname', NaN);
+    console.log(someone);
+}
+catch (exception) {
+    console.log(exception.name + ': ' + exception.message);
+}
+
+class Person {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.getFirstName = () => this.firstName; // method as property value
+    }
+    getLastName() {   // prototype method
+        return this.lastName;
+    }
+    static say(words) { // static method, applied without an instance
+        console.warn('Person says: ', words);
+    }
+}
+Person.say("i don't need an instance");
+let chuck = new Person('Chuck', 'Norris', 'iternal');
+console.log(chuck);
+console.log(chuck.getFirstName());
+console.log(chuck.getLastName());
+try {
+    chuck.say('incredible');  // you cannot call a static method on an instance
+}
+catch (exception) {
+    console.log(exception.name + ': ' + exception.message);
+}
+```
+
+2.2.1 Using Unnamed Class Expressions
+```js
+let Person = class {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.getFirstName = () => this.firstName;
+    }
+}
+let chuck = new Person('Chuck', 'Norris', 'iternal');
+console.log(chuck);
+console.log(chuck.getFirstName());
+```
+
+2.2.2 Using Named Class Expressions \
+  The name given to a named class expression is local to the class' body.
+```js
+let Person = class PersonProperties {
+  constructor(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.getFirstName = () => this.firstName;
+  }
+}
+let chuck = new Person('Chuck', 'Norris', 'iternal');
+console.log(chuck);
+console.log(chuck.getFirstName());
+```
+https://www.hackerrank.com/challenges/js10-class/topics
+
+### Inheritance (ES6)
+1. Extending class (ES6)
+```js
+class Someone {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        console.log(`Someone called ${this.name} speaks`);
+    }
+    think() {
+        console.log(`Someone called ${this.name} thinks`);
+    }
+}
+
+let jake = new Someone('Jake');
+jake.speak();
+
+class Anyone extends Someone {
+    // if constructor is omitted, then superior's construtor is used
+    speak() {
+        console.log(`Anyone called ${this.name} speaks`);
+    }
+}
+
+jake = new Anyone('Jake');
+jake.speak();
+
+class Person extends Someone {
+    constructor(firstName, lastName) { // not obligatory
+        super(firstName);
+        this.lastName = lastName;
+    }
+    speak() {
+        super.speak();
+        console.log(`${this.name} ${this.lastName} speaks`);
+    }
+}
+jake = new Person('Jake', 'Smith');
+jake.speak();
+jake.think();
+```
+
+2. Extending Functions (ES5 + ES6)
+```js
+function Someone(name) {
+    this.name = name;
+}
+Someone.prototype.speak = function() {
+    console.log(`Someone called ${this.name} speaks`);
+}
+
+class Anyone extends Someone {
+    // if constructor is omitted, then superior's construtor is used
+    speak() {
+        console.log(`Anyone called ${this.name} speaks`);
+    }
+}
+```
+
+https://www.hackerrank.com/challenges/js10-class/topics
