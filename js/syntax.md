@@ -1,5 +1,10 @@
 # JS
 
+### Strict Mode
+```js
+'use strict'
+```
+
 ### Data Types
 * Immutable
   * number
@@ -28,7 +33,6 @@ value = Boolean(value);
 console.log(value + ' is ' + typeof(value)); // > true is boolean
 value = Number(value);
 console.log(value + ' is ' + typeof value); // > 1 is number
-
 ```
 
 ### Coersion
@@ -56,6 +60,15 @@ https://www.hackerrank.com/challenges/js10-function/topics
 let square = function(x) {
     return x * x;
 };
+```
+
+### Arrow Function Expression
+```js
+let square = (x) => x * x;
+let multiLineSquare = (x) => {
+  if (typeof(x) != 'number') return 0;
+  return x * x;
+}
 ```
 
 ### Equality (==) and Identity or Strict Equality (===)
@@ -274,8 +287,25 @@ console.log(person);
 https://www.hackerrank.com/challenges/js10-objects/topics
 
 ### Classes
+* Using object literals
 ```js
-function Person(firstName, lastName, age) { // create an object  - option # 3
+let chuck = {                         // create a class  - option # 2 is extended
+    firstName : 'Chuck',
+    lastName : 'Norris',
+    age : 'iternal',
+    getFirstName: function() { return this.firstName; },  // use fun.exp.
+    getAge: () => this.age // will not work
+    // arrow fun.exp. gets `this` from surrounding context (global now)
+}
+var age = 'something global';
+console.log(chuck);
+console.log('Age: ', chuck.getAge());
+console.log('F.N.: ', chuck.getFirstName());
+```
+
+* Using Functions
+```js
+function Person(firstName, lastName, age) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
@@ -285,9 +315,38 @@ function Person(firstName, lastName, age) { // create an object  - option # 3
 function getPersonFirstName() { return this.firstName; }  // use external fun. [2/2]
 let chuck = new Person('Chuck', 'Norris', 'iternal');
 console.log(chuck);
-console.log(chuck.getAge());
-console.log(chuck.getFirstName());
+console.log('Age: ', chuck.getAge());
+console.log('F.N.: ', chuck.getFirstName());
 
-Person.prototype.getLastName = () => this.lastName;
-console.log(chuck.getLastName());
+var lastName = 'something global';
+
+// add new method through prototype
+Person.prototype.getLastName = function() { return this.lastName; } // Will work
+    // usual fun.exp. gets `this` depending on how funtion is called
+Person.prototype.getLastName2 = () => this.lastName;   // Will not work.
+    // arrow fun.exp. gets `this` from surrounding context (global now)
+
+console.log('L.N.: ', chuck.getLastName());
+console.log('L.N.2: ', chuck.getLastName2());
 ```
+
+* Singleton Class Using a Function
+```js
+let chuck = new function() {
+    this.firstName = 'Chuck';
+    this.lastName = 'Norris';
+    this.age = 'iternal';
+    this.getFirstName = getPersonFirstName; // use external fun. as method [1/2]
+    this.getAge = () => this.age;           // define methode with fun.exp.
+}
+function getPersonFirstName() { return this.firstName; }  // use external fun. [2/2]
+console.log(chuck);
+console.log('Age: ', chuck.getAge());
+console.log('F.N.: ', chuck.getFirstName());
+
+// add new method through prototype
+chuck.constructor.prototype.getLastName = function() { return this.lastName; }
+console.log('L.N.: ', chuck.getLastName());
+```
+
+* Using Classes (ES6)
