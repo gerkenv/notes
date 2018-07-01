@@ -593,3 +593,41 @@ console.log(3 ^ 5);   // > 6 --> 011 ^ 101 = 110
 ```
 https://www.hackerrank.com/challenges/js10-bitwise/topics
 
+### Dates
+```js
+console.log(new Date());    // uses current date, time and timezone
+console.log(new Date('01/02/2003'));    // using date string with GMT+1 (format # 1)
+console.log(new Date('Mar 9, 2004'));   // using date string with GMT+1 (format # 2)
+console.log(new Date('2005, 03, 23'));  // using date string with GMT+1 (format # 3)
+console.log(new Date('2005, 03, 23, 12:34:56:789'));  // using date string
+console.log(new Date(1987, 1, 3, 12, 34, 56, 789)); // using numbers with GMT+1
+let date = new Date();
+console.log(date.getFullYear());
+console.log(date.getMonth());
+console.log(date.getDay());
+console.log(date.getHours());
+console.log(date.getMinutes());
+// get day in long format
+console.log(Intl.DateTimeFormat('en-US', {weekday:'long'}).format(date));
+```
+https://www.hackerrank.com/challenges/js10-date/topics
+
+### RegEx
+```js
+let re = /abc/;
+re.test('some abc');  // returns 'true' or 'false'
+re = /ab\s(cd).+?(gh)/ig;
+re.exec('ab CD ef GH jk');  // returns array with matches information or null
+re = /ab\d+(\.\d)*)/i;
+'AB3.4.5.6 ab2.8.9'.match(re);  // returns array with first match information or null
+re = /abc/;
+'some abc'.search(re);  // returns index of a first match
+re = /abc/g;
+'abc orabc'.replace(re, 'cba'); // replaces the pattern string with a new one
+// groups
+re = /(.)(b).+?\2/;
+re.test('abc 3b');  // > true
+```
+https://www.hackerrank.com/challenges/js10-regexp-1/topics
+http://eloquentjavascript.net/09_regexp.html
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter
