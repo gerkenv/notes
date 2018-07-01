@@ -63,14 +63,17 @@ let square = function(x) {
 };
 ```
 
-### Arrow Function Expression
+### Arrow Function Expression (ES6)
 ```js
-let square = (x) => x * x;
+let square = x => x * x;
+let sum = (a, b) => a + b;
+let logsum = (a, b) => console.log(a + b);
 let multiLineSquare = (x) => {
   if (typeof(x) != 'number') return 0;
   return x * x;
 }
 ```
+https://www.hackerrank.com/challenges/js10-arrows/topics
 
 ### Equality (==) and Identity or Strict Equality (===)
 ```js
@@ -133,7 +136,6 @@ https://www.hackerrank.com/challenges/js10-switch/topics
 ### Strings
 ```js
 let text = String('text');
-text = `Some ${text}`;
 console.log(text.charAt(2));            //> m    // undefined
 console.log(text.concat(' is longer')); //> Some text is longer
 console.log(text.includes('me te'));    //> true // false
@@ -158,13 +160,42 @@ console.log('  text  '.trimRight());     //> '  text'
 https://www.hackerrank.com/challenges/js10-switch/topics
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 
+### Template Literals (ES6)
+```js
+let oneLine = `Some ${text}`;
+let multiLine = `Several lines here do
+not require any '\\n' newline signs,
+    identation is included also.`;
+```
+
+### Tagged Template Literals
+Tagged template literals allow us to use a function to modify the output of a template literal. \
+In this construct:
+1. The first argument contains an array of string literals.
+2. The subsequently processed arguments are the values of the substitution expressions.
+```js
+function printTemplatePartsAndValues(strings, ...values) {
+	console.log('There are ' + strings.length + ' string parts');
+	for (let str of strings) {
+    	console.log('|' + str + '|');
+    }
+	for (let index in values) {
+    	console.log(`value[${index}] = ${values[index]}`);
+	}
+}
+printTemplatePartsAndValues`part 0 ${0}
+part 1 ${10}     part 2 ${20}`    // you don't need paranthesis around the template
+```
+https://www.hackerrank.com/challenges/js10-template-literals/topics
 
 ### Arrays
 ```js
 let array = ['1', '2', '3', '4'];
+console.log('array size is ', a.length);
 console.log('first element is ', a[0]);
 console.log('last element is ', a[a.length - 1]);
-array.push(5);                      // Append 3 to the end of the array
+let newSize = array.push(5);        // Append 5 to the end of the array,
+                                    // returns array.length
 let removed = array.pop();          // Remove the last element from the array
 array.unshift(0);                   // Insert element to the beginning of the array
 let shifted = array.shift();        // Remove the first element from the array
@@ -225,9 +256,61 @@ https://www.hackerrank.com/challenges/js10-loops/topics
 https://www.hackerrank.com/challenges/js10-count-objects/topics
 
 
+### High Order Functions
+
+#### Filter
+```js
+// code representation of `filter` method
+function filter(array, test) {
+  let passed = [];
+  for (let element of array) {
+    if (test(element)) {
+      passed.push(element);
+    }
+  }
+  return passed;
+}
+// example usage
+let filtered = [1,3,5,7].filter(x => x > 4);
+console.log(filtered);
+```
+
+#### Map
+```js
+// code representation of `map` method
+function map(array, transform) {
+  let mapped = [];
+  for (let element of array) {
+    mapped.push(transform(element));
+  }
+  return mapped;
+}
+// example usage
+let mapped = [1,3,5,7].map(x => x * 2);
+console.log(mapped);
+```
+
+#### Reduce
+```js
+// code representation of `reduce` method
+function reduce(array, combine, start) {
+  let current = start;
+  for (let element of array) {
+    current = combine(current, element);
+  }
+  return current;
+}
+// example usage
+let reduced = [1,3,5,7].reduce( (a, b) => a + b, 0 );
+console.log(reduced);
+```
+
+https://www.hackerrank.com/challenges/js10-arrows/topics
+http://eloquentjavascript.net/05_higher_order.html
+
+
 ### Console Print Outs
 ```js
-
 console.error('Some error');
 console.warn('Some warning');
 console.info('Some information');
@@ -484,3 +567,29 @@ class Anyone extends Someone {
 ```
 
 https://www.hackerrank.com/challenges/js10-class/topics
+
+### Mathematic Operation
+```js
+console.log(Math.pow(2, 3));  // > 8
+console.log(Math.sqrt(16));   // > 4
+console.log(Math.random());   // returns random number between 0 and 1
+console.log(Math.ceil(0,5));  // > 1
+console.log(Math.floor(0,5)); // > 0
+
+```
+
+### Bitwise Operations
+```js
+// NOT (bit inversion)
+console.log(~3);      // > -4
+// invert sign = invert bits + 1
+console.log(~5 + 1); // > 5
+// OR
+console.log(3 | 5);   // > 7 --> 011 | 101 = 111
+// AND
+console.log(3 & 5);   // > 1 --> 011 & 101 = 001
+// XOR
+console.log(3 ^ 5);   // > 6 --> 011 ^ 101 = 110
+```
+https://www.hackerrank.com/challenges/js10-bitwise/topics
+

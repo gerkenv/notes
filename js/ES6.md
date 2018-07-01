@@ -737,7 +737,7 @@ console.log(dessert.scoops);
 ```
 > 1
 
-Well that's exactly what arrow functions do, so let's replace the function passed to `setTimeout()` with an arrow function:
+Well that's exactly what functions do, so now let's replace the function passed to `setTimeout()` with an arrow function:
 ```js
 // constructor
 function IceCream() {
