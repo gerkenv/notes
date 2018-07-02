@@ -614,18 +614,22 @@ https://www.hackerrank.com/challenges/js10-date/topics
 
 ### RegEx
 ```js
-let re = /abc/;
-re.test('some abc');  // returns 'true' or 'false'
-re = /ab\s(cd).+?(gh)/ig;
-re.exec('ab CD ef GH jk');  // returns array with matches information or null
-re = /ab\d+(\.\d)*)/i;
-'AB3.4.5.6 ab2.8.9'.match(re);  // returns array with first match information or null
-re = /abc/;
-'some abc'.search(re);  // returns index of a first match
-re = /abc/g;
-'abc orabc'.replace(re, 'cba'); // replaces the pattern string with a new one
+// regex methods
+/abc/.test('some abc');   // returns 'true' or 'false'
+re = /A([BC])([gh])/ig;
+re.exec('abg ACH');       // returns array with information about next found match
+re.exec('abg ACH');       // or null
+// string methods
+'AB3.4.5.6 ab2.8.9'.match(/a(\d+\.)*)/i);  // returns array with first match
+                            // information or null,
+                            // with 'g' returns all of the matches
+'some abc'.search(/abc/);   // returns index of a first match
+'a jka'.replace(/a/g, 'b'); // replaces the pattern string with a new one groups
+                            // without 'g' replaces only the first match
+'a s1 b s2 c s3 d'.split(/\s?s\d\s?/);  // splits string into array with specified
+                                        // delimeter
 // groups
-re = /(.)(b).+?\2/;
+re = /(.)(b).+?\2/; // '\2' refers to the second group '(b)'
 re.test('abc 3b');  // > true
 ```
 https://www.hackerrank.com/challenges/js10-regexp-1/topics
