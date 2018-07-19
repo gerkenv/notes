@@ -1,10 +1,11 @@
 # JS
 
-### Strict Mode
+### Strict Mode (ES5)
 Always place it in the beginning of the file or the world will collapse.
 ```js
 'use strict'
 ```
+https://www.w3schools.com/js/js_strict.asp
 
 ### Data Types
 * Immutable
@@ -566,6 +567,25 @@ class Anyone extends Someone {
 }
 ```
 
+### `.call()` and `.apply()`
+The Difference Between `call()` and `apply()` is:
+* `call()` method takes arguments separately.
+* `apply()` method takes arguments as an array.
+
+```js
+var person = {
+    fullName: function(city, country) {
+        return this.firstName + " " + this.lastName + ", " + city + ", " + country;
+    }
+}
+var person1 = {
+    firstName:"John",
+    lastName: "Doe",
+}
+console.log(person.fullName.call(person1, "Oslo", "Norway"));
+console.log(person.fullName.apply(person1, ["Oslo", "Norway"]));
+```
+
 https://www.hackerrank.com/challenges/js10-class/topics
 
 ### Mathematic Operation
@@ -575,6 +595,10 @@ console.log(Math.sqrt(16));   // > 4
 console.log(Math.random());   // returns random number between 0 and 1
 console.log(Math.ceil(0,5));  // > 1
 console.log(Math.floor(0,5)); // > 0
+// convert decimal to binary
+console.log((11 >>> 0).toString(2));  // > 1011
+// convert binary to decimal
+console.log(parseInt(1011,2));        // > 11
 
 ```
 
@@ -635,3 +659,30 @@ re.test('abc 3b');  // > true
 https://www.hackerrank.com/challenges/js10-regexp-1/topics
 http://eloquentjavascript.net/09_regexp.html
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter
+
+### Injection to HTML
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <style>
+        /* Write CSS styles here */
+    </style>
+    <!-- or set a refernce to it -->
+    <link rel="stylesheet" href="css-file-path" type="text/css">
+  </head>
+  <body>
+    <!-- define your HTML elements here -->
+    <script>
+        /* Write JS code here */
+    </script>
+    <!-- or set a refernce to it -->
+    <script src="js-file-path" type="text/javascript">
+  </body>
+</html>
+```
+// check ./examplePages/accessingDom
+
+https://www.hackerrank.com/challenges/js10-create-a-button/topics
+
