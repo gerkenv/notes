@@ -124,13 +124,17 @@ Option:
 `git branch [name]` - creates a new branch with a `name`.
 `git checkout -b [name]` - creates a new branch with a `name` and checks it out.
 `git branch -d [name]` - deletes a branch with a `name`.
-`git branch -f [name]` - moves a branch called `name` to a currently checked out commit
-`git branch -f [name] [SHA1]` - moves a branch called `name` to a commit ID `SHA1`
+`git branch -f [name]` - moves a branch called `name` to a currently checked out commit.
+`git branch -f [name] [SHA1]` - moves a branch called `name` to a commit ID `SHA1`.
+`git branch -m [name]` - rename a current branch to `name`.
+`git branch -m [old_name] [new_name]` - rename the `old_name` branch to `new_name`.
 
 ##### remote
 `git remote` - shows all remote repositories connected to a current one. \
 `git remote -v` - shows all remote repositories more detailed. \
 `git remote add [name] [https]` - used to set a remote reository for a current one. The initial remote is usually called `origin`.
+* [rename local & remote branch](https://stackoverflow.com/questions/30590083/how-to-rename-a-remote-git-branch-name)
+* [rename remote branch](https://stackoverflow.com/questions/4753888/git-renaming-branches-remotely/21302474#21302474)
 
 ##### fetch
 `git fetch [name] [branch]` - fetches all commits up to the `branch` from the remote repository called `name` to a local repository _without merging the conficts_.
