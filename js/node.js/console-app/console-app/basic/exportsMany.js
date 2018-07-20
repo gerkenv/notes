@@ -18,3 +18,5 @@ class Square extends Rectangle {
 // todo create node.js syntax basics
 exports.Square = Square;
 exports.Rectangle = Rectangle;
+
+module.exports.sum = (a, b) => console.log(`Sum is ${a + b}`);

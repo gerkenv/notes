@@ -14,7 +14,7 @@ running application.
 If you want import functions or variables from one module to another, you can
 use `require`.
 
-### Export Several Objects
+### Extending `exports`
 ```js
 // module1
 let someVariable = 2;
@@ -23,11 +23,22 @@ function printHello(name) {
 	console.log(`Hello ${name}!`);
 }
 module.exports.someFunction = printHello;
+module.exports.sum = (a, b) => console.log(`Sum is ${a + b}`);
 
-// main module
+// main module (has to be located in the same folder)
 let module1 = require('./module1');
 console.log(module1.someProperty);
-console.log(module1.someFunction('Kane'));
+module1.someFunction('Kane');
+module1.sum(2,9);
 ```
-Also you can use short form `exports` instead os `modulw.exports`.
+Also you can use short form `exports` instead os `module.exports`.
 
+### Overrwritting `exports`
+```js
+module.exports = function (number) {
+    console.log('Number is ' + number);
+}
+// main 
+const module2 = require('./basic/module2');
+module2(4);
+```
