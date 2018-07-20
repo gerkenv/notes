@@ -1,4 +1,6 @@
-﻿class Rectangle {
+﻿'use strict'
+
+class Rectangle {
     constructor(h, w) {
         this.h = h;
         this.w = w;
