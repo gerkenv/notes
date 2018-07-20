@@ -1,17 +1,20 @@
-'use strict';
+'use strict'
 
-const exportsMany = require('./basic/exportsMany');
-console.log(new exportsMany.Rectangle(3, 5).area());
-console.log(new exportsMany.Square(3).area());
-exportsMany.sum(2, 9);
+const exportsObjects = require('./basic/exportsobjects');
+console.log(new exportsObjects.Rectangle(3, 5).area());
+console.log(new exportsObjects.Square(3).area());
+exportsObjects.sum(2, 9);
 
-const exportOne = require('./basic/ExportsOne');
-exportOne(4);
+const exportsSingleObject = require('./basic/exportssingleobject');
+exportsSingleObject(4);
 
-const processBasic = require('./basic/processbasic');
-console.log(processBasic.getArgs());
+const processModule = require('./basic/processmodule');
+console.log(processModule.getArgs());
 
 var a = 1;
+console.log(global.a);
+
+global.a = 2;
 console.log(global.a);
 
 // process.exit(0);

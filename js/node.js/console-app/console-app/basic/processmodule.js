@@ -1,4 +1,5 @@
-﻿
+﻿'use strict'
+
 // http://stackabuse.com/command-line-arguments-in-node-js/
 
 // get command-line arguments
