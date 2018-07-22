@@ -23,7 +23,7 @@ Just call `DEBUG=app:* npm start` to start your application.
 * `nodemon --watch file-without-extension file-without-extension` - will make the same as previous command but for a file without an extension.
 
 ### Run Basic Application with File Monitoring
-* `nodemon -w app -w app/bin/www -d 5 app/bin/www`
+* `nodemon -d 2 -w app/public -w app/routes -w app/app.js -w app/bin/www app/bin/www`
 
 ## Building a First Page
 Let start from one page and comment out `usersRouter` in `app.js`.
