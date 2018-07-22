@@ -29,13 +29,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="basic\ExportsOne.js">
+    <Compile Include="basic\httpmodule.js" />
+    <Compile Include="basic\exportssingleobject.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="basic\processbasic.js">
+    <Compile Include="basic\processmodule.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="basic\exportsMany.js">
+    <Compile Include="basic\exportsobjects.js">
       <SubType>Code</SubType>
     </Compile>
     <Content Include="package.json" />

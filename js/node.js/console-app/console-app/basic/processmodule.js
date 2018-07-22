@@ -1,4 +1,4 @@
-﻿'use strict'
+﻿'use strict';
 
 // http://stackabuse.com/command-line-arguments-in-node-js/
 

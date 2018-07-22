@@ -1,5 +1,5 @@
-﻿'use strict'
+﻿'use strict';
 
 module.exports = function (number) {
-    console.log('Number is ' + number);
-}
+	console.log('Number is ' + number);
+};

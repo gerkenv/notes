@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const exportsObjects = require('./basic/exportsobjects');
 console.log(new exportsObjects.Rectangle(3, 5).area());
