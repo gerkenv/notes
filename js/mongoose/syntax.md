@@ -27,3 +27,24 @@ Now template pages should be served at `http://localhost:3000/` and `http://loca
 ### Installing Mongoose
 `npm install -s mongoose` - downloads `mongoose` and saves it in your `package.json`.
 
+## Peparing the Database
+
+### Installing Mongo DB Locally
+Go to www.mongodb.com and download the latest version of database.
+Mongo 3.2 is the latest version for 32 bit windows.
+At 32 bit system your database is limited up to 2 Gb.
+
+### Running the Database Server
+
+When you have installed a database you need to
+1. Add your installation folder with server binaries to `path` (environment variable). On windows it should be something like `C:\Program Files\MongoDB\Server\3.2\bin`.
+2. Go to the folder where you want to store your database.
+3. Run database daemon `mongod` to start up the database server:
+```
+mongod --dbpath ./data --logpath ./log/logfile.txt --journal --storageEngine mmapv1
+```
+* `--dbpath` - directory to store database structure.
+* `--logpath` - file to store logs of `mongod`.
+* `--journal` - stores information about running processes helping to restore data after crashes.
+* `--storageEngine` - has multiple options, but default one is not suppported at 32 bit system.
+
