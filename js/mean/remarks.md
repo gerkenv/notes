@@ -1,3 +1,11 @@
+## Starting a MongoDB
+Run database daemon `mongod` to start up the database server on 32-bit system:
+```
+mongod --dbpath ./mean/data --logpath .mean/data/log/logfile.txt --journal --storageEngine mmapv1
+```
+* `--storageEngine` - you can skip this parameter if you run the daemon on 64-bit system.
+* `--logpath` - if parameter is not set, then log is streamed to the console, that opens the daemon.
+* `--journal` is default active at 64-bit system.
 
 ## Express
 ### CORS
