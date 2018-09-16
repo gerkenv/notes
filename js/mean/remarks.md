@@ -60,5 +60,38 @@ const users = require('./routes/users');
 app.use('/users', users);
 ```
 
+## Angular 2
+At first install Angular command-line generator globally:
+```
+npm install angular-cli -g
+```
+Then we will generate standard application source structure into `mean/app/angular-src`.
+```
+cd ./mean/app
+ng new angular-src
+```
+When the folder is generated we can change the output directory of our front-end app. Let's open `mean/angular-src/angular-cli.json` and change `outDir` to `../public`. This way our compiled app will become a public part of our express app.
+
+To compile our sources we should run following commands:
+```
+cd ./mean/app/angular-src
+ng serve
+```
+If don't know anything about Angular 2, check out this video:
+https://www.youtube.com/watch?v=-zW1zHqsdyc
+
+Now we have our main component located here `mean/angular-src/src/app/app.component.ts`.
+
+Let's create a folder to make our own components:
+`mean/angular-src/src/app/components`.
+
+Then we have to stop our frontend server and run:
+```
+cd mean/angular-src/src/app/components
+ng g component navbar
+```
+To generate our `navbar` component.
+
+What is also nice about generation of components, if you will look into `mean/angular-src/src/app/app.module.ts`. You will see that `NavbarComponent` was automatically imported and added to declarations of the main module.
 
 
