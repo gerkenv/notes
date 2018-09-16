@@ -1,3 +1,8 @@
+# MEAN Application
+Project is based on this video series,
+https://www.youtube.com/watch?v=uONz0lEWft0&index=1&list=PLillGF-RfqbZMNtaOXJQiDebNXjVapWPZ
+So turn on and follow the instructions.
+
 ## Starting a MongoDB
 Run database daemon `mongod` to start up the database server on 32-bit system:
 ```
@@ -61,6 +66,7 @@ app.use('/users', users);
 ```
 
 ## Angular 2
+### Part 5
 At first install Angular command-line generator globally:
 ```
 npm install angular-cli -g
@@ -93,5 +99,8 @@ ng g component navbar
 To generate our `navbar` component.
 
 What is also nice about generation of components, if you will look into `mean/angular-src/src/app/app.module.ts`. You will see that `NavbarComponent` was automatically imported and added to declarations of the main module.
+
+So now we also need to create `login`, `register`, `dashboard`, `profile`.
+
 
 
