@@ -78,7 +78,7 @@ ng new angular-src
 ```
 When the folder is generated we can change the output directory of our front-end app. Let's open `mean/angular-src/angular-cli.json` and change `outDir` to `../public`. This way our compiled app will become a public part of our express app.
 
-To compile our sources we should run following commands:
+To compile our sources and run the frontend server we should run following commands:
 ```
 cd ./mean/app/angular-src
 ng serve
