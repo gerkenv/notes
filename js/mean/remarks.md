@@ -67,6 +67,8 @@ app.use('/users', users);
 
 ## Angular 2
 ### Part 5
+If you were to lazy to type code for parts 1-4, then you can take app from here https://github.com/bradtraversy/nodeauthapp.
+
 At first install Angular command-line generator globally:
 ```
 npm install angular-cli -g
