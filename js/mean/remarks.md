@@ -104,5 +104,9 @@ What is also nice about generation of components, if you will look into `mean/an
 
 So now we also need to create `login`, `register`, `dashboard`, `profile`.
 
-
+When you create all components, connect them with the backend, then you can call
+```
+ng build
+```
+to compile all your TS code to JS and bundle it, after index.html and all your JS bundles will be copied to `mean/app/public` and served as static folder at home route.
 
