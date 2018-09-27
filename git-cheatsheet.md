@@ -171,7 +171,16 @@ Workflow to get a feedback on your changes before you update a `master` branch.
 8. Create a pull request to `upstream`
 
 ##### Rewriting History
-[Git Magic. Chapter 5. Lessons of History](http://www-cs-students.stanford.edu/~blynn/gitmagic/ch05.html)
+* [Git Magic. Chapter 5. Lessons of History](http://www-cs-students.stanford.edu/~blynn/gitmagic/ch05.html)
+* https://stackoverflow.com/questions/1994463/how-to-cherry-pick-a-range-of-commits-and-merge-into-another-branch/1994491#1994491
+
+1. Add range of commits [oldest commit...newest commit] from one branch `source` to another one `target`.
+```
+git checkout target
+git rebase --onto target <SHA1 of oldest commit>~1 <SHA1 of newest commit>
+git branch -f target
+git checkout target
+```
 
 ##### Garbage Collection
 If a branch is deleted and leaves some commits unreachable from existing branches, those commits will continue to be accessible by commit id, until Git’s garbage collection runs. This will happen automatically from time to time, unless you actively turn it off. You can also run this process manually with `git gc`.
