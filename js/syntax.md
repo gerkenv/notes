@@ -686,3 +686,371 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 https://www.hackerrank.com/challenges/js10-create-a-button/topics
 
+
+## Asynchronous Opeerations
+
+### Callbacks
+```js
+let posts = ['one', 'two'];
+
+function showPosts(posts) {
+    console.log(posts);
+}
+
+// function getPosts(callback(err, posts)) {
+function getPosts(callback) {
+    // wait for response
+    setTimeout(() => {
+        let error = false;
+
+        if (error) {
+            callback("Something went wrong", false);
+        } else {
+            callback(null, posts);
+        }
+    }, 2000);
+}
+
+// function addPost(post, callback(err, isAdded)) {
+function addPost(post, callback) {
+    // send request to server
+    posts.push(post);
+    // wait for response
+    setTimeout(() => {
+        let error = false;
+
+        if (error) {
+            callback("Something went wrong", false);
+        } else {
+            callback(null, true);
+        }
+    }, 2000);
+}
+
+// Usage of callback (dirty)
+addPost('three', (err, isAdded) => {
+    if (err) throw err;
+    if (!isAdded) throw "Post was not added";
+    getPosts((err, posts) => {
+        if (err) throw err;
+        if (!posts) throw "Posts are not found";
+        showPosts(posts);
+    });
+});
+
+// clean callback usage means you have to define callbacks for all functions separately
+
+function addPostCallback(err, isAdded) {
+    if (err) throw err;
+    if (!isAdded) throw "Post was not added";
+    getPosts(getPostsCallback);
+}
+
+function getPostsCallback(err, posts) {
+    if (err) throw err;
+    if (!posts) throw "Posts are not found";
+    showPosts(posts);
+}
+
+addPost("four", addPostCallback);
+```
+
+### Promises
+```js
+let posts = ['one', 'two'];
+
+function showPosts(posts) {
+    console.log(posts);
+}
+
+function getPosts() {
+    // wait for response
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let error = false;
+
+            if (error) {
+                reject("Something went wrong");
+            } else {
+                resolve(posts);
+            }
+        }, 2000);
+    });
+}
+
+function addPost(post) {
+    // send request to server
+    posts.push(post);
+    // wait for response
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let error = false;
+
+            if (error) { 
+                reject("Something went wrong"); 
+            } else {
+                resolve();
+            }      
+        }, 2000);
+    });
+}
+
+// Usage of sequent promises
+addPost("three").then(() => {
+    console.log("1");
+    return getPosts();
+}).then((posts) => {
+    console.log("2");
+    showPosts(posts);
+}).catch((err) => {
+    console.trace(err);
+});
+console.log("3");
+
+
+// Usage of parallel promises #1
+Promise.all([
+    addPost("four"), addPost("five"), addPost("six")
+]).then(() => {
+    return getPosts();
+}).then((posts) => {
+    showPosts(posts);
+}).catch((err) => {
+    console.trace(err);
+});
+
+// Usage of parallel promises #2
+const promise0 = Promise.resolve("I will be always resolved");
+const promise1 = "some value";
+const promise2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 10000, "returned argument");
+});
+
+Promise.all([
+    promise0, promise1, promise2
+]).then((data) => {
+    console.log({data});
+}).catch((err) => console.trace(err));
+```
+
+### Async & await
+```js 
+// We are using same functions, as in `promises` chapter
+let posts = ['one', 'two'];
+
+function showPosts(posts) {
+    console.log(posts);
+}
+
+function getPosts() {
+    // wait for response
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let error = false;
+
+            if (error) {
+                reject("Something went wrong");
+            } else {
+                resolve(posts);
+            }
+        }, 2000);
+    });
+}
+
+function addPost(post) {
+    // send request to server
+    posts.push(post);
+    // wait for response
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let error = false;
+
+            if (error) { 
+                reject("Something went wrong"); 
+            } else {
+                resolve();
+            }      
+        }, 2000);
+    });
+}
+
+// But we are applying async and await to use promises as usual functions
+async function addPostAndReload() {
+    try {
+        let result1 = await addPost("three");
+        console.log("1");
+        let result2 = await getPosts();
+        console.log("2");
+        showPosts(result2);
+        console.log("3");
+    }
+    catch(err) {
+        console.stack(err);
+    }
+    console.log("4");
+}
+
+addPostAndReload();
+console.log("5");
+```
+
+
+## Concepts
+
+### Event-Driven Environment
+The following script meant to run on the page with at least one button.
+```js
+$(document).ready(function() {
+    // This function will run only once, when page is loaded, on `ready` event
+    // so this variable is defined and initialized only once
+    var a = 1;
+
+    $('button').on('click', function() {
+        // this function with required variables remains in memory and fired every time some button is clicked (on `click` event)
+        alert(a);
+    });
+});
+```
+Javascript is not really fast, the only fast thing about it is that only code parts, associated with some events are stored in memory and fired each time an event occurs.
+
+### Closure
+Is something that retains its state and scope after it executes. 
+If we look at previous code example you may notice that function, that is triggered by `click` event uses variable `a`. We said that function 
+```js
+function() {
+    alert(a);
+}
+```
+remains in memory, but reference to variable `a` from child also remains and the memory used by to store variable `a` will not be cleaned by garbage collector because above function requires this variable for execution. This cases next problem, the parent function
+```js
+function() {
+    // parent function scope
+    var a = 1;
+    $('button').on('click', function() {
+        // child function scope
+        alert(a);
+    });
+}
+``` 
+has to stay in memory as well because reference to variable `a` belongs to the child function scope, but the variable itself belongs to the parent function scope. 
+In this case parent function with all referenced variables is a closure. And this closure will be sitting in memory as long as `click` event listener using reference to variable exists.
+
+So if you want to free the space you have to unbound the function fromm an event, this way you releasing all referenced variables. You can make it so:
+```js
+$('button').off('click');
+```
+This way child function, then referenced variable and parent function may be released (closure may be released).
+
+### Scope
+It is important to understand that `scope` and `context` is not the same thing.
+* `Scope` means variable access.
++ `Context` means a value of `this`.
+
+By default, in JS you're creatiang a variable in `root scope`, you're creating it in the context of the `window` object.
+```js
+console.log(a);         // > undefined
+console.log(window.a);  // > undefined
+var a = 1;
+console.log(a);         // > 1
+console.log(window.a);  // > 1
+window.a = 3;
+console.log(a);         // > 3
+console.log(window.a);  // > 3
+```
+As you can see, you can access variables created in the `root scope` through `window`object. 
+
+If you're creating some function, then you creating a child scope, in this case this function can use its own scope and availbale all parent scopes. But code in parent scope has absolutely no access to child scopes.
+```js
+// parent scope
+var a = 1;
+
+function foo() {
+    // child scope
+    var b = 2;
+    a = 3;
+    console.log(a);
+}
+
+console.log(b);
+``` 
+In this case you will get an exception, that `b` is not defined, but `a` will be modified.
+
+#### Naming Conflict
+If we create a variable in parent scope and a varibale with  the same name in the child scope, then we will overwrite a reference to the variable of parent scope. The only way for us to access the variable of parent scope would be a usage of the parent context.
+```js
+var a = 1;
+
+function foo() {
+    var a = 2;
+    console.log(a);
+    console.log(window.a);
+}
+foo();
+
+console.log(a);
+```
+
+#### Unintanded Global
+```js
+var a = 1;
+
+function foo() {
+    var b = 2;
+    c = 3;
+}
+
+console.log(c);
+```
+if you're using the `c` variable in the child scope of the `foo` function, then within compilation process a declaration of this variable will be searched in the child scope, if nothing is found there, then search will be continued in a parent scope, if nothing is found there either, then search goes further to outer scope until it reaches the `global` scope. And if the declaration of the variable is not found there, then searched variable will be created automatically within the global context.
+That is the default behavor that can be suppressed by `strict` mode.
+
+### Context
+Context in JS is `this`, so it an object which will hold all of your variables and functions - properties and methods.
+So if we write:
+```js
+console.log(this);
+```
+Then in browser, it is the `window` object. 
+
+By default, in JS you're creatiang a variable in `root scope` and you're creating it in the context of the `window` object.
+```js
+console.log(a);         // > undefined
+console.log(window.a);  // > undefined
+var a = 1;
+console.log(a);         // > 1
+console.log(window.a);  // > 1
+window.a = 3;
+console.log(a);         // > 3
+console.log(window.a);  // > 3
+```
+As you can see, you can access variables created in the `root scope` through `window`object. 
+
+If you're creating a function in `window` context you're actually creating a variable in `window` context.
+```js
+function foo() {
+    console.log(this);
+}
+
+foo();
+window.foo();
+```
+As you can see both calls `foo()` and `window.foo()` provide the same result;
+
+But if you're defining an object then everything defined inside of it will be referencing `this` to the object.
+```js
+var obj = {
+    foo : function() {
+        console.log(this);
+    }
+}
+
+obj.foo();
+```
+
+#### How To Manipulate The Context
+You have 3 functions to mutate the `context`:
+* call
+* apply
+* bind
+
+First two
