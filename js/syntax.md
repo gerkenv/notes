@@ -64,6 +64,13 @@ let square = function(x) {
 };
 ```
 
+### Straight Executed Anonymous Function
+```js
+(function(a, b) {
+	for (var arg of arguments) console.log(arg);
+})(1, 2);
+```
+
 ### Arrow Function Expression (ES6)
 ```js
 let square = x => x * x;
@@ -687,7 +694,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://www.hackerrank.com/challenges/js10-create-a-button/topics
 
 
-## Asynchronous Opeerations
+## Asynchronous Operations
 
 ### Callbacks
 ```js
@@ -786,11 +793,11 @@ function addPost(post) {
         setTimeout(() => {
             let error = false;
 
-            if (error) { 
-                reject("Something went wrong"); 
+            if (error) {
+                reject("Something went wrong");
             } else {
                 resolve();
-            }      
+            }
         }, 2000);
     });
 }
@@ -834,7 +841,7 @@ Promise.all([
 ```
 
 ### Async & await
-```js 
+```js
 // We are using same functions, as in `promises` chapter
 let posts = ['one', 'two'];
 
@@ -865,11 +872,11 @@ function addPost(post) {
         setTimeout(() => {
             let error = false;
 
-            if (error) { 
-                reject("Something went wrong"); 
+            if (error) {
+                reject("Something went wrong");
             } else {
                 resolve();
-            }      
+            }
         }, 2000);
     });
 }
@@ -914,8 +921,8 @@ $(document).ready(function() {
 Javascript is not really fast, the only fast thing about it is that only code parts, associated with some events are stored in memory and fired each time an event occurs.
 
 ### Closure
-Is something that retains its state and scope after it executes. 
-If we look at previous code example you may notice that function, that is triggered by `click` event uses variable `a`. We said that function 
+Is something that retains its state and scope after it executes.
+If we look at previous code example you may notice that function, that is triggered by `click` event uses variable `a`. We said that function
 ```js
 function() {
     alert(a);
@@ -931,8 +938,8 @@ function() {
         alert(a);
     });
 }
-``` 
-has to stay in memory as well because reference to variable `a` belongs to the child function scope, but the variable itself belongs to the parent function scope. 
+```
+has to stay in memory as well because reference to variable `a` belongs to the child function scope, but the variable itself belongs to the parent function scope.
 In this case parent function with all referenced variables is a closure. And this closure will be sitting in memory as long as `click` event listener using reference to variable exists.
 
 So if you want to free the space you have to unbound the function fromm an event, this way you releasing all referenced variables. You can make it so:
@@ -957,7 +964,7 @@ window.a = 3;
 console.log(a);         // > 3
 console.log(window.a);  // > 3
 ```
-As you can see, you can access variables created in the `root scope` through `window`object. 
+As you can see, you can access variables created in the `root scope` through `window`object.
 
 If you're creating some function, then you creating a child scope, in this case this function can use its own scope and availbale all parent scopes. But code in parent scope has absolutely no access to child scopes.
 ```js
@@ -972,7 +979,7 @@ function foo() {
 }
 
 console.log(b);
-``` 
+```
 In this case you will get an exception, that `b` is not defined, but `a` will be modified.
 
 #### Naming Conflict
@@ -1010,7 +1017,7 @@ So if we write:
 ```js
 console.log(this);
 ```
-Then in browser, it is the `window` object. 
+Then in browser, it is the `window` object.
 
 By default, in JS you're creatiang a variable in `root scope` and you're creating it in the context of the `window` object.
 ```js
@@ -1023,7 +1030,7 @@ window.a = 3;
 console.log(a);         // > 3
 console.log(window.a);  // > 3
 ```
-As you can see, you can access variables created in the `root scope` through `window`object. 
+As you can see, you can access variables created in the `root scope` through `window`object.
 
 If you're creating a function in `window` context you're actually creating a variable in `window` context.
 ```js
@@ -1049,8 +1056,63 @@ obj.foo();
 
 #### How To Manipulate The Context
 You have 3 functions to mutate the `context`:
-* call
-* apply
-* bind
+* call(new_this, arg1, arg2, arg3);
+* apply(new_this, [arg1, arg2, arg3]);
+* bind(new_this)
 
-First two
+First two differs only in the way they transfer function arguments, `apply` uses comma-separated form and `call` uses an array.
+```js
+var obj = {
+  foo : function(arg1, arg2) {
+    console.log(this);
+    console.table(arguments);
+  }
+}
+obj.foo.call(window, "call", "separated", "arguments");
+var newObj = {prop1: 1, prop2: 2};
+obj.foo.apply(newObj, ["apply", "array", "of", "arguments"]);
+```
+
+The `bind` returns an instance of the same function but with a new context.
+```js
+var obj = {
+    foo : function() {
+        console.log(this);
+    }
+}
+var newFoo = obj.foo.bind(window);
+obj.foo();
+newFoo();
+```
+
+#### Context Mutation And Events
+If we will set an event listener to a DOM object with `jquery`, then the value of `this` will be the DOM object.
+```js
+var obj = {
+    foo : function() {
+        console.log(this);
+    }
+}
+// `jquery` way
+$('body').on('click', obj.foo);
+// or `standard` way
+document.body.addEventListener('click', obj.foo);
+```
+> <body>...</body>
+
+And if we set it to multiple objects located on the page, then we can create a generic event that will behave differently depending on a DOM object itself.
+```html
+  <ul>
+    <li>1st list element - <span>0</span></li>
+    <li>2nd list element - <span>0</span></li>
+    <li>3rd list element - <span>0</span></li>
+  </ul>
+```
+```js
+// `jquery` way
+$('li').on('click', function() {
+  var currentTimes = parseInt( $('li span').html() );
+});
+// or `standard` way
+document.body.addEventListener('click', obj.foo);
+```
