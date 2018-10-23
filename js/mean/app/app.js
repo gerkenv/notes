@@ -27,13 +27,17 @@ const app = express();
 const users = require('./routes/users');
 
 // port number
-const port = 3000;
+const port = process.env.PORT || 8080;
 
 // enable CORS for all origins for all types of HTTP methods
 app.use(cors());
 
-// set static folder
+// 1st '/' home GET route
+// set static folder to home '/' route
 app.use(express.static(path.join(__dirname, 'public')));
+// following two are working the same way
+// app.use('', express.static(path.join(__dirname, 'public')));
+// app.use('/', express.static(path.join(__dirname, 'public')));
 
 // enable body-parser middleware to parse HTML forms
 app.use(bodyParser.json());
@@ -47,10 +51,17 @@ require('./config/passport')(passport);
 // define namespace for `users` routes
 app.use('/users', users);
 
-// '/' GET route
+// 2nd '/' home GET route
+// not used, because static folder `public` is served at 1st `home `route
 app.get('/', (req, res) => {
     res.send("Hello");
     res.end();
+});
+
+// redirect all unknown requests to home page
+app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public/index.html'));
+    res.redirect('/');
 });
 
 app.listen(port, () => {

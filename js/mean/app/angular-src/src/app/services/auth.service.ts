@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
@@ -8,7 +9,9 @@ export class AuthService {
   user: any;
 
 
-  constructor(private _http: Http) { }
+  constructor(
+    private _http: Http,
+  ) { }
 
   registerUser(user) {
     const headers = new Headers();
@@ -33,8 +36,7 @@ export class AuthService {
   getProfile() {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.loadToken();
-    headers.append('Authorization', this.authToken);
+    headers.append('Authorization', this.loadToken());
     return this._http.get(
       'http://localhost:3000/users/profile',
       {headers: headers}
@@ -54,6 +56,14 @@ export class AuthService {
   loadToken() {
     const jwt = localStorage .getItem('id_token');
     this.authToken = jwt;
+    return jwt;
+  }
+
+  loggedIn() {
+    return tokenNotExpired('id_token');
+    // can be also used without an argument, but then token has to
+    // be saved in local storage with key `token`.
+    // return tokenNotExpired();
   }
 
   logout() {
