@@ -18,8 +18,8 @@
       {
           "type": "chrome",
           "request": "launch",
-          "name": "Launch Chrome against localhost",
-          "url": "http://localhost:8080",
+          "name": "script.js",
+          "url": "file:///D:/Projects/notes/js/examplePages/testPage/index.html",
           "webRoot": "${workspaceFolder}/js/examplePages/testPage"
       }
     ]
