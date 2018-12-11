@@ -1100,7 +1100,10 @@ document.body.addEventListener('click', obj.foo);
 ```
 > <body>...</body>
 
-And if we set it to multiple objects located on the page, then we can create a generic event that will behave differently depending on a DOM object itself.
+#### Example 1. Why context is important 
+If we want to create a generic event that will behave differently depending on a DOM object where the event is applied.
+
+Let's create 3 list elements with counter of clicks inside of each element, in nested `span`.
 ```html
   <ul>
     <li>1st list element - <span>0</span></li>
@@ -1108,11 +1111,21 @@ And if we set it to multiple objects located on the page, then we can create a g
     <li>3rd list element - <span>0</span></li>
   </ul>
 ```
+And we will write an event callback which will be working with each object separately.
 ```js
 // `jquery` way
 $('li').on('click', function() {
-  var currentTimes = parseInt( $('li span').html() );
+  var currentTimes = parseInt( $('this').find('span').html() );
+  $('this').find('span').html(currentTimes + 1);
 });
 // or `standard` way
-document.body.addEventListener('click', obj.foo);
-```
+for (let li of document.getElementsByTagName('li')) {
+	li.addEventListener('click', function() {
+        let currentLi = this;
+        let count = parseInt(currentLi.firstElementChild.innerHTML);
+        currentLi.firstElementChild.innerHTML = ++count;
+    });
+};
+``` 
+
+#### Example 2. 

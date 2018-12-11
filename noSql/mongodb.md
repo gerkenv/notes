@@ -51,7 +51,7 @@ Use:
 `db` - to show the name of currently used database.
 
 So when we are working with a document (database entry) we using the JSON-like syntax. Something like this:
-```json
+```js
 {
   field1: value1,
   field2: value2,
@@ -59,7 +59,7 @@ So when we are working with a document (database entry) we using the JSON-like s
 }
 ```
 So for a `customer` we might want to have:
-```json
+```js
 {
   first_name: "John",
   last_name: "Doe",
