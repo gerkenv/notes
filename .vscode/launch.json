@@ -8,7 +8,7 @@
         "name": "app.js",
         "type": "node",
         "request": "launch",
-        "cwd": "${workspaceFolder}/js/node.js/console-app/console-app/app.js",
+        "cwd": "${workspaceFolder}/js/node.js/console-app/console-app",
         "runtimeExecutable": "npm",
         "runtimeArgs": [
             "run-script", "debug"
