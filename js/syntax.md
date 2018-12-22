@@ -922,13 +922,13 @@ Javascript is not really fast, the only fast thing about it is that only code pa
 
 ### Closure
 Is something that retains its state and scope after it executes.
-If we look at previous code example you may notice that function, that is triggered by `click` event uses variable `a`. We said that function
+If we look at previous code example you may notice that function, that is triggered by `click` event uses variable `a`. We said that child function
 ```js
 function() {
     alert(a);
 }
 ```
-remains in memory, but reference to variable `a` from child also remains and the memory used by to store variable `a` will not be cleaned by garbage collector because above function requires this variable for execution. This cases next problem, the parent function
+remains in memory, but reference to variable `a` in child function scope also remains and used to store address of variable `a`. Thus memory address where variable `a` is stored will not be cleaned by garbage collector because child event listener function requires this variable for execution. This cases next problem, the parent function
 ```js
 function() {
     // parent function scope
@@ -939,14 +939,14 @@ function() {
     });
 }
 ```
-has to stay in memory as well because reference to variable `a` belongs to the child function scope, but the variable itself belongs to the parent function scope.
-In this case parent function with all referenced variables is a closure. And this closure will be sitting in memory as long as `click` event listener using reference to variable exists.
+has to stay in memory as well because reference to variable `a` belongs to the child function scope, but the variable `a` itself belongs to the parent function scope.
+In this case parent function with all referenced variables is a closure. And this closure will be sitting in memory as long as child function - `click` event listener using reference to variable `a` exists.
 
-So if you want to free the space you have to unbound the function fromm an event, this way you releasing all referenced variables. You can make it so:
+So if you want to free the space - you have to unbound the function fromm an event, this way you releasing all referenced variables. You can make it so in `jquery`:
 ```js
 $('button').off('click');
 ```
-This way child function, then referenced variable and parent function may be released (closure may be released).
+This way child function with reference to variable `a` and parent function with variable `a` may be released (closure may be released).
 
 ### Scope
 It is important to understand that `scope` and `context` is not the same thing.
@@ -1100,7 +1100,7 @@ document.body.addEventListener('click', obj.foo);
 ```
 > <body>...</body>
 
-#### Example 1. Why context is important 
+#### Example 1. Why context is important
 If we want to create a generic event that will behave differently depending on a DOM object where the event is applied.
 
 Let's create 3 list elements with counter of clicks inside of each element, in nested `span`.
@@ -1126,6 +1126,58 @@ for (let li of document.getElementsByTagName('li')) {
         currentLi.firstElementChild.innerHTML = ++count;
     });
 };
-``` 
+```
 
-#### Example 2. 
+### IIFE
+Immediately invoked function expression (IIFE) is an expression that saved as a value returned by this expression. If you're declaring a function then it is saved as a reference.
+```js
+// function definition
+function fun() { /* ... */ }
+
+// functional expression
+const funExp = function() { /* ... */ }
+
+// immediately invoked function expression
+let iife = ( function(){ /* ... */ } )();
+```
+So it is basically functional expression surrounded with `(  )();` evaluation scopes.
+Nice thing about IIFE - it allows to create a closure in very simple way.
+
+### Private Global Properties And Methods with IIFE
+Some links:
+* https://stackoverflow.com/questions/27849064/how-to-implement-private-method-in-es6-class-with-traceur
+* http://2ality.com/2016/01/private-data-classes.html
+* http://speakingjs.com/es5/ch17.html#private_data_for_objects
+
+Let's create a private method for our class and put it in closure.
+```js
+var Person = (function() {
+  // global private property
+  let _quantityOfPersons = 0;
+  // global private method
+  let _printQuantity = function() {
+    console.log(`One of ${_quantityOfPersons} persons.`);
+  }
+
+  class Person {
+    constructor(name) {
+      // public
+      this.Name = name;
+      _quantityOfPersons++;
+    }
+    printInfo() {
+      _printQuantity();
+      console.log(`Name is ${this.Name}`);
+    }
+  }
+
+  return Person;
+})();
+
+let person1 = new Person('Jake');
+person1.printInfo();
+let person2 = new Person('Mike');
+person1.printInfo();
+console.log(person1.hasOwnProperty('Name'));
+console.log(person1.hasOwnProperty('_quantityOfPersons'));
+```
