@@ -598,15 +598,25 @@ https://www.hackerrank.com/challenges/js10-class/topics
 ### Mathematic Operation
 ```js
 console.log(Math.pow(2, 3));  // > 8
+console.log('Math.pow(2, 3) = ' + (2 ** 3)); // > 8
 console.log(Math.sqrt(16));   // > 4
 console.log(Math.random());   // returns random number between 0 and 1
-console.log(Math.ceil(0,5));  // > 1
-console.log(Math.floor(0,5)); // > 0
+console.log(Math.ceil(0.5));  // > 1
+console.log(Math.floor(0.5)); // > 0
 // convert decimal to binary
 console.log((11 >>> 0).toString(2));  // > 1011
 // convert binary to decimal
 console.log(parseInt(1011,2));        // > 11
+```
 
+#### Float to Integer
+* https://stackoverflow.com/questions/5971645/what-is-the-double-tilde-operator-in-javascript
+*
+```js
+// double bitwise inversion cutting off the float part
+console.log('Cut off float part = ' + ~~(1.9)); // > 1 // Limited to [-2^32, 2^31-1]
+// sign exchange + bitwise inversion are cutting off the float part and increment the value
+console.log('Math.ceil(1.1) = ' + -~(1.1)); // > 2 // Limited to [0, 2^31-1]
 ```
 
 ### Bitwise Operations
