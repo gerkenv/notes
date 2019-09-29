@@ -101,7 +101,6 @@ https://www.hackerrank.com/challenges/js10-if-else/topics
 * `0`
 * `NaN`
 * `""` (empty string)
-* `[]` (empty array)
 
 ### If-Else Conditional Statements
 ```js
@@ -1242,7 +1241,28 @@ var fibonacci = memoizer([0, 1], function (recur, n) {
 });
 ```
 
-## Issue / RegExp by Expression Literal
+## Language Issues
+Original source - 'Javascript: Good Parts'.
+
+### Truthy Values
+In JavaScript, a truthy value is a value that is considered true when encountered in a Boolean context. All values are truthy unless they are defined as falsy (i.e., except for false, 0, "", null, undefined, and NaN).
+```js
+if (true)
+if ({})
+if ([])
+if (42)
+if ("0")
+if ("false")
+if (new Date())
+if (-42)
+if (12n)
+if (3.14)
+if (-3.14)
+if (Infinity)
+if (-Infinity)
+```
+
+### RegExp by Expression Literal
 RegExp objects made by regular expression literals share a single instance:
 
 ```js
@@ -1255,3 +1275,176 @@ var y = make_a_matcher( );
 x.lastIndex = 10;
 document.writeln(y.lastIndex); // 10
 ```
+
+### Function
+```js
+function name1() { /* do stuff */}
+// is the same as
+var name1 = function name1() { /* do stuff */}
+// or
+var name1 = function { /* do stuff */}
+```
+
+### Scope
+If you're using `var` then scope belongs to a function. Everything else is just a fake.
+
+
+### Semicolon insertion
+By adding a braces on a next line after `return` statement you are basically returning `undefined` since a semicolon is added by _automatic correction mechanism_.
+```js
+return
+{
+ status: true
+};
+```
+
+### Type of `null`
+`typeof null` returns `object` instead of `null`.
+
+### How to Check `isObject`
+A bigger problem is testing a value for objectness. `typeof` cannot distinguish between `null` and `object`s, but you can because `null` is falsy and all objects are truthy.
+```js
+if (my_value && typeof my_value === 'object') {
+ // my_value is an object or an array!
+}
+```
+
+### How to Check `isArray`
+JavaScript does not have a good mechanism for distinguishing between arrays and
+objects. We can work around that deficiency by defining our own is_array function:
+```js
+var is_array = function (value) {
+  return value && typeof value === 'object' && value.constructor === Array;
+};
+```
+Unfortunately, it fails to identify arrays that were constructed in a different window or frame. If we want to accurately detect those foreign arrays, we have to work a little harder:
+```js
+var is_array = function (value) {
+  return Object.prototype.toString.apply(value) === '[object Array]';
+};
+```
+
+### `parseInt`
+If the first character of the string is `0`, then the string is evaluated in base `8` instead of base 10. In base `8`, `8` and `9` are not digits, so `parseInt("08")` and `parseInt("09")` produce `0` as their result. This error causes problems in programs that parse dates and times. Fortunately, `parseInt` can take a `radix` parameter, so that `parseInt("08",10)` produces `8`. Always provide the `radix` parameter.
+
+
+### `NaN`
+The value `NaN` is a special quantity defined by IEEE 754. It stands for not a number, even though:
+```js
+typeof NaN === 'number' // true
+```
+You can test for `NaN`. As we have seen, `typeof` does not distinguish between numbers and `NaN`, and it turns out that `NaN` is not equal to itself. So, surprisingly:
+```js
+NaN === NaN // false
+NaN !== NaN // true
+```
+JavaScript provides an isNaN function that can distinguish between numbers and NaN:
+```js
+isNaN(NaN) // true
+isNaN(0) // false
+isNaN('oops') // true
+isNaN('0') // false
+```
+The `isFinite` function is the best way of determining whether a value can be used as a number because it rejects `NaN` and `Infinity`. Unfortunately, `isFinite` will attempt to convert its operand to a `number`, so it is not a good test if a value is not actually a `number`. You may want to define your own `isNumber` function:
+```js
+var isNumber = function isNumber(value) { return typeof value === 'number' &&
+ isFinite(value);
+};
+```
+
+### Default `object` Properties
+Be aware that `constructor`, `hasOwnProperty`, `isPrototypeOf`, `propertyIsEnumerable`, `toLocaleString`, `toString`, `valueOf` are always defined from a prototype chain.
+```js
+var obj = {};
+console.log(obj[constructor]);
+```
+
+### Equal Operator
+These are some of the interesting cases:
+```js
+'' == '0' // false
+0 == '' // true
+0 == '0' // true
+false == 'false' // false
+false == '0' // true
+false == undefined // false
+false == null // false
+null == undefined // true
+' \t\r\n ' == 0 // true
+```
+Always use `===` and `!==`. All of the above produce `false` with the
+`===` operator.
+
+### `with`
+JavaScript has a with statement that was intended to provide a shorthand when
+accessing the properties of an object. Unfortunately, its results can sometimes be
+unpredictable, so it should be avoided.
+The statement:
+```js
+with (obj) {
+  a = b;
+}
+```
+does the same thing as:
+```js
+if (obj.a === undefined) {
+  a = obj.b === undefined ? b : obj.b;
+} else {
+  obj.a = obj.b === undefined ? b : obj.b;
+}
+```
+So, it is the same as one of these statements:
+```js
+a = b;
+a = obj.b;
+obj.a = b;
+obj.a = obj.b;
+```
+It is not possible to tell from reading the program which of those statements you will get. It can vary from one running of the program to the next. It can even vary while the program is running. If you can’t read a program and understand what it is going
+to do, it is impossible to have confidence that it will correctly do what you want.
+Simply by being in the language, the with statement significantly slows down JavaScript processors because it frustrates the lexical binding of variable names. It was well intentioned, but the language would be better if it didn’t have it.
+
+### Block-less Statements
+An `if` or `while` or `do` or `for` statement can take a block or a single statement. The single statement form is another attractive nuisance. It offers the advantage of saving two characters, a dubious advantage. It obscures the program’s structure so that subsequent manipulators of the code can easily insert bugs. For example:
+```js
+if (ok)
+  t = true;
+```
+can become:
+```js
+if (ok)
+  t = true;
+  advance( );
+```
+which looks like:
+```js
+if (ok) {
+ t = true;
+ advance( );
+}
+```
+but which actually means:
+```js
+if (ok) {
+  t = true;
+}
+advance( );
+```
+Programs that appear to do one thing but actually do another are much harder to get
+right. A disciplined and consistent use of blocks makes it easier to get it right.
+
+### `new`
+JavaScript’s `new` operator creates a new object that inherits from the operand’s prototype member, and then calls the operand, binding the new object to `this`. This gives the operand (which had better be a constructor function) a chance to customize the
+new object before it is returned to the requestor.
+If you forget to use the `new` operator, you instead get an ordinary function call, and
+`this` is bound to the `global` object instead of to a `new` object. That means that your
+function will be clobbering `global` variables when it attempts to initialize the new
+members. That is a very bad thing. There is no compile-time warning. There is no
+runtime warning.
+By convention, functions that are intended to be used with `new` should be given
+_names with initial capital letters_, and names with initial capital letters should be used only with _constructor functions that take the new prefix_. This convention gives us a visual cue that can help spot expensive mistakes that the language itself is keen to
+overlook.
+An even better coping strategy is to not use new at all.
+
+### `void`
+In many languages, `void` is a type that has no values. In JavaScript, `void` is an operator that takes an operand and returns `undefined`. This is not useful, and it is very confusing. Avoid void.
