@@ -94,7 +94,7 @@ console.log(null == undefined, null === undefined);  //> true false
 ```
 https://www.hackerrank.com/challenges/js10-if-else/topics
 
-### Faulsy Values
+### Faulty Values
 * `false`
 * `undefined`
 * `null`
@@ -143,7 +143,7 @@ https://www.hackerrank.com/challenges/js10-switch/topics
 
 ### Strings
 ```js
-let text = String('text');
+let text = String('Some text');
 console.log(text.charAt(2));            //> m    // undefined
 console.log(text.concat(' is longer')); //> Some text is longer
 console.log(text.includes('me te'));    //> true // false
@@ -154,6 +154,7 @@ console.log(text.match(/[a-z]+/));      //> ["ome", index: 1, input: "Some text"
                                         //> groups: undefined]  // undefined
 console.log(text.repeat(2));            //> Some textSome text
 console.log(text.replace(/e/,'o'));     //> Somo text
+console.log(text.replace(/e/g,'o'));     //> Somo toxt
 console.log(text.search(/e/));          //> 3    // -1
 console.log(text.slice(1,-1));          //> ome tex
 console.log(text.split('e'));           //> ["Som", " t", "xt"]
@@ -173,7 +174,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 let oneLine = `Some ${text}`;
 let multiLine = `Several lines here do
 not require any '\\n' newline signs,
-    identation is included also.`;
+    indentation is included also.`;
 ```
 
 ### Tagged Template Literals
@@ -192,7 +193,7 @@ function printTemplatePartsAndValues(strings, ...values) {
 	}
 }
 printTemplatePartsAndValues`part 0 ${0}
-part 1 ${10}     part 2 ${20}`    // you don't need paranthesis around the template
+part 1 ${10}     part 2 ${20}`    // you don't need parenthesis around the template
 ```
 https://www.hackerrank.com/challenges/js10-template-literals/topics
 
@@ -210,7 +211,7 @@ let shifted = array.shift();        // Remove the first element from the array
 let position = array.indexOf('2');  // Get position of the element
 let spliced = array.splice(1, 2));  // Remove 2 elements from index 1
 let copy = array.slice();           // Same like a string.prototype.slice()
-[1,0,NaN,-Infinity,Infinity.sort(); // Sort in ascending lexicographical order using
+[1,0,NaN,-Infinity,Infinity].sort(); // Sort in ascending lexicographical order using
                                     // a built-in sorting
 [1,0,9,6,5,NaN,-Infinity,Infinity]  // Use descending lexicographical order
 .sort( (i0, i1) => i0 < i1 );
@@ -1137,6 +1138,7 @@ for (let li of document.getElementsByTagName('li')) {
     });
 };
 ```
+<<<<<<< Updated upstream
 
 ### IIFE
 Immediately invoked function expression (IIFE) is an expression that saved as a value returned by this expression. If you're declaring a function then it is saved as a reference.
@@ -1191,3 +1193,7 @@ person1.printInfo();
 console.log(person1.hasOwnProperty('Name'));
 console.log(person1.hasOwnProperty('_quantityOfPersons'));
 ```
+=======
+
+#### Example 2.
+>>>>>>> Stashed changes
