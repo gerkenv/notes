@@ -1138,7 +1138,6 @@ for (let li of document.getElementsByTagName('li')) {
     });
 };
 ```
-<<<<<<< Updated upstream
 
 ### IIFE
 Immediately invoked function expression (IIFE) is an expression that saved as a value returned by this expression. If you're declaring a function then it is saved as a reference.
@@ -1193,7 +1192,3 @@ person1.printInfo();
 console.log(person1.hasOwnProperty('Name'));
 console.log(person1.hasOwnProperty('_quantityOfPersons'));
 ```
-=======
-
-#### Example 2.
->>>>>>> Stashed changes
