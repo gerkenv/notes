@@ -200,6 +200,8 @@ https://www.hackerrank.com/challenges/js10-template-literals/topics
 ### Arrays
 ```js
 let array = ['1', '2', '3', '4'];
+// or
+let array = Array.from({length:4}, ((_, i) => i));
 console.log('array size is ', a.length);
 console.log('first element is ', a[0]);
 console.log('last element is ', a[a.length - 1]);
