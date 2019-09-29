@@ -1192,3 +1192,50 @@ person1.printInfo();
 console.log(person1.hasOwnProperty('Name'));
 console.log(person1.hasOwnProperty('_quantityOfPersons'));
 ```
+
+## Memoization
+Functions can use objects to remember the results of previous operations, making it
+possible to avoid unnecessary work. This optimization is called memoization.
+
+```js
+var fibonacci = (function() {
+  var memo = [0, 1];
+  var fib = function (n) {
+    var result = memo[n];
+    if (typeof result !== 'number') {
+      result = fib(n - 1) + fib(n - 2);
+      memo[n] = result;
+    }
+    return result;
+  };
+  return fib;
+}());
+```
+
+We can generalize this by making a function that helps us make memoized functions. The memoizer function will take an initial memo array and the formula function.
+It returns a recur function that manages the memo store and that calls the formula
+function as needed. We pass the recur function and the function’s parameters to the
+formula function:
+
+```js
+var memoizer = function (memo, formula) {
+  var recur = function (n) {
+    var result = memo[n];
+    if (typeof result !== 'number') {
+      result = formula(recur, n);
+      memo[n] = result;
+    }
+    return result;
+  };
+  return recur;
+};
+```
+
+We can now define fibonacci with the memoizer, providing the initial memo array and
+formula function:
+
+```js
+var fibonacci = memoizer([0, 1], function (recur, n) {
+ return recur(n - 1) + recur(n - 2);
+});
+```
