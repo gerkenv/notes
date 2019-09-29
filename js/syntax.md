@@ -1239,3 +1239,17 @@ var fibonacci = memoizer([0, 1], function (recur, n) {
  return recur(n - 1) + recur(n - 2);
 });
 ```
+
+## Issue / RegExp by Expression Literal
+RegExp objects made by regular expression literals share a single instance:
+
+```js
+function make_a_matcher( ) {
+ return /a/gi;
+}
+var x = make_a_matcher( );
+var y = make_a_matcher( );
+// Beware: x and y are the same object!
+x.lastIndex = 10;
+document.writeln(y.lastIndex); // 10
+```
