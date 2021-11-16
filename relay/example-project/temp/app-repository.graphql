@@ -1,0 +1,14 @@
+query App_repositoryQuery {
+  repository(owner: "facebook", name: "relay") {
+    name
+    stargazers(first: 2) {
+      edges {
+        node {
+          id
+          name
+          login
+        }
+      }
+    }
+  }
+}
