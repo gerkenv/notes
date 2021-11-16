@@ -3,8 +3,11 @@
 ### Compatibility
 https://kangax.github.io/compat-table/es6/
 
-## Async / Await
+## Async Await
 https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch1.md
+
+## Async Await In Loops
+https://zellwk.com/blog/async-await-in-loops/
 
 ## Performance
 https://nodesource.com/blog/improve-javascript-performance/
