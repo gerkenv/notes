@@ -1,0 +1,38 @@
+# https://docs.github.com/en/graphql/overview/explorer
+{
+  viewer {
+    login
+  }
+  repository(name: "relay", owner: "facebook") {
+    name
+    stargazers(first: 2) {
+      edges {
+        node {
+          id
+          name
+          login
+          watching(first: 2) {
+            edges {
+              node {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  user(login: "mroch") {
+    id
+    name
+    watching(first: 2) {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+  }
+}

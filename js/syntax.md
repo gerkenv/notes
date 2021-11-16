@@ -64,7 +64,7 @@ let square = function(x) {
 };
 ```
 
-### Straight Executed Anonymous Function
+### Immediately Invoked Functional Expression (IIFE)
 ```js
 (function(a, b) {
 	for (var arg of arguments) console.log(arg);
@@ -218,6 +218,34 @@ let copy = array.slice();           // Same like a string.prototype.slice()
 .sort( (i0, i1) => i0 < i1 );
 ```
 https://www.hackerrank.com/challenges/js10-arrays/topics
+
+#### 2D Array
+```js
+
+function array2D(columns, rows, value) {
+  let row = [];
+  let array = [];
+  while(columns--) row.push(value);
+  while(rows--)    array.push(row.slice());
+  return array;
+}
+
+// or
+
+function array2DWithMap(columns, rows, value) {
+  return new Array(rows).fill().map(() => new Array(columns).fill(value));
+}
+```
+
+#### Sorting
+```js
+
+var array = [10, 1000, 12, 121, 1200];
+// sort as UTF16 strings
+var asStrings = array.sort(); // [10, 1000, 12, 1200, 121]
+// sort as numbers
+var asNumbers = array.sort((a,b) => (a-b)); // [10, 12, 121, 1000, 1200]
+```
 
 ### Loops
 ```js

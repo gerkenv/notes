@@ -240,6 +240,12 @@ join (
 on rounds.id = wins.
 ```
 
+### Check for non-empty string
+https://stackoverflow.com/questions/8660203/how-to-check-for-is-not-null-and-is-not-empty-string-in-sql-server
+```sql
+where column <> ''
+```
+
 
 ## PostgreSQL
 
@@ -323,5 +329,4 @@ drop table *name* [options]
 ```
 Links:
 * https://www.postgresql.org/docs/9.4/static/sql-droptable.html
-
 
