@@ -4,6 +4,11 @@
 ### Chrome Dev Summit 2021
 https://web.dev/cds2021-updates/
 
+## Web State
+
+### 2020
+https://almanac.httparchive.org/en/2020/table-of-contents
+
 ## Core Web Vitals
 
 ### Browser Plugin
