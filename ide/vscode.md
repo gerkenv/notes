@@ -1,5 +1,8 @@
 # VSCode
 
+## Tips
+https://code.visualstudio.com/docs/getstarted/tips-and-tricks
+
 ## Search for node modules in quick open
 https://github.com/microsoft/vscode/issues/36438
 
