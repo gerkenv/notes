@@ -74,3 +74,6 @@ const definedChild: OptionalChild = ((someObject: SomeObject) => {
   return someObject.optionalChild;
 })(v1);
 ```
+
+## Library Is Missing Types Definition
+https://github.com/microsoft/TypeScript-Node-Starter#what-if-a-library-isnt-on-definitelytyped
