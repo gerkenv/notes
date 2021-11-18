@@ -9,3 +9,11 @@ https://en.wikibooks.org/wiki/LaTeX/Mathematics#Controlling_horizontal_spacing
 \!    negative space -3/18 of a quad 
 \quad                1 quad
 ```
+
+## Multiple Equation
+```
+\begin{equation}
+a = b + c
+d = e + f
+\end{equation}
+```
