@@ -77,3 +77,35 @@ const definedChild: OptionalChild = ((someObject: SomeObject) => {
 
 ## Library Is Missing Types Definition
 https://github.com/microsoft/TypeScript-Node-Starter#what-if-a-library-isnt-on-definitelytyped
+
+
+## Public And Private Properties
+```ts
+class Example {
+  publicByDefaultText: string;
+  private explicitPrivateText: string;
+ 
+  constructor(
+    text: string, 
+    private privateText: string = "hiddenText", 
+    anotherPrivateText: string = "anotherHiddenText"
+  ) {
+    this.publicByDefaultText = text;
+    this.explicitPrivateText = anotherPrivateText;
+  }
+ 
+  logProperties() {
+    console.log(
+      "this.publicByDefaultText: " + this.publicByDefaultText + "\n" 
+      + "this.privateText: " + this.privateText + "\n"
+      + "this.explicitPrivateText: " + this.explicitPrivateText
+    );
+  }
+}
+ 
+let example = new Example("text");
+example.logProperties();
+console.log(example.publicByDefaultText)
+console.log(example.privateText) // TS will complain during compilation, but in runtime property value can be accessed !!!
+console.log(example.explicitPrivateText) // TS will complain during compilation, but in runtime property value can be accessed !!!
+```
