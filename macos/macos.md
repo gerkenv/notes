@@ -1,5 +1,14 @@
 # MacOS
 
+## Hot Keys
+_shortcuts short keys hot keys_
+
+- `Cdm`+`Space` - open app search
+- `Cmd`+`Ctrl`+`Q` - lock screen
+- `Cmd`+`Shift`+3 - full-screen
+- `Cmd`+`Shift`+4 - select screen area
+- long press on `a` -> extended `a` characters `ä`, `á`, etc. works with other keys as well.
+
 ## Xcode Command Line Tools
 https://www.freecodecamp.org/news/install-xcode-command-line-tools/
 ```
@@ -22,3 +31,33 @@ System preferences -> Security & Privacy -> Developer Tools -> Allow the apps be
 
 ## Show Hidden Files
 https://nordlocker.com/blog/how-to-show-hidden-files-mac/
+- Click `Cmd`+`Shift`+`.` when Finder is opened.
+
+## Shuffle Windows Around The Screen
+Install https://www.spectacleapp.com/
+
+## Clipboard Manager
+https://github.com/Clipy/Clipy
+
+## Screen Recorder
+https://getkap.co/
+
+## Screenshots
+- `Cmd`+`Shift`+3 - full-screen
+- `Cmd`+`Shift`+4 - select screen area
+
+## Display Fan Speed Rpm And Temperature
+https://crystalidea.com/macs-fan-control
+
+## Disable Turboboost On Intel Processor
+Download `turboboost switcher` from http://tbswitcher.rugarciap.com/ and follow instructions after opening `.dmg` file to install the app.
+
+### Trobleshooting
+### If after installation turboboost does not switch off then
+### Or turboboost is activated each time when laptop is coming from sleep mode
+1. reboot and retry
+2. open `help.rtf` from `.dmg` file and go to point `2.2 Turbo Boost doesn’t get disabled`.
+  Run
+  ```
+  sudo kextutil -v /Applications/tbswitcher_resources/DisableTurboBoost.64bits.kext
+  ```
