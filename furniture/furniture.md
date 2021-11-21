@@ -10,3 +10,5 @@ https://expandfurniture.com/
 https://www.youtube.com/watch?v=VR84-Aa1JVY&list=LL&index=3
 https://www.youtube.com/watch?v=Y8rK44qAsF4&list=LL&index=2
 
+### Foldable Cupboard Bed
+https://www.google.com/search?q=wandklappbett
