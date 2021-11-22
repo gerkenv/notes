@@ -17,6 +17,7 @@ https://www.google.com/search?q=wandklappbett
 - https://www.google.com/search?q=power+rack
 - https://www.decathlon.de/browse/c0-alle-sportarten-a-z/c1-fitness/c4-kraftstation-home-gym/_/N-erynom
 - https://www.otto.de/p/k-sport-kraftstation-multirack-bis-200-kg-belastbar-i-sicher-professionell-trainieren-inkl-safety-spotter-i-power-cage-fuer-bodybuilding-aus-hochwertigen-stahlprofilen-i-robust-vielseitig-i-multifunktions-sportgeraet-fuer-zu-hause-S0E1F024/#variationId=S0E1F024LN4F
+- https://www.otto.de/p/tectake-kraftstation-kraftstation-mit-latzug-S0B0M08X/#variationId=S000M0QWSIYL
 
 ### Dip Station Or Training Station
 - https://www.google.com/search?q=dip+station
