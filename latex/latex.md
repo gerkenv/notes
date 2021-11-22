@@ -30,7 +30,7 @@ a = b + c
 ## Math Symbols
 - [average `\overline{x}`](https://tex.stackexchange.com/questions/347804/average-symbol-for-showing-a-math-variable-is-the-outcome-of-an-average)
 - fraction `\frac{1}{x}`
-- subscript `\x_i`
+- subscript `x_i` or long subscript `x_{i+y}`
 ```
 \begin{equation} \large
 \frac{1}{N} \sum_{i=1}^{N} \vert \; \overline{y_i} - y_i \; \vert
