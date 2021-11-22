@@ -44,6 +44,16 @@ kubectl describe pod some-pod
 kubectl edit pod some-pod
 ```
 
+### Vim Commands 
+- `i` - insert mode
+    - type what you need as usual
+- `esc` - view mode
+    - `:wq` - save and exit
+    - `:q` - exit without saving
+    - `/pattern` +  `Enter` -> search mode
+        - `n` - next occurrence
+        - `shift` + `n` - previous occurance
+
 __Note__: generally you want to edit a deployment which contains pod template. Then deployment will execute `rollout restart` (update pods one by one).
 
 ## Copy File From Pod
@@ -57,6 +67,11 @@ https://digilent.com/blog/mib-vs-mb-whats-the-difference/
 ## Get Some Object In JSON Format
 ```
 kubectl get deployment.apps/rendering-engine-pr-pr-5949-2 --namespace rendering-engine-pr-5949 -o json
+```
+
+## Get Some Object In YAML Format
+```
+kubectl get deployment.apps/rendering-engine-pr-pr-5949-2 --namespace rendering-engine-pr-5949 -o yaml
 ```
 
 ## Patch
