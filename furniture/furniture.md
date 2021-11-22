@@ -17,7 +17,6 @@ https://www.google.com/search?q=wandklappbett
 - https://www.google.com/search?q=power+rack
 - https://www.decathlon.de/browse/c0-alle-sportarten-a-z/c1-fitness/c4-kraftstation-home-gym/_/N-erynom
 - https://www.otto.de/p/k-sport-kraftstation-multirack-bis-200-kg-belastbar-i-sicher-professionell-trainieren-inkl-safety-spotter-i-power-cage-fuer-bodybuilding-aus-hochwertigen-stahlprofilen-i-robust-vielseitig-i-multifunktions-sportgeraet-fuer-zu-hause-S0E1F024/#variationId=S0E1F024LN4F
-- 
 
 ### Dip Station Or Training Station
 - https://www.google.com/search?q=dip+station
@@ -30,5 +29,8 @@ https://www.google.com/search?q=wandklappbett
 ### Wide Cabel Station
 - https://www.otto.de/p/k-sport-kraftstation-oberer-und-unterer-cable-cross-kabelzug-i-seil-crossover-maschine-inklusive-klimmzugstange-i-olympisches-multi-fitnessgeraet-fuer-zuhause-i-massiver-stahlrahmen-fuer-dein-sicheres-home-workout-S0K1F0C9/#variationId=S0K1F0C9N472
 
+### Squat Rack
+- https://www.otto.de/p/k-sport-kraftstation-langhantelablage-mit-absicherung-bis-280-kg-belastbar-i-squat-rack-i-hantel-ablage-mit-8-stufiger-hakenleiste-i-kniebeugenstaender-i-professionelle-fitnessgeraete-fuer-zuhause-S0O1D0T1/#variationId=S0O1D0T11ZGQ
+
 ### Sprossenwand
-https://www.decathlon.de/browse/c0-alle-sportarten-a-z/c1-fitness/c4-sprossenwand/_/N-hmy5j9
+- https://www.decathlon.de/browse/c0-alle-sportarten-a-z/c1-fitness/c4-sprossenwand/_/N-hmy5j9
