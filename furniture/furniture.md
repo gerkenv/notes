@@ -16,6 +16,8 @@ https://www.google.com/search?q=wandklappbett
 ### Power Rack
 - https://www.google.com/search?q=power+rack
 - https://www.decathlon.de/browse/c0-alle-sportarten-a-z/c1-fitness/c4-kraftstation-home-gym/_/N-erynom
+- https://www.otto.de/p/k-sport-kraftstation-multirack-bis-200-kg-belastbar-i-sicher-professionell-trainieren-inkl-safety-spotter-i-power-cage-fuer-bodybuilding-aus-hochwertigen-stahlprofilen-i-robust-vielseitig-i-multifunktions-sportgeraet-fuer-zu-hause-S0E1F024/#variationId=S0E1F024LN4F
+- 
 
 ### Dip Station Or Training Station
 - https://www.google.com/search?q=dip+station
@@ -24,6 +26,9 @@ https://www.google.com/search?q=wandklappbett
 - comfortable 
   - https://www.tchibo.de/klimmzugstation-dip-station-mt-1000-p400166314.html
   - https://www.lidl.de/p/christopeit-sport-klimmzugstation-mt-1000/p100313107
+
+### Wide Cabel Station
+- https://www.otto.de/p/k-sport-kraftstation-oberer-und-unterer-cable-cross-kabelzug-i-seil-crossover-maschine-inklusive-klimmzugstange-i-olympisches-multi-fitnessgeraet-fuer-zuhause-i-massiver-stahlrahmen-fuer-dein-sicheres-home-workout-S0K1F0C9/#variationId=S0K1F0C9N472
 
 ### Sprossenwand
 https://www.decathlon.de/browse/c0-alle-sportarten-a-z/c1-fitness/c4-sprossenwand/_/N-hmy5j9
