@@ -64,6 +64,17 @@ KiB, MiB, GiB
 https://www.majordifferences.com/2018/03/differences-between-megabyte-and.html
 https://digilent.com/blog/mib-vs-mb-whats-the-difference/
 
+## Check Configuration
+```shell
+kubectl describe pod pod-name
+```
+
+### Check Latest Events
+```shell
+kubectl describe pod pod-name
+```
+And go to the `events` section in the bottom.
+
 ## Get Some Object In JSON Format
 ```
 kubectl get deployment.apps/rendering-engine-pr-pr-5949-2 --namespace rendering-engine-pr-5949 -o json
@@ -134,4 +145,12 @@ _alias `horizontalpodautoscaler` = `hpa`_
 kubectl patch horizontalpodautoscaler some-horizontalpodautoscaler --patch '{"spec":{"minReplicas":50}}' --type merge
 # by editing, manually changing `minReplicas` to 50
 kubectl edit horizontalpodautoscaler some-horizontalpodautoscaler
+```
+
+## Logs
+```shell
+# Get logs for alive pod
+kubectl logs object-name
+# Get logs for a dead pod
+kubectl logs object-name --previous
 ```
