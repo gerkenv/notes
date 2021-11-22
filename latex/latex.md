@@ -18,11 +18,6 @@ d = e + f
 \end{equation}
 ```
 
-\begin{equation}
-a = b + c \\
-d = e + f
-\end{equation}
-
 ## Enlarge Equation Text
 https://www.quora.com/How-can-I-increase-the-font-size-of-mathematical-equations-in-Latex
 ```
