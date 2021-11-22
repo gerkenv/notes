@@ -1,5 +1,9 @@
 # LaTeX
 
+## Reference
+- https://en.wikibooks.org/wiki/LaTeX/Mathematics
+- http://tug.ctan.org/info/latex-refsheet/LaTeX_RefSheet.pdf
+
 ## Horizontal Spaces
 https://en.wikibooks.org/wiki/LaTeX/Mathematics#Controlling_horizontal_spacing
 ```
@@ -11,6 +15,7 @@ https://en.wikibooks.org/wiki/LaTeX/Mathematics#Controlling_horizontal_spacing
 ```
 
 ## Multiple Equations
+- [how to split lines](https://tex.stackexchange.com/questions/3782/how-can-i-split-an-equation-over-two-or-more-lines)
 ```
 \begin{equation}
 a = b + c \\
@@ -20,6 +25,7 @@ d = e + f
 
 ## Enlarge Equation Text
 https://www.quora.com/How-can-I-increase-the-font-size-of-mathematical-equations-in-Latex
+Use `\huge`, `\large`, `\small`...
 ```
 \begin{equation} 
 \large
