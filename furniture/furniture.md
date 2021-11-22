@@ -21,7 +21,9 @@ https://www.google.com/search?q=wandklappbett
 - https://www.google.com/search?q=dip+station
 - https://www.decathlon.de/p/trainingsstation-krafttraining-ts-900/_/R-p-302113
 - https://www.sportstech.de/dip-station-pt300
-- comfortable https://www.tchibo.de/klimmzugstation-dip-station-mt-1000-p400166314.html
+- comfortable 
+  - https://www.tchibo.de/klimmzugstation-dip-station-mt-1000-p400166314.html
+  - https://www.lidl.de/p/christopeit-sport-klimmzugstation-mt-1000/p100313107
 
 ### Sprossenwand
 https://www.decathlon.de/browse/c0-alle-sportarten-a-z/c1-fitness/c4-sprossenwand/_/N-hmy5j9
