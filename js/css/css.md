@@ -7,3 +7,10 @@ https://codepen.io/gerkenv/pen/MWmNYVN
 
 ## Center Content Inside <div>
 https://stackoverflow.com/questions/7926540/css-center-content-inside-div
+Set any `width` and `margin:auto`.
+```
+.center {
+    width: 655px;
+    margin: auto;
+}
+```
