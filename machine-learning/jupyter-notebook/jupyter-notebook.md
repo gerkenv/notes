@@ -15,4 +15,9 @@ https://jupyter.org/install
 - `Esc`, `D`, `D` - remove current cell
 
 ## Code mode
-- Access terminal
+- Access terminal within code cell using `!`, for example
+```
+!which pyhton
+!echo "whatever"
+!git status
+```
