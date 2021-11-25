@@ -43,3 +43,7 @@ console.log(new Intl.DateTimeFormat('en-AU', {...options, timeZone: 'Australia/S
 
 ### All Timezones
 https://stackoverflow.com/questions/38399465/how-to-get-list-of-all-timezones-in-javascript/54500197
+
+## Moment.js Alternatives
+- https://medium.com/swlh/best-moment-js-alternatives-5dfa6861a1eb
+- https://vhudyma-blog.eu/the-best-momentjs-alternatives/
