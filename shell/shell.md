@@ -120,6 +120,14 @@ command1 &
 (sleep 5 && command2)
 ```
 
+## Execute Commands Sequentually
+https://dev.to/0xbf/run-multiple-commands-in-one-line-with-and-linux-tips-5hgm
+```shell
+command1 ; command2 # no matter if `command1` fails or not - `command2` is always executed
+command1 && command2 # if `command1` succeeds then `command2` is executed
+command1 || command2 # if `command1` fails then `command2` is executed
+```
+
 ## mkdir
 create folders
 ```
