@@ -6,6 +6,7 @@ https://www.kaffeemacher.ch/espressomaschinen-tests-und-vergleich/
 
 ### Termoblocks / Single Circle
 https://www.kaffeemacher.ch/blog/thermoblock-espressomaschinen-test/
+https://www.youtube.com/watch?v=z6LXW2HCNok&list=PLmDOzgzRfCCBlR6ISdMfAC74bUap8jmqp&index=3
 
 ## All sage Machines
 - avoid pre-heating for 1st cup 
@@ -43,6 +44,11 @@ https://www.youtube.com/watch?v=5Nqq1jOv1tg&list=PLmDOzgzRfCCBlR6ISdMfAC74bUap8j
 - with additional water release temperature is always perfect
 - average milk foamer
 
+## https://www.youtube.com/watch?v=aLNehJP8Bbo
+TODO describe
+
+## Gastroback Siebträgermaschine 42616 Design Espresso Barista Pro
+TODO describe
 
 # Grinders
 
