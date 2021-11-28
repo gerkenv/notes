@@ -46,4 +46,6 @@ https://www.youtube.com/watch?v=5Nqq1jOv1tg&list=PLmDOzgzRfCCBlR6ISdMfAC74bUap8j
 
 # Grinders
 
-TODO check https://www.youtube.com/watch?v=uQzee1OOMSM
+## Sage Smart Grinder Pro
+- https://www.youtube.com/watch?v=uQzee1OOMSM
+- ~200 eur
