@@ -10,3 +10,9 @@
 ## Search Here
 - Reviews Only By Name https://www.wirsindhandwerk.de/
 - By branch https://www.qih.de/qih-suche.html
+
+## Define Offer
+- https://www.my-hammer.de
+
+## Price Ranges
+- https://www.my-hammer.de/preisradar/
