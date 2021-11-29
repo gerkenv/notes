@@ -13,6 +13,10 @@
 
 ## Define Offer
 - https://www.my-hammer.de
+  - check work package completeness, include all additional work
+  - get 3 replies
+  - check review for all of them
+  - trade prices
 
 ## Price Ranges
 - https://www.my-hammer.de/preisradar/
