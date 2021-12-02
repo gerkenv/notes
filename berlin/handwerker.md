@@ -20,3 +20,4 @@
 
 ## Price Ranges
 - https://www.my-hammer.de/preisradar/
+- https://kostencheck.de/wohnung-renovieren-kosten-berechnen
