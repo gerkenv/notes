@@ -50,6 +50,13 @@ TODO describe
 ## Gastroback Siebträgermaschine 42616 Design Espresso Barista Pro
 TODO describe
 
+## Lelit Anita PL042TEMD
+https://haushalt.check24.de/espressomaschinen/4a72cme27bhc3-lelit-anita-pl042temd-semi-professionelle-kaffeemaschine-mit-integrierter-kaffeemuehle-ideal-fuer-espresso-bezug-cappuccino-und-kaffee-pads-edelstahl-gehaeuse-doppeltes-pid-temperaturregler.html?ref=17_related
+- no proper review video
+- temperature display
+- temperature falls down quite fast (so does not hold the range 94-92 more than 5 seconds and goes down to 82 within 25 sec)
+- some grinder built-in
+
 # Grinders
 
 ## Sage Smart Grinder Pro
