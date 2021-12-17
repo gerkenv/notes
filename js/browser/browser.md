@@ -139,10 +139,14 @@ Since something straightforward didn't worked out, then it is simpler to go with
 - [Caching best practices & max-age gotchas](https://jakearchibald.com/2016/caching-best-practices/)
 - [304 Not Modified](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304) - typical response, when resource is cached and there is no need to transfer it.
 - [http cache partitioning](https://developers.google.com/web/updates/2020/10/http-cache-partitioning)
-- []
 
 ### Back / Forward Cache
 https://web.dev/bfcache/
+
+### Clean Cache
+- chrome --> more tools --> clear browsing data
+- firefox --> history --> clear recent history
+- safari --> history --> clear
 
 ## Preconnect
 _possible performance improvement_
