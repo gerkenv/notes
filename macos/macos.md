@@ -61,3 +61,5 @@ Download `turboboost switcher` from http://tbswitcher.rugarciap.com/ and follow 
   ```
   sudo kextutil -v /Applications/tbswitcher_resources/DisableTurboBoost.64bits.kext
   ```
+
+It might output some additional actions, for example `reboot is required` - perform them and repeat the procedure.
