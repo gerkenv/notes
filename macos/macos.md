@@ -63,3 +63,5 @@ Download `turboboost switcher` from http://tbswitcher.rugarciap.com/ and follow 
   ```
 
 It might output some additional actions, for example `reboot is required` - perform them and repeat the procedure.
+
+3. If above does not help - reinstall completely. Check point 2.3 in `help.rtf` from `dmg` file.
