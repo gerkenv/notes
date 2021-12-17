@@ -22,8 +22,11 @@
 - https://www.my-hammer.de/preisradar/
 - https://kostencheck.de/wohnung-renovieren-kosten-berechnen
 
-## Streicheln
+## Streichen
 - https://kostencheck.de/80-qm-wohnung-streichen-lassen-kosten
 
 ## Stromkabeln Erneuern
 - https://kostencheck.de/stromleitungen-erneuern-kosten#top
+
+## Referalls
+- https://www.petru-onica.de/
