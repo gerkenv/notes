@@ -1,5 +1,8 @@
 # Network
 
+## Find IP Information
+https://ip-lookup.net/
+
 ## Route IP traffic through a particular / VPN network interface
 
 ### Find out VPN interface
