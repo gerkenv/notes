@@ -146,3 +146,9 @@ https://stackoverflow.com/questions/31318068/shell-script-to-remove-a-file-if-it
 ```
 rm -f some-file-that-not-exist
 ```
+
+## curl
+- [playground](https://reqbin.com/)
+- [POST with JSON body](https://reqbin.com/req/c-dwjszac0/curl-post-json-example)
+- [request with search query parameters](https://stackoverflow.com/questions/13371284/curl-command-line-url-parameters)
+
