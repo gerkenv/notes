@@ -88,6 +88,6 @@ https://www.conventionalcommits.org/en/v1.0.0/#specification
 
 ## Search On Github
 __only whole word will match - casing is not important__
-https://docs.github.com/en/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax
-https://docs.github.com/en/search-github/searching-on-github/searching-commits
-https://docs.github.com/en/search-github/searching-on-github/searching-code
+- https://docs.github.com/en/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax
+- https://docs.github.com/en/search-github/searching-on-github/searching-commits
+- https://docs.github.com/en/search-github/searching-on-github/searching-code
