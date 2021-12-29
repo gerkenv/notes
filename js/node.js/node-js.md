@@ -260,3 +260,7 @@ https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 Returns last value in `ms` whenever called.
 Custom sampling interval.
 https://www.npmjs.com/package/event-loop-lag
+
+## CA Certificates
+Where CA certificates are stored.
+https://stackoverflow.com/questions/14619576/where-is-the-default-ca-certs-used-in-nodejs
