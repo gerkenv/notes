@@ -46,6 +46,9 @@ https://getkap.co/
 - `Cmd`+`Shift`+3 - full-screen
 - `Cmd`+`Shift`+4 - select screen area
 
+## Check Connected USB Devices
+https://www.quora.com/How-do-I-check-what-USB-devices-are-connected-to-a-Mac
+
 ## Display Fan Speed Rpm And Temperature
 https://crystalidea.com/macs-fan-control
 
