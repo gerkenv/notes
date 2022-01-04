@@ -4,7 +4,8 @@
 
 ## Cheatsheets
 - https://github.com/areai51/yarn-cheatsheet
-- 
+- https://classic.yarnpkg.com/en/docs/migrating-from-npm
+- https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc
 
 ## Get Package Version
 ```
