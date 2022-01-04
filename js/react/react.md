@@ -32,3 +32,6 @@ Outlines benefits of streaming compared to sending whole html as one chunk.
 - https://medium.com/expedia-group-tech/profiling-react-server-side-rendering-to-free-the-node-js-event-loop-7f0fe455a901
 Performance research.
 renderToNodeStream can reduce the event loop lag thus improve over-all performance.
+
+## React Lifecycle Diagram
+https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
