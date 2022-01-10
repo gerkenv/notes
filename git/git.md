@@ -91,3 +91,15 @@ __only whole word will match - casing is not important__
 - https://docs.github.com/en/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax
 - https://docs.github.com/en/search-github/searching-on-github/searching-commits
 - https://docs.github.com/en/search-github/searching-on-github/searching-code
+
+## Push A Branch From Original Repository To A Fork Repository
+https://stackoverflow.com/questions/25545613/how-can-i-push-to-my-fork-from-a-clone-of-the-original-repo
+
+Add a new `remote` with
+```
+git remote add my-origin https://github.com/abc/repo.git
+```
+Then push a branch (and set it to be upsteam `-u`)
+```
+git push -u my-origin my-branch
+```
