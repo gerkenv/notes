@@ -161,3 +161,8 @@ https://twitter.com/patmeenan/status/1443219921522073601
 
 Prio table?
 https://docs.google.com/document/d/1bCDuq9H1ih9iNjgzyAL0gpwNFiEP4TZS-YLRp_RuMlc/edit
+
+## IE11 Implementation Issues
+- [Response API - returned by Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Response)
+    - Also `safe-fetch` library   
+- [Array.from()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
