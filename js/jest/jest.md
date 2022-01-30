@@ -38,3 +38,37 @@ module.exports = {
   roots: ["<rootDir>/src"],
 };
 ```
+
+## Mock
+
+### Mock A Single Function Of A Module
+#### Using Spy And Dynamic Import
+```js
+// ...
+  it('should ...', async () => {
+  
+    const spyOnFunctionName = jest.spyOn(
+      await import("../some/module"),
+      "functionName"
+    ).mockImplementation(() => 'functionNameResult');
+    // ...
+    // in the end of the test
+    spyOnFunctionName.mockRestore(); // restore original implementation
+  });
+```
+
+#### Using Spy And Static Import 
+```js
+import * as someModule from "../some/module";
+// ...
+  it('should ...', () => {
+  
+    const spyOnFunctionName = jest.spyOn(
+      someModule,
+      "functionName"
+    ).mockImplementation(() => 'functionNameResult');
+    // ...
+    // in the end of the test
+    spyOnFunctionName.mockRestore(); // restore original implementation
+  });
+```
