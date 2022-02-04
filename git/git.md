@@ -103,3 +103,21 @@ Then push a branch (and set it to be upsteam `-u`)
 ```
 git push -u my-origin my-branch
 ```
+
+## Get Date Of Git Commit
+https://stackoverflow.com/questions/3814926/git-commit-date
+```
+git show -s --format=%ci <commit>
+```
+
+## Get Last Commit Id
+https://stackoverflow.com/questions/5694389/get-the-short-git-version-hash/5694416
+```
+git rev-parse --short HEAD
+```
+
+## Check If Commit Id A Is A Parent Of Commit Id B
+Produces exit state 1 or exit state 0
+```
+git merge-base --is-ancestor <commit-id-A> <commit-id-B> && echo "1" || echo "0"
+```
