@@ -74,5 +74,5 @@ import * as someModule from "../some/module";
 ```
 
 ## Promises
-https://jestjs.io/docs/tutorial-async#resolves
-https://jestjs.io/docs/tutorial-async#rejects
+- https://jestjs.io/docs/tutorial-async#resolves
+- https://jestjs.io/docs/tutorial-async#rejects
