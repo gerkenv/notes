@@ -76,3 +76,10 @@ import * as someModule from "../some/module";
 ## Promises
 - https://jestjs.io/docs/tutorial-async#resolves
 - https://jestjs.io/docs/tutorial-async#rejects
+
+## Timers
+- https://jestjs.io/docs/timer-mocks#run-all-timers
+
+## React State Changes
+- https://reactjs.org/docs/test-utils.html#act
+- https://stackoverflow.com/a/64048764
