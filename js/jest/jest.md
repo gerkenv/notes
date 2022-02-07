@@ -72,3 +72,7 @@ import * as someModule from "../some/module";
     spyOnFunctionName.mockRestore(); // restore original implementation
   });
 ```
+
+## Promises
+https://jestjs.io/docs/tutorial-async#resolves
+https://jestjs.io/docs/tutorial-async#rejects
