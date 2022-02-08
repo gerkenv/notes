@@ -160,3 +160,10 @@ promiseAllSettled(promises).then(data => console.log('data 2', data)).catch(err 
 
 ### Partitials And Promises
 https://medium.com/@RICEaaron/cleaning-up-promise-chains-with-partial-and-curried-functions-13c8e3caadf0
+
+## jQuery
+https://youmightnotneedjquery.com/
+
+## Electron
+https://youmightnotneedelectron.com/
+
