@@ -38,6 +38,12 @@ https://xgwang.me/posts/you-may-not-know-beacon
 open bugs:
 - service worker cannot intercept beacon https://bugs.chromium.org/p/chromium/issues/detail?id=475174
 
+## Worker
+- https://web.dev/off-main-thread/
+
+### Use Worker API Directly
+- https://www.npmjs.com/package/comlink (thorugh `postMessage` interface)
+
 ## Network Information API
 https://wicg.github.io/netinfo/
 
