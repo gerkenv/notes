@@ -38,8 +38,26 @@ https://xgwang.me/posts/you-may-not-know-beacon
 open bugs:
 - service worker cannot intercept beacon https://bugs.chromium.org/p/chromium/issues/detail?id=475174
 
+## Service Worker vs Worker
+- https://bitsofco.de/web-workers-vs-service-workers-vs-worklets/#:~:text=Service%20workers%20are%20a%20proxy,work%20from%20the%20main%20thread.
+- https://stackoverflow.com/a/52256049
+  - https://www.youtube.com/watch?v=OgLemdR65pE 
+
+## Service Worker
+- https://developers.google.com/web/fundamentals/primers/service-workers
+- https://developers.google.com/web/tools/workbox/guides/get-started
+- https://developers.google.com/web/fundamentals/primers/service-workers/high-performance-loading
+
+## App Shell Model
+- https://developers.google.com/web/fundamentals/architecture/app-shell
+
 ## Worker
 - https://web.dev/off-main-thread/
+
+## PWA
+- https://web.dev/learn/pwa/
+- https://web.dev/reliable
+- https://web.dev/progressive-web-apps
 
 ### Use Worker API Directly
 - https://www.npmjs.com/package/comlink (thorugh `postMessage` interface)
