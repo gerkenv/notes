@@ -35,6 +35,9 @@ TODO
 ## `sendBeacon` API
 https://xgwang.me/posts/you-may-not-know-beacon
 
+open bugs:
+- service worker cannot intercept beacon https://bugs.chromium.org/p/chromium/issues/detail?id=475174
+
 ## Network Information API
 https://wicg.github.io/netinfo/
 
