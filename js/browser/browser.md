@@ -32,6 +32,9 @@ TODO
 - check if it was only for certain HTTP version?
 - check how to avoid, probably HTTP/2 prioritization.
 
+## `sendBeacon` API
+https://xgwang.me/posts/you-may-not-know-beacon
+
 ## Network Information API
 https://wicg.github.io/netinfo/
 
