@@ -83,3 +83,16 @@ import * as someModule from "../some/module";
 ## React State Changes
 - https://reactjs.org/docs/test-utils.html#act
 - https://stackoverflow.com/a/64048764
+
+## Repeated test with different inputs / results
+https://elfi-y.medium.com/reduce-boilerplate-test-code-with-jest-it-each-30a0eec9776d
+It is possible to use `%p` for any variable type.
+```
+test.each([
+  [1, 1, 2],
+  [1, 2, 3],
+  [2, 1, 3],
+])('.add(%i, %i)', (a, b, expected) => {
+  expect(a + b).toBe(expected);
+});
+```
