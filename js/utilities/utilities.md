@@ -11,7 +11,8 @@ Number.isFinite(-Infinity)
 // > false
 ```
 
-## Parsing And Casting To Integer
+## Parsing And Casting
+### Any To Integer Number
 ```ts
 export const tryCastToInteger = (
   value: number | string,
