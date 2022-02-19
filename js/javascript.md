@@ -156,6 +156,9 @@ promiseAllSettled(promises).then(data => console.log('data 2', data)).catch(err 
 // > }]
 ```
 
+## Equality Table
+https://dorey.github.io/JavaScript-Equality-Table/
+
 ## Ramda
 
 ### Partitials And Promises
