@@ -56,6 +56,9 @@ https://marketplace.visualstudio.com/items?itemName=jasonnutter.search-node-modu
 ## Extension Performance
 https://www.freecodecamp.org/news/optimize-vscode-performance-best-extensions/
 
+## GitLens 
+### Interactive Rebase UI
+
 ## Updates
 
 ### 1.60
