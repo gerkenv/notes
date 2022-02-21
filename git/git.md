@@ -92,6 +92,15 @@ __only whole word will match - casing is not important__
 - https://docs.github.com/en/search-github/searching-on-github/searching-commits
 - https://docs.github.com/en/search-github/searching-on-github/searching-code
 
+## CDN oN GitHub
+### Add An Image
+You can copy paste an image into github markdown file.
+https://gist.github.com/vinkla/dca76249ba6b73c5dd66a4e986df4c8d
+
+### Remove An Image
+Submit request here via virtual assitant
+https://support.github.com/?tags=dotcom-direct&q=delete+image+from+cdn
+
 ## Push A Branch From Original Repository To A Fork Repository
 https://stackoverflow.com/questions/25545613/how-can-i-push-to-my-fork-from-a-clone-of-the-original-repo
 
