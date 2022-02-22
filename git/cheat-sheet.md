@@ -76,6 +76,10 @@ Usage:
 Options:
 - `git reset --hard` - unstages all files and __discards all local changes__, so a repository is reset to the __last checked out state__.
 
+### remove file
+- `git rm --cached [path]` - remove file from git, but keep locally.
+- `git rm [path]` - remove file from git and remove locally.
+
 ### commit
 - `git commit [path]` - opens your `core` editor to enter a commit message
   - and if the commit message is empty - a commit will be aborted,
