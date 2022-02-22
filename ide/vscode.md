@@ -48,6 +48,7 @@ https://github.com/SonarSource/sonarlint-vscode
 Helps to write code, comments and free text.
 Privacy is secured.
 ML model works locally.
+
 https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode
 
 ### Faster Prototyping
