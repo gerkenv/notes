@@ -44,7 +44,10 @@ https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-codemet
 https://marketplace.visualstudio.com/items?itemName=adisreyaj.sonarqube-status
 https://github.com/SonarSource/sonarlint-vscode
 
-### AI Code Completion
+### AI Code Completion / Tabnine
+Helps to write code, comments and free text.
+Privacy is secured.
+ML model works locally.
 https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode
 
 ### Faster Prototyping
