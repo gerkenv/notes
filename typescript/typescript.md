@@ -3,6 +3,11 @@
 ## TS in 5 minutes
 https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html
 
+## Extract Object Values As Type Union
+```ts
+export type Values<T> = T[keyof T];
+```
+
 ## Recommended Base Configurations
 https://github.com/tsconfig/bases#centralized-recommendations-for-tsconfig-bases
 
