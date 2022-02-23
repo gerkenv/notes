@@ -1,6 +1,11 @@
 # Typescript
 
 ## Type Magic
+
+### `infer`
+- https://dev.to/aexol/typescript-tutorial-infer-keyword-2cn
+- https://blog.logrocket.com/understanding-infer-typescript/
+
 ### Get Size Of A Union As A Type
 - https://www.peterkroener.de/wie-gross-ist-meine-typescript-union/
 - https://www.typescriptlang.org/play?ts=4.1.0-dev.20200924#code/C4TwDgpgBAqgdgSwPZwCpIJJ2BATgZwgGNhk4AeVAPigF4AoKJqAClSggA8c4ATfKAEM4IKAH5WnAFxRUASjo1homXAgA3PAq49+jZi2lQEcAGZ4oAJQW0lI8VaiqNeevVCRYiFOgBiAVzgSMnIYGlovMnQsHAJiUhRyfSYYDm4IPgFlZOYmCRZTGRgbGnUkBF4c3OdNXCoAbjcPaHgopFR-MAAbCFDwnNafJACghIowtN0BFhZBGRNzXCgAQRKoMoq5KuYJAG0AOkPBtHbOnvIAUU4iLv9eXpgAGhWqKmflgF1tphldj8b3OBoABlBAALwgAHlTMcoJRwpEhh1ur1qLsAEQ9OAAc2AAAt0f8mkCrBB8P4usA6FBQRDocdyAAmADMUAAPlAACyM9lQACMzOZAHYqPQAPRi0nkynGfBU5lAA
