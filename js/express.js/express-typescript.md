@@ -46,3 +46,5 @@ https://stackoverflow.com/questions/47232187/express-json-vs-bodyparser-json
 __TL;DR__
 `bodyParser` was added back to Express in release 4.16.0. So you don't need a separate package anymore.
 
+## Example Project Structure
+- https://softwareontheroad.com/ideal-nodejs-project-structure/
