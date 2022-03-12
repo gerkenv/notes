@@ -24,6 +24,9 @@ https://stackoverflow.com/questions/42632215/how-to-disable-typescript-warnings-
 https://www.sitepoint.com/vs-code-extensions-javascript-developers/
 https://code.visualstudio.com/blogs/2017/02/12/code-lens-roundup
 
+### Live Server
+https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+
 ### Extension Sets
 https://marketplace.visualstudio.com/items?itemName=waderyan.nodejs-extension-pack
 https://marketplace.visualstudio.com/items?itemName=nodesource.vscode-for-node-js-development-pack
