@@ -3,7 +3,8 @@
 ## CloudFormation Templates
 - What is a CloudFormation https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html
 - Template Basics https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/gettingstarted.templatebasics.html
-- 
+- Template Anatomy https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html
+
 
 ### Intrinsic Functions
 - `Sub` - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-sub.html
@@ -19,6 +20,8 @@ Can be used to check whether your IAM policy allows you to access certain AWS AP
 ## Simple Queue Service (SQS)
 
 ### Basic Intro
+- What is Amazon Simple Queue Service? https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html
+- Basic Amazon SQS architecture https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-basic-architecture.html
 
 ### Example Authentication Policy
 - https://aws.amazon.com/premiumsupport/knowledge-center/sqs-accessdenied-errors/
