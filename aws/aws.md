@@ -9,6 +9,9 @@
 ### Intrinsic Functions
 - `Sub` - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-sub.html
 
+## Policies Intro
+https://aws.amazon.com/blogs/security/iam-policies-and-bucket-policies-and-acls-oh-my-controlling-access-to-s3-resources/
+
 ## IAM
 
 ### IAM Policy Simulator
