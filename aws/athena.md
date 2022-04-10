@@ -1,7 +1,8 @@
 # Athena
 
 ## Intro
-- https://www.youtube.com/watch?v=JIviltfpul0&t=2884s
+- https://www.youtube.com/watch?v=JIviltfpul0
+- https://aws.amazon.com/athena/getting-started/
 
 ## Accessing Athena
 Options:
