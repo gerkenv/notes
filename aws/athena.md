@@ -1,5 +1,8 @@
 # Athena
 
+## Intro
+- https://www.youtube.com/watch?v=JIviltfpul0&t=2884s
+
 ## Accessing Athena
 Options:
 - JDBC and ODBC drivers (synchronous)
