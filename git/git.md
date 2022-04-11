@@ -130,3 +130,6 @@ Produces exit state 1 or exit state 0
 ```
 git merge-base --is-ancestor <commit-id-A> <commit-id-B> && echo "1" || echo "0"
 ```
+
+## Rename Local & Remote Branch
+https://stackoverflow.com/questions/30590083/how-do-i-rename-both-a-git-local-and-remote-branch-name
