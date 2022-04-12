@@ -147,6 +147,17 @@ https://stackoverflow.com/questions/31318068/shell-script-to-remove-a-file-if-it
 rm -f some-file-that-not-exist
 ```
 
+## cp
+https://unix.stackexchange.com/questions/56084/how-do-i-copy-a-symbolic-link#:~:text=Use%20cp%20%2DP%20(capital%20P,all%20symbolic%20links%20as%20such.
+```shell
+cp file1 file2
+cp -R dir1 dir2
+# copy symbolic link as it is
+cp -P symlink1 symlink2
+# copy directory with nested symbolic links
+cp -RP dir1 dir2
+```
+
 ## curl
 - [playground](https://reqbin.com/)
 - [POST with JSON body](https://reqbin.com/req/c-dwjszac0/curl-post-json-example)
