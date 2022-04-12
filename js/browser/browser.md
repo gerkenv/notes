@@ -11,6 +11,12 @@ https://almanac.httparchive.org/en/2020/table-of-contents
 
 ## Core Web Vitals
 
+## Performance
+### How To Optimize Guides
+- https://jakearchibald.com/2021/io-site-perf/
+- https://www.usecue.com/blog/how-to-get-a-100-google-lighthouse-score/
+- https://www.deleteagency.com/blog/how-to-get-a-100-percents-lighthouse-performance-score
+
 ## Post-Load Performance
 - [Hands On with the new Responsiveness Metrics](https://calendar.perfplanet.com/2021/hands-on-with-the-new-responsiveness-metrics/)
 - [Towards a better responsiveness metric](https://web.dev/better-responsiveness-metric/#group-events-into-interactions)
