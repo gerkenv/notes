@@ -59,6 +59,15 @@ open bugs:
 
 ## Worker
 - https://web.dev/off-main-thread/
+- https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
+### Executing Code On The Worker
+- `comlink` wrapper to execute code in a worker without messages https://web.dev/off-main-thread/#comlink:-making-web-workers-less-work
+
+### Load 3rd-Party-Script In Worker
+- `partytown` https://github.com/BuilderIO/partytown
+  - https://dev.to/adamdbradley/introducing-partytown-run-third-party-scripts-from-a-web-worker-2cnp
+  - https://dev.to/adamdbradley/how-partytown-s-sync-communication-works-4244
 
 ## PWA
 - https://web.dev/learn/pwa/
