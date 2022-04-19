@@ -170,3 +170,19 @@ https://youmightnotneedjquery.com/
 ## Electron
 https://youmightnotneedelectron.com/
 
+## Destructuring JavaScript objects with default value
+https://dev.to/varundey/destructuring-javascript-objects-with-default-value-2765#:~:text=Please%20note%20that%20destructuring%20with,assign%20default%20value%20to%20them.
+
+Please note that destructuring with default value only works when there is no property to unpack in the object i.e. the property is undefined. This means that JavaScript treats null, false, 0 or other falsy values as a valid property and will not assign default value to them.
+```js
+const obj = {a: null, b: false, c: 0};
+
+const {
+    a = 1,
+    b = 2,
+    c = 3,
+    d = 4
+} = obj;
+
+console.log(a, b, c, d); // null false 0 4
+```
