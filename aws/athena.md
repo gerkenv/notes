@@ -4,7 +4,7 @@
 - [Basic AWS Athena Intro](https://www.youtube.com/watch?v=JIviltfpul0)
 - https://aws.amazon.com/athena/getting-started/
 
-## Accessing Athena
+### Accessing Athena
 Options:
 - JDBC and ODBC drivers (synchronous)
 - API (async)
@@ -25,6 +25,16 @@ client.getQueryResults({
   NextToken: null
 }, (err, data) => {})
 ```
+
+## Initial Setup
+### From Docs
+- https://docs.aws.amazon.com/athena/latest/ug/setting-up.html
+
+## Capabilities
+- https://docs.aws.amazon.com/athena/latest/ug/querying-athena-tables.html
+
+## Athena SQL Reference
+- https://docs.aws.amazon.com/athena/latest/ug/ddl-sql-reference.html
 
 ## Use Case. Run Query And Read Results
 
