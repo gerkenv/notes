@@ -1,7 +1,7 @@
 # Athena
 
 ## Intro
-- https://www.youtube.com/watch?v=JIviltfpul0
+- [Basic AWS Athena Intro](https://www.youtube.com/watch?v=JIviltfpul0)
 - https://aws.amazon.com/athena/getting-started/
 
 ## Accessing Athena
@@ -9,7 +9,9 @@ Options:
 - JDBC and ODBC drivers (synchronous)
 - API (async)
 
-## API (Asynchronous Query)
+### API (Asynchronous Query)
+From [Basic AWS Athena Intro](https://www.youtube.com/watch?v=JIviltfpul0)
+
 ```js
 client.startQueryExecution({
   QueryString: 'SELECT * FROM table LIMIT 100',
@@ -23,6 +25,14 @@ client.getQueryResults({
   NextToken: null
 }, (err, data) => {})
 ```
+
+## More Exact Required API
+From reality.
+
+- Start a query with [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html)
+- Continuosly check an execution state of the query - if it is finished, failed or running. Use [GetQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html)
+- After query is finished - read results with [GetQueryResults
+](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html)
 
 ## Access Policy
 ### Basic Access Policy Templates
