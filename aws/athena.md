@@ -26,10 +26,12 @@ client.getQueryResults({
 }, (err, data) => {})
 ```
 
-## More Exact Required API
+## Use Case. Run Query And Read Results
 
-### Run Query And Read Results
-From reality.
+### Docs Intro
+https://docs.aws.amazon.com/athena/latest/ug/querying.html
+
+### From Reality
 Check [proper java code sample](https://docs.aws.amazon.com/athena/latest/ug/code-samples.html#start-query-execution).
 
 - Start a query with [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html)
