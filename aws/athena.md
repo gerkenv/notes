@@ -27,6 +27,8 @@ client.getQueryResults({
 ```
 
 ## More Exact Required API
+
+### Run Query And Read Results
 From reality.
 Check [proper java code sample](https://docs.aws.amazon.com/athena/latest/ug/code-samples.html#start-query-execution).
 
