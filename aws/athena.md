@@ -43,6 +43,31 @@ Check [proper java code sample](https://docs.aws.amazon.com/athena/latest/ug/cod
 ### Basic Access Policy Templates
 - [Example – Allow an IAM Principal to Run and Return Results Using Athena Federated Query](https://docs.aws.amazon.com/athena/latest/ug/federated-query-iam-access.html#fed-using-iam)
 
+### Minimal Access Policy
+```yaml
+- PolicyName:  "example-iam-role-policy-for-athena"
+  PolicyDocument:
+    Version: '2012-10-17'
+    Statement:
+    - Sid: "1"
+      Effect: Allow
+      Action:
+      - "athena:GetQueryResults"
+      - "athena:StartQueryExecution"
+      - "athena:GetWorkGroup"
+      Resource:
+      - !Sub "arn:aws:athena:*:${AWS::AccountId}:workgroup/*"
+    - Sid: "1"
+      Effect: Allow
+      Action:
+      - "s3:GetObject"
+      - "s3:GetBucketLocation"
+      Resource:
+      ## if you don't specify any custom s3 bucket for query results, then default bucket is created 
+      ## with arn `arn:aws:s3:::aws-athena-query-results-${AWS::Account}-${AWS::Region}`
+      - "arn:aws:s3:::aws-athena-query-results-*"
+```
+
 ### Troubleshooting
 - [InvalidRequestException: Unable to verify/create output bucket](https://aws.amazon.com/premiumsupport/knowledge-center/athena-output-bucket-error/)
 - [InvalidRequestException: Query has not yet finished. Current state: QUEUED](https://stackoverflow.com/questions/62767533/invalidrequestexception-when-calling-the-getqueryresults-querying-athena)
