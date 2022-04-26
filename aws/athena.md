@@ -24,3 +24,10 @@ client.getQueryResults({
 }, (err, data) => {})
 ```
 
+## Access Policy
+### Basic Access Policy Templates
+- [Example – Allow an IAM Principal to Run and Return Results Using Athena Federated Query](https://docs.aws.amazon.com/athena/latest/ug/federated-query-iam-access.html#fed-using-iam)
+
+### Troubleshooting
+- [How do I resolve the "Unable to verify/create output bucket" error in Amazon Athena?](https://aws.amazon.com/premiumsupport/knowledge-center/athena-output-bucket-error/)
+
