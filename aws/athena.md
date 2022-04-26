@@ -42,7 +42,9 @@ client.getQueryResults({
 https://docs.aws.amazon.com/athena/latest/ug/querying.html
 
 ### From Reality
-Check [proper java code sample](https://docs.aws.amazon.com/athena/latest/ug/code-samples.html#start-query-execution).
+Check proper code examples:
+- [java code sample](https://docs.aws.amazon.com/athena/latest/ug/code-samples.html#start-query-execution)
+- [js code example](https://docs.aws.amazon.com/code-samples/latest/catalog/javascript-athena-index.js.html)
 
 - Start a query with [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html)
 - Continuosly check an execution state of the query - if it is finished, failed or running. Use [GetQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html)
