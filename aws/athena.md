@@ -33,6 +33,9 @@ client.getQueryResults({
 ## Capabilities
 - https://docs.aws.amazon.com/athena/latest/ug/querying-athena-tables.html
 
+## Workgroups
+- https://docs.aws.amazon.com/athena/latest/ug/workgroups-create-update-delete.html
+
 ## Athena SQL Reference
 - https://docs.aws.amazon.com/athena/latest/ug/ddl-sql-reference.html
 
