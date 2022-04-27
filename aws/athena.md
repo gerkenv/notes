@@ -82,6 +82,8 @@ Required Code Flow:
 ```
 
 ### Troubleshooting
+- [The policy failed legacy parsing]
+  - https://stackoverflow.com/questions/43045029/the-policy-failed-legacy-parsing 
 - [InvalidRequestException: Unable to verify/create output bucket](https://aws.amazon.com/premiumsupport/knowledge-center/athena-output-bucket-error/)
 - [InvalidRequestException: Query has not yet finished. Current state: QUEUED](https://stackoverflow.com/questions/62767533/invalidrequestexception-when-calling-the-getqueryresults-querying-athena)
 
