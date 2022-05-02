@@ -11,6 +11,10 @@ https://almanac.httparchive.org/en/2020/table-of-contents
 
 ## Core Web Vitals
 
+### CLS
+- can some input events affect CLS
+  - https://github.com/WICG/layout-instability#recent-input-exclusion
+
 ## Performance
 ### How To Optimize Guides
 - https://jakearchibald.com/2021/io-site-perf/
