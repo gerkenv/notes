@@ -1,19 +1,22 @@
 # Javascript
 ## EcmaScript
 ### Compatibility
-https://kangax.github.io/compat-table/es6/
+- https://kangax.github.io/compat-table/es6/
 
 ## Async Await
-https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch1.md
+- https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch1.md
 
 ## Async Await In Loops
-https://zellwk.com/blog/async-await-in-loops/
+- https://zellwk.com/blog/async-await-in-loops/
+
+## Runtime Complexity Of Array Methods
+- https://stackoverflow.com/questions/22614237/javascript-runtime-complexity-of-array-functions
 
 ## Performance
-https://nodesource.com/blog/improve-javascript-performance/
+- https://nodesource.com/blog/improve-javascript-performance/
 
 ### Benchmarking
-https://stackoverflow.com/questions/1003855/how-can-i-benchmark-javascript-code
+- https://stackoverflow.com/questions/1003855/how-can-i-benchmark-javascript-code
 
 ### VM Code Optimizer
 Every VM (including V8) has a built-in optimizer which makes a good job of removing unnecessary repeated work (that is what you're typically trying to do in microbenchmarks)
