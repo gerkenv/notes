@@ -78,20 +78,27 @@ Code is executed in way that ensures that main thread is not blocked for too lan
 https://developers.google.com/web/updates/2015/08/using-requestidlecallback
 
 ## Promises
-https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
-https://github.com/gerkenv/notes/blob/master/js/syntax.md#promises
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+- https://github.com/gerkenv/notes/blob/master/js/syntax.md#promises
+
+### Handle Multiple Promises
+- https://blog.logrocket.com/javascript-promises-race-all-allsettled-then/
+
+- `.all` -> if one fails returns an error else array of resolved.
+- `.allSettled` -> returns all failed and resolved with the wrapper containg state.
+- `.race` -> returns fastest failed or resolved.
 
 ### Bluebird vs native promises
-https://softwareengineering.stackexchange.com/questions/278778/why-are-native-es6-promises-slower-and-more-memory-intensive-than-bluebird/279003#279003
+- https://softwareengineering.stackexchange.com/questions/278778/why-are-native-es6-promises-slower-and-more-memory-intensive-than-bluebird/279003#279003
 
 ### Bluebird Promise Anti-Patterns
-http://bluebirdjs.com/docs/anti-patterns.html
+- http://bluebirdjs.com/docs/anti-patterns.html
 
 TL;DR.
 Bluebird is faster in most of the cases.
 
-### allSettled
+### `allSettled`
 
 __Note__: in TS from `target: es2020`.
 
