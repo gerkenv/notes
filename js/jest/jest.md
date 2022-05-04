@@ -96,3 +96,16 @@ test.each([
   expect(a + b).toBe(expected);
 });
 ```
+
+## Mark Tests As Skipped Or Todo
+```js
+it.todo(...)
+test.todo(...)
+```
+> Tests:       1 todo, 23 passed, 24 total
+
+```js
+it.skip(...)
+test.skip(...)
+```
+Tests:       1 skipped, 23 passed, 24 total
