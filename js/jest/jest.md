@@ -98,6 +98,8 @@ test.each([
 ```
 
 ## Mark Tests As Skipped Or Todo
+https://stackoverflow.com/questions/32183883/how-to-make-my-tests-pending-in-jest
+
 ```js
 it.todo(...)
 test.todo(...)
