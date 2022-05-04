@@ -54,6 +54,7 @@ npm -g list --depth=0 # top level only
 - https://docs.npmjs.com/cli/v8/configuring-npm/npmrc#files
 - https://stackoverflow.com/questions/51330735/npm-config-global-vs-local
 
+Best way to ensure stability is to create a local `.npmrc` in the root folder
 ```
 # comment
 ; comment
