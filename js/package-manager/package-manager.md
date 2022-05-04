@@ -50,6 +50,19 @@ npm -g list           # complete hierarchy
 npm -g list --depth=0 # top level only
 ```
 
+## Packages Registry Configuration
+- https://docs.npmjs.com/cli/v8/configuring-npm/npmrc#files
+- https://stackoverflow.com/questions/51330735/npm-config-global-vs-local
+
+```
+# comment
+; comment
+# registry for a scope `@godaddy`, all packages `@godadday/something` will be pulled from here
+@godaddy:registry=https://registry.npmjs.org
+# registry for everything else
+registry=https://registry.yarnpkg.com
+```
+
 ## Yalc
 Simple local package manager. Alternative to `npm link`.
 
