@@ -89,4 +89,5 @@ Required Code Flow:
   - https://stackoverflow.com/questions/43045029/the-policy-failed-legacy-parsing 
 - [InvalidRequestException: Unable to verify/create output bucket](https://aws.amazon.com/premiumsupport/knowledge-center/athena-output-bucket-error/)
 - [InvalidRequestException: Query has not yet finished. Current state: QUEUED](https://stackoverflow.com/questions/62767533/invalidrequestexception-when-calling-the-getqueryresults-querying-athena)
+- [The S3 location provided to save your query results is invalid. Please check your S3 location is correct and is in the same region and try again](https://aws.amazon.com/premiumsupport/knowledge-center/athena-invalid-s3-location-error/)
 
