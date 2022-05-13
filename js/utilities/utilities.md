@@ -29,3 +29,18 @@ export const tryCastToInteger = (
   return fallback;
 };
 ```
+
+## Delay / Wait / Sleep
+```ts
+const log = (mark: string, ...args: unknown[]) => 
+    console.log(new Date().toISOString(), mark, ...args);
+
+const resolveAfterOneCycle = (timeout: number, returnValue: unknown, mark: string) => 
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            log(`${mark}${returnValue}`, `finished resolveAfterOneCycle(${timeout}, ${returnValue})`);
+            // reject(new Error(`${returnValue} error`));
+            resolve(returnValue);
+        }, timeout, returnValue);
+    });
+```
