@@ -237,6 +237,36 @@ const somethingIWantToCancel = async ({ signal }: { signal: AbortSignal}) =>
 })();
 ```
 
+### Async Iteration In A While Loop
+```ts
+const whileWrapper = async (mark: string, resolutionTime: number) => {
+    let index = 0;
+    let errorCount = 0;
+    const maxAllowedErrors = 2;
+    // try {
+        while(true) {
+            log(`${mark}${index}`, `before promise`);
+            try {
+                const result = await resolveAfterOneCycle(resolutionTime, index, mark);
+                log(`${mark}${index}`, {result});
+            } catch (err) {
+                log(`${mark}${index}`, err);
+                if (++errorCount >= maxAllowedErrors) {
+                    break;
+                } 
+            }
+            log(`${mark}${index}`, `after promise`);
+            index++;
+            if (index > 5) break;
+        }
+    // } catch (err) {
+    //     log(`while err`, err);
+    // }
+    return;
+}
+
+whileWrapper('a', 1000);
+```
 
 ## Equality Table
 https://dorey.github.io/JavaScript-Equality-Table/
