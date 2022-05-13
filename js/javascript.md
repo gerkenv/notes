@@ -307,3 +307,9 @@ const {
 
 console.log(a, b, c, d); // null false 0 4
 ```
+
+## Dynamic Import
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports
+
+## In depth: Microtasks and the JavaScript runtime environment
+- https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth#tasks_vs_microtasks
