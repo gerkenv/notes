@@ -11,7 +11,7 @@ Options:
 
 ### API (Asynchronous Query)
 From [Basic AWS Athena Intro](https://www.youtube.com/watch?v=JIviltfpul0)
-
+_semi-pseudo-code_
 ```js
 client.startQueryExecution({
   QueryString: 'SELECT * FROM table LIMIT 100',
@@ -48,12 +48,22 @@ https://docs.aws.amazon.com/athena/latest/ug/querying.html
 Check proper code examples:
 - [java code sample](https://docs.aws.amazon.com/athena/latest/ug/code-samples.html#start-query-execution)
 - [js code example](https://docs.aws.amazon.com/code-samples/latest/catalog/javascript-athena-index.js.html)
+- https://www.ilkkapeltola.fi/2018/04/simple-way-to-query-amazon-athena-in.html 
 
 Required Code Flow:
 - Start a query with [StartQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html)
 - Continuosly check an execution state of the query - if it is finished, failed or running. Use [GetQueryExecution](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html)
 - After query is finished - read results with [GetQueryResults
 ](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html)
+
+#### JS/TS SDK
+- https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-athena/index.html
+
+#### Base Functions
+- https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html
+- https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html
+- https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html
+
 
 ## Access Policy
 ### Basic Access Policy Templates
@@ -90,4 +100,6 @@ Required Code Flow:
 - [InvalidRequestException: Unable to verify/create output bucket](https://aws.amazon.com/premiumsupport/knowledge-center/athena-output-bucket-error/)
 - [InvalidRequestException: Query has not yet finished. Current state: QUEUED](https://stackoverflow.com/questions/62767533/invalidrequestexception-when-calling-the-getqueryresults-querying-athena)
 - [The S3 location provided to save your query results is invalid. Please check your S3 location is correct and is in the same region and try again](https://aws.amazon.com/premiumsupport/knowledge-center/athena-invalid-s3-location-error/)
-
+- [Why do I get the "Access Denied" error when I run a query in Amazon Athena?](https://aws.amazon.com/premiumsupport/knowledge-center/access-denied-athena/)
+- [An error occurred (InvalidRequestException) when calling the GetQueryResults operation: Query did not finish successfully. Final query state: FAILED](https://stackoverflow.com/questions/62767533/invalidrequestexception-when-calling-the-getqueryresults-querying-athena)
+- [How do I troubleshoot 403 Access Denied errors from Amazon S3](https://aws.amazon.com/premiumsupport/knowledge-center/s3-troubleshoot-403/)
