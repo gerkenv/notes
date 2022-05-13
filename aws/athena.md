@@ -94,6 +94,58 @@ Required Code Flow:
       - "arn:aws:s3:::aws-athena-query-results-*"
 ```
 
+### Example Of Complete Access Policy
+```yaml
+PolicyDocument:
+  Version: '2012-10-17'
+  Statement:
+  - Sid: "0"
+    Effect: Allow
+    Action:
+    - "athena:GetQueryResults"
+    - "athena:StartQueryExecution"
+    - "athena:GetWorkGroup"
+    - "athena:GetQueryExecution"
+    Resource:
+    - !Sub "arn:aws:athena:*:${AWS::AccountId}:workgroup/*"
+  - Sid: "1"
+    Effect: Allow
+    Action:
+    - "s3:GetBucketLocation"
+    - "s3:GetObject"
+    - "s3:ListBucket"
+    - "s3:ListBucketMultipartUploads"
+    - "s3:ListMultipartUploadParts"
+    - "s3:AbortMultipartUpload"
+    - "s3:CreateBucket"
+    - "s3:PutObject"
+    Resource:
+    # s3 to store athena query results
+    - "{{S3_TO_STORE_ATHENA_QUERY_RESULTS}}"
+  - Sid: "2"
+    Effect: Allow
+    Action:
+    - "s3:GetObject"
+    - "s3:GetBucketLocation"
+    - "s3:ListBucket"
+    Resource:
+    # s3 of the table to query from
+    - "{{S3_OF_TABLE_TO_QUERY_FROM}}"
+    - "{{S3_OF_TABLE_TO_QUERY_FROM}}/*"
+  - Sid: "3"
+    Effect: Allow
+    Action:
+    - "glue:GetTable"
+    - "glue:GetPartition"
+    - "glue:GetPartitions"
+    - "glue:GetDatabase"
+    - "glue:GetDatabases"
+    Resource:
+    - !Sub "arn:aws:glue:*:${AWS::AccountId}:catalog"
+    - !Sub "arn:aws:glue:*:${AWS::AccountId}:database/default"
+    - !Sub "arn:aws:glue:*:${AWS::AccountId}:table/default/{{ATHENA_TABLE_NAME}}"
+```
+
 ### Troubleshooting
 - [The policy failed legacy parsing]
   - https://stackoverflow.com/questions/43045029/the-policy-failed-legacy-parsing 
