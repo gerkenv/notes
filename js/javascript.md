@@ -166,15 +166,24 @@ promiseAllSettled(promises).then(data => console.log('data 2', data)).catch(err 
 // > }]
 ```
 
-### How To Cancel Promise
-### Abort Controller Example
+### How To Cancel Promise / Run Promise With A Timeout
+- Typical way to cancel promise chain execution.
+    - https://stackoverflow.com/questions/30233302/promise-is-it-possible-to-force-cancel-a-promise
+- If you're fine with eventual tiemout resolution look into `Promise.race`
+    - https://advancedweb.hu/how-to-add-timeout-to-a-promise-in-javascript/
+### AbortController / AbortSignal
 - API https://developer.mozilla.org/en-US/docs/Web/API/AbortController
 - Based on event listener.
-- Typical way to cancel promise chain execution.
-  - https://stackoverflow.com/questions/30233302/promise-is-it-possible-to-force-cancel-a-promise
 - Supported by fetch API.
-- Node.js supports better from Node 16.
+- Node.js supports better from Node 16. 
+    - Before node 16 https://github.com/southpolesteve/node-abort-controller#node-abort-controller
 
+#### AWS verions
+- https://aws.amazon.com/blogs/developer/abortcontroller-in-modular-aws-sdk-for-javascript/
+- https://github.com/trivikr/aws-sdk-js-v3/blob/main/packages/abort-controller/src/AbortSignal.ts
+
+
+#### AbortController Example
 ```ts
 // ----------------------------------------
 // AbortSignal and AbortController
