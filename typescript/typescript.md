@@ -10,6 +10,21 @@
 - https://www.peterkroener.de/wie-gross-ist-meine-typescript-union/
 - https://www.typescriptlang.org/play?ts=4.1.0-dev.20200924#code/C4TwDgpgBAqgdgSwPZwCpIJJ2BATgZwgGNhk4AeVAPigF4AoKJqAClSggA8c4ATfKAEM4IKAH5WnAFxRUASjo1homXAgA3PAq49+jZi2lQEcAGZ4oAJQW0lI8VaiqNeevVCRYiFOgBiAVzgSMnIYGlovMnQsHAJiUhRyfSYYDm4IPgFlZOYmCRZTGRgbGnUkBF4c3OdNXCoAbjcPaHgopFR-MAAbCFDwnNafJACghIowtN0BFhZBGRNzXCgAQRKoMoq5KuYJAG0AOkPBtHbOnvIAUU4iLv9eXpgAGhWqKmflgF1tphldj8b3OBoABlBAALwgAHlTMcoJRwpEhh1ur1qLsAEQ9OAAc2AAAt0f8mkCrBB8P4usA6FBQRDocdyAAmADMUAAPlAACyM9lQACMzOZAHYqPQAPRi0nkynGfBU5lAA
 
+## Type Aliases
+- https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-aliases
+
+## Mapped Types
+- https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
+
+## Generics
+- https://www.typescriptlang.org/docs/handbook/2/generics.html
+
+- Generic Function Parameter
+    - https://betterprogramming.pub/typescript-generic-objects-1eecc13dca93
+- Can You Specify Multiple Type Constraints For TypeScript Generics
+    - https://stackoverflow.com/questions/17125764/can-you-specify-multiple-type-constraints-for-typescript-generics
+- 
+
 ## TS in 5 minutes
 https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html
 
