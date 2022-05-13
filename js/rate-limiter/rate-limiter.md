@@ -13,9 +13,9 @@ https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm/
 _server-side_
 
 ### Packages 
-https://www.npmjs.com/package/express-rate-limit
-https://www.npmjs.com/package/express-limiter
-https://www.npmjs.com/package/rate-limiter-flexible
+- https://www.npmjs.com/package/express-rate-limit
+- https://www.npmjs.com/package/express-limiter
+- https://www.npmjs.com/package/rate-limiter-flexible
 
 ## Rate limit / Throttle Outgoing Requests
 _client-side_
