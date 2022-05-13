@@ -41,4 +41,9 @@ But actual implementation better to be in __v3__.
 - https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/index.html
 
 ### Node.js Considerations
-https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/node-js-considerations.html
+- https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/node-js-considerations.html
+
+### AbortController
+- https://aws.amazon.com/blogs/developer/abortcontroller-in-modular-aws-sdk-for-javascript/
+- https://github.com/trivikr/aws-sdk-js-v3/blob/main/packages/abort-controller/src/AbortSignal.ts
+
