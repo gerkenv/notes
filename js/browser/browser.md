@@ -21,6 +21,14 @@ https://almanac.httparchive.org/en/2020/table-of-contents
 - https://www.usecue.com/blog/how-to-get-a-100-google-lighthouse-score/
 - https://www.deleteagency.com/blog/how-to-get-a-100-percents-lighthouse-performance-score
 
+### HTTP 103 Early Hints
+- https://developer.chrome.com/blog/new-in-chrome-103/#http103
+- https://twitter.com/colinbendell/status/1539322190541295616
+
+### Test Tools
+#### WebPageTest Opportunities & Experiments
+- https://blog.webpagetest.org/posts/introducing-opportunities-and-experiments/
+
 ## Post-Load Performance
 - [Hands On with the new Responsiveness Metrics](https://calendar.perfplanet.com/2021/hands-on-with-the-new-responsiveness-metrics/)
 - [Towards a better responsiveness metric](https://web.dev/better-responsiveness-metric/#group-events-into-interactions)
