@@ -15,7 +15,7 @@ https://almanac.httparchive.org/en/2020/table-of-contents
 - can some input events affect CLS
   - https://github.com/WICG/layout-instability#recent-input-exclusion
 
-## Performance
+## Page Load Performance
 ### How To Optimize Guides
 - https://jakearchibald.com/2021/io-site-perf/
 - https://www.usecue.com/blog/how-to-get-a-100-google-lighthouse-score/
@@ -28,6 +28,12 @@ https://almanac.httparchive.org/en/2020/table-of-contents
 ### Test Tools
 #### WebPageTest Opportunities & Experiments
 - https://blog.webpagetest.org/posts/introducing-opportunities-and-experiments/
+
+#### Performance insights panel | DevTools Tips
+https://www.youtube.com/watch?v=5PFmGeCZDvw
+
+#### Measure React App Performance
+https://www.debugbear.com/blog/measuring-react-app-performance
 
 ## Post-Load Performance
 - [Hands On with the new Responsiveness Metrics](https://calendar.perfplanet.com/2021/hands-on-with-the-new-responsiveness-metrics/)
