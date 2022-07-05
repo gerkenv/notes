@@ -64,12 +64,29 @@ Best way to ensure stability is to create a local `.npmrc` in the root folder
 registry=https://registry.yarnpkg.com
 ```
 
-## Yalc
+## Link / Copy Local Package
+
+### Install Local Package
+- https://www.stefanjudis.com/today-i-learned/npm-install-supports-local-packages/
+- https://www.aaron-powell.com/posts/2020-03-02-making-it-easier-to-work-with-local-npm-packages/
+- `yarn add path/to/local/package`
+- `npm i path/to/local/package`
+
+### NPM Link
+- https://medium.com/dailyjs/how-to-use-npm-link-7375b6219557
+- https://docs.npmjs.com/cli/v8/commands/npm-link
+
+### Yarn Link
+- https://classic.yarnpkg.com/en/docs/cli/link
+
+### Yalc
 Simple local package manager. Alternative to `npm link`.
 
-https://github.com/wclr/yalc
+- https://github.com/wclr/yalc
+- https://dev.to/zachsnoek/using-local-npm-packages-as-dependencies-with-yalc-2g56
+- https://divotion.com/blog/yalc-npm-link-alternative-that-does-work
 
-### Simplest workflow
+#### Simplest workflow
 1. Install globally
 ```
 yarn global add yalc
@@ -82,9 +99,15 @@ yalc push
 ```
 this adds the package to the yalc local repository.
 
-3. In main repository (where depndency is used) run:
+3a. In main repository (where depndency is used) run:
 ```
 yalc add package-name && yarn
+```
+
+Alternatively you can link package
+3b. In main repository (where depndency is used) run:
+```
+yalc add package-name && yalc link package-name && yarn
 ```
 
 __Note__:
