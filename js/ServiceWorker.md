@@ -1,3 +1,6 @@
+## 2017 Udacity Course. Builing Offline Experience With Service Worker.
+Based on https://www.udacity.com/course/offline-web-applications--ud899
+
 #### 2.8 Installing the Demo App
 
 install node v4.2.1
