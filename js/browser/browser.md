@@ -87,6 +87,41 @@ open bugs:
   - https://dev.to/adamdbradley/introducing-partytown-run-third-party-scripts-from-a-web-worker-2cnp
   - https://dev.to/adamdbradley/how-partytown-s-sync-communication-works-4244
 
+## Adaptive Page Loading
+
+### Chrome Dev Summit 2019
+- entire explanation video https://www.youtube.com/watch?v=puUPpVrIRkc
+- google part summary https://web.dev/adaptive-loading-cds-2019/
+- facebook part https://www.youtube.com/watch?v=puUPpVrIRkc&t=1380s includes:
+    - how to get segments
+      - define KPI which could help to determine buckets
+      - integrate KPI into logging
+      - define buckets analyze the KPI and page performance data
+      - integrate buckets into logging
+      - validate buckets by analyzing KPI, buckets and performance data
+      - create a fitting experience for each bucket
+          - heavy page for high end
+          - light page for low end
+          - check examples for page optimization in the summary https://web.dev/adaptive-loading-cds-2019/
+          - chunk loading strategy is different for high end and low end
+          - enforce lower framerate on low-end
+          - load images, video depending on 'data saver` option
+          - no prefetching on low-end
+          - no animation on low end
+    - facebook defined KPI like:
+        - mobile:
+            - user agent provides exact device name, so you can get
+                - their cpu benchmark from open data sources
+                - and a year when device was considered top (since performance degrades over the years). ('year class' framework on native)
+        - desktop:
+            - `navigator.hardwareConcurrency`
+            - `navigator.deviceMemory`
+
+### Proxx For Feature Phone
+- Summary https://web.dev/proxx-announce/ + linked boring video inside
+- Fun story of iterative performance improvements + some webpack public shaming
+  - https://www.youtube.com/watch?v=TsTt7Tja30Q
+
 ## PWA
 - https://web.dev/learn/pwa/
 - https://web.dev/reliable
