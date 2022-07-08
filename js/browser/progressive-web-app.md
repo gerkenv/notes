@@ -1,4 +1,14 @@
-## 2017 Udacity Course. Builing Offline Experience With Service Worker.
+## 2016 Udacity Course. Progressive Web Apps
+Based on https://www.udacity.com/course/intro-to-progressive-web-apps--ud811
+
+### App Shell
+It is minumum html, css, js and images.
+And first load should fast and response should be cached.
+On repeat visit shell is served from cache.
+
+Typically app shell should not contain any applciation data.
+
+## 2017 Udacity Course. Builing Offline Experience With Service Worker
 Based on https://www.udacity.com/course/offline-web-applications--ud899
 
 #### 2.8 Installing the Demo App
