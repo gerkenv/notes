@@ -1,3 +1,24 @@
+# Progressive Web App (PWA)
+
+## 2022 web.dev course. Learn PWA.
+
+### Available In App Stores
+- app store compatibility https://web.dev/learn/pwa/progressive-web-apps/#bringing-the-best-of-both-worlds
+- upgrade an existing app with a pwa https://web.dev/learn/pwa/getting-started/#upgrading-a-store-app
+
+### Cross-Browser Issues
+- https://web.dev/learn/pwa/progressive-web-apps/#cross-browser-compatibility
+
+#### Limitations Of Installation And Offline Capabilities
+- https://web.dev/learn/pwa/progressive-web-apps/#compatibility
+
+### PWA Checklist
+All of the requirements / features of a nice pwa
+- https://web.dev/learn/pwa/getting-started/#pwa-checklist
+
+
+
+
 ## 2016 Udacity Course. Progressive Web Apps
 Based on https://www.udacity.com/course/intro-to-progressive-web-apps--ud811
 
