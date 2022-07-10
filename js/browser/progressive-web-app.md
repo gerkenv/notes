@@ -52,6 +52,30 @@ All of the requirements / features of a nice pwa
   - optionally disable `pull-to-refresh` https://web.dev/learn/pwa/app-design/#pull-to-refresh
   - use safe areas https://web.dev/learn/pwa/app-design/#safe-areas
 
+### Assets And Data
+- assets https://web.dev/learn/pwa/assets-and-data/#app-components
+
+#### Caches And Storage
+- https://web.dev/learn/pwa/assets-and-data/#caches-and-storage
+
+Prefered: cache storage, indexedDB.
+Avoid: web storage.
+Deprecated: WebSQL, ApplicationCache.
+
+### Offline-ready
+- https://web.dev/learn/pwa/assets-and-data/#offline-ready
+
+#### Frequently used cache approaches 
+- https://web.dev/learn/pwa/assets-and-data/#frequently-used-cache-approaches
+
+#### Updating assets
+- https://web.dev/learn/pwa/assets-and-data/#updating-assets
+
+#### Size and Lifespan
+- https://web.dev/learn/pwa/assets-and-data/#size-and-lifespan
+  - how much can be stored by browser (pwa)?
+    - https://web.dev/storage-for-the-web/#how-much
+
 
 
 
