@@ -16,6 +16,43 @@
 All of the requirements / features of a nice pwa
 - https://web.dev/learn/pwa/getting-started/#pwa-checklist
 
+#### Reponsive Design
+- as usual https://web.dev/learn/pwa/foundations/#responsive-web-design
+- and new mini-mode (200x100)
+  - https://web.dev/learn/pwa/foundations/#mini-mode
+- and foldable & hybrid devices 
+  - https://web.dev/learn/pwa/foundations/#foldables-and-hybrid   
+
+#### Everything-first Approach
+- Mobile first, content first, offline first? https://web.dev/learn/pwa/foundations/#everything-first
+
+##### Progressive Enhancement
+- term explanation https://web.dev/learn/pwa/foundations/#progressive-enhancement
+- avoid device detection - use feature detection https://web.dev/learn/pwa/foundations/#avoid-device-detection
+- apply intrinsic design https://web.dev/learn/pwa/foundations/#intrinsic-design
+
+### App Design
+- icon https://web.dev/learn/pwa/app-design/#the-icon
+- theme https://web.dev/learn/pwa/app-design/#theming-your-app
+
+#### PWA Display Mode
+- possible modes https://web.dev/learn/pwa/app-design/#display-modes
+  - Fullscreen https://web.dev/learn/pwa/app-design/#fullscreen-experience
+  - Standalone https://web.dev/learn/pwa/app-design/#standalone-experience
+  - Minimal User Interface https://web.dev/learn/pwa/app-design/#minimal-user-interface
+  - as tab in a browser 
+
+- css selectors for display modes, color schemes and animation preference https://web.dev/learn/pwa/app-design/#media-queries
+
+#### App Experience
+- https://web.dev/learn/pwa/app-design/#the-app-experience
+  - think which text can be selected with default tools https://web.dev/learn/pwa/app-design/#user-selection
+  - use `accent-color` + dark/light themes https://web.dev/learn/pwa/app-design/#accent-color
+  - optionally use system font https://web.dev/learn/pwa/app-design/#system-fonts
+  - optionally disable `pull-to-refresh` https://web.dev/learn/pwa/app-design/#pull-to-refresh
+  - use safe areas https://web.dev/learn/pwa/app-design/#safe-areas
+
+
 
 
 
