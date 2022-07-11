@@ -17,6 +17,9 @@ https://almanac.httparchive.org/en/2020/table-of-contents
 
 ## Page Load Performance
 
+### Why
+- https://web.dev/milliseconds-make-millions/
+
 ### How To Optimize Guides
 - https://jakearchibald.com/2021/io-site-perf/
 - https://www.usecue.com/blog/how-to-get-a-100-google-lighthouse-score/
