@@ -180,6 +180,20 @@ This causes your service worker to __kick out the current active worker and acti
 It is possible to observe service worker state updates and replacement of a service worker with a new one.
 - https://web.dev/service-worker-lifecycle/#handling-updates
 
+#### Avoid In-Memory State
+- https://web.dev/learn/pwa/service-workers/#service-worker-lifespan
+
+The service worker works even before or after your PWA is open. While service workers run on their own thread, there is no guarantee that in-memory state will persist between runs of a service worker, so make sure anything you want to reuse on each run is available either in IndexedDB or some other persistent storage.
+
+#### Lifespan
+- https://web.dev/learn/pwa/service-workers/#service-worker-lifespan
+
+If not already running, a service worker will start whenever a network request in its scope is asked for, or when a triggering event, like periodic background sync or a push message, is received.
+
+#### Capabilities
+- https://web.dev/learn/pwa/service-workers/#capabilities
+
+Service worker's capabilities are not just for proxy or serving HTTP requests; other features are available on top of it for other purposes, such as background code execution, web push notifications, and process payments. We'll discuss these additions in the capabilities chapter - https://web.dev/learn/pwa/capabilities.
 
 
 
