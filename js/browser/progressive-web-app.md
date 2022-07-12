@@ -43,6 +43,7 @@ All of the requirements / features of a nice pwa
   - Minimal User Interface https://web.dev/learn/pwa/app-design/#minimal-user-interface
   - as tab in a browser 
 
+- controlled via manifest `display` property https://developer.mozilla.org/en-US/docs/Web/Manifest/display
 - css selectors for display modes, color schemes and animation preference https://web.dev/learn/pwa/app-design/#media-queries
 
 #### App Experience
