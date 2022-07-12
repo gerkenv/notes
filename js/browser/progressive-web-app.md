@@ -1,6 +1,7 @@
 # Progressive Web App (PWA)
 
 ## 2022 web.dev course. Learn PWA.
+- https://web.dev/learn/pwa/
 
 ### Available In App Stores
 - app store compatibility https://web.dev/learn/pwa/progressive-web-apps/#bringing-the-best-of-both-worlds
@@ -31,7 +32,7 @@ All of the requirements / features of a nice pwa
 - avoid device detection - use feature detection https://web.dev/learn/pwa/foundations/#avoid-device-detection
 - apply intrinsic design https://web.dev/learn/pwa/foundations/#intrinsic-design
 
-### App Design
+### App Design Suggestiosn
 - icon https://web.dev/learn/pwa/app-design/#the-icon
 - theme https://web.dev/learn/pwa/app-design/#theming-your-app
 
@@ -75,6 +76,104 @@ Deprecated: WebSQL, ApplicationCache.
 - https://web.dev/learn/pwa/assets-and-data/#size-and-lifespan
   - how much can be stored by browser (pwa)?
     - https://web.dev/storage-for-the-web/#how-much
+
+### Service Worker
+- https://web.dev/learn/pwa/service-workers/
+
+#### Initial Service Worker
+- https://web.dev/service-worker-lifecycle/#the-first-service-worker
+
+##### Scope
+- https://web.dev/learn/pwa/service-workers/#scope
+- https://web.dev/service-worker-lifecycle/#scope-and-control
+    - Service worker registration path determines its activity scope. Try to put closer to the root to avoid surprises.
+
+#### Registration
+- https://web.dev/learn/pwa/service-workers/#registering-a-service-worker
+- https://web.dev/service-worker-lifecycle/#download-parse-and-execute
+```js
+if ('serviceWorker' in navigator) {
+   navigator.serviceWorker.register("/serviceworker.js");
+}
+```
+
+#### Lifecycle
+- https://web.dev/learn/pwa/service-workers/#lifecycle
+- more precise and with simple code exmaples https://web.dev/service-worker-lifecycle/
+
+##### 'install'
+
+The service worker lifecycle starts with registering the service worker. The browser then attempts to download and parse the service worker file. If parsing succeeds, its install event is fired. The install event only fires once.
+More details https://web.dev/service-worker-lifecycle/#install
+
+```js
+// This code executes in its own worker or thread
+self.addEventListener("install", event => {
+   console.log("Service worker installed");
+});
+```
+
+##### 'activate'
+After the installation, the service worker is not yet in control of its clients, including your PWA. 
+It needs to be activated first. When `activate` event fires - the service worker is ready to control its clients.
+But even if the service worker is in `activated` state - it may not control the page.
+    
+If your page loads without a service worker, neither will its subresources. 
+But If you load the page a second time (in other words, refresh the page after the service-worker was installed and activated) then page will be controlled.
+    More details https://web.dev/service-worker-lifecycle/#activate
+
+```js
+// This code executes in its own worker or thread
+self.addEventListener("activate", event => {
+   console.log("Service worker activated");
+});
+```
+
+##### Manually take control
+`clients.claim()`
+After `activated` you can enforce control of __uncontrolled clients__ by `clients.claim()`
+- https://web.dev/service-worker-lifecycle/#clients.claim
+    - If you use your service worker to load pages differently than they'd load via the network, `clients.claim()` can be troublesome, as your service worker ends up controlling some clients that loaded without it.
+
+#### Updating a service worker
+- https://web.dev/learn/pwa/service-workers/#updating-a-service-worker
+    - do not rename your service worker file, browser detects byte difference between same file and updates if there is a difference.
+    - the user needs to close or navigate away from all tabs and windows using the current service worker and then navigate back. Only then will the new service worker take control.
+    - more details https://web.dev/service-worker-lifecycle/#updates
+
+##### 'waiting'
+After it's successfully installed, the updated service worker delays activating until the existing service worker is no longer controlling clients. This state is called "waiting", and it's how the browser ensures that only one version of your service worker is running at a time.
+- https://web.dev/service-worker-lifecycle/#waiting
+
+##### Activating
+This fires once the old service worker is gone, and your new service worker is able to control clients. This is the ideal time to do stuff that you couldn't do while the old worker was still in use, such as migrating databases and clearing caches.
+
+##### Skip the waiting phase
+```js
+self.skipWaiting()
+```
+This causes your service worker to __kick out the current active worker and activate itself__ as soon as it enters the waiting phase (or immediately if it's already in the waiting phase). It doesn't cause your worker to skip installing, just waiting. - https://web.dev/service-worker-lifecycle/#skip-the-waiting-phase
+
+##### Manual Update
+- https://web.dev/service-worker-lifecycle/#manual-updates
+  - As it was mentioned earlier, the browser checks for updates automatically after navigations and functional events, but you can also trigger them manually:
+    ```js
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+      // sometime later…
+      reg.update();
+    });
+    ```
+#### Avoid changing the URL of your service worker script
+- https://web.dev/service-worker-lifecycle/#avoid-url-change
+
+#### Making development easy
+- https://web.dev/service-worker-lifecycle/#devtools
+  - you can set `update on reload` option in dev tools to replace service worker on reload (here it doesn't matter if other tabs use old service worker or not)
+  - you can force reload with `cmd+shift+r` - it will remove previously installed service worker, but if you have previous service worker in other tabs running, then it will be activated again (even if your tab wants to install a new one).
+
+#### Handling updates 
+It is possible to observe service worker state updates and replacement of a service worker with a new one.
+- https://web.dev/service-worker-lifecycle/#handling-updates
 
 
 
