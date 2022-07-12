@@ -9,6 +9,9 @@ https://web.dev/cds2021-updates/
 ### 2020
 https://almanac.httparchive.org/en/2020/table-of-contents
 
+## The Extensible Web Manifesto #extendthewebforward
+- https://extensiblewebmanifesto.org/
+
 ## Core Web Vitals
 
 ### CLS
