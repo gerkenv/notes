@@ -78,7 +78,12 @@ Deprecated: WebSQL, ApplicationCache.
     - https://web.dev/storage-for-the-web/#how-much
 
 ### Service Worker
+The PWA course provides very high-level description of a service worker.
 - https://web.dev/learn/pwa/service-workers/
+
+To get better idea of how it works and how lifecycle can be managed and get code examples for different scenarios, better follow the article here
+- https://web.dev/service-worker-lifecycle/
+
 
 #### Initial Service Worker
 - https://web.dev/service-worker-lifecycle/#the-first-service-worker
