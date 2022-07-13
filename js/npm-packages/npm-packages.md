@@ -40,6 +40,17 @@
 - https://www.npmjs.com/package/jest
   - https://github.com/gerkenv/notes/blob/master/js/jest/jest.md
 
+## Node.js Server Framework
+- https://www.npmjs.com/package/express
+  - https://github.com/gerkenv/notes/tree/master/js/express.js
+
+## PostgreSQL
+- https://www.npmjs.com/package/pg
+- 
+
+## Local JSON Database
+- https://www.npmjs.com/package/node-json-db
+
 ## Frontend Blacklist
 - [moment](https://bundlephobia.com/package/moment)
 - [mement-timezone](https://bundlephobia.com/package/moment-timezone)
