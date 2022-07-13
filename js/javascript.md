@@ -12,9 +12,6 @@
 ## Runtime Complexity Of Array Methods
 - https://stackoverflow.com/questions/22614237/javascript-runtime-complexity-of-array-functions
 
-## Performance
-- https://nodesource.com/blog/improve-javascript-performance/
-
 ### Benchmarking
 - https://stackoverflow.com/questions/1003855/how-can-i-benchmark-javascript-code
 
