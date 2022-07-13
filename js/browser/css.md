@@ -32,3 +32,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_center-flex_btn
   }}
 >
 ```
+
+## Safe Area
+To avoid displaying something in unreachable area (due to camera location on mobile screen or not rectangle shape)
+- https://developer.mozilla.org/en-US/docs/Web/CSS/env
