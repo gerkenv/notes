@@ -268,6 +268,11 @@ https://twitter.com/patmeenan/status/1443219921522073601
 Prio table?
 https://docs.google.com/document/d/1bCDuq9H1ih9iNjgzyAL0gpwNFiEP4TZS-YLRp_RuMlc/edit
 
+## Web Socket API
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
+- https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers
+
 ## IE11. Missing JS API (Not Implemented)
 - [Response API - returned by Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Response)
     - Also `safe-fetch` library   
