@@ -10,3 +10,7 @@
 ## [Beta] Bun
 - https://bun.sh/
 
+## Ultra JS
+https://ultrajs.dev
+
+Partially uses denoland capabilities.
