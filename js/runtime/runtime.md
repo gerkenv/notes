@@ -14,3 +14,8 @@
 https://ultrajs.dev
 
 Partially uses denoland capabilities.
+
+# Next.js
+
+## Updates
+https://nextjs.org/blog/next-12
