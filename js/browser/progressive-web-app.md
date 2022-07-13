@@ -60,8 +60,8 @@ All of the requirements / features of a nice pwa
 #### Caches And Storage
 - https://web.dev/learn/pwa/assets-and-data/#caches-and-storage
 
-Prefered: cache storage, indexedDB.
-Avoid: web storage.
+Prefered: cache storage, indexedDB. \
+Avoid: web storage. \
 Deprecated: WebSQL, ApplicationCache.
 
 ### Offline-ready
