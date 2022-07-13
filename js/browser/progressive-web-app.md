@@ -196,6 +196,60 @@ If not already running, a service worker will start whenever a network request i
 
 Service worker's capabilities are not just for proxy or serving HTTP requests; other features are available on top of it for other purposes, such as background code execution, web push notifications, and process payments. We'll discuss these additions in the capabilities chapter - https://web.dev/learn/pwa/capabilities.
 
+### Cache Storage API `caches`
+- https://web.dev/learn/pwa/caching/
+
+#### Context
+The Cache Storage API is available from different contexts:
+- The window context (your PWA's main thread).
+- The service worker.
+- Any other workers you use.
+
+_Be aware that to use the Cache Storage API most of these contexts have to be under a TLS connection._
+
+#### What to Cache
+- https://web.dev/learn/pwa/caching/#what-to-cache
+
+#### Offline-ready 
+- https://web.dev/learn/pwa/caching/#offline-ready
+  - Essential to understand that not every PWA needs a full offline experience.
+  - Your PWA should not render a browser's error message saying that the web rendering engine couldn't load the page. Instead use your service worker to show your own messaging, avoiding a generic and confusing browser error
+  - If you publish your PWA to Google Play Store, your PWA should never render an HTTP error message from the browser to avoid penalizations within the store listings
+
+#### Storage Scope
+The cache storage content and eviction rules are set per origin and not per PWA, since it's possible to have more than one in a single origin. If you share your origin for many PWAs, it's a good idea to add a prefix to your cache names to avoid collision problems between each PWA's data storage.
+
+#### Using API
+
+##### Create Or Open Existing Cache Entry
+```js
+caches.open("pwa-assets")
+.then(cache => {
+  // you can download and store, delete or update resources with cache arguments
+});
+```
+
+##### Downloading and storing assets
+- https://web.dev/learn/pwa/caching/#downloading-and-storing-assets
+  - The `add` method makes a request and stores one HTTP response, and `addAll` a group of HTTP responses as a transaction based on an array of requests or URLs.
+  - To download and store the assets, you must specify all the URLs explicitly. Otherwise the API cannot know all the assets you need or want to cache.
+```js
+caches.open("pwa-assets")
+.then(cache => {
+  cache.add("styles.css"); // it stores only one resource
+  cache.addAll(["styles.css", "app.js"]); // it stores two resources
+});
+```
+
+##### When to cache
+- https://web.dev/learn/pwa/caching/#when-to-cache
+  - You don't need to cache all the assets at once, you can cache assets many times during the lifecycle of your PWA
+  - Also you can request caching new files in the main thread or within the service worker context
+
+##### Caching assets in a service worker
+- https://web.dev/learn/pwa/caching/#caching-assets-in-a-service-worker
+
+
 
 
 
