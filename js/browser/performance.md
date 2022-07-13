@@ -52,3 +52,13 @@ TODO
 - check if it was only for certain HTTP version?
 - check how to avoid, probably HTTP/2 prioritization.
 
+## Possible Performance Improvements
+
+## Preconnect
+https://web.dev/uses-rel-preconnect/
+
+## EV / DV Certificates
+https://www.aaronpeters.nl/blog/ev-certificates-make-the-web-slow-and-unreliable/
+
+## Prioritization in Chrome 96
+https://twitter.com/patmeenan/status/1443219921522073601
