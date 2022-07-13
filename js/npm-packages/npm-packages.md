@@ -26,6 +26,9 @@
 - https://www.npmjs.com/package/perron
   - with retries and circuit breakers
 
+## Rate-Limiter / Semaphore
+- https://www.npmjs.com/package/async-sema
+
 ## Measure Event Loop Lag
 - https://www.npmjs.com/package/event-loop-lag
 
@@ -46,7 +49,6 @@
 
 ## PostgreSQL
 - https://www.npmjs.com/package/pg
-- 
 
 ## Local JSON Database
 - https://www.npmjs.com/package/node-json-db
