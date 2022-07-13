@@ -111,3 +111,9 @@ it.skip(...)
 test.skip(...)
 ```
 Tests:       1 skipped, 23 passed, 24 total
+
+## Snapshots
+```js
+expect(obj).toMatchSnapshot(); // creates a snapshot file
+expect(obj).toMatchSnapshotInline(); // add a snapshot in this file
+```
