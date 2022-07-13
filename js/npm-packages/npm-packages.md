@@ -1,5 +1,45 @@
 # NPM Packages
 
+## Formatter
+- https://www.npmjs.com/package/prettier
+  - includes auto-fix
+  - if you're happy with es-lint formatting options - ignore prettier
+
+## Linter
+- https://www.npmjs.com/package/eslint
+  - includes auto-fix
+
+## Logger
+- https://github.com/pinojs/pino
+
+## User Agent Parser
+- https://www.npmjs.com/package/ua-parser-js
+
+## Feature Detection
+- https://modernizr.com/
+
+## Server Healthcheck And Graceful Shutdown
+- https://expressjs.com/en/advanced/healthcheck-graceful-shutdown.html
+- https://github.com/godaddy/terminus
+
+## HTTP Client
+- https://www.npmjs.com/package/perron
+  - with retries and circuit breakers
+
+## Measure Event Loop Lag
+- https://www.npmjs.com/package/event-loop-lag
+
+## Metrics Collector
+- https://github.com/siimon/prom-client
+
+## E2E Tests
+- https://www.npmjs.com/package/cypress
+  - https://github.com/gerkenv/notes/blob/master/js/cypress/cypress.md
+
+## Unit Test
+- https://www.npmjs.com/package/jest
+  - https://github.com/gerkenv/notes/blob/master/js/jest/jest.md
+
 ## Frontend Blacklist
 - [moment](https://bundlephobia.com/package/moment)
 - [mement-timezone](https://bundlephobia.com/package/moment-timezone)
