@@ -59,10 +59,19 @@ All of the requirements / features of a nice pwa
 
 #### Caches And Storage
 - https://web.dev/learn/pwa/assets-and-data/#caches-and-storage
+- https://web.dev/storage-for-the-web/#recommendation
 
 Prefered: cache storage, indexedDB. \
-Avoid: web storage. \
-Deprecated: WebSQL, ApplicationCache.
+  - Asynchronous API. 
+  - Accessible from page, service worker, web workers.
+  - Additional wrappers for IndexedDB API
+    - https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API#see_also
+Avoid: web storage (local storage & session storage) 
+  - API is synchronous (blocking) operations.
+  - Not accessible from service workers, web workers.
+Avoid due to deprecation: WebSQL, ApplicationCache.
+
+_independently of starage type it is important to sync your critical data with a cloud to avoid data loss on device, also it benefits in way to display new data on other devices_.
 
 ### Offline-ready
 - https://web.dev/learn/pwa/assets-and-data/#offline-ready
@@ -249,9 +258,192 @@ caches.open("pwa-assets")
 ##### Caching assets in a service worker
 - https://web.dev/learn/pwa/caching/#caching-assets-in-a-service-worker
 
+One of the most common scenarios is to cache a minimum set of assets when the service worker is installed.
+
+Because the service worker thread can be stopped at any time, you can request the browser to wait for the addAll promise to finish to increase the opportunity of storing all the assets and keeping the app consistent.
+```js
+const urlsToCache = ["/", "app.js", "styles.css", "logo.svg"];
+self.addEventListener("install", event => {
+   event.waitUntil(
+      caches.open("pwa-assets")
+      .then(cache => {
+         return cache.addAll(urlsToCache);
+      });
+   );
+});
+```
+The `waitUntil()` method receives a promise and asks the browser to wait for the task in the promise to resolve (fulfilled or failed) before terminating the service worker process.
+- https://developer.mozilla.org/docs/Web/API/ExtendableEvent/waitUntil
+
+##### Cross-domain requests and opaque responses
+- https://web.dev/learn/pwa/caching/#cross-domain-requests-and-opaque-responses
+  - With a cross-domain app, the cache interaction is very similar to same-origin requests. The request is executed and a copy of the response is stored in your cache. As with other cached assets it is only available to be used in your app's origin.
+  - The asset will be stored as an opaque response, which means your code won't be able to see or modify the contents or headers of that response.
+    - https://fetch.spec.whatwg.org/#concept-filtered-response-opaque
+  - Remember that when you cache opaque responses from cross-domains, `cache.add()` and `cache.addAll()` will fail if those responses don't return with a 2xx status code.
+
+##### Updating and deleting assets
+- https://web.dev/learn/pwa/caching/#updating-and-deleting-assets
+
+You can update assets using `cache.put(request, response)` and delete assets with `delete(request)`.
+Check https://developer.mozilla.org/docs/Web/API/Cache for more details.
+
+##### Debugging Cache Storage
+- https://web.dev/learn/pwa/caching/#debugging-cache-storage
+
+### Serving
+- Using the service worker's fetch event, you can intercept network requests and serve a response using different techniques
+
+#### The `fetch` event
+- https://web.dev/learn/pwa/serving/#the-fetch-event
+
+The `fetch` event lets us intercept every network request made by the PWA in the service worker's scope, for both same-origin and cross-origin requests. 
+```js
+self.addEventListener("fetch", event => {
+    console.log(`URL requested: ${event.request.url}`);
+});
+```
+
+While you can have more than one fetch event handler per service worker, only one can respond per request. For example, you can have different handlers that will act on different URL patterns. They are executed in the order they were registered until one of them calls `respondWith()`.
+
+#### Responding to a request 
+- https://web.dev/learn/pwa/serving/#responding-to-a-request
+
+To respond to an incoming request, call event.respondWith() from within a fetch event handler, like this:
+```js
+// fetch event handler in your service worker file
+self.addEventListener("fetch", event => {
+    const response = .... // a response or a Promise of response
+    event.respondWith(response);
+});
+```
 
 
 
+__TODO ...continue here (chapter 8 - 10)__
+
+__TODO ...continue here (chapter 8 - 10)__
+
+__TODO ...continue here (chapter 8 - 10)__
+
+
+
+
+### Installation
+- https://web.dev/learn/pwa/installation
+
+Once the user installs your PWA, it will:
+- Have an icon in the launcher, home screen, start menu, or launchpad.
+- Appear as a result when a user searches for the app on their device.
+- Have a separate window within the operating system.
+- Have support for specific capabilities.
+
+#### Installation Criteria
+Every browser has a criterion that marks when a website or web app is a Progressive Web App and can be installed for a standalone experience.
+The metadata for your PWA is set by a JSON-based file known as the Web App Manifest.
+  - more details about manifest https://web.dev/learn/pwa/web-app-manifest/
+
+As a minimum requirement for installability, most browsers that support it use the Web App Manifest file and certain properties such as the name of the app, and configuration of the installed experience. An exception to this is Safari for macOS, which does not support installability.
+
+Chromium-based browsers on desktop and Android, including Google Chrome, Samsung Internet, and Microsoft Edge, have additional requirements, such as:
+
+- Serving the web app on HTTPS.
+- At least one icon in the correct format and size.
+- A registered service worker.
+- A `fetch` event handler in the service worker to provide a basic offline experience.
+
+Because the test that a PWA meets installability requirements can take several seconds, installability itself may not be available as soon as a URLs response is received.
+
+#### Uninstalling
+The process for uninstalling a PWA is different on each combination of operating system and browser. In most situations, the app can be uninstalled the same as any other platform-specific app; in other situations, the PWA window offers a menu with an uninstall option. Deleting the icon may not clear the storage that a PWA is using.
+
+#### Desktop installation
+- https://web.dev/learn/pwa/installation/#desktop-installation
+
+Desktop PWA installation is currently supported by Google Chrome and Microsoft Edge on Linux, Windows, macOS, and Chromebooks. These browsers will show an install badge (icon) in the URL bar (see the image below), stating that the current site is installable.
+
+_Only standalone and minimal-ui display modes are supported on desktop operating systems_.
+
+#### iOS and iPadOS installation
+- https://web.dev/learn/pwa/installation/#ios-and-ipados-installation
+
+A browser prompt to install your PWA doesn't exit On iOS and iPadOS. In these platforms PWAs are also known as home screen web apps. These apps have to be added manually to the home screen via a menu that is available only in Safari.
+
+_It's important to understand that PWA installation is only available if the user browses your website from Safari_. 
+
+Other browsers available in the App Store, such as Google Chrome, Firefox, Opera, or Microsoft Edge, cannot install a PWA on the home screen.
+
+_On iOS and iPadOS, only the standalone display mode is supported_
+
+When users use the PWA, they are not using an instance of the Safari app (like they use an instance of Chrome when doing so), they are using something known as Web.app, so you should expect slight differences between your PWA rendered in Safari and a PWA window. Both Safari and Web.app use the same core from WebKit and the same JavaScript runtime, but they run in different processes and may have different implementations, such as having isolated storage.
+
+#### Android installation
+- https://web.dev/learn/pwa/installation/#android-installation
+
+Depending on the device and browser, your PWA will either be installed as a WebAPK, a shortcut, or a QuickApp.
+
+https://web.dev/learn/pwa/installation/#prompting-for-installation
+
+#### Prompting for installation
+In Chromium-based browsers on desktop and Android devices, it's possible to trigger the browser's installation dialog from your PWA. 
+More details here https://web.dev/learn/pwa/installation/#prompting-for-installation
+
+#### App catalogs and stores
+- https://web.dev/learn/pwa/installation/#app-catalogs-and-stores
+
+
+### Installation prompt
+- https://web.dev/learn/pwa/installation-prompt/
+
+#### Enhancing the install dialog
+- https://web.dev/learn/pwa/installation-prompt/#enhancing-the-install-dialog
+
+Browsers provide default installation prompts when PWAs pass the install criteria. The browser uses the `name` and `icons` properties from your Web App Manifest to build the prompt.
+Some browsers enhance the installation prompt experience using the promotional fields in the manifest, including `description`, `categories`, and `screenshots`.
+  - https://web.dev/learn/pwa/web-app-manifest/#promotional-fields
+
+#### The `beforeinstallprompt` event
+- https://web.dev/learn/pwa/installation-prompt/#the-beforeinstallprompt-event 
+  1. Listen for the `beforeinstallprompt` event.
+  2. Save it (you'll need it later).
+  3. Trigger it from your UI.
+  
+Current support is around 75%. https://caniuse.com/?search=beforeinstallprompt
+
+#### The best place to prompt
+Where to prompt depends on your application and when your users are most engaged with your content and services. When you capture the beforeinstallprompt, you can guide users through the reasons to keep using your app and the advantages they will gain from installing it. You can choose to display install hints anywhere in your app. Some common patterns are: in the side menu, after a critical user journey such as completing an order, or after a sign-up page. You can read more about this in Patterns for promoting PWA installation - https://web.dev/promote-install/
+
+#### Gathering analytics
+- https://web.dev/learn/pwa/installation-prompt/#gathering-analytics
+
+Using analytics will help you to understand better where and when to present your prompts. You can use the `userChoice` property from the `beforeinstallprompt` event; `userChoice` is a promise that will resolve with the action the user took.
+
+#### Fallback
+- https://web.dev/learn/pwa/installation-prompt/#fallback
+If the browser doesn't support the `beforeinstallprompt` or the event does not fire, there is no other way to trigger the browser's installation prompt. However, on platforms that allow the user to install PWAs manually, like iOS, you can display these instructions to the user.
+
+You should only render these instructions in browser mode; other display options, such as `standalone` or `fullscreen` mean the user has already installed the app.
+
+__TODO ...continue here (chapter 14 - 22)__
+
+__TODO ...continue here (chapter 14 - 22)__
+
+__TODO ...continue here (chapter 14 - 22)__
+
+### Capabilities
+There are a lot of capabilities that can be used currently.
+List of widely supported capabilities https://web.dev/learn/pwa/capabilities/
+Demo PWA with built-in capabilities https://whatpwacando.today/
+
+__TODO ...continue here (chapter 24)__
+
+__TODO ...continue here (chapter 24)__
+
+__TODO ...continue here (chapter 24)__
+
+
+## 2016 Service Worker Performance Study
+https://developers.google.com/web/showcase/2016/service-worker-perf
 
 ## 2016 Udacity Course. Progressive Web Apps
 Based on https://www.udacity.com/course/intro-to-progressive-web-apps--ud811
