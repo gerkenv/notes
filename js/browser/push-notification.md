@@ -1,4 +1,4 @@
-# Web Push notifications overview
+# 2022 Web Push notifications overview
 - https://web.dev/push-notifications-overview
 
 ## What are web push notifications?
