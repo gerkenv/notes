@@ -17,7 +17,7 @@ So push notification is a combination of both technologies.
   - For users, push notifications are a way to receive timely, relevant, and precise information.
   - For you (a website owner), push notifications are a way to increase user engagement.
   
-## How do push notifications work?
+## How to implement push notifications?
 - https://web.dev/push-notifications-overview/#how
 
 1. Adding client logic to ask the user for permission to send push notifications, 
@@ -25,11 +25,14 @@ So push notification is a combination of both technologies.
 2. Adding server logic to push messages to client devices.
 3. Adding client logic to receive messages that have been pushed to the device and displaying them as notifications.
 
+## How do push notifications work?
+- https://web.dev/push-notifications-overview/#how
+
 ### 1. Get permission to send push notifications
 - https://web.dev/push-notifications-overview/#permission
 
 `Notification.requestPermission()` - https://developer.mozilla.org/docs/Web/API/Notification/requestPermission
-It will trriger a browser-specific confirmation prompt
+It will trigger a browser-specific confirmation prompt
 
 ### 2. Subscribe the client to push notifications and store client data in your backend database 
 - https://web.dev/push-notifications-overview/#subscription
@@ -103,7 +106,7 @@ The authentication process roughly works like this:
     to display the information as a notification.
 
 
-## F.A.Q.
+## Push Notifications F.A.Q.
 - https://web.dev/push-notifications-faq/
 
 ### Why is this any better than web sockets?
@@ -125,7 +128,7 @@ In July a new feature in web push landed - Application Server Keys (or VAPID, as
 When Chrome added support for this new API, it used Firebase Cloud Messaging (also known as FCM) 
 instead of GCM as a messaging service. This is important for a few reasons:
 
-- Chrome and Application Sever Keys do not need any kind of project to be set up with Google or Firebase. It'll just work.
+- Chrome and Application Server Keys do not need any kind of project to be set up with Google or Firebase. It'll just work.
 - FCM supports the web push protocol, which is the API that all web push services will support. 
   This means that regardless of what push service a browser uses, you just make the same kind of request and it'll send the message.
 
@@ -143,9 +146,20 @@ behind the scenes to make it easier to implement web push.
 - FCM's proprietary API supports custom features, for example FCM Topics 
   (It works on the web push too, though it's poorly documented).
 - Finally, FCM supports Android, iOS and web, so for some teams it is easier 
-  to work with in existing projects.
+  to work with existing projects.
 
 This uses web push behind the scenes, but its goal is to abstract it away.
 
 Like in the previous question, if you consider web push as just a browser and a push service, 
 then you can consider the Messaging SDK in Firebase as a library to simplify implementing web push.
+
+## Push Notification Code Examples
+
+### Codelab: Build a push notification client
+- https://web.dev/push-notifications-client-codelab/
+
+### Codelab: Build a push notification server
+- https://web.dev/push-notifications-server-codelab/
+
+## Further web.dev articles
+- https://web.dev/push-notifications-faq/#where-to-go-next
