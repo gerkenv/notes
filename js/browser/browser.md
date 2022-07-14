@@ -210,6 +210,21 @@ https://web.dev/bfcache/
 - https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
 - https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers
 
+# HTTP
+
+## Status Codes
+- https://httpstatusdogs.com/
+
+- 200 - ok
+- 201 - content is created
+- 302 - re-direct
+- 401 - unauthorized
+- 429 - rate-limiting
+- 431 
+  - thrown by default by node if any header is more than 8kB 
+    - https://cri.dev/posts/2020-05-18-Fixing-431-Request-Header-Fields-Too-Large-in-Nodejs/
+- 503 - service is unavailable
+
 ## IE11. Missing JS API (Not Implemented)
 - [Response API - returned by Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Response)
     - Also `safe-fetch` library   
