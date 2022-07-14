@@ -161,5 +161,8 @@ then you can consider the Messaging SDK in Firebase as a library to simplify imp
 ### Codelab: Build a push notification server
 - https://web.dev/push-notifications-server-codelab/
 
+### Server: sending messages with web push libraries
+- https://web.dev/sending-messages-with-web-push-libraries/
+
 ## Further web.dev articles
 - https://web.dev/push-notifications-faq/#where-to-go-next
