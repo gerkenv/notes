@@ -41,6 +41,7 @@ https://www.debugbear.com/blog/measuring-react-app-performance
 - [Towards a better responsiveness metric](https://web.dev/better-responsiveness-metric/#group-events-into-interactions)
 
 ## Interaction to Next Paint (INP)
+- 2022 https://web.dev/better-responsiveness-metric/
 - 2022 https://web.dev/inp-in-frameworks/
 
 ## Web Vitals Browser Extension
