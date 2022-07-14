@@ -166,3 +166,12 @@ then you can consider the Messaging SDK in Firebase as a library to simplify imp
 
 ## Further web.dev articles
 - https://web.dev/push-notifications-faq/#where-to-go-next
+
+## Push Notification Permission
+There is one pitfall related to the default permission rendered by a browser.
+If a user cancels it, then it is quite cumbersome to unblock it later since it can be done only through browsers settings.
+But there is a common practice to provide double notification to avoid the risk of being permanently blocked.
+
+More details:
+- Double Permission https://web.dev/push-notifications-permissions-ux/#double-permission
+- Different Permission UX https://web.dev/push-notifications-permissions-ux
