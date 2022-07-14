@@ -1,7 +1,9 @@
 # Performance
 
 ## Does It Really Matter? Why?
-- https://web.dev/milliseconds-make-millions/
+- 2022 https://web.dev/milliseconds-make-millions/
+- 2021 https://web.dev/vitals-business-impact/
+
 
 ## Stories
 - 2019 https://tech.ebayinc.com/engineering/speed-by-a-thousand-cuts/
