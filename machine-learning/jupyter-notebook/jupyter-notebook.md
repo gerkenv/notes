@@ -21,3 +21,6 @@ https://jupyter.org/install
 !echo "whatever"
 !git status
 ```
+
+## Markdown Syntax
+- https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html
