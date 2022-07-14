@@ -4,7 +4,6 @@
 - 2022 https://web.dev/milliseconds-make-millions/
 - 2021 https://web.dev/vitals-business-impact/
 
-
 ## Stories
 - 2019 https://tech.ebayinc.com/engineering/speed-by-a-thousand-cuts/
 - 2018 https://medium.com/dev-channel/a-netflix-web-performance-case-study-c0bcde26a9d9
@@ -12,6 +11,8 @@
 ## Cummulative Layout Shift (CLS)
 - can some input events affect CLS
   - https://github.com/WICG/layout-instability#recent-input-exclusion
+- how to debug layout shifts 
+  - https://web.dev/debug-layout-shifts/
 
 ## How To Optimize Guides
 - https://nodesource.com/blog/improve-javascript-performance/
