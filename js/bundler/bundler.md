@@ -156,3 +156,6 @@ If you need more precise targeting, then Babel is required.
 ### Webpack + Babel
 `babel-preset-typescript` is not following immediately the latest TS updates, but it is good enough.
 https://2ality.com/2019/10/babel-loader-typescript.html
+
+## Bundling non-JavaScript resources
+- https://web.dev/bundling-non-js-resources/
