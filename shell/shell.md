@@ -1,4 +1,5 @@
 # Shell
+## Cheat Sheet
 https://devhints.io/bash
 
 ## cd
@@ -90,18 +91,24 @@ https://stackoverflow.com/questions/19622198/what-does-set-e-mean-in-a-bash-scri
 set -e
 ```
 
-## Debug Bash Script
+## Debug Bash Script / Print out every bash command
 https://stackoverflow.com/questions/2853803/how-to-echo-shell-commands-as-they-are-executed
 
-Print out every bash command (configure in a script)
+1. Configure in a script
 ```shell
 #!/bin/bash -x
 ```
 
-Run any script with debug option `-x`.
+2. Run any script with debug option `-x`.
 ```shell
 ./some-script.sh -x
 ```
+
+3. Configure in a script
+```shell
+set -x
+```
+
 ## Execute Commands In Sequence
 ```shell
 command1 && command2
@@ -148,7 +155,7 @@ rm -f some-file-that-not-exist
 ```
 
 ## cp
-https://unix.stackexchange.com/questions/56084/how-do-i-copy-a-symbolic-link#:~:text=Use%20cp%20%2DP%20(capital%20P,all%20symbolic%20links%20as%20such.
+- https://unix.stackexchange.com/questions/56084/how-do-i-copy-a-symbolic-link#:~:text=Use%20cp%20%2DP%20(capital%20P,all%20symbolic%20links%20as%20such.
 ```shell
 cp file1 file2
 cp -R dir1 dir2
@@ -158,8 +165,159 @@ cp -P symlink1 symlink2
 cp -RP dir1 dir2
 ```
 
+## streams
+
+### merge error stream into standard stream
+- https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean
+```shel
+2>&1
+```
+
+## array
+- https://devhints.io/bash
+```shell
+ARRAY=( one two three )
+# print first element of the array
+echo ${ARRAY[0]}   # abc1
+# print all elements of the array
+echo ${ARRAY[@]}   # abc1 abc2
+# print array length
+echo ${#ARRAY[@]}  # 2
+```
+
+## file search by wildcard pattern
+```shell
+touch abc1
+touch abc2
+
+WILDCARD_PATTERN='ab*'
+
+echo WILDCARD_PATTERN       # WILDCARD_PATTERN
+echo $WILDCARD_PATTERN      # abc1 abc2
+echo ${WILDCARD_PATTERN}    # abc1 abc2
+echo "${WILDCARD_PATTERN}"  # ab*
+
+rm abc1
+rm abc2
+```
+
+## get first file matching to a wildcard
+
+### [valid] use wildcard expansion, `find` and `head`
+- https://stackoverflow.com/questions/45143529/check-if-file-exists-using-full-paths-and-wildcard-for-filename-bash
+```shell
+touch abc1
+touch abc2
+
+WILDCARD_PATTERN='ab*'
+
+# match will include provided directory path as well
+# in this case it is './'
+FIRST_MATCH=`find . -name "${WILDCARD_PATTERN}" | head -1`
+echo $FIRST_MATCH  # ./abc
+
+rm abc1
+rm abc2
+```
+
+### [valid] use wildcard expansion, `ls`, and `head`
+```shell
+touch abc1
+touch abc2
+
+WILDCARD_PATTERN='ab*'
+
+# redirect error `ls: acb*: No such file or directory`
+# from error stream `2>` to `/dev/null` nowhere
+FIRST_MATCH=`ls $WILDCARD_PATTERN 2> /dev/null | head -1`
+echo FIRST_MATCH
+
+rm abc1
+rm abc2
+```
+
+### [invalid] use wildcard expansion and array 
+- https://unix.stackexchange.com/questions/156205/how-can-i-get-the-first-match-from-wildcard-expansion
+```shell
+touch abc1
+touch abc2
+
+WILDCARD_PATTERN='ab*'
+
+# expand wildcard to matching files from current directory 
+# and create an array of those files
+ARRAY_OF_MATCHES=( $WILDCARD_PATTERN )
+# print first element of the array
+echo ${ARRAY_OF_MATCHES[0]}   # abc1
+
+rm abc1
+rm abc2
+```
+__Don't use__. If pattern doesn't match first element will be `ab*`. Seems to do somehting with `nullglob`.
+
+### [invalid] use wildcard expansion, `compgen` and `head`
+- https://stackoverflow.com/questions/6363441/check-if-a-file-exists-with-a-wildcard-in-a-shell-script
+```shell
+touch abc1
+touch abc2
+
+WILDCARD_PATTERN='ab*'
+
+# compgen is used to search commands, but works for files as well
+FIRST_MATCH=`compgen -G "${WILDCARD_PATTERN}" | head -1`
+echo $FIRST_MATCH  # abc2
+
+rm abc1
+rm abc2
+```
+__Don't use__. Note that compgen is a bash-specific built-in command and is not part of the POSIX standard Unix shell specified built-in commands
+https://stackoverflow.com/a/34195247
+
+## check if a file exist matching a wildcard pattern
+
+### use `find` and `head`
+[- https://stackoverflow.com/a/6364244](https://stackoverflow.com/questions/45143529/check-if-file-exists-using-full-paths-and-wildcard-for-filename-bash)
+```shell
+touch abc1
+touch abc2
+
+WILDCARD_PATTERN='acb*'
+
+# match will include provided directory path as well
+# in this case it is './'
+FIRST_MATCH=`find . -name "${WILDCARD_PATTERN}" | head -1`
+if [[ -n $FIRST_MATCH ]]; then
+    echo 'exist'
+else
+    echo 'not exist'
+fi
+
+rm abc1
+rm abc2
+```
+
+### use wildcard expansion, `ls`, and `head`
+```shell
+touch abc1
+touch abc2
+
+WILDCARD_PATTERN='acb*'
+
+# redirect error `ls: acb*: No such file or directory`
+# from error stream `2>` to `/dev/null` nowhere
+FIRST_MATCH=`ls $WILDCARD_PATTERN 2> /dev/null | head -1`
+if [[ -n $FIRST_MATCH ]]; then
+    echo 'exist'
+else
+    echo 'not exist'
+fi
+
+rm abc1
+rm abc2
+```
+
 ## curl
 - [playground](https://reqbin.com/)
 - [POST with JSON body](https://reqbin.com/req/c-dwjszac0/curl-post-json-example)
 - [request with search query parameters](https://stackoverflow.com/questions/13371284/curl-command-line-url-parameters)
-
+- [manual](https://curl.se/docs/manpage.html)
