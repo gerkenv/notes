@@ -173,6 +173,25 @@ cp -RP dir1 dir2
 2>&1
 ```
 
+## functions
+
+### return
+https://bash.cyberciti.biz/guide/Returning_from_a_function
+```shell
+touch abc1
+
+echoNumberIfFileExists() {
+    if [[ -f abc1 ]]; then
+        echo 'exist'
+        return 0
+    fi
+
+    echo 'not exist'
+}
+echoNumberIfFileExists  # `exist`
+rm abc1
+```
+
 ## array
 - https://devhints.io/bash
 ```shell
