@@ -29,3 +29,14 @@ Links:
 - `conda activate ./envs`
 - Check active python version by `which python` - it should point to subfolder of `project/env/...`
 - `jupyter notebook .`
+
+## Environment Mangement
+- Install all packages you need and export `environment.yml` file by running `conda env export --from-history > environment.yml`.
+  - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-an-environment-file-across-platforms
+- Create an environemnt later from `environment.yml` file
+  - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file
+- Update an environement after adding a new dependency to `environment.yml` by running `sudo conda env update --file environment.yml --prefix ./envs --prune`
+  - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#updating-an-environment
+
+
+
