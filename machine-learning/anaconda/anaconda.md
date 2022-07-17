@@ -31,12 +31,16 @@ Links:
 - `jupyter notebook .`
 
 ## Environment Mangement
+- List all environments
+  - `conda env list` or `conda info --envs`
 - Install all packages you need and export `environment.yml` file by running `conda env export --from-history > environment.yml`.
   - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-an-environment-file-across-platforms
 - Create an environemnt later from `environment.yml` file
   - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file
 - Update an environement after adding a new dependency to `environment.yml` by running `sudo conda env update --file environment.yml --prefix ./envs --prune`
   - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#updating-an-environment
+- Remove an environement
+  - https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#removing-an-environment
 
 
 
