@@ -335,6 +335,46 @@ rm abc1
 rm abc2
 ```
 
+## add comment to a file
+- https://unix.stackexchange.com/questions/190118/uses-of-hash-in-shell-scripting
+```shell
+touch abc1
+COMMENT="# some comment"
+echo "$COMMENT" >> abc1
+```
+
+## add newline and a comment to a file
+- https://stackoverflow.com/questions/20536112/how-to-insert-a-new-line-in-linux-shell-script
+```shell
+touch abc1
+COMMENT="# some comment"
+echo "" >> abc1
+echo "$COMMENT" >> abc1
+```
+
+## check if a line is already presented in a file
+```shell
+touch abc1
+
+STRING="some-string"
+echo "$STRING" >> abc1
+echo "$STRING"2 >> abc1
+
+MATCHING_LINES=`grep $STRING abc1` # MATCHING_LINES=some-string some-string2
+
+# -x, --line-regexp
+# Only input lines selected against an entire fixed string or regular expression are considered to be matching lines
+
+MATCHING_LINES_X=`grep -x "$STRING" abc1` # MATCHING_LINES_X=some-string
+
+# -q, --quiet, --silent
+# Quiet mode: suppress normal output.  grep will only search a file until a match has been found, making searches potentially less expensive.
+
+FOUND=`grep -q $STRING abc1 && echo 1 || echo 0` # FOUND=1
+
+rm abc1
+```
+
 ## curl
 - [playground](https://reqbin.com/)
 - [POST with JSON body](https://reqbin.com/req/c-dwjszac0/curl-post-json-example)
