@@ -20,17 +20,17 @@ fi
 - Installing `zsh`
   - https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
 
-## Auto-completition
+### Auto-completition
 ```
 echo 'autoload -Uz compinit && compinit' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-## Oh My Zsh
+### Oh My Zsh
 - https://github.com/ohmyzsh/ohmyzsh
   - https://github.com/ohmyzsh/ohmyzsh#basic-installation
 
-## Plugins To Add
+#### Plugins To Add
 ```
 plugins=(
     git
@@ -39,3 +39,8 @@ plugins=(
     zsh-autosuggestions
 )
 ```
+
+#### Themes
+
+##### PowerLevel 10K
+- https://github.com/romkatv/powerlevel10k
