@@ -172,6 +172,23 @@ command1 && command2 # if `command1` succeeds then `command2` is executed
 command1 || command2 # if `command1` fails then `command2` is executed
 ```
 
+## Spawn Multiple Child Processes And Kill Them Simultaneously
+- Good idea https://unix.stackexchange.com/a/204619
+- Simpler solution https://unix.stackexchange.com/a/204721
+- Also simple https://stackoverflow.com/a/52033580
+```shell
+sh -c 'command1 & command2 & command3 & wait'
+# Press Ctrl+C to kill them all
+```
+
+## Redirect Output Of Multiple Commands 
+- https://unix.stackexchange.com/a/204619
+```
+command1 | tee 1.log | sed -e 's/^/[Command1] /' & 
+command2 | tee 2.log | sed -e 's/^/[Command2] /' & 
+command3 | tee 3.log | sed -e 's/^/[Command3] /'
+```
+
 ## mkdir
 create folders
 ```
@@ -414,3 +431,4 @@ rm abc1
 
 ## Request Root Privilege From Within A Script
 - https://askubuntu.com/questions/746350/request-root-privilege-from-within-a-script
+
