@@ -39,3 +39,10 @@ make test
 make another-test
 ```
 
+## Execute Command From A Directory
+- https://stackoverflow.com/a/1789616
+```makefile
+test:
+    cd directory && command
+```
+
