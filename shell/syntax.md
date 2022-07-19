@@ -189,6 +189,9 @@ command2 | tee 2.log | sed -e 's/^/[Command2] /' &
 command3 | tee 3.log | sed -e 's/^/[Command3] /'
 ```
 
+## trap
+- https://www.shellscript.sh/trap.html
+
 ## mkdir
 create folders
 ```
