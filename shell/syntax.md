@@ -1,6 +1,37 @@
-# Shell
+# Shell Syntax (Common Utilities)
 ## Cheat Sheet
 https://devhints.io/bash
+
+## `touch` (create file) and `rm` (remove file)
+```
+touch abc1
+rm abc1
+```
+
+## echo
+```
+echo "some" # prints 'some' to terminal
+```
+```
+echo "some" > abc1 # writes 'some' to a file
+cat acb1 # prints content of 'abc1'
+rm abc1
+```
+
+## write (append) to protected files
+- https://stackoverflow.com/questions/84882/sudo-echo-something-etc-privilegedfile-doesnt-work
+```
+touch abc1
+echo "some" | sudo tee -a abc1 # with `-a` it will append
+echo "some" | sudo tee -a abc1 # with `-a` it will append
+echo "some2" | sudo tee abc1 # without `-a` it will overwrite the content (be careful with system files)
+rm abc1
+```
+
+### redirect output `>` to protected files
+- https://stackoverflow.com/questions/82256/how-do-i-use-sudo-to-redirect-output-to-a-location-i-dont-have-permission-to-wr
+- https://stackoverflow.com/questions/84882/sudo-echo-something-etc-privilegedfile-doesnt-work
+
 
 ## cd
 Go to a previous directory
@@ -374,3 +405,6 @@ FOUND=`grep -q $STRING abc1 && echo 1 || echo 0` # FOUND=1
 
 rm abc1
 ```
+
+## Request Root Privilege From Within A Script
+- https://askubuntu.com/questions/746350/request-root-privilege-from-within-a-script
