@@ -374,9 +374,3 @@ FOUND=`grep -q $STRING abc1 && echo 1 || echo 0` # FOUND=1
 
 rm abc1
 ```
-
-## curl
-- [playground](https://reqbin.com/)
-- [POST with JSON body](https://reqbin.com/req/c-dwjszac0/curl-post-json-example)
-- [request with search query parameters](https://stackoverflow.com/questions/13371284/curl-command-line-url-parameters)
-- [manual](https://curl.se/docs/manpage.html)
