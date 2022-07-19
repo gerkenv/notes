@@ -8,6 +8,12 @@ touch abc1
 rm abc1
 ```
 
+## print current directory `pwd`
+```
+~ pwd
+/Users/username
+```
+
 ## echo
 ```
 echo "some" # prints 'some' to terminal
