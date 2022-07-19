@@ -24,3 +24,6 @@ https://jupyter.org/install
 
 ## Markdown Syntax
 - https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html
+
+## Run From A Custom Browser
+- https://medium.com/@soumadipta.gorai/change-the-default-browser-of-jupyter-notebook-in-mac-os-x-95b6648b624d
