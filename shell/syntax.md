@@ -435,3 +435,14 @@ rm abc1
 ## Request Root Privilege From Within A Script
 - https://askubuntu.com/questions/746350/request-root-privilege-from-within-a-script
 
+## Pass Command Line Arguments To A Script
+- https://www.baeldung.com/linux/use-command-line-arguments-in-bash-script
+```shell
+# call
+sh ./script.sh value1 value2
+```
+```shell
+# inside script.sh
+echo $1   # value1
+echo $2   # value2
+```
