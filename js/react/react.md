@@ -1,4 +1,8 @@
 # React
+
+## React Class Component Long-Term Support
+- https://www.robinwieruch.de/react-class-component-deprecated
+
 ## display name
 
 https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/display-name.md
