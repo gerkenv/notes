@@ -2,6 +2,18 @@
 ## Cheat Sheet
 https://devhints.io/bash
 
+## `ls` check directory content
+```
+ls    # prints files, folders
+ls -a # including hidden files
+ls -l # in table format with properties
+ls -h # provides human-readable file size
+
+ls -alh # all of above
+
+ls -R # applies `ls` recursively to folders
+```
+
 ## `touch` (create file) and `rm` (remove file)
 ```
 touch abc1
@@ -445,4 +457,44 @@ sh ./script.sh value1 value2
 # inside script.sh
 echo $1   # value1
 echo $2   # value2
+```
+
+## Temporary Folder
+It is useful to use `trap` to execute a clean up the temporary folder on script `EXIT`.
+It might be the end of the script or any intermediate exception.
+```shell
+TEMPORARY_FOLDER=$(mktemp -d)
+# Clean temporary directory on exit
+trap '[[ -d $TEMPORARY_FOLDER ]] && rm -rf -- "$TEMPORARY_FOLDER"' EXIT
+
+cd $TEMPORARY_FOLDER
+
+rm -rf -- "$TEMPORARY_FOLDER"
+```
+
+## If Conditions
+```shell
+touch abc1
+
+test -f abc1 && echo 1 || echo 0    # 1
+
+[[ -f abc1 ]] && echo 1 || echo 0   # 1
+
+if [[ -f abc1 ]]; then               # 1
+    echo 1
+else
+    echo 0
+fi
+
+rm -f abc1
+
+test -f abc1 && echo 1 || echo 0    # 0
+
+[[ -f abc1 ]] && echo 1 || echo 0   # 0
+
+if [[ -f abc1 ]]; then              # 0
+    echo 1
+else
+    echo 0
+fi
 ```
