@@ -318,7 +318,8 @@ self.addEventListener("fetch", event => {
 });
 ```
 
-
+### Workbox Caching Strategies
+- https://developer.chrome.com/docs/workbox/caching-strategies-overview/
 
 __TODO ...continue here (chapter 8 - 10)__
 
