@@ -46,3 +46,20 @@ test:
     cd directory && command
 ```
 
+## Combining Commands
+- https://makefiletutorial.com/#command-execution
+Each line is executed in, kind of, a new shell. So to execute few commands in the same context you need to explicitely combine those.
+```
+all: 
+	cd ..
+	# The cd above does not affect this line, because each command is effectively run in a new shell
+	echo `pwd`
+
+	# This cd command affects the next because they are on the same line
+	cd ..;echo `pwd`
+
+	# Same as above
+	cd ..; \
+	echo `pwd`
+```
+You cna also apply `&&`, `||`.
