@@ -225,6 +225,22 @@ https://web.dev/bfcache/
     - https://cri.dev/posts/2020-05-18-Fixing-431-Request-Header-Fields-Too-Large-in-Nodejs/
 - 503 - service is unavailable
 
+## User Agent Holly War
+
+### Client Side
+If you want to detect that you're on mobile on the client-side - then everything below is okay.
+
+- MDN against `user-agent` https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
+- one summary https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device
+- Check `warning` chapter here http://hgoebl.github.io/mobile-detect.js/
+- https://mediaqueri.es/
+
+### Server-side
+If you want to detect that you're on mobile on the server-side - then everything above doesn't help.
+- Migrate to User-Agent Client Hints https://web.dev/migrate-to-ua-ch
+  - Server-side static header https://web.dev/migrate-to-ua-ch/#strategy:-static-server-side-header
+    - May cause the same issue as old `user-agent`
+
 ## IE11. Missing JS API (Not Implemented)
 - [Response API - returned by Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Response)
     - Also `safe-fetch` library   
