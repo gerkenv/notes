@@ -165,6 +165,9 @@ command1 && command2
 
 ## Execute Commands In Parallel
 https://stackoverflow.com/questions/3004811/how-do-you-run-multiple-programs-in-parallel-from-a-bash-script
+
+If you want to kill later parent process and all started child process then 
+the longest or non-ending child process has to be the last in the chain of parallel processes
 ```shell
 command1 & command2
 # or
@@ -188,6 +191,9 @@ command1 || command2 # if `command1` fails then `command2` is executed
 - Good idea https://unix.stackexchange.com/a/204619
 - Simpler solution https://unix.stackexchange.com/a/204721
 - Also simple https://stackoverflow.com/a/52033580
+
+If you want to kill later parent process and all started child process then 
+the longest or non-ending child process has to be the last in the chain of parallel processes.
 ```shell
 sh -c 'command1 & command2 & command3 & wait'
 # Press Ctrl+C to kill them all
