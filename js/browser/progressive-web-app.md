@@ -425,16 +425,68 @@ If the browser doesn't support the `beforeinstallprompt` or the event does not f
 
 You should only render these instructions in browser mode; other display options, such as `standalone` or `fullscreen` mean the user has already installed the app.
 
-__TODO ...continue here (chapter 14 - 22)__
+### Updating The App
+- https://web.dev/learn/pwa/update/
+
+#### Updating Metadata
+- https://web.dev/learn/pwa/update/#updating-metadata
+
+
+__TODO ...continue here (chapter 14)__
+
+__TODO ...continue here (chapter 14)__
+
+__TODO ...continue here (chapter 14)__
+
+
+### Check If Related (Same PWA Or Alternative Native) App Is Already Installed
+
+#### Get List Of Related Apps With `getInstalledRelatedApps`
+- https://web.dev/get-installed-related-apps/
+- https://web.dev/learn/pwa/detection/#detecting-related-installed-apps
+
+##### Browser Support
+- 45% of users - https://caniuse.com/mdn-api_navigator_getinstalledrelatedapps
+
+##### Supported App Types / On Platforms / From Browser
+- https://web.dev/get-installed-related-apps/#supported-app-types-you-can-check
+
+- Android App (Android only, from Chrome 80)
+- Windows (UWP) App (Windows only, from Chrome / Edge 85)
+- Prgressive Web App (Android only, Chrome 84)
+
+
+#### Use `related_applications` Manifest Field To Redirect Installation To An App Store
+- https://web.dev/learn/pwa/detection/#related-applications
+
+##### Browser Support
+- 46% of users - https://caniuse.com/mdn-html_manifest_related_applications
+
+#### How To Check On iOS?
+- no way - https://stackoverflow.com/questions/60837896/is-there-a-method-to-detect-native-apps-from-mobile-safari
+
+But there is an alternative:
+
+##### Redirect To The App As A Test
+If redirect to app fails - redirect to the store / open the installation prompt.
+
+- before iOS 9 - https://stackoverflow.com/a/30793222
+- from iOS 9 - probably universal links - https://stackoverflow.com/a/32647480
 
 __TODO ...continue here (chapter 14 - 22)__
 
 __TODO ...continue here (chapter 14 - 22)__
+
+__TODO ...continue here (chapter 14 - 22)__
+
 
 ### Capabilities
 There are a lot of capabilities that can be used currently.
 List of widely supported capabilities https://web.dev/learn/pwa/capabilities/
 Demo PWA with built-in capabilities https://whatpwacando.today/
+
+#### App Shortcuts
+- https://web.dev/app-shortcuts/
 
 __TODO ...continue here (chapter 24)__
 
