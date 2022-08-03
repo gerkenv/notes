@@ -36,6 +36,21 @@ cat acb1 # prints content of 'abc1'
 rm abc1
 ```
 
+## exist on error `set -e`
+```sh
+# exit on any command non-zero exit code / on any failing command
+# please set in the begging of the script
+set -e
+# go to non-existing directory
+cd ./abc3
+# this line is not reached
+echo 'message after error'
+```
+
+Example output:
+> sh ./test.sh \
+> ./test.sh: line 6: cd: ./abc3: No such file or directory
+
 ## write (append) to protected files
 - https://stackoverflow.com/questions/84882/sudo-echo-something-etc-privilegedfile-doesnt-work
 ```
