@@ -39,7 +39,33 @@ It will trigger a browser-specific confirmation prompt
 
 After you get permission, your website needs to initiate the process of subscribing the user to push notifications. 
 This is done through JavaScript, using the Push API. - https://developer.mozilla.org/docs/Web/API/Push_API
-You'll need to provide a public authentication key during the subscription process. - https://web.dev/push-notifications-overview/#sign
+You'll need to provide a public authentication key during the subscription process - here is why https://web.dev/push-notifications-overview/#sign
+
+API to subscribe:
+https://web.dev/push-notifications-subscribing-a-user/#subscribe-a-user-with-pushmanager
+```
+function subscribeUserToPush() {
+  return navigator.serviceWorker
+    .register('/service-worker.js')
+    .then(function (registration) {
+      const subscribeOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(
+          'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U',
+        ),
+      };
+
+      return registration.pushManager.subscribe(subscribeOptions);
+    })
+    .then(function (pushSubscription) {
+      console.log(
+        'Received PushSubscription: ',
+        JSON.stringify(pushSubscription),
+      );
+      return pushSubscription;
+    });
+}
+```
 
 Assuming that the subscription was successful, the browser returns a `PushSubscription` object. - https://developer.mozilla.org/docs/Web/API/PushSubscription
 ```js
@@ -175,3 +201,7 @@ But there is a common practice to provide double notification to avoid the risk 
 More details:
 - Double Permission https://web.dev/push-notifications-permissions-ux/#double-permission
 - Different Permission UX https://web.dev/push-notifications-permissions-ux
+
+## Video Tutorials
+- Web Push Notifications - Simplest Implementation
+  - https://www.youtube.com/watch?v=2zHqTjyfIY8
