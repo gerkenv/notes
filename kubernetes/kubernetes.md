@@ -8,7 +8,8 @@ https://kubernetes.io/docs/concepts/services-networking/ingress/
 https://dwdraju.medium.com/how-deployment-service-ingress-are-related-in-their-manifest-a2e553cf0ffb
 
 ## Namespaces
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources
+- https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources
+- https://kubernetes.io/docs/reference/kubectl/cheatsheet/#a-note-on-all-namespaces
 ```sh
 kubectl get pod --all-namespaces
 kubectl get pod -A # same as above
