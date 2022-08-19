@@ -11,6 +11,7 @@ https://dwdraju.medium.com/how-deployment-service-ingress-are-related-in-their-m
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources
 ```sh
 kubectl get pod --all-namespaces
+kubectl get pod -A # same as above
 kubectl get pod --namespace=some-namespace
 kubectl get pod -n some-namespace
 ```
