@@ -227,7 +227,7 @@ echo "alias docker=podman" >> ~/.zshrc
 
 ### Run Test Container
 ```
-docker run -t --rm -p 8080:80/tcp docker.io/library/httpd
+podman run -t --rm -p 8080:80/tcp docker.io/library/httpd
 curl localhost:8080
 ```
 It should log
@@ -235,5 +235,22 @@ It should log
 
 ### Stop Running Containers
 ```
-docker container ls -q | xargs -L1 podman stop
+podman container ls -q | xargs -L1 podman stop
+```
+
+### Remove All Stopped Containers
+```
+podman container prune
+# or
+podman container ls -q | xargs -L1 podman rm
+```
+
+### Select Exited Containers
+```
+podman container ls --filter status=exited
+```
+
+### Select Running Containers
+```
+podman container ls --filter status=running
 ```
