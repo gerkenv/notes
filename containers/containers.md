@@ -1,8 +1,10 @@
-# Docker
+# Containers
 
-## Images
+## Docker
 
-### List Images
+### Images
+
+#### List Images
 List all `-a`
 ```
 docker image ls -a
@@ -12,7 +14,7 @@ Only IDs `-q`
 docker image ls -aq
 ```
 
-#### --help
+##### --help
 ```
 Usage:  docker image ls [OPTIONS] [REPOSITORY[:TAG]]
 
@@ -30,29 +32,29 @@ Options:
   -q, --quiet           Only show image IDs
 ```
 
-### Build Image
+#### Build Image
 ```
 docker build --tag=${repository/application:optional_tag} .
 ```
 
-### Image History
+#### Image History
 ```
 docker image history --no-trunc some-image-name > some-file
 ```
 
-### Pull Image
+#### Pull Image
 ```
 docker pull some-image
 ```
 
-### Remove All Images
+#### Remove All Images
 ```
 docker image ls -aq | xargs -L1 docker image rm
 ```
 
-## Containers
+### Containers
 
-### List Containers
+#### List Containers
 Alias: `docker ps`, `docker container ps`
 
 List only running containers
@@ -68,7 +70,7 @@ Only IDs `-q`
 docker container ls -aq
 ```
 
-#### --help
+##### --help
 ```
 Usage:  docker container ls [OPTIONS]
 
@@ -88,7 +90,7 @@ Options:
   -s, --size            Display total file sizes
 ```
 
-### Stop Containers
+#### Stop Containers
 Only running
 ```
 docker container ls -q | xargs -L1 docker stop
@@ -98,22 +100,22 @@ all `-a`
 docker container ls -aq | xargs -L1 docker stop
 ```
 
-### Start All Containers
+#### Start All Containers
 ```
 docker container ls -aq | xargs -L1 docker start
 ```
 
-### Remove All Containers
+#### Remove All Containers
 ```
 docker container ls -aq | xargs -L1 docker container rm
 ```
 
-### Run Container
+#### Run Container
 What means `create` and `start` container from a latest tag og the `local-repo/rendering-engine-image` image and write output `>` to the `log` file.
 ```
 docker container run --name some-name -p 3333:3333 --rm --cpus 1 -m 1000M local-repo/rendering-engine-image > log
 ```
-#### --help
+##### --help
 - `--name` - custom name for a container. (Useful for scripts, to access exact running container).
 - `-p` - map container port to a host port `container:host`.
 - `--rm` - delete container when it stops. (Useful when developing docker image, since you cannot delete an image while some container is using it).
@@ -121,7 +123,7 @@ docker container run --name some-name -p 3333:3333 --rm --cpus 1 -m 1000M local-
 - `-m` - amount of memoery for container to use.
 
 
-### Open Shell In A Running Container
+#### Open Shell In A Running Container
 Alias: `docker exec`
 
 By Id `d11d34bcff5c`
@@ -133,7 +135,7 @@ By Name
 docker container exec -it some-name sh
 ```
 
-### Execute Any Command In A Container
+#### Execute Any Command In A Container
 Alias: `docker exec`
 
 By Id `d11d34bcff5c`
@@ -145,7 +147,7 @@ By Name
 docker container exec -it some-name ls -al /
 ```
 
-### Copy File From Container
+#### Copy File From Container
 https://docs.docker.com/engine/reference/commandline/cp/
 Alias: `docker cp`
 
@@ -160,7 +162,7 @@ By Name
 docker container cp some-name:/tmp/test-1.cpuprofile ./test-1.cpuprofile
 ```
 
-### Copy From Local To Container
+#### Copy From Local To Container
 https://docs.docker.com/engine/reference/commandline/cp/
 Alias: `docker cp`
 
@@ -175,15 +177,63 @@ By Name
 docker container cp ./test-1.cpuprofile some-name:/tmp/test-1.cpuprofile
 ```
 
-### How To Get A Container Id
-#### Of A Running Container
+#### How To Get A Container Id
+##### Of A Running Container
 https://stackoverflow.com/questions/46031522/dynamically-get-a-running-container-id-name-created-by-docker-run-command
 
-#### When Starting A Container
+##### When Starting A Container
 https://stackoverflow.com/questions/56218336/how-to-get-docker-container-id-when-starting-container
 
-### Logs
+#### Logs
 https://docs.docker.com/engine/reference/commandline/logs/
 ```
 docker container logs container-name > log-file
+```
+
+## Unistall Docker From Mac
+- https://stackoverflow.com/a/39823119/8309959
+
+## Podman
+### Install
+```
+brew install podman
+```
+
+### Version
+```
+podman -v
+```
+
+### Initialize Podman Virtual Machine 
+- https://docs.podman.io/en/latest/markdown/podman-machine-init.1.html
+```
+podman machine init --cpus 2 --memory 4096 --volume /Users:/Users
+```
+
+### Start Podman Virtual Machine 
+```
+podman machine start
+```
+
+### Stop Podman virtual MAchine
+```
+podman machine stop
+```
+
+### Substitute Docker Commands
+```
+echo "alias docker=podman" >> ~/.zshrc
+```
+
+### Run Test Container
+```
+docker run -t --rm -p 8080:80/tcp docker.io/library/httpd
+curl localhost:8080
+```
+It should log
+> 
+
+### Stop Running Containers
+```
+docker container ls -q | xargs -L1 podman stop
 ```
