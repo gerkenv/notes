@@ -15,10 +15,19 @@ https://almanac.httparchive.org/en/2020/table-of-contents
 ## Chrome Predefined Pages
 chrome://chrome-urls/
 
-## `sendBeacon` API
-https://xgwang.me/posts/you-may-not-know-beacon
+## `sendBeacon` API 
+- https://nicj.net/beaconing-in-practice
 
-open bugs:
+### `sendBeacon` Payload Limits
+- https://nicj.net/beaconing-in-practice/#beaconing-payload-limits
+
+### `sendBeacon` Pitfalls
+- https://xgwang.me/posts/you-may-not-know-beacon
+
+### `sendBeacon` Success Rate
+- https://volument.com/blog/sendbeacon-is-broken
+
+### `sendBeacon` Open Bugs:
 - service worker cannot intercept beacon https://bugs.chromium.org/p/chromium/issues/detail?id=475174
 
 ## Service Worker vs Worker
