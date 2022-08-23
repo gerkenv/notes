@@ -237,7 +237,7 @@ Then run
 curl localhost:8080
 ```
 It should log
-> <html><body><h1>It works!</h1></body></html>
+> `<html><body><h1>It works!</h1></body></html>`
 
 ### Stop Running Containers
 ```
