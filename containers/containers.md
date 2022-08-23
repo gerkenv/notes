@@ -228,10 +228,13 @@ echo "alias docker=podman" >> ~/.zshrc
 ### Run Test Container
 ```
 podman run -t --rm -p 8080:80/tcp docker.io/library/httpd
+```
+Then run
+```
 curl localhost:8080
 ```
 It should log
-> 
+> <html><body><h1>It works!</h1></body></html>
 
 ### Stop Running Containers
 ```
