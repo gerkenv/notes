@@ -185,6 +185,9 @@ Math.floor(transferSummary.transferSize * 8 * 1000 / transferTime / 1024);
 | 1024              | 1.05            | 723, 486, 586     |
 | 2048              | 2.1             | 2038, 920, 1094   |
 
+__ `downlink` results cannot be trusted __
+When you switch `throttling` in chrome devtools - `downlink` is updated wihtout downloading anything, so it is mocked.
+
 #### Experiment 3. PerformanceNavigationTiming
 https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming#browser_compatibility
 https://w3c.github.io/navigation-timing/#processing-model
@@ -249,6 +252,30 @@ If you want to detect that you're on mobile on the server-side - then everything
 - Migrate to User-Agent Client Hints https://web.dev/migrate-to-ua-ch
   - Server-side static header https://web.dev/migrate-to-ua-ch/#strategy:-static-server-side-header
     - May cause the same issue as old `user-agent`
+
+## Browser Compatibility Lists
+It is possible to use `browserlist` to identify browsers not supporting `ES6` and not `dead`.
+- https://browsersl.ist/?q=defaults%2Cnot+supports+es6-module%2Cnot+dead
+```
+"browserslist": [
+    "defaults",
+    "not supports es6-module", 
+    "not dead"
+]
+```
+
+It also maintains a list of browsers which makes sense to support, set is called `defaults`.
+
+### `browserslist` NPM Package
+- https://webpack.js.org/configuration/target/#browserslist
+It can be used in webpack configuration to set list of browsers, for which bundle has to be released.
+```
+target: "browserslist",
+```
+It is possible to specify `.browserslistrc` configuration.
+
+## Check Feature Browser Compatibility
+- https://caniuse.com/es6
 
 ## IE11. Missing JS API (Not Implemented)
 - [Response API - returned by Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Response)
