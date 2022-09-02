@@ -1,8 +1,10 @@
 # LaTeX
 
 ## Reference
+- https://latex-programming.fandom.com/wiki/List_of_LaTeX_symbols
 - https://en.wikibooks.org/wiki/LaTeX/Mathematics
 - http://tug.ctan.org/info/latex-refsheet/LaTeX_RefSheet.pdf
+
 
 ## Horizontal Spaces
 https://en.wikibooks.org/wiki/LaTeX/Mathematics#Controlling_horizontal_spacing
