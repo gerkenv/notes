@@ -82,3 +82,5 @@ https://twitter.com/patmeenan/status/1443219921522073601
 - https://developer.chrome.com/blog/new-in-chrome-103/#http103
 - https://twitter.com/colinbendell/status/1539322190541295616
 
+### Load CSS Asynchronously
+- https://www.filamentgroup.com/lab/load-css-simpler/
