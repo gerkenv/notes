@@ -8,7 +8,7 @@ https://nodejs.org/en/about/releases/
 ### Node 16
 https://www.redhat.com/en/blog/nodejs-16-here-updated-platform-support-v8-version-9-and-more
 
-## Profiling And Flame Graph
+## CPU Profiling And Flame Graph
 
 ### Clinic Flame
 Uses `0x` under the hood.
@@ -42,10 +42,10 @@ https://github.com/davidmarkclements/0x/blob/master/docs/production-servers.md
 Debugging.
 https://github.com/davidmarkclements/0x#debugging
 
-### Built-in CPU Profiler Programmatically
+### Use Built-in Node CPU Profiler Programmatically
 https://nodejs.org/dist/latest-v14.x/docs/api/inspector.html#inspector_cpu_profiler
 
-### How to display a flamegraph from a CPU profile
+### How to display a flamegraph from a Node CPU Profiler
 https://stackoverflow.com/questions/35801345/how-to-view-flamegraph-cpuprofile-files
 
 #### Tool 1. Speedscope
@@ -75,6 +75,20 @@ https://github.com/jantimon/cpuprofile-to-flamegraph
 https://stackify.com/node-js-profilers/
 https://shuheikagawa.com/blog/2018/09/16/node-js-under-a-microscope/
 
+## Memory Profiling
+### Node Memory Profiler
+Expose garbage collector and profiler port.
+```
+node --expose-gc --inspect=0.0.0.0:9229 index.js
+```
+- A complete guide on how to find a memory leak
+  - https://techtldr.com/simple-guide-to-finding-a-javascript-memory-leak-in-node-js/
+
+### Clinic Heap Profiler
+- https://www.clinicjs.org/documentation/heapprofiler/
+
+### `node-memwatch`
+- https://hacks.mozilla.org/2012/11/tracking-down-memory-leaks-in-node-js-a-node-js-holiday-season/
 
 ## Execute Shell Commands
 Introduction:
