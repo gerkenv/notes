@@ -310,3 +310,6 @@ console.log(a, b, c, d); // null false 0 4
 
 ## In depth: Microtasks and the JavaScript runtime environment
 - https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth#tasks_vs_microtasks
+
+## `(0, function)`
+- https://stackoverflow.com/questions/40967162/what-is-the-meaning-of-this-code-0-function-in-javascript
