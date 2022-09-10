@@ -272,7 +272,12 @@ But there is a common practice to provide double notification to avoid the risk 
 More details:
 - Double Permission https://web.dev/push-notifications-permissions-ux/#double-permission
 - Different Permission UX https://web.dev/push-notifications-permissions-ux
+Push Notification Size
+Currently size of a single message is limited up to 4 KB.
 
-## Video Tutorials
+Video Tutorials
 - Web Push Notifications - Simplest Implementation
   - https://www.youtube.com/watch?v=2zHqTjyfIY8
+- Sencha Summary Article
+  - https://www.sencha.com/blog/using-push-notifications-for-web-applications/ 
+
