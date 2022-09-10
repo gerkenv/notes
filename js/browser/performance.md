@@ -14,6 +14,10 @@
 - how to debug layout shifts 
   - https://web.dev/debug-layout-shifts/
 
+### Progressive Images And CLS
+- https://github.com/w3c/largest-contentful-paint/issues/71
+- https://github.com/GoogleChrome/lighthouse/issues/3860
+
 ## How To Optimize Guides
 - https://nodesource.com/blog/improve-javascript-performance/
 - https://jakearchibald.com/2021/io-site-perf/
