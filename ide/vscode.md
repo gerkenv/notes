@@ -66,6 +66,9 @@ https://www.freecodecamp.org/news/optimize-vscode-performance-best-extensions/
 ## GitLens 
 ### Interactive Rebase UI
 
+## Typewriter Sounds
+https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
+
 ## Updates
 
 ### 1.60
