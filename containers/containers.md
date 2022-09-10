@@ -194,6 +194,10 @@ docker container logs container-name > log-file
 - https://stackoverflow.com/a/39823119/8309959
 
 ## Podman
+
+### Setup
+- https://podman.io/getting-started/installation
+
 ### Tutorial
 - https://github.com/containers/podman/blob/main/docs/tutorials/podman_tutorial.md
 
