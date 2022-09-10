@@ -34,7 +34,28 @@ So push notification is a combination of both technologies.
 `Notification.requestPermission()` - https://developer.mozilla.org/docs/Web/API/Notification/requestPermission
 It will trigger a browser-specific confirmation prompt
 
-### 2. Subscribe the client to push notifications and store client data in your backend database 
+### 2. Create Application Server Keys (VAPID keys)
+- https://web.dev/push-notifications-subscribing-a-user/#how-to-create-application-server-keys
+
+You can create a public and private set of application server keys by visiting web-push-codelab.glitch.me or you can use the web-push command line https://github.com/web-push-libs/web-push#command-line to generate keys by doing the following:
+```
+$ npm install -g web-push
+$ web-push generate-vapid-keys
+```
+You only need to create these keys once for your application, just make sure you keep the private key private. It will be something like
+```
+const vapidKeys = {
+ publicKey: 'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U',
+ privateKey: 'UUxI4O8-FbRouAevSmBQ6o18hgE4nSG3qwvJTfKc-ls',
+}
+```
+
+More details:
+- authorization scheme for the application keys
+  - https://web.dev/push-notifications-overview/#sign
+  - https://web.dev/push-notifications-subscribing-a-user/#applicationserverkey-option
+
+### 3. Subscribe the client to push notifications and store client data in your backend database 
 - https://web.dev/push-notifications-overview/#subscription
 
 After you get permission, your website needs to initiate the process of subscribing the user to push notifications. 
@@ -86,25 +107,75 @@ is client identifier information that helps the push service determine exactly w
 
 The `keys` are used for encryption, which is explained here https://web.dev/push-notifications-overview/#sign
 
-### 3. Send a push message
+### 4. Send a push message
 - https://web.dev/push-notifications-overview/#send
 
 Your server doesn't actually send the push message directly to a client. 
-A __push service__ does that. A push service is a web service controlled by your user's browser vendor. 
+A browser-specific push service does that. 
+A push service is a web service controlled by your user's browser vendor. 
 When you want to send a push notification to a client you need to make a web service request to a push service. 
-The web service request that you send to the push service is known as a __web push protocol request__.
+The web service request that you send to the push service is known as a web push protocol request.
 
-The push service receives your request and authenticates it.
+https://web.dev/sending-messages-with-web-push-libraries/#sending-push-messages
+You may send a request using the `web-push` package.
+```
+npm install web-push --save
+```
+Then in the code we can set VAPID keys.
+```
+const webpush = require('web-push');
+
+const vapidKeys = {
+ publicKey:
+   'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U',
+ privateKey: 'UUxI4O8-FbRouAevSmBQ6o18hgE4nSG3qwvJTfKc-ls',
+};
+
+webpush.setVapidDetails(
+ 'mailto:web-push-book@gauntface.com',
+ vapidKeys.publicKey,
+ vapidKeys.privateKey,
+);
+```
+Note that we also included a "mailto:" string. This string needs to be either a URL or a mailto email address. This piece of information will actually be sent to the web push service as part of the request to trigger a push. The reason this is done is so that if a web push service needs to get in touch with the sender, they have some information that will enable them to.
+
+
+With this, the web-push module is ready to use, the next step is to trigger a push message.
+
+An example function is
+```
+function (subscription, dataToSend) {
+  return webpush.sendNotification(subscription, dataToSend).catch((err) => {
+    if (err.statusCode === 404 || err.statusCode === 410) {
+      console.log('Subscription has expired or is no longer valid: ', err);
+      return deleteSubscriptionFromDatabase(subscription._id);
+    } else {
+      throw err;
+    }
+  });
+};
+```
+
+
+The call to `webpush.sendNotification()` will return a promise. If the message was sent successfully the promise will resolve and there is nothing we need to do. If the promise rejects, you need to examine the error as it'll inform you as to whether the `PushSubscription` is still valid or not.
+
+To determine the type of error from a push service it's best to look at the status code. Error messages vary between push services and some are more helpful than others.
+
+In this example, it checks for status codes 404 and 410, which are the HTTP status codes for 'Not Found' and 'Gone'. If we receive one of these, it means the subscription has expired or is no longer valid. In these scenarios, we need to remove the subscriptions from our database.
+
+If all went well then push service receives your request and authenticates it.
 then push service keeps your request queued until one of the following events happens:
 - The client comes online and the push service delivers the push message to the appropriate client.
 - The message expires.
 
 Each browser uses whatever push service it wants. You as a website developer have no control over that.
 
-#### 3.1. Encrypt Message
+Also it is worth checking the section ‘POST Request’ in the Sencha blog https://www.sencha.com/blog/using-push-notifications-for-web-applications/ to better understand additional properties of POST requests of the push protocol.
+
+#### 4.1. Encrypt Message
 - https://web.dev/push-notifications-overview/#encrypt
 
-#### 3.2. Sign your web push protocol requests
+#### 4.2. Sign your web push protocol requests
 - https://web.dev/push-notifications-overview/#sign
 
 This workflow involves a private key and public key that are unique to your application. 
@@ -120,11 +191,11 @@ The authentication process roughly works like this:
    to authenticate the signed information. If the signature is valid then the push service knows 
    that the request came from a server with the matching private key.
 
-#### 3.3. Customize the delivery of the push message
+#### 4.3. Customize the delivery of the push message
 - https://web.dev/push-notifications-overview/#customize
   - set TTL, Urgency, Topic.
 
-### 4. Receive and display the pushed messages as notifications
+### 5. Receive and display the pushed messages as notifications
 - https://web.dev/push-notifications-overview/#notification
   - When a client browser receives a pushed message, it decrypts the push message data 
     and dispatches a `push` event to your service worker.
