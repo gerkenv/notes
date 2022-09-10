@@ -1,14 +1,14 @@
 # Progressive Web App (PWA)
 
 ## PWA Case Studies
-How Progressive Web Apps can drive business success
-https://web.dev/drive-business-success
-web.dev Progressive Web Apps Case studies
-https://web.dev/progressive-web-apps/#case-studies 
-A community-driven list of stats and news related to Progressive Web Apps
-https://www.pwastats.com/ 
-A summary article containing multiple case studies
-https://www.linkedin.com/pulse/progressive-web-apps-case-studies-anna-dudar 
+- How Progressive Web Apps can drive business success
+  - https://web.dev/drive-business-success
+- web.dev Progressive Web Apps Case studies
+  - https://web.dev/progressive-web-apps/#case-studies 
+- A community-driven list of stats and news related to Progressive Web Apps
+  - https://www.pwastats.com/ 
+- A summary article containing multiple case studies
+  - https://www.linkedin.com/pulse/progressive-web-apps-case-studies-anna-dudar 
 
 ## 2022 web.dev course. Learn PWA.
 - https://web.dev/learn/pwa/
