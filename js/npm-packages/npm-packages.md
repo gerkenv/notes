@@ -1,5 +1,11 @@
 # NPM Packages
 
+## Symlink An NPM Package Folder During Development
+- https://medium.com/@the1mills/how-to-test-your-npm-module-without-publishing-it-every-5-minutes-1c4cb4b369be
+- https://medium.com/@alexishevia/the-magic-behind-npm-link-d94dcb3a81af
+- yarn link https://classic.yarnpkg.com/en/docs/cli/link
+- npm link https://docs.npmjs.com/cli/v8/commands/npm-link/
+
 ## Formatter
 - https://www.npmjs.com/package/prettier
   - includes auto-fix
