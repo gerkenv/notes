@@ -84,3 +84,8 @@ https://twitter.com/patmeenan/status/1443219921522073601
 
 ### Load CSS Asynchronously
 - https://www.filamentgroup.com/lab/load-css-simpler/
+
+## Measure Page Navigation Delay
+- https://web.dev/navigation-and-resource-timing/
+- https://www.w3.org/TR/navigation-timing/#process
+- https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
