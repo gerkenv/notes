@@ -14,6 +14,9 @@
 - how to debug layout shifts 
   - https://web.dev/debug-layout-shifts/
 
+## Total Blocking Time (TBT)
+- https://www.debugbear.com/docs/performance/minimize-main-thread-work
+
 ### Progressive Images And CLS
 - https://github.com/w3c/largest-contentful-paint/issues/71
 - https://github.com/GoogleChrome/lighthouse/issues/3860
