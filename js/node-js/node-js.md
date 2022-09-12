@@ -231,6 +231,14 @@ Why is there a memory limit?
 The main reason of memory limitation is the garbage collection system of V8. It takes 50ms to recycle 1.5GB memory in a small way, and more than 1s to recycle it in a non incremental way, which will cause JS thread to pause. So limit memory.
 ```
 
+## Memory Management
+### Generic
+https://www.memorymanagement.org/
+
+### In Node.js
+- short intro https://blog.risingstack.com/node-js-at-scale-node-js-garbage-collection/#garbagecollectionmethods
+- better intro https://blog.risingstack.com/finding-a-memory-leak-in-node-js/#understandingv8smemoryhandling
+
 ## HTTP Requests
 Either use a 3rd-party lib as `axios` or `node-fetch` (less code)
 https://openbase.com/categories/js/best-nodejs-http-request-libraries
