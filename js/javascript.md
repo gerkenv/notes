@@ -16,6 +16,7 @@
 - https://stackoverflow.com/questions/1003855/how-can-i-benchmark-javascript-code
 
 ### VM Code Optimizer
+_microbenchmark benchmark_
 Every VM (including V8) has a built-in optimizer which makes a good job of removing unnecessary repeated work (that is what you're typically trying to do in microbenchmarks)
 Thus measurements cannot be trusted unless you can go around the optimizer.
 
