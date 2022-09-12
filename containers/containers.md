@@ -264,3 +264,10 @@ podman container ls --filter status=exited
 ```
 podman container ls --filter status=running
 ```
+
+## Node.js Images
+
+### How To Deploy A Secure Node.js Image
+- https://www.docker.com/blog/docker-for-node-js-developers-5-things-you-need-to-know-not-to-fail-your-security/
+  - https://www.youtube.com/watch?v=GkFIjZP30_U
+  - https://snyk.co/SecureContainerImages
