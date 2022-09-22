@@ -314,3 +314,6 @@ console.log(a, b, c, d); // null false 0 4
 
 ## `(0, function)`
 - https://stackoverflow.com/questions/40967162/what-is-the-meaning-of-this-code-0-function-in-javascript
+
+## Generators
+- https://www.reddit.com/r/javascript/comments/xglffa/comment/iostiu1/
