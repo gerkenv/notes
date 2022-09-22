@@ -92,3 +92,7 @@ https://twitter.com/patmeenan/status/1443219921522073601
 - https://web.dev/navigation-and-resource-timing/
 - https://www.w3.org/TR/navigation-timing/#process
 - https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
+
+## Memory Profiling
+- https://github.com/facebookincubator/memlab
+- https://facebookincubator.github.io/memlab/
