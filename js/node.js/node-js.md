@@ -8,6 +8,9 @@ https://nodejs.org/en/about/releases/
 ### Node 16
 https://www.redhat.com/en/blog/nodejs-16-here-updated-platform-support-v8-version-9-and-more
 
+## Node.js Overview
+- https://2ality.com/2022/09/nodejs-overview.html
+
 ## CPU Profiling And Flame Graph
 
 ### Clinic Flame
