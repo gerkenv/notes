@@ -1,5 +1,8 @@
 # Performance
 
+## Blogs
+- https://calendar.perfplanet.com/2021/
+
 ## Does It Really Matter? Why?
 - 2022 https://web.dev/milliseconds-make-millions/
 - 2021 https://web.dev/vitals-business-impact/
