@@ -1,5 +1,12 @@
 # Models
 
+## chatGPT
+https://openai.com/blog/chatgpt/
+- discuss code issues
+- generate code
+
+Also discuss or generate images, stories, texts.
+
 ## Image GPT
 https://openai.com/blog/image-gpt/
 
