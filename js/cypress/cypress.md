@@ -79,6 +79,22 @@ cy.visit('http://localhost:8000/#/app')
 Most probably - no. `cy.intercept` intercepts `cy.visit`.
 - https://github.com/cypress-io/cypress/discussions/18706
 
+## `cy.writeFile`
+- https://docs.cypress.io/api/commands/writefile#Usage
+  - file should exist before writing
+  - file will be overwritten by each new test
+
+```ts
+cy.writeFile(
+  "anObjectYouNeed.json",
+  JSON.stringify(anObjectYouNeed),
+  {
+    encoding: "utf8",
+    log: true,
+  }
+);
+```
+
 ## Generic Question
 - Subject Management
   - https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Subject-Management
