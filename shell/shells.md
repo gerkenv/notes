@@ -44,3 +44,10 @@ plugins=(
 
 ##### PowerLevel 10K
 - https://github.com/romkatv/powerlevel10k
+
+
+## Languages Compiled To Shell
+- https://www.oilshell.org/
+
+### Why?
+- https://www.oilshell.org/why.html
