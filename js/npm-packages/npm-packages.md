@@ -59,6 +59,14 @@
 ## Local JSON Database
 - https://www.npmjs.com/package/node-json-db
 
+## SemVer
+- https://www.npmjs.com/package/semver
+
+## Compare Incomplete Semver Versions
+- `1` > `1.2` -> `semver` will say that version is invalid.
+- so use https://github.com/omichelsen/compare-versions
+
+
 ## Frontend Blacklist
 - [moment](https://bundlephobia.com/package/moment)
 - [mement-timezone](https://bundlephobia.com/package/moment-timezone)
