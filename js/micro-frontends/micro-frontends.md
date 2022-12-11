@@ -13,4 +13,6 @@ Very nice intro in micro-frontends
 
 ## Blogs
 - 2022 Cloudflare Workers and micro-frontends https://blog.cloudflare.com/better-micro-frontends/
+  - based on qwik and fragments
+  - example https://github.com/cloudflare/workers-web-experiments/tree/main/cloud-gallery/helpers/src
 
