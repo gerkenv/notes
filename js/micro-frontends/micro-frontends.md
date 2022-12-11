@@ -6,7 +6,7 @@ Very nice intro in micro-frontends
 
 ### Code-splitting
 - by custom HTML components
-- or by lit components ???
+- could it be done by lit components ??? do they have SSR support
 
 ### Books
 - 2020.08 https://www.manning.com/books/micro-frontends-in-action?a_aid=mfia&a_bid=5f09fdeb
