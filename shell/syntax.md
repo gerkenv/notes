@@ -2,6 +2,16 @@
 ## Cheat Sheet
 https://devhints.io/bash
 
+## Get current shell
+```
+echo $SHELL
+```
+
+## Get current shell history file
+```
+echo $HISTFILE
+```
+
 ## `ls` check directory content
 ```
 ls    # prints files, folders
