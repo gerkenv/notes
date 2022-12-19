@@ -530,6 +530,12 @@ else
 fi
 ```
 
+## find which process is using a port (Mac OS)
+https://stackoverflow.com/a/3855359/8309959
+```
+netstat -vanp tcp | grep 3000
+```
+
 ## screen
 The `screen` program allows you to use multiple windows (virtual VT100 terminals) in Unix.
 https://kb.iu.edu/d/acuy
