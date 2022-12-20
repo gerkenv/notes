@@ -164,6 +164,13 @@ https://kinto.sh/
 
 ## Clipboard Manager
 - https://www.tecmint.com/best-clipboard-managers-for-linux/
+- https://www.slant.co/topics/6280/~clipboard-managers-for-linux
+  - https://hluk.github.io/CopyQ/#install
+    ```
+    sudo add-apt-repository ppa:hluk/copyq
+    sudo apt update
+    sudo apt install copyq
+    ```   
 
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
