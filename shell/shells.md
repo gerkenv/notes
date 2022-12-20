@@ -22,6 +22,11 @@ https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#install-and-set-up-zsh-as
 sudo apt install zsh
 ```
 
+### Install `oh-my-zsh`
+```
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 ### Auto-completition
 ```
 echo 'autoload -Uz compinit && compinit' >> ~/.zshrc
