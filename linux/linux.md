@@ -159,6 +159,8 @@ https://kinto.sh/
     Note: you may want these supporting packages \
     `sudo apt install gnome-tweaks gnome-shell-extension-appindicator gir1.2-appindicator3-0.1`
 
+#### Exact Key Remaping
+- https://github.com/rbreaves/kinto#what-does-this-do-exactly
 
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
