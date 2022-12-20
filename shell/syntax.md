@@ -7,6 +7,11 @@ https://devhints.io/bash
 echo $SHELL
 ```
 
+## Reload Current Shell
+```
+exec $SHELL
+```
+
 ## Get current shell history file
 ```
 echo $HISTFILE
