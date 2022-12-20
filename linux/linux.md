@@ -148,6 +148,9 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 ### Kinto
 https://kinto.sh/
 - install / uninstall https://github.com/rbreaves/kinto#quick-install-method 
+```
+/bin/bash -c "$(wget -qO- https://raw.githubusercontent.com/rbreaves/kinto/HEAD/install/linux.sh || curl -fsSL https://raw.githubusercontent.com/rbreaves/kinto/HEAD/install/linux.sh)"
+```
 
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
