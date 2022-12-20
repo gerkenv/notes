@@ -162,6 +162,9 @@ https://kinto.sh/
 #### Exact Key Remaping
 - https://github.com/rbreaves/kinto#what-does-this-do-exactly
 
+## Clipboard Manager
+- https://www.tecmint.com/best-clipboard-managers-for-linux/
+
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
 
