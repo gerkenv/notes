@@ -18,6 +18,7 @@ fi
 
 ## Install `fzf`
 - https://github.com/junegunn/fzf#using-git
+- https://bytexd.com/how-to-use-fzf-command-line-fuzzy-finder/
 
 <!--  -->
 ## Install `zsh`
