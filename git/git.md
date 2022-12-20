@@ -1,4 +1,15 @@
 # Git
+
+## Initalize A Repository
+```
+git init
+```
+
+## Set Default Branch Name `main`
+```
+git config --global init.defaultBranch main
+```
+
 ## Remove everything except master
 ```
 git branch --list | grep -e "[^master \*]" | xargs -L1 echo
