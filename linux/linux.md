@@ -184,9 +184,9 @@ https://kinto.sh/
     - awesome installation guide 
       - https://medium.datadriveninvestor.com/how-to-install-and-manage-multiple-python-versions-on-linux-916990dabe4b
     - __preferred option__, but installation process requires a lot of dependencies (which are unavoidable with `asdf` as well)
-      - list of dependencies
+      - please use updated list of dependencies, [`python-openssl` is not available for ubuntu 22.04](https://stackoverflow.com/a/73566675)
         ```
-        sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make build-essential python-openssl
+        sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make build-essential python3-openssl
         ```
   - install `asdf` and add a required configuration line to a bash configuration file https://asdf-vm.com/guide/getting-started.html#_3-install-asdf
     - then follow https://stackoverflow.com/a/46258340 
