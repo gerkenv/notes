@@ -110,6 +110,11 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt-get install ./google-chrome-stable_current_amd64.deb
 ```
 
+## Install performance monitor
+```
+sudo apt install htop
+```
+
 ## Install `zsh`
 https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#install-and-set-up-zsh-as-default
 ```
