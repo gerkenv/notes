@@ -26,8 +26,8 @@ sudo apt install zsh
 # install `oh-my-zsh`
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# install fzf
-
+echo "install fzf optionally"
+# https://github.com/junegunn/fzf#using-git
 
 # check if `git` is installed
 which git
