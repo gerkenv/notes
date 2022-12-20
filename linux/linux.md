@@ -134,6 +134,12 @@ https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#install-and-set-up-zsh-as
 sudo apt install zsh
 ```
 
+### Install `oh-my-zsh`
+https://github.com/ohmyzsh/ohmyzsh#basic-installation
+```
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 ## Setting Up MacOS Key Bindings In Linux
 - few solutions https://askubuntu.com/questions/10008/how-to-make-keyboard-work-like-osx-system-wide
 - custom solution https://petrstepanov.medium.com/a-macos-like-keyboard-remap-on-ubuntu-linux-cae1d108a97
