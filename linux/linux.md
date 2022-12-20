@@ -29,6 +29,7 @@ https://www.youtube.com/watch?v=iox7fr7p5Hc
 ### How To Select. Option 2.
 1. 2020 3 options for developers https://www.youtube.com/watch?v=-EOzLbWxLWQ&ab_channel=KskRoyal
 2. 2022 how to choose? https://www.youtube.com/watch?v=dL05DoJ0qsQ&ab_channel=ChrisTitusTech
+3. Ubuntu vs. Pop!_OS vs. Manjaro vs. Fedora | Gnome Speed Test https://www.youtube.com/watch?v=tPhOj5XIwxw
 
 ### Like MacOs
 - https://www.youtube.com/watch?v=oI6EQGEagEU
@@ -43,7 +44,10 @@ https://www.youtube.com/watch?v=iox7fr7p5Hc
 
 
 ## dual boot pop os 22.04 with windows 10
-https://www.youtube.com/watch?v=vdxMB6qD5rc&t=7s&ab_channel=SandipSky
+1. up to `restore boot setup for windows` https://www.youtube.com/watch?v=hbzCSjlbInY
+2. from `restore boot setup for windows` https://www.youtube.com/watch?v=vdxMB6qD5rc&t=7s&ab_channel=SandipSky
+
+### Combined outcome:
 1. `sudo fdisk -l` - check partitions and find windows reserved partition with `EFI System` type (usually it is located before the main `C` drive). 
   Its `device` might be `/dev/nvme0n1p123` or `/dev/sda123`.
 1. `mkdir /mnt/windows` - create an empty directory.
@@ -68,6 +72,15 @@ BOOT  Linux  Microsoft	Pop_OS-7cd89900-1221-4aed-90dd-b5552bb4021c  systemd
     1. exit with `control+X`
 1. `sudo cat /boot/efi/loader/loader.conf` - check that file content was correctly updated 
 
+## Pop Os. Manual Partitions Creation
+- https://www.youtube.com/watch?v=39IvI-DPZHo
+  - add `boot-efi` for `boot/efi` `fat32` > 1gb
+  - add `root` `ext4` for `/`
+  - add `home` `ext4` for `~`
+  - add `swap` `linux-swap` > 4gb
+
+### Is it required to separate partitions `root` and `home`?
+- https://unix.stackexchange.com/questions/673925/is-it-necessary-to-separate-home-and-to-different-partitions
 
 ## Pop Os. Keyboard Shortcuts
 https://support.system76.com/articles/pop-keyboard-shortcuts/
