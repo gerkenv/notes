@@ -140,6 +140,10 @@ https://github.com/ohmyzsh/ohmyzsh#basic-installation
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+## Set Up Swipe Gestures Like In Mac OS
+- https://kaigo.medium.com/mac-like-gestures-on-ubuntu-20-04-dell-xps-15-7ea6e3be7f76
+- https://github.com/JoseExposito/touchegg
+
 ## Setting Up MacOS Key Bindings In Linux
 - few solutions https://askubuntu.com/questions/10008/how-to-make-keyboard-work-like-osx-system-wide
 - custom solution https://petrstepanov.medium.com/a-macos-like-keyboard-remap-on-ubuntu-linux-cae1d108a97
