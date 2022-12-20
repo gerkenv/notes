@@ -8,6 +8,10 @@ sudo apt update && sudo apt upgrade -y
 # install chrome
 sudo apt-get install google-chrome-stable
 
+# install bookmark manager
+echo "Don't forget to setup a shortcut to `show the tray menu` !!!!!"
+
+
 # check if `python` is already installed 
 which python
 which python3
