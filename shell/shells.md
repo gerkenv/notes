@@ -5,7 +5,7 @@
 which bash
 ```
 
-### Auto-completition 
+### Bash Auto-completition (Mac OS)
 ```
 brew install bash-completion
 ```
