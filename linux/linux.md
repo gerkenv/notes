@@ -148,9 +148,17 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 ### Kinto
 https://kinto.sh/
 - install / uninstall https://github.com/rbreaves/kinto#quick-install-method 
-```
-/bin/bash -c "$(wget -qO- https://raw.githubusercontent.com/rbreaves/kinto/HEAD/install/linux.sh || curl -fsSL https://raw.githubusercontent.com/rbreaves/kinto/HEAD/install/linux.sh)"
-```
+  ```
+  /bin/bash -c "$(wget -qO- https://raw.githubusercontent.com/rbreaves/kinto/HEAD/install/linux.sh || curl -fsSL   https://raw.githubusercontent.com/rbreaves/kinto/HEAD/install/linux.sh)"
+  ```
+  > Gnome may not support appindicators well, so by default you may need to install packages before enabling the     System Tray. \
+    You may try one of the following extensions. \
+      1) AppIndicator and KStatusNotifierItem Support \
+      2) TopIcons Plus \
+    \
+    Note: you may want these supporting packages \
+    `sudo apt install gnome-tweaks gnome-shell-extension-appindicator gir1.2-appindicator3-0.1`
+
 
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
