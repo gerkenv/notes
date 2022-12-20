@@ -16,9 +16,11 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 ```
 
-## `zsh` Z Shell
-- Installing `zsh`
-  - https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
+## Install `zsh`
+https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#install-and-set-up-zsh-as-default
+```
+sudo apt install zsh
+```
 
 ### Auto-completition
 ```
