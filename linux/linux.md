@@ -41,6 +41,34 @@ https://www.youtube.com/watch?v=iox7fr7p5Hc
 1. It can use default debian package manager `apt` and ubuntu package manager which provides an option to use custom repositories.
 1. Some other benefits https://www.youtube.com/watch?v=Cs4QRBm0C_8&t=52s&ab_channel=TheLinuxExperiment
 
+
+## dual boot pop os 22.04 with windows 10
+https://www.youtube.com/watch?v=vdxMB6qD5rc&t=7s&ab_channel=SandipSky
+1. `sudo fdisk -l` - check partitions and find windows reserved partition with `EFI System` type (usually it is located before the main `C` drive). 
+  Its `device` might be `/dev/nvme0n1p123` or `/dev/sda123`.
+1. `mkdir /mnt/windows` - create an empty directory.
+1. `sudo mount /dev/sda123 /mnt/windows` - mount directory to a partition.
+1. `sudo ls /boot/efi/EFI` - check current configuration
+   > BOOT  Linux  Pop_OS-7cd89900-1221-4aed-90dd-b5552bb4021c  systemd`
+1. `sudo cp -r /mnt/windows/EFI/Microsoft /boot/efi/EFI` - copy windows configuration in linux boot options
+1. `sudo ls /boot/efi/EFI` - check that `Microsoft` folder was copied correctly
+BOOT  Linux  Microsoft	Pop_OS-7cd89900-1221-4aed-90dd-b5552bb4021c  systemd
+1. `sudo nano /boot/efi/loader/loader.conf` - open the boot loader configuration
+    1. file content should be something like
+        ```
+        default Pop_OS-current
+        ```
+    1. add 2 more line, so file wuld look like
+        ```
+        default Pop_OS-current
+        timeout 7
+        console-mode max
+        ```
+    1. save the file `control+O` -> file name prompt will show up -> don't change the file name and press `enter`
+    1. exit with `control+X`
+1. `sudo cat /boot/efi/loader/loader.conf` - check that file content was correctly updated 
+
+
 ## Pop Os. Keyboard Shortcuts
 https://support.system76.com/articles/pop-keyboard-shortcuts/
 ### usefull apps
@@ -60,6 +88,33 @@ https://support.system76.com/articles/pop-keyboard-shortcuts/
 1. `super+control+arrow up/down` - switch workspaces
 1. `super+shift+arrow up/down` - move window between workspaces
 
+
+## Install Chrome
+### Option 1
+```
+sudo apt-get install google-chrome-stable
+```
+
+### Option 2
+https://daylifetips.com/how-to-install-google-chrome-on-pop_os/
+```
+# check if `wget` is installed
+which wget
+# or
+wget --help
+# if it not installed - install it with
+# `sudo apt install -y wget`
+# then download latest stable chrome version
+cd ~/Downloads
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt-get install ./google-chrome-stable_current_amd64.deb
+```
+
+## Install `zsh`
+https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#install-and-set-up-zsh-as-default
+```
+sudo apt install zsh
+```
 
 ## Setting Up MacOS Key Bindings In Linux
 - few solutions https://askubuntu.com/questions/10008/how-to-make-keyboard-work-like-osx-system-wide
