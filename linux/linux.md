@@ -212,7 +212,18 @@ Alternatively, if only terminal values are fine, then install `glances`
 https://www.tecmint.com/monitor-cpu-and-gpu-temperature-in-ubuntu/
 
 ## Set SSH Auth For Github
-https://docs.github.com/en/authentication/connecting-to-github-with-sshq
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+```
+# check existing keys
+ls -alh ~/.ssh
+# generate a new key
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# start an ssh agent
+eval "$(ssh-agent -s)
+# add a key to the ssh-agent
+ssh-add ~/.ssh/id_ed25519
+```
+then add a public key to github repository.
 
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
