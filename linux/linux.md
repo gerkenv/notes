@@ -199,6 +199,18 @@ set desired state
 echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo
 ```
 
+## Install core temperature sensor extension
+- https://askubuntu.com/questions/1336416/how-can-i-see-the-cpu-temperature-on-the-panel
+  - https://github.com/UshakovVasilii/gnome-shell-extension-freon/wiki/Dependency
+```
+sudo apt install gnome-shell-extension-manager
+sudo apt install gnome-shell-extensions
+sudo apt install lm-sensors
+```
+
+Alternatively, if only terminal values are fine, then install `glances`
+https://www.tecmint.com/monitor-cpu-and-gpu-temperature-in-ubuntu/
+
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
 
