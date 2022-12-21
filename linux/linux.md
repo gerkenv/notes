@@ -188,6 +188,8 @@ https://kinto.sh/
         ```
         
 ## Turn off turbo boost on intel cpu
+https://askubuntu.com/questions/619875/disabling-intel-turbo-boost-in-ubuntu?newreg=a01decf73fd849af9a9b6fabce0353f2
+
 check state, `0` means turbo boost is allowed
 ```
 cat /sys/devices/system/cpu/intel_pstate/no_turbo
