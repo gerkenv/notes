@@ -61,3 +61,10 @@
 `pyenv versions` - show the current Python version(s) and its origin
 `pyenv install 3.11.1` - install a particular version
 `pyenv uninstall 3.11.1` - uninstall a particular version
+`pyenv global 3.11.1` - set global version
+`pyenv local 3.11.1` - set a version for a current directory -> creates a `.python-version` file for pyenv, which determines the version in the current directory and subdirectories.
+
+### How To Find `python2` and `python3`?
+See 'pyenv help global' for tips on allowing both python2 and python3 to be found.
+
+
