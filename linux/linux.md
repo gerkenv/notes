@@ -211,6 +211,9 @@ sudo apt install lm-sensors
 Alternatively, if only terminal values are fine, then install `glances`
 https://www.tecmint.com/monitor-cpu-and-gpu-temperature-in-ubuntu/
 
+## Set SSH Auth For Github
+https://docs.github.com/en/authentication/connecting-to-github-with-sshq
+
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
 
