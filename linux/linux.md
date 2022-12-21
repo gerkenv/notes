@@ -176,9 +176,7 @@ https://kinto.sh/
     sudo apt install copyq
     ```   
 
-## Python Version Manager
-- https://towardsdatascience.com/installing-multiple-alternative-versions-of-python-on-ubuntu-20-04-237be5177474
-  - fits for ubuntu based systems only 
+## Python Version Manager 
 -  https://stackoverflow.com/questions/2547554/multiple-python-versions-on-the-same-machine
   - https://github.com/pyenv/pyenv
     - awesome installation guide 
@@ -188,47 +186,16 @@ https://kinto.sh/
         ```
         sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make build-essential python3-openssl
         ```
-  - install `asdf` and add a required configuration line to a bash configuration file https://asdf-vm.com/guide/getting-started.html#_3-install-asdf
-    - then follow https://stackoverflow.com/a/46258340 
-        1. pull repository
-        ```
-        git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
-        ```
-        1. add to `.zshrc` or `bashrc`
-        ```
-        . $HOME/.asdf/asdf.sh
-        ```
-        1. add python plugin
-        ```
-        asdf plugin-add python
-        ```
-        1. check currently installed python versions
-        ```
-        asdf list python
-        ```
-        1. install latest from https://www.python.org/downloads/
-        ```
-        asdf install python 3.11.1
-        ```
-        1. uses same build process under the hood as pyenv does. so installing linux packages as dependencies is unavoidable.
-        ```
-        Installing Python-3.11.1...
-        WARNING: The Python bz2 extension was not compiled. Missing the bzip2 lib?
-        WARNING: The Python curses extension was not compiled. Missing the ncurses lib?
-        WARNING: The Python readline extension was not compiled. Missing the GNU readline lib?
-        ERROR: The Python ssl extension was not compiled. Missing the OpenSSL lib?
-
-        Please consult to the Wiki page to fix the problem.
-        https://github.com/pyenv/pyenv/wiki/Common-build-problems
-
-
-        BUILD FAILED (Pop 22.04 using python-build 2.3.9-1-gff93c58b)
-        ```
-        1. uninstall with
-        ```
-        rm -rf $HOME/.tool-versions $HOME/.asdfrc
-        ```
-
+        
+## Turn off turbo boost on intel cpu
+check state, `0` means turbo boost is allowed
+```
+cat /sys/devices/system/cpu/intel_pstate/no_turbo
+```
+set desired state
+```
+echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo
+```
 
 ## Backup And Restore
 - timeshift https://www.youtube.com/watch?v=U-lMJHcjCVs
