@@ -91,6 +91,9 @@ It might output some additional actions, for example `reboot is required` - perf
 
 # MacOs System
 
+## How To Disable Window `Minimize` (`cmd+M`)
+- https://apple.stackexchange.com/questions/115562/how-do-i-disable-the-minimize-command-m-shortcut-in-mavericks#:~:text=macOS%2010.16%20(Catalina)%3A,Disable%20Invert%20colors%20shortcut
+
 ## Hot Keys
 _shortcuts short keys hot keys_
 
