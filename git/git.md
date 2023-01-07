@@ -40,7 +40,18 @@ We can get this using the following command:
 git rebase --onto master next topic
 ```
 
-## Push Current Branch
+## Rebase Current Branch Interactevely
+- https://ona.io/home/squashing-commits-with-an-interactive-git-rebase/
+```
+git rebase -i @~5 # rebase last 5 commits
+```
+1. By default the `vi` or `vim` editor will be opened, so use `:x` or `:wq` to save and exit.
+2. Check if the commit on top is the oldest / or commit on bottom is the oldest - point is, you cannot apply `s` - `squash` option to oldest commit, otherwise you'll get an error message `Cannot 'squash' without a previous commit`
+3. In case of troubles use `git rebase --abort`
+4. Use `git diff @ origin/main` to check if you haven't deleted something unintentionally 
+
+
+## Push Current Branch (And Set It As Upstream)
 ```
 git branch --show-current | xargs -L1 git push -u origin --no-verify
 ```
@@ -144,3 +155,35 @@ git merge-base --is-ancestor <commit-id-A> <commit-id-B> && echo "1" || echo "0"
 
 ## Rename Local & Remote Branch
 https://stackoverflow.com/questions/30590083/how-do-i-rename-both-a-git-local-and-remote-branch-name
+
+## Set Default User And Email For Commits
+```
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+
+## Set VSCode As Default Git Editor
+- https://stackoverflow.com/questions/30024353/how-to-use-visual-studio-code-as-default-editor-for-git
+```shell
+git config --global core.editor "code --wait"
+```
+
+## Set VSCode As Default Git Diff Tool
+```shell
+git config --global --edit
+```
+add following lines
+```
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+```
+it allows to use difftool through the command
+```shell
+git difftool
+```
+or
+```
+git difftoll @ @~1
+```

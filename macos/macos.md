@@ -46,6 +46,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ## Install `fzf`
 - https://github.com/gerkenv/notes/blob/main/shell/shells.md#install-fzf
 
+## Install vscode
+- https://dev.to/ilumin/install-vscode-on-osx-via-brew-278g
+```
+brew install --cask visual-studio-code
+```
+
 ## Display Fan Speed Rpm And Temperature
 https://crystalidea.com/macs-fan-control
 

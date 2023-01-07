@@ -1,5 +1,31 @@
 # VSCode
 
+## Set VSCode As Default Git Editor
+- https://stackoverflow.com/questions/30024353/how-to-use-visual-studio-code-as-default-editor-for-git
+```shell
+git config --global core.editor "code --wait"
+```
+
+## Set VSCode As Default Git Diff Tool
+```shell
+git config --global --edit
+```
+add following lines
+```
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+```
+it allows to use difftool through the command
+```shell
+git difftool
+```
+or
+```
+git difftoll @ @~1
+```
+
 ## Tips
 https://code.visualstudio.com/docs/getstarted/tips-and-tricks
 
