@@ -1,5 +1,13 @@
 # VSCode
 
+## Settings
+### Disable Trust Workspace Feature
+- https://stackoverflow.com/questions/67914668/vs-code-do-you-trust-the-authors-of-the-files-in-this-folder
+open vscode command line `cmd+P` or `F1` type in and open `>user settings (json)` and add a line
+```
+"security.workspace.trust.enabled": false
+```
+
 ## Set VSCode As Default Git Editor
 - https://stackoverflow.com/questions/30024353/how-to-use-visual-studio-code-as-default-editor-for-git
 ```shell
