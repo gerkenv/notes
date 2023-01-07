@@ -14,6 +14,10 @@ open vscode command line `cmd+P` or `F1` type in and open `>user settings (json)
 git config --global core.editor "code --wait"
 ```
 
+## How To Make Default Intellisense `Ctrl+Space` Work On MacOS
+- https://github.com/microsoft/vscode/issues/103855#issuecomment-671062294
+  - or use `cmd+i` in latest vscode versions
+
 ## Set VSCode As Default Git Diff Tool
 ```shell
 git config --global --edit
@@ -104,9 +108,9 @@ https://www.freecodecamp.org/news/optimize-vscode-performance-best-extensions/
 https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
 
 ## Additional Shortcuts
-`cmd+p` -> type `>shortcuts json`
-```
-// Place your key bindings in this file to override the defaultsauto[]
+`cmd+p` -> type `>shortcuts json` -> select not `default`
+```jsonc
+// Place your key bindings in this file to override the defaults
 [
     {
         "key": "cmd+g shift+c",
@@ -163,6 +167,13 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
         "command": "editor.action.fixAll"
     }
 ]
+```
+
+## Settings
+`cmd+p` -> type `settings.json` -> select `~/Library/Application Support/Code/User/settings.json`
+```jsonc
+
+
 ```
 
 ## Updates
