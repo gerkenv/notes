@@ -103,6 +103,68 @@ https://www.freecodecamp.org/news/optimize-vscode-performance-best-extensions/
 ## Typewriter Sounds
 https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
 
+## Additional Shortcuts
+`cmd+p` -> type `>shortcuts json`
+```
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "cmd+g shift+c",
+        "command": "git.checkout"
+    },
+    {
+        "key": "cmd+g shift+s",
+        "command": "git.sync"
+    },
+    {
+        "key": "cmd+g cmd+s",
+        "command": "git.stageSelectedRanges"
+    },
+    {
+        "key": "cmd+g cmd+o",
+        "command": "git.openChange"
+    },
+    {
+        "key": "cmd+g cmd+u",
+        "command": "git.unstageSelectedRanges"
+    },
+    {
+        "key": "cmd+y",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    {
+        "key": "ctrl+cmd+]",
+        "command": "workbench.action.moveEditorToNextGroup"
+    },
+    // for compatibility with default spectacle move window command
+    {
+        "key": "ctrl+cmd+right",
+        "command": "-workbench.action.moveEditorToNextGroup"
+    },
+    {
+        "key": "ctrl+cmd+[",
+        "command": "workbench.action.moveEditorToPreviousGroup"
+    },
+    // for compatibility with default spectacle move window command
+    {
+        "key": "ctrl+cmd+left",
+        "command": "-workbench.action.moveEditorToPreviousGroup"
+    },
+    {
+        "key": "cmd+g cmd+r",
+        "command": "git.revertSelectedRanges"
+    },
+    {
+        "key": "cmd+m",
+        "command": "workbench.action.toggleEditorWidths"
+    },
+    {
+        "key": "ctrl+cmd+.",
+        "command": "editor.action.fixAll"
+    }
+]
+```
+
 ## Updates
 
 ### 1.60
