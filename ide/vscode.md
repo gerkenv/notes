@@ -172,8 +172,195 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
 ## Settings
 `cmd+p` -> type `settings.json` -> select `~/Library/Application Support/Code/User/settings.json`
 ```jsonc
+{
+  // -> required
+  "breadcrumbs.enabled": true,
+
+  "editor.fontSize": 11,
+  // "editor.tabSize": 4,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 100,
+  "editor.minimap.enabled": false,
+  "editor.detectIndentation": false,
+  // "editor.autoIndent": "full",
+  "editor.autoClosingBrackets": "always",
+  "editor.autoSurround": "languageDefined",
+  "editor.hover.sticky": true,
+  "editor.occurrencesHighlight": true,
+
+  // "debug.inlineValues": true,
+
+  "diffEditor.renderSideBySide": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+
+  "git.mergeEditor": true,
+  "git.path": "/usr/local/bin/git",
+
+  // "markdown.preview.fontSize": 12,
+  "markdown.preview.scrollPreviewWithEditor": true,
+  "markdown.preview.scrollEditorWithPreview": true,
+
+  // "workbench.settings.editor": "json",
+  "workbench.startupEditor": "none",
+  "workbench.commandPalette.history": 500,
+  "workbench.view.alwaysShowHeaderActions": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.wrapTabs": false,
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.enablePreview": false,
+  "workbench.commandPalette.preserveInput": true,
+  "workbench.editor.focusRecentEditorAfterClose": true,
+  "workbench.quickOpen.preserveInput": true,
+  "editor.suggest.preview": true,
+
+  "window.restoreWindows": "all",
+  "window.title": "${rootPath}  -->  ${activeEditorMedium}  ${dirty}",
+
+  "search.showLineNumbers": true,
+  "search.collapseResults": "alwaysCollapse",
+
+  "scm.alwaysShowActions": true,
+
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.fontSize": 11,
+
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.markdown-language-features"
+  },
+  "[graphql]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.formatOnSave": false,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "vscode.json-language-features",
+  },
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": false,
+  },
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[scss]": {
+    "editor.tabSize": 2
+  },
+  "[plaintext]": {
+    "editor.wordWrap": "on"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "cSpell.userWords": [],
+  "search.exclude": {
+    // access node_modules files from `quick open`
+    "/node_modules": false,
+    "**/node_modules": false,
+    "**/bower_components": true,
+    "**/*.code-search": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
 
 
+  // -> optional-recommended
+  "editor.formatOnSave": true,
+  "typescript.autoClosingTags": true,
+  // "typescript.format.enable": true,
+
+  // -> optional
+  "editor.bracketPairColorization.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+
+  // -> unclear
+
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.tsserver.maxTsServerMemory": 1024,
+  // "typescript.tsserver.useSeparateSyntaxServer": true,
+
+  // -> extensions
+  "turboConsoleLog.addSemicolonInTheEnd": true,
+
+  // "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.lintTask.enable": true,
+  "eslint.run": "onSave",
+
+  // code metrics
+  "codemetrics.basics.CodeLensHiddenUnder": 0,
+  "codemetrics.basics.CodeLensEnabled": true,
+  "merge-conflict.codeLens.enabled": false,
+  "workbench.colorTheme": "Default Light+",
+  "tabnine.experimentalAutoImports": true,
+  "editor.renderWhitespace": "all",
+  "html.format.wrapLineLength": 220,
+  "editor.guides.bracketPairs": true,
+  "git.autofetch": true,
+  "cSpell.language": "en-US, de",
+  "cSpell.maxDuplicateProblems": 1,
+  "cSpell.diagnosticLevel": "Hint",
+  "cSpell.maxNumberOfProblems": 20,
+
+  // code lens
+  // "editor.codeLens": true,
+  // "merge-conflict.codeLens.enabled": true,
+}
 ```
 
 ## Updates
