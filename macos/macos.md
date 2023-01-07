@@ -131,3 +131,11 @@ then https://forums.macrumors.com/threads/keychain-message-virus.1883336/
 # Mac Hardware
 ## How to Check That Mac Is New?
 - https://macreports.com/how-to-know-if-a-mac-is-refurbished-or-new/
+
+## Keyboards
+- https://www.macrumors.com/2022/07/19/apple-butterfly-keyboard-lawsuit-settlement/
+- https://www.youtube.com/watch?v=rx_n0GkrNy0&ab_channel=LukeMiani
+- 2015 - 2019 - butterfly keyboard (every year they improved a bit and 2019 is the best)
+    - shorter move range
+- 2020+ - scissors keyboard
+    - longer move range
