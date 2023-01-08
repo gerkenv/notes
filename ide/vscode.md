@@ -101,7 +101,7 @@ https://marketplace.visualstudio.com/items?itemName=jasonnutter.search-node-modu
 ## Extension Performance
 https://www.freecodecamp.org/news/optimize-vscode-performance-best-extensions/
 
-## GitLens 
+## GitLens
 ### Interactive Rebase UI
 
 ## Typewriter Sounds
@@ -173,36 +173,35 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
 `cmd+p` -> type `settings.json` -> select `~/Library/Application Support/Code/User/settings.json`
 ```jsonc
 {
-  // -> required
-  "breadcrumbs.enabled": true,
-
+  // basic settings
+  "workbench.colorTheme": "Default Light+",
+  "git.autofetch": true,
   "editor.fontSize": 11,
+  "editor.minimap.enabled": false,
+  // recommended settings
+  "breadcrumbs.enabled": false,
   // "editor.tabSize": 4,
+  "security.workspace.trust.enabled": false,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 100,
-  "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
   // "editor.autoIndent": "full",
+  "editor.renderWhitespace": "all",
   "editor.autoClosingBrackets": "always",
+  "editor.guides.bracketPairs": true,
   "editor.autoSurround": "languageDefined",
   "editor.hover.sticky": true,
   "editor.occurrencesHighlight": true,
-
   // "debug.inlineValues": true,
-
   "diffEditor.renderSideBySide": true,
   "diffEditor.ignoreTrimWhitespace": false,
-
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
-
   "git.mergeEditor": true,
   "git.path": "/usr/local/bin/git",
-
   // "markdown.preview.fontSize": 12,
   "markdown.preview.scrollPreviewWithEditor": true,
   "markdown.preview.scrollEditorWithPreview": true,
-
   // "workbench.settings.editor": "json",
   "workbench.startupEditor": "none",
   "workbench.commandPalette.history": 500,
@@ -210,23 +209,19 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.wrapTabs": false,
   "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.showTabs": true,
   "workbench.editor.enablePreview": false,
   "workbench.commandPalette.preserveInput": true,
   "workbench.editor.focusRecentEditorAfterClose": true,
   "workbench.quickOpen.preserveInput": true,
   "editor.suggest.preview": true,
-
   "window.restoreWindows": "all",
   "window.title": "${rootPath}  -->  ${activeEditorMedium}  ${dirty}",
-
   "search.showLineNumbers": true,
   "search.collapseResults": "alwaysCollapse",
-
   "scm.alwaysShowActions": true,
-
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.fontSize": 11,
-
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -251,7 +246,7 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
       "strings": "off",
       "other": "off"
     },
-    "editor.tabSize": 2,
+    "editor.tabSize": 4, // because git sometimes does not understand 2 spaces indentation
     "editor.defaultFormatter": "vscode.markdown-language-features"
   },
   "[graphql]": {
@@ -263,14 +258,14 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
     "editor.quickSuggestions": {
       "strings": true
     },
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.suggest.insertMode": "replace",
     "editor.defaultFormatter": "vscode.json-language-features",
   },
   "[jsonc]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.json-language-features",
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
   },
   "[yaml]": {
     "editor.insertSpaces": true,
@@ -290,7 +285,8 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
     "editor.wordWrap": "on"
   },
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.wordWrapColumn": 220
   },
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
@@ -314,50 +310,37 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
     "**/CVS": true,
     "**/.DS_Store": true
   },
-
-
-  // -> optional-recommended
+  // optional recommendations
   "editor.formatOnSave": true,
   "typescript.autoClosingTags": true,
   // "typescript.format.enable": true,
-
-  // -> optional
   "editor.bracketPairColorization.enabled": true,
-  "typescript.inlayHints.variableTypes.enabled": true,
+  // "typescript.inlayHints.variableTypes.enabled": true,
   "javascript.inlayHints.variableTypes.enabled": true,
-
-  // -> unclear
-
   "typescript.preferences.includePackageJsonAutoImports": "on",
   // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
-  "typescript.tsserver.maxTsServerMemory": 1024,
+  // "typescript.tsserver.maxTsServerMemory": 1024,
   // "typescript.tsserver.useSeparateSyntaxServer": true,
-
   // -> extensions
+  // turbo console log
   "turboConsoleLog.addSemicolonInTheEnd": true,
-
   // "eslint.format.enable": true,
   "eslint.alwaysShowStatus": true,
   "eslint.codeActionsOnSave.mode": "all",
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
-
   // code metrics
   "codemetrics.basics.CodeLensHiddenUnder": 0,
   "codemetrics.basics.CodeLensEnabled": true,
-  "merge-conflict.codeLens.enabled": false,
-  "workbench.colorTheme": "Default Light+",
+  // tab nine
   "tabnine.experimentalAutoImports": true,
-  "editor.renderWhitespace": "all",
-  "html.format.wrapLineLength": 220,
-  "editor.guides.bracketPairs": true,
-  "git.autofetch": true,
-  "cSpell.language": "en-US, de",
-  "cSpell.maxDuplicateProblems": 1,
+  // cspell
   "cSpell.diagnosticLevel": "Hint",
-  "cSpell.maxNumberOfProblems": 20,
-
+  "cSpell.language": "en-US, de-DE",
+  "cSpell.maxNumberOfProblems": 5,
+  "cSpell.maxDuplicateProblems": 1,
   // code lens
+  // "merge-conflict.codeLens.enabled": false,
   // "editor.codeLens": true,
   // "merge-conflict.codeLens.enabled": true,
 }
