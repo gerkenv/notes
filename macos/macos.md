@@ -83,9 +83,9 @@ It might output some additional actions, for example `reboot is required` - perf
 
 ## Optional. Swap `~` and `±` keys on english international layout.
 - Get shell script from here https://ppolyzos.com/2020/10/09/swap-places-between-tilde-and-section-sign-%C2%A7-key-in-your-macbook-keyboard/
-- Go to system preferences 
-    1. search for `open application at login` 
-    1. add new one with `+` 
+- Go to system preferences
+    1. search for `open application at login`
+    1. add new one with `+`
     1. `Cmd`+`Shift`+`.` to show hidden files in `finder`
     1. select `~/.tilde-switch`
 
@@ -97,11 +97,12 @@ It might output some additional actions, for example `reboot is required` - perf
 ## Hot Keys
 _shortcuts short keys hot keys_
 
+- `Cmd`+`Opt`+`D` - toggle dock auto-hide behavior
 - `Cdm`+`Space` - open app search
 - `Cmd`+`Ctrl`+`Q` - lock screen
-- `Cmd`+`Shift`+3 - full-screen
-- `Cmd`+`Shift`+4 - select screen area
-- long press on `a` -> extended `a` characters `ä`, `á`, etc. works with other keys as well.
+- `Cmd`+`Shift`+3 - full-screen screenshot
+- `Cmd`+`Shift`+4 - screenshot with area picker
+- long press on `a` -> extended `a` characters `ä`, `á`, etc. works with other keys as well
 
 ## How To Run Not Trusted Applications From CLI
 System preferences -> Security & Privacy -> Developer Tools -> Allow the apps below to run software locally that does not meet the system security policy
@@ -120,7 +121,7 @@ https://www.quora.com/How-do-I-check-what-USB-devices-are-connected-to-a-Mac
 ## Keychain issues
 Multiple messanges in form
 ```
-cloudd wants to use the "login keychain" 
+cloudd wants to use the "login keychain"
 ```
 if restart dooes not help
 then https://forums.macrumors.com/threads/keychain-message-virus.1883336/
