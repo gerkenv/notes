@@ -31,8 +31,21 @@ Install https://www.spectacleapp.com/
 - https://techpp.com/2022/01/11/best-clipboard-managers-for-mac/
 - https://www.makeuseof.com/tag/5-best-mac-clipboard-manager-apps-improve-workflow/
 
-## Screen Recorder
+## Screen Recorder (With convertion to GIF)
 https://getkap.co/
+
+## How To Record Internal Audio And Screen Simultaneously
+- https://www.youtube.com/watch?v=prUVS0HF2gU&ab_channel=ThinkMedia
+    - install `blackhole 16ch`
+    - set up aggregate device `quicktimeplayer-imput` with `blackhole 16ch`
+    - setup multi-output `screen-recording-with-audio` with
+        - your main audio on top
+        - and `blackhole 16ch` below
+
+### How to record
+1. switch your output device to `screen-recording-with-audio`
+2. in quicktimeplayer screen recording or open with `Cmd`+`Shift`+5 select microphone `quicktimeplayer-imput`
+3. press `record`
 
 ## Install `zsh`
 - https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
