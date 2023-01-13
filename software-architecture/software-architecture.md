@@ -12,3 +12,17 @@
 
 ### Load Shadding And Traffic Management
 - https://www.youtube.com/watch?v=XNEIkivvaV4
+
+### Admission Control In A 3000 Microservices System
+- https://blog.acolyer.org/2018/11/16/overload-control-for-scaling-wechat-microservices/
+    - WeChat classify their microservices as 
+        - “Entry leap” services (front-end services receiving external requests), 
+        - “Shared leap” services (middle-tier orchestration services), and 
+        - “Basic services” (services that don’t fan out to any other services, and thus act as sinks for requests).
+    - Overload detection with request queuing time
+    - Compound admission level control is based on 2 dimensions
+        - priority set by 'entry leap' service
+        - assigned user priority
+    - Overload control should take into account a variety of feedback mechanisms (e.g. DAGOR’s collaborative admission control) rather than relying solely on open-loop heuristics.
+    - updated papar from comments
+        - https://arxiv.org/abs/1806.04075    
