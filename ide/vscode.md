@@ -104,6 +104,17 @@ https://www.freecodecamp.org/news/optimize-vscode-performance-best-extensions/
 ## GitLens
 ### Interactive Rebase UI
 
+## Paste Images In Markdown
+https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
+- Images are pasted by default into the same folder
+- Add to your vscode settings to paste into `./__images__/filename`
+```jsonc
+"pasteImage.namePrefix": "__images__/",
+```
+
+## Smart Paste Into Markdown (Optional)
+- https://marketplace.visualstudio.com/items?itemName=telesoho.vscode-markdown-paste-image
+
 ## Typewriter Sounds
 https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
 
@@ -339,6 +350,8 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
   "cSpell.language": "en-US, de-DE",
   "cSpell.maxNumberOfProblems": 5,
   "cSpell.maxDuplicateProblems": 1,
+  // paste image
+  "pasteImage.namePrefix": "__images__/",
   // code lens
   // "merge-conflict.codeLens.enabled": false,
   // "editor.codeLens": true,
