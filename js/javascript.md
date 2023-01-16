@@ -275,6 +275,202 @@ const whileWrapper = async (mark: string, resolutionTime: number) => {
 whileWrapper('a', 1000);
 ```
 
+## Promise Control Flow
+```ts
+// utilities
+
+console.clear();
+const log = (...args: any) => console.log(new Date().toISOString(), args);
+
+const delay = (time:number) => new Promise(resolve => setTimeout(resolve,time));
+
+const carriedPromiseWithDelay = (time:number, index: number, fulfill: boolean) => 
+    (arg: unknown) => 
+        new Promise<number>((resolve, reject) => {
+            log(`index ${index}.start(${arg})`); 
+            delay(time).then(() => {
+                log(`index ${index}.end`); 
+                if (fulfill) {
+                    resolve(index);
+                } else {
+                    reject(`err-${index}`);
+                }
+            });
+});
+
+log('start');
+
+type Task = (value: unknown) => Promise<unknown>;
+type Callback = (err: Error | null, value?: unknown) => void;
+type TaskRunner = (tasks: Task[], callback: Callback) => Promise<void>;
+
+const example = (taskRunner: TaskRunner) => {
+    taskRunner([
+        carriedPromiseWithDelay(1000, 1, true),
+        carriedPromiseWithDelay(2000, 2, false),
+        carriedPromiseWithDelay(3000, 3, true),
+        carriedPromiseWithDelay(1000, 4, true),
+    ],
+    (err, value) => {
+        log('callback', err, value);
+    })
+}
+
+// control flows
+
+const parallel1 = async (tasks: Task[], callback: Callback) => {
+    try {
+        let results: unknown[] = [];
+        const checkIfAllTasksDone = () => { 
+             if (results.length === tasks.length) {
+                callback(null, results);
+             }
+        };
+
+        // 1. parallel execution
+        tasks.forEach(async (task) => {
+            try {
+                const scheduledTask = task('parallel-1');
+                // task kicked off here
+                // but `forEach` doesn't understand the `await` so it goes to next task without awaiting
+                const resolvedValue = await scheduledTask;
+                results.push(resolvedValue);
+                checkIfAllTasksDone();
+            } catch (error: unknown) {
+                callback(error as Error);
+                results.push(error);
+                checkIfAllTasksDone();
+            }
+        });
+    } catch (error: unknown) {
+        callback(error as Error);
+    }
+}
+
+// example(parallel1);
+
+
+const parallel2 = async (tasks: Task[], callback: Callback) => {
+    const allScheduledTasks = tasks.map(async (task) => {
+        try {
+            const scheduledTask = task('parallel-2');
+            // task kicked off here
+            // but `map` doesn't understand the `await` so it goes to next task without awaiting
+            const resolvedValue = await scheduledTask;
+            // results.push(resolvedValue);
+            return resolvedValue;
+        } catch (error: unknown) {
+            callback(error as Error);
+            // results.push(error);
+            return error;
+        }
+    });
+    // we don't really need 2nd `await` here - all promises are already being executed
+    // we use `await Promise.all` only to get gather all results when all promisses are settled (independently if they fail or not)
+    const allResolvedValues = await Promise.all(allScheduledTasks);
+    callback(null, allResolvedValues);
+}
+
+// example(parallel2);
+
+
+const sequential1 = async (tasks: Task[], callback: Callback) => {
+
+    let results: unknown[] = [];
+
+    // 2. sequential execution
+    for (let i=0; i<tasks.length; i++) {
+        try {
+            const scheduledTask = tasks[i]('sequential-1');
+            // task kicked off here
+            // but `for` understands the `await` so it does await before going further
+            const resolvedValue = await scheduledTask;
+            results.push(resolvedValue);
+            // checkIfAllTasksDone();
+        } catch (error: unknown) {
+            callback(error as Error);
+            results.push(error);
+            return;
+            // checkIfAllTasksDone();
+        }
+    }
+
+    callback(null, results);
+}
+
+// example(sequential1);
+
+const sequential2 = async (tasks: Task[], callback: Callback) => {
+
+    let results: unknown[] = [];
+
+    // Sequential execution
+    for (const task of tasks) {
+        try {
+            const scheduledTask = task('sequential-2');
+            // task kicked off here
+            // but `for of` understands the `await` so it does await before going further
+            const resolvedValue = await scheduledTask;
+            results.push(resolvedValue);
+        } catch (error: unknown) {
+            callback(error as Error);
+            results.push(error);
+            return;
+        }
+    }
+
+    callback(null, results);
+}
+
+// example(sequential2);
+
+
+// call 1st task, get result and pass it as an argument to the mext task
+// if any task breaks - exit with callback
+const waterfall = async (tasks: Task[], callback: Callback) => {
+    let lastResult: unknown = 0;
+    for (const task of tasks) {
+        try {
+            const scheduledTask = task(lastResult);
+            // task kicked off here
+            // but `for of` understands the `await` so it does await before going further
+            const result = await scheduledTask;
+            lastResult = result;
+        } catch (error: unknown) {
+            callback(error as Error);
+            lastResult = error;
+            return;
+        }
+    }
+}
+
+// example(waterfall);
+
+
+// very strange beast, please avoid
+// more details here https://zellwk.com/blog/async-await-in-loops/
+const waitOnlyForFirstTaskFromArray = async (tasks: Task[], callback: Callback) => {
+    const results = tasks.reduce(async (acc, task) => {
+        try {
+            const scheduledTask = task();
+            // kicks off all tasks only if we await for task and we await for the `acc` as well
+            // wierd voodoo magic, please avoid
+            const resolvedValue = await scheduledTask;
+            const resolvedAcc = await acc;
+            resolvedAcc.push(resolvedValue);
+            return resolvedAcc;
+        } catch (error: unknown) {
+            callback(error as Error);
+            const resolvedAcc = await acc;
+            resolvedAcc.push(error);
+            return resolvedAcc;
+        }
+    }, []);
+    callback(null, results);
+}
+
+```
+
 ## Equality Table
 https://dorey.github.io/JavaScript-Equality-Table/
 
