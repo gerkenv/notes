@@ -26,3 +26,6 @@
     - Overload control should take into account a variety of feedback mechanisms (e.g. DAGOR’s collaborative admission control) rather than relying solely on open-loop heuristics.
     - updated papar from comments
         - https://arxiv.org/abs/1806.04075    
+
+## Scalable Weakly-consistent Infection-style Process Group Membership Protocol (SWIM) - Better Health Check
+- https://distributed-computing-musings.com/2023/01/paper-notes-swimscalable-weakly-consistent-infection-style-process-group-membership-protocol/
