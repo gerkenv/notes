@@ -44,7 +44,7 @@ https://code.visualstudio.com/docs/getstarted/tips-and-tricks
 ## Search for node modules in quick open
 https://github.com/microsoft/vscode/issues/36438
 
-Add following configuration
+Add following configuration to settings
 ```json
   "search.exclude": {
     // access node_modules files from `quick open`
@@ -53,6 +53,16 @@ Add following configuration
     "**/bower_components": true,
     "**/*.code-search": true
   },
+```
+
+## Remove Unused Imports
+https://stackoverflow.com/questions/46722701/is-there-a-way-to-remove-unused-imports-and-declarations-from-angular-2
+Command `Organize imports` is `Option`+`Shift`+`O`.
+Also there is a hook to execute an action on save, so adding this to settings could help
+```
+"editor.codeActionsOnSave": {
+    "source.organizeImports": true
+}
 ```
 
 ## Disable TS checks
