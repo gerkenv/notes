@@ -243,6 +243,10 @@ https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
   "scm.alwaysShowActions": true,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.fontSize": 11,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
