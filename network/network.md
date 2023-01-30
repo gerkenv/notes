@@ -73,3 +73,6 @@ Can be used for continious monitoring.
 ## Frequently Asked Questions (FAQ) on IPv6 adoption and IPv4 exhaustion
 https://www.internetsociety.org/deploy360/ipv6/faq/
 - very detailed article around the topic
+
+## Example IPv6 transition planning 
+- https://www.itu.int/en/ITU-D/Regional-Presence/AsiaPacific/Documents/S08-IPv6-Transition-Planning.pdf
