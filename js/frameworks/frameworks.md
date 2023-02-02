@@ -8,3 +8,9 @@ https://dev.to/this-is-learning/why-efficient-hydration-in-javascript-frameworks
 
 ## No JS Arguments
 https://www.kryogenix.org/code/browser/everyonehasjs.html
+
+## 2022 State Of JS Frameworks (front-end)
+https://2022.stateofjs.com/en-US/libraries/front-end-frameworks/
+
+## 2022 State Of JS Frameworks (rendering)
+https://2022.stateofjs.com/en-US/libraries/rendering-frameworks/
