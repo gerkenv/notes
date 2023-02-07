@@ -104,3 +104,11 @@ https://twitter.com/patmeenan/status/1443219921522073601
 - https://github.com/facebookincubator/memlab
 - https://facebookincubator.github.io/memlab/
 - https://www.clinicjs.org/heapprofiler/
+
+## Code Deoptimization
+- Franziska Hinkelmann: Performance Profiling for V8 - JSConf.Asia 2016
+    - https://www.youtube.com/watch?v=B9igDWV5ZUg
+- Deoptimization in V8
+    - https://docs.google.com/presentation/d/1Z6oCocRASCfTqGq1GCo1jbULDGS-w-nzxkbVF7Up0u0/edit#slide=id.p
+- Node Version Differences For Deoptimization Logging
+    Node 14 provides more detailed description on where deoptimization is actually happen comparing to Node 16.
