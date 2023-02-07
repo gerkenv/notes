@@ -1,5 +1,10 @@
 # Frameworks
 
+## Queue
+
+- astro https://astro.build/
+- solidjs 
+
 ## 2023.01 Frameworks Trends
 https://dev.to/this-is-learning/javascript-frameworks-heading-into-2023-nln
 
