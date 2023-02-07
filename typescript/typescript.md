@@ -1,6 +1,6 @@
 # Typescript
 
-## Collection Typescript Tricks
+## Collection Of Typescript Tricks
 - https://catchts.com/
 
 ## `infer`
