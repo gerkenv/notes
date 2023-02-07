@@ -1,5 +1,8 @@
 # Typescript
 
+## Collection Typescript Tricks
+- https://catchts.com/
+
 ## `infer`
 - https://dev.to/aexol/typescript-tutorial-infer-keyword-2cn
 - https://blog.logrocket.com/understanding-infer-typescript/
