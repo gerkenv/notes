@@ -1,5 +1,9 @@
 # Micro-Frontends
 
+## Queue
+Michael Geers - Micro Frontends - The Nitty Gritty Details or Frontend, Backend, 🌈 Happyend
+- https://www.youtube.com/watch?v=wCHYILvM7kU&t=22s
+
 ## Intro
 Very nice intro in micro-frontends
 - https://micro-frontends.org/
