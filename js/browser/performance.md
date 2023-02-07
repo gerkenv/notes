@@ -111,4 +111,5 @@ https://twitter.com/patmeenan/status/1443219921522073601
 - Deoptimization in V8
     - https://docs.google.com/presentation/d/1Z6oCocRASCfTqGq1GCo1jbULDGS-w-nzxkbVF7Up0u0/edit#slide=id.p
 - Node Version Differences For Deoptimization Logging
-    Node 14 provides more detailed description on where deoptimization is actually happen comparing to Node 16.
+    - add a flag to `node` to log all occurences of deoptimized code `node --trace-deopt index.js`
+    - Node 14 provides more detailed description on where deoptimization is actually happen comparing to Node 16.
