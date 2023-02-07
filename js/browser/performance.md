@@ -96,6 +96,11 @@ https://twitter.com/patmeenan/status/1443219921522073601
 - https://www.w3.org/TR/navigation-timing/#process
 - https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming
 
+## Detecting Memory Leak
+- https://techtldr.com/simple-guide-to-finding-a-javascript-memory-leak-in-node-js/
+- https://hacks.mozilla.org/2012/11/tracking-down-memory-leaks-in-node-js-a-node-js-holiday-season/
+
 ## Memory Profiling
 - https://github.com/facebookincubator/memlab
 - https://facebookincubator.github.io/memlab/
+- https://www.clinicjs.org/heapprofiler/
