@@ -1,5 +1,10 @@
 # Typescript
 
+## Courses
+- Learning. Basic course https://www.executeprogram.com/courses/typescript-basics
+- Learning. Advanced course https://www.executeprogram.com/courses/advanced-typescript/
+- Best practices. Everyday typescript https://www.executeprogram.com/courses/everyday-typescript
+
 ## Collection Of Typescript Tricks
 - https://catchts.com/
 
