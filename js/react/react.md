@@ -39,3 +39,84 @@ renderToNodeStream can reduce the event loop lag thus improve over-all performan
 
 ## React Lifecycle Diagram
 https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+## React Context
+- official docs https://reactjs.org/docs/context.html
+- better intro https://www.freecodecamp.org/news/react-context-for-beginners/
+
+```ts
+import React, { createContext, useContext } from "react";
+
+interface ContextValue {
+  someText: string;
+  someFunction: (value: number) => number;
+}
+
+const Context = createContext<ContextValue>({
+  someText: "default text",
+  someFunction: (value: number) => value,
+});
+
+```ts
+interface ContextValue {
+  someText: string;
+  someFunction: (value: number) => number;
+}
+const defaultContext = {
+  someText: "default text",
+  someFunction: (value: number) => value,
+};
+
+const ExampleContext = createContext<ContextValue>(defaultContext);
+
+const ExampleComponent: React.FC = () => {
+  const contextValue = useContext(ExampleContext);
+
+  return (
+    <div>
+      {contextValue.someText} and {contextValue.someFunction(3)}
+    </div>
+  );
+};
+
+const customContext: ContextValue = {
+  someText: "custom text",
+  someFunction: (value: number) => value + 10,
+};
+
+const App: React.FC = () => {
+  return (
+    <>
+      {/* option 1. if a context is used outside of a provider with a custom value then default
+      context value is used */}
+      <ExampleComponent />
+      
+      {/* option 2. provider can supply a custom value for a context */}
+      <ExampleContext.Provider value={customContext}>
+        <ExampleComponent />
+      </ExampleContext.Provider>
+    </>
+  );
+};
+
+export default App;
+```
+
+### React Context. How To Use Default Value
+- https://stackoverflow.com/questions/49949099/react-createcontext-point-of-defaultvalue
+```ts
+const App: React.FC = () => {
+  return (
+    <>
+      {/* option 1. if a context is used outside of a provider with a custom value then default
+      context value is used */}
+      <ExampleComponent />
+      
+      {/* option 2. provider can supply a custom value for a context */}
+      <ExampleContext.Provider value={customContext}>
+        <ExampleComponent />
+      </ExampleContext.Provider>
+    </>
+  );
+};
+```
