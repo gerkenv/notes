@@ -7,12 +7,16 @@
 - https://www.typescriptlang.org/cheatsheets
 
 ## Courses
+- https://www.totaltypescript.com/
 - Learning. Basic course https://www.executeprogram.com/courses/typescript-basics
 - Learning. Advanced course https://www.executeprogram.com/courses/advanced-typescript/
 - Best practices. Everyday typescript https://www.executeprogram.com/courses/everyday-typescript
 
 ## Collection Of Typescript Tricks
 - https://catchts.com/
+
+## Challenges
+https://github.com/type-challenges/type-challenges
 
 ## `infer`
 - https://dev.to/aexol/typescript-tutorial-infer-keyword-2cn
@@ -97,8 +101,6 @@ console.log(c);  // 'c1'
 console.log(b1); // 1
 console.log(b);  // {"b1": 1, "b2": 2}
 ```
-
-## Typeguards
 
 ## Convert Optional To Defined
 ```ts
