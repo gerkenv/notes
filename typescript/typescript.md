@@ -1,5 +1,11 @@
 # Typescript
 
+## Official Docs. Creating Types From Types
+- https://www.typescriptlang.org/docs/handbook/2/types-from-types.html
+
+## Official Docs. Cheat Sheet
+- https://www.typescriptlang.org/cheatsheets
+
 ## Courses
 - Learning. Basic course https://www.executeprogram.com/courses/typescript-basics
 - Learning. Advanced course https://www.executeprogram.com/courses/advanced-typescript/
