@@ -64,16 +64,15 @@ generally expected output is
 
 1. Don't call `sheet.getStyleTags()` twice
 ```
-ERROR [23:49:35]: Uncaught exception
-    err: {
-      "type": "Error",
-      "message": "Can't collect styles once you've consumed a `ServerStyleSheet`'s styles! `ServerStyleSheet` is a one off instance for each server-side render cycle.\n\n- Are you trying to reuse it across renders?\n- Are you accidentally calling collectStyles twice?",
-      "stack":
-          Error: Can't collect styles once you've consumed a `ServerStyleSheet`'s styles! `ServerStyleSheet` is a one off instance for each server-side render cycle.
-          
-          - Are you trying to reuse it across renders?
-          - Are you accidentally calling collectStyles twice?
-    }
+err: {
+  "type": "Error",
+  "message": "Can't collect styles once you've consumed a `ServerStyleSheet`'s styles! `ServerStyleSheet` is a one off instance for each server-side render cycle.\n\n- Are you trying to reuse it across renders?\n- Are you accidentally calling collectStyles twice?",
+  "stack":
+      Error: Can't collect styles once you've consumed a `ServerStyleSheet`'s styles! `ServerStyleSheet` is a one off instance for each server-side render cycle.
+
+      - Are you trying to reuse it across renders?
+      - Are you accidentally calling collectStyles twice?
+}
 ```
 
 #### Option 1 `sheet.interleaveWithNodeStream` is recommended for `ReactDOMServer.renderToNodeStream`
@@ -98,8 +97,7 @@ ERROR [23:49:35]: Uncaught exception
 __Note__
 - It is not enough to add the code only, so some build configuration tooling is necessary to integrate.
 
-## Style Component Tooling
-### Add Tooling
+### Style Component Tooling
 - https://styled-components.com/docs/advanced#tooling-setup
 
 ### 1.1 @swc/plugin-styled-components
