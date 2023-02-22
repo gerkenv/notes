@@ -1,4 +1,12 @@
 # Javascript
+
+## Talks by Gary Bernhardt
+https://www.destroyallsoftware.com/talks
+### Wat
+https://www.destroyallsoftware.com/talks/wat
+### The Birth & Death of JavaScript
+https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript
+
 ## EcmaScript
 ### Compatibility
 - https://kangax.github.io/compat-table/es6/
