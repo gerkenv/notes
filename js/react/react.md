@@ -120,3 +120,10 @@ const App: React.FC = () => {
   );
 };
 ```
+
+## React Context. Is is a singleton?
+https://medium.com/@anchen.li/is-react-context-singleton-4c8756b8ad4e
+
+## React Context. How To Avoid 2 Instances When Using Context In Multiple Bundles
+Extract an instance of a certain react context into a single package
+- https://stackoverflow.com/questions/68639919/make-library-chunks-share-the-same-react-context-with-webpack
