@@ -1,5 +1,8 @@
 # Software Architecture
 
+## Audible Resources For System Design
+https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior-SWE]-QpSSSG4j
+
 ## Stream Processing
 
 ### Questioning the Lambda Architecture / Kappa Architecture
