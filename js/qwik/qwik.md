@@ -1,6 +1,12 @@
 # Qwik
 https://qwik.builder.io/
 
+## 2022.12 JavaScript Frameworks - Heading into 2023
+https://dev.to/this-is-learning/javascript-frameworks-heading-into-2023-nln
+
+## 2022.03 Conquering JavaScript Hydration
+https://dev.to/this-is-learning/conquering-javascript-hydration-a9f
+
 ## Tutorial
 https://qwik.builder.io/tutorial/welcome/overview/
 
