@@ -19,6 +19,9 @@ https://qwik.builder.io/docs/concepts/resumable/
 ## 2022.09 Qwik-ifying React SPA to create the fastest possible website
 https://www.youtube.com/watch?v=dbxP9FX5j2o 
 
+## 2022.10 Intro to Qwik: A superfast JavaScript framework
+https://www.infoworld.com/article/3676577/intro-to-qwik-a-superfast-javascript-framework.html
+
 ## 2022.12 How to extract a handler
 ```js
 import { component$, $ } from '@builder.io/qwik';
