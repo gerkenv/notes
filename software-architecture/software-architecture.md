@@ -1,7 +1,8 @@
 # Software Architecture
 
-## Audible Resources For System Design
+## Audible Resources (Books, Podcasts) For System Design
 https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior-SWE]-QpSSSG4j
+- audiobook version of for `Designing Data Intensive Applications`
 
 ## Stream Processing
 
