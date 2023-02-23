@@ -51,6 +51,16 @@ cat acb1 # prints content of 'abc1'
 rm abc1
 ```
 
+## sleep
+```
+sleep 2 # delay execution by 2 seconds
+```
+
+## date
+```
+date # returnes a timestamp in format Thu Feb 20 10:36:06 CET 2020
+```
+
 ## exist on error `set -e`
 ```sh
 # exit on any command non-zero exit code / on any failing command
