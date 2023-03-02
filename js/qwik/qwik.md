@@ -1,6 +1,10 @@
 # Qwik
 https://qwik.builder.io/
 
+## 2023.02 Module Extraction: The Silent Web Revolution
+https://www.builder.io/blog/module-extraction-the-silent-web-revolution
+  > Modern meta frameworks such as Qwik, Remix, Solid Start, and Next 13 are already doing module extraction without you knowing. The main use case is allowing developers to write server- and client-side in the same module
+
 ## 2022.12 JavaScript Frameworks - Heading into 2023
 https://dev.to/this-is-learning/javascript-frameworks-heading-into-2023-nln
 
