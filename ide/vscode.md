@@ -88,8 +88,32 @@ https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens
 
 Checks versions of npm packages.
 
+### Code Speel Checker
+https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+
+### Find Unused Imports
+https://marketplace.visualstudio.com/items?itemName=iulian-radu-at.find-unused-exports
+
+### GraphQL: Syntax Highlighting
+https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql-syntax
+
 ### Code Complexity Estimation
 https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-codemetrics
+
+### Docker
+https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker
+
+### DotENV
+https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
+
+### ESLint
+https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+
+### Prettier - Code formatter
+https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+### Rainbow Tags
+https://marketplace.visualstudio.com/items?itemName=voldemortensen.rainbow-tags
 
 ### Static Code Analysis
 https://marketplace.visualstudio.com/items?itemName=adisreyaj.sonarqube-status
@@ -102,19 +126,25 @@ ML model works locally.
 
 https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode
 
+### GitHub Pull Requests and Issues
+https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
+
+### Live Share
+https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare
+
 ### Faster Prototyping
 https://quokkajs.com/docs/
 
 ### Search Node Modules
 https://marketplace.visualstudio.com/items?itemName=jasonnutter.search-node-modules
 
-## Extension Performance
+### Extension Performance
 https://www.freecodecamp.org/news/optimize-vscode-performance-best-extensions/
 
-## GitLens
-### Interactive Rebase UI
+### GitLens
+#### Interactive Rebase UI
 
-## Paste Images In Markdown
+### Paste Images In Markdown
 https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
 - Images are pasted by default into the same folder
 - Add to your vscode settings to paste into `./__images__/filename`
@@ -122,11 +152,17 @@ https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
 "pasteImage.namePrefix": "__images__/",
 ```
 
-## Smart Paste Into Markdown (Optional)
+### Smart Paste Into Markdown (Optional)
 - https://marketplace.visualstudio.com/items?itemName=telesoho.vscode-markdown-paste-image
 
-## Typewriter Sounds
+### Typewriter Sounds
 https://marketplace.visualstudio.com/items?itemName=timreilly.typewriter-sounds
+
+### Jupyter
+https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter
+
+### Python
+https://marketplace.visualstudio.com/items?itemName=ms-python.python
 
 ## Additional Shortcuts
 `cmd+p` -> type `>shortcuts json` -> select not `default`
