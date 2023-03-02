@@ -80,6 +80,9 @@ https://marketplace.visualstudio.com/items?itemName=waderyan.nodejs-extension-pa
 https://marketplace.visualstudio.com/items?itemName=nodesource.vscode-for-node-js-development-pack
 https://marketplace.visualstudio.com/items?itemName=afractal.node-essentials
 
+### Turbo Console Log
+https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log
+
 ### Import Cost
 https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost
 
@@ -163,6 +166,10 @@ https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter
 
 ### Python
 https://marketplace.visualstudio.com/items?itemName=ms-python.python
+
+### Thunder Client
+Alternative to postman
+https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client
 
 ## Additional Shortcuts
 `cmd+p` -> type `>shortcuts json` -> select not `default`
