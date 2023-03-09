@@ -383,6 +383,7 @@ describe("some set of tests", () => {
 
 ### `baseUrl`
 - https://docs.cypress.io/guides/references/best-practices#Setting-a-global-baseUrl
+    - How to correctly use the baseUrl to visit a site in Cypress https://www.youtube.com/watch?v=f5UaXuAc52c
 - https://github.com/cypress-io/cypress/issues/1074
 
 ## Typescript Support
