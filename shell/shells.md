@@ -66,6 +66,11 @@ plugins=(
 ##### PowerLevel 10K
 - https://github.com/romkatv/powerlevel10k
 
+## `jq` CLI for JSON manipulation
+https://stedolan.github.io/jq/
+```
+brew install jq
+```
 
 ## Languages Compiled To Shell
 - https://www.oilshell.org/
