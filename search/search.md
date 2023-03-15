@@ -2,14 +2,14 @@
 
 ## Browser Tab Management
 
-## Suspend Tabs / Save Memory
+### Suspend Tabs / Save Memory
 - chrome https://chrome.google.com/webstore/detail/tab-suspender/fiabciakcmgepblmdkmemdbbkilneeeh/reviews
 - firefox 
 
-## Export Tabs In Markdown In Chrome
+### Export Tabs In Markdown In Chrome
 - https://superuser.com/questions/117754/is-there-a-way-to-copy-urls-from-all-open-tabs-in-a-google-chrome-or-other-brow
 
-### Tablerone
+#### Tablerone
 - https://chrome.google.com/webstore/detail/tablerone-tab-manager/andpjllgocabfacjlelkfpdemfklpfpo/related
 - https://www.youtube.com/watch?v=9XNLzRuZ_bw&t=1s
     - nice tab managements
@@ -19,7 +19,7 @@
         - text, markdown, html, etc
     - memory management, can discard and restore tabs
 
-### TabCopy
+#### TabCopy
 https://chrome.google.com/webstore/detail/tabcopy/micdllihgoppmejpecmkilggmaagfdmb/related?hl=en-US
 - provide set of default formats and custom format
     - markdown, text, html,
@@ -29,9 +29,9 @@ https://chrome.google.com/webstore/detail/tabcopy/micdllihgoppmejpecmkilggmaagfd
     - copy all tabs with shortcut in a window
     - copy all tabs with shortcut in all windows
 
-## Export Tabs In Markdown In Firefox
+### Export Tabs In Markdown In Firefox
 
-### Tab Stash
+#### Tab Stash
 - https://addons.mozilla.org/en-US/firefox/addon/tab-stash/
     - nice tab managements
         - nice CRUD for selected tabs
