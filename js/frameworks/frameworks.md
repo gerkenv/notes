@@ -3,7 +3,10 @@
 ## Queue
 
 - astro https://astro.build/
-- solidjs 
+- solidjs
+
+## 2023.02 React.js: The Documentary (Must watch for framework devs)
+- https://www.youtube.com/watch?v=8pDqJVdNa44&t=415s&ab_channel=Honeypot
 
 ## 2023.01 Frameworks Trends
 https://dev.to/this-is-learning/javascript-frameworks-heading-into-2023-nln

@@ -1,5 +1,8 @@
 # React
 
+## React.js: The Documentary (Must watch for framework devs)
+- https://www.youtube.com/watch?v=8pDqJVdNa44&t=415s&ab_channel=Honeypot
+
 ## React Class Component Long-Term Support
 - https://www.robinwieruch.de/react-class-component-deprecated
 
@@ -90,7 +93,7 @@ const App: React.FC = () => {
       {/* option 1. if a context is used outside of a provider with a custom value then default
       context value is used */}
       <ExampleComponent />
-      
+
       {/* option 2. provider can supply a custom value for a context */}
       <ExampleContext.Provider value={customContext}>
         <ExampleComponent />
@@ -111,7 +114,7 @@ const App: React.FC = () => {
       {/* option 1. if a context is used outside of a provider with a custom value then default
       context value is used */}
       <ExampleComponent />
-      
+
       {/* option 2. provider can supply a custom value for a context */}
       <ExampleContext.Provider value={customContext}>
         <ExampleComponent />
