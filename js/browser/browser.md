@@ -224,6 +224,9 @@ https://web.dev/bfcache/
 
 # HTTP
 
+## 2022 Specification
+- https://www.rfc-editor.org/rfc/rfc9110
+
 ## Status Codes
 - https://httpstatusdogs.com/
 
@@ -236,6 +239,10 @@ https://web.dev/bfcache/
   - thrown by default by node if any header is more than 8kB 
     - https://cri.dev/posts/2020-05-18-Fixing-431-Request-Header-Fields-Too-Large-in-Nodejs/
 - 503 - service is unavailable
+
+### 204 No Content
+- https://www.rfc-editor.org/rfc/rfc9110#status.204
+    - Means that response does not contain content, so even if you send some content, then some clients might refuse to read the content (body) or some servers might refuse to send the content.
 
 ## User Agent Holly War
 
