@@ -156,3 +156,6 @@ kubectl logs object-name
 # Get logs for a dead pod
 kubectl logs object-name --previous
 ```
+
+## Default Scaling Configuration
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#default-behavior
