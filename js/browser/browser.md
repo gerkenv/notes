@@ -244,6 +244,21 @@ https://web.dev/bfcache/
 - https://www.rfc-editor.org/rfc/rfc9110#status.204
     - Means that response does not contain content, so even if you send some content, then some clients might refuse to read the content (body) or some servers might refuse to send the content.
 
+### 429 vs 503
+- 429 is used when a particular client is sending to many requests. So server has capacity, but it will limit the greedy user to allow others to access resources.
+    - Typically used to indicate rate limiting.
+- 503 is used when a partucular server is completely out of capacity for all clients.
+    - Typically used to indicate load shedding.
+
+- 429 https://datatracker.ietf.org/doc/html/rfc6585#section-4
+- https://webmasters.stackexchange.com/questions/65674/should-i-return-a-429-or-503-status-code-to-a-bot
+- skipper rate limit discussion https://github.com/zalando/skipper/issues/1728
+
+#### Rate Limiting Headers
+Useful to indicate that server is overloaded.
+- https://stackoverflow.com/questions/16022624/examples-of-http-api-rate-limiting-http-response-headers
+- https://medium.com/@guillaume.viguierjust/rate-limiting-your-restful-api-3148f8e77248
+
 ## User Agent Holly War
 
 ### Client Side
