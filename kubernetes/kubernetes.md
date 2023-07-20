@@ -161,4 +161,6 @@ kubectl logs object-name --previous
 https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#default-behavior
 
 ## Liveness Probe / Readiness Probe / Statup Probe
-https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+- https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+- https://blog.colinbreck.com/kubernetes-liveness-and-readiness-probes-revisited-how-to-avoid-shooting-yourself-in-the-other-foot/
+- failure stories by Datadog https://www.youtube.com/watch?v=QKI-JRs2RIE
