@@ -159,3 +159,6 @@ kubectl logs object-name --previous
 
 ## Default Scaling Configuration
 https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#default-behavior
+
+## Liveness Probe / Readiness Probe / Statup Probe
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
