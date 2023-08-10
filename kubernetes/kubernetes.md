@@ -26,6 +26,9 @@ kubectl get all
 ```sh
 kubectl get pod some-pod -o json
 ```
+
+## Print Out Part Of JSON Representation
+https://kubernetes.io/docs/reference/kubectl/jsonpath/
 for a subfield
 ```sh
 kubectl get pod some-pod -o jsonpath='{.status}'
