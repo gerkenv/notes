@@ -32,7 +32,8 @@ https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior
         - https://arxiv.org/abs/1806.04075    
 
 ## Reverse Proxy. LIFO Queue
-- https://dropbox.tech/infrastructure/meet-bandaid-the-dropbox-service-proxy
+- https://opensource.zalando.com/skipper/reference/filters/#lifo
+    - https://dropbox.tech/infrastructure/meet-bandaid-the-dropbox-service-proxy
 
 ## Scalable Weakly-consistent Infection-style Process Group Membership Protocol (SWIM) - Better Health Check
 - https://distributed-computing-musings.com/2023/01/paper-notes-swimscalable-weakly-consistent-infection-style-process-group-membership-protocol/
