@@ -9,7 +9,7 @@ https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior
 ### Questioning the Lambda Architecture / Kappa Architecture
 - https://www.oreilly.com/radar/questioning-the-lambda-architecture/
 
-## Rate Limiting / Capacity Management
+## Rate Limiting / Load Shedding / Capacity Management
 
 ### Limit Concurrency And Adaptive Capacity Management
 - https://www.youtube.com/watch?v=m64SWl9bfvk
@@ -31,8 +31,8 @@ https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior
     - updated papar from comments
         - https://arxiv.org/abs/1806.04075    
 
-## Scalable Weakly-consistent Infection-style Process Group Membership Protocol (SWIM) - Better Health Check
-- https://distributed-computing-musings.com/2023/01/paper-notes-swimscalable-weakly-consistent-infection-style-process-group-membership-protocol/
-
 ## Reverse Proxy. LIFO Queue
 - https://dropbox.tech/infrastructure/meet-bandaid-the-dropbox-service-proxy
+
+## Scalable Weakly-consistent Infection-style Process Group Membership Protocol (SWIM) - Better Health Check
+- https://distributed-computing-musings.com/2023/01/paper-notes-swimscalable-weakly-consistent-infection-style-process-group-membership-protocol/
