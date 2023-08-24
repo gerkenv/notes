@@ -9,7 +9,7 @@ https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior
 ### Questioning the Lambda Architecture / Kappa Architecture
 - https://www.oreilly.com/radar/questioning-the-lambda-architecture/
 
-## Rate Limiting / Load Shedding / Capacity Management
+## Rate Limiting / Load Shedding / Capacity Management / Traffic Prioritization
 
 ### Limit Concurrency And Adaptive Capacity Management
 - https://www.youtube.com/watch?v=m64SWl9bfvk
@@ -34,6 +34,8 @@ https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior
 ## Reverse Proxy. LIFO Queue
 - https://opensource.zalando.com/skipper/reference/filters/#lifo
     - https://dropbox.tech/infrastructure/meet-bandaid-the-dropbox-service-proxy
+        - load shedding based on `lifo` idea
+        - prioritisation based on using multiple queues and dequeuer aware of prioritization
 
 ## Scalable Weakly-consistent Infection-style Process Group Membership Protocol (SWIM) - Better Health Check
 - https://distributed-computing-musings.com/2023/01/paper-notes-swimscalable-weakly-consistent-infection-style-process-group-membership-protocol/
