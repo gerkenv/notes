@@ -8,10 +8,6 @@ https://www.destroyallsoftware.com/talks/wat
 https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript
 
 ## EcmaScript
-### Contrarguments: ES Modules are terrible, actually
-https://gist.github.com/joepie91/bca2fda868c1e8b2c2caf76af7dfcad3
-
-
 ### Compatibility
 - https://kangax.github.io/compat-table/es6/
 
@@ -20,6 +16,9 @@ https://gist.github.com/joepie91/bca2fda868c1e8b2c2caf76af7dfcad3
 
 ## Async Await In Loops
 - https://zellwk.com/blog/async-await-in-loops/
+
+## Contrarguments: ES Modules are terrible, actually
+https://gist.github.com/joepie91/bca2fda868c1e8b2c2caf76af7dfcad3
 
 ## Runtime Complexity Of Array Methods
 - https://stackoverflow.com/questions/22614237/javascript-runtime-complexity-of-array-functions
