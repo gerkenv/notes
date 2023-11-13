@@ -3,6 +3,9 @@
 ## React.js: The Documentary (Must watch for framework devs)
 - https://www.youtube.com/watch?v=8pDqJVdNa44&t=415s&ab_channel=Honeypot
 
+## Server Components From Scratch
+- https://github.com/reactwg/server-components/discussions/5
+
 ## React. Custom Reconsiler
 - https://www.youtube.com/watch?v=CGpMlWVcHok
     - build PDF, json, xml, or any strange data model that you can imagine, with react.
