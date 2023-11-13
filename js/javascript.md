@@ -8,6 +8,10 @@ https://www.destroyallsoftware.com/talks/wat
 https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript
 
 ## EcmaScript
+### Contrarguments: ES Modules are terrible, actually
+https://gist.github.com/joepie91/bca2fda868c1e8b2c2caf76af7dfcad3
+
+
 ### Compatibility
 - https://kangax.github.io/compat-table/es6/
 
