@@ -6,6 +6,8 @@ https://www.xmg.gg/en/
 
 ### Framework
 https://frame.work/de/en/products/laptop-13-gen-intel?q=processor
+    - https://www.youtube.com/watch?v=AV2umY3R0vw&t=7s
+    - https://www.youtube.com/watch?v=UeCdBVHYa_8&t=3s
 
 ## Macbooks Tests
 ### 14" MacBook Pro vs M1 MacBook Air - Worth $1,000 MORE?
