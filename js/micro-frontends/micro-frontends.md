@@ -15,6 +15,13 @@ Very nice intro in micro-frontends
 ### Books
 - 2020.08 https://www.manning.com/books/micro-frontends-in-action?a_aid=mfia&a_bid=5f09fdeb
 
+## Everything Around Micro-Frontend 
+Very nice blog, a lot of principles, details and options on how to develop a specific solution targeted for a specific case
+- https://microfrontend.dev/
+
+### Decision Matrix
+- https://microfrontend.dev/architecture/micro-frontends-decision-matrix/
+
 ## Blogs
 - 2022 Cloudflare Workers and micro-frontends https://blog.cloudflare.com/better-micro-frontends/
   - based on qwik and fragments
