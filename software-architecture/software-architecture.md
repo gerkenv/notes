@@ -4,6 +4,12 @@
 https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior-SWE]-QpSSSG4j
 - audiobook version of for `Designing Data Intensive Applications`
 
+## Solid (web decentralization project)
+- intro https://solidproject.org/about
+- official page https://solidproject.org/
+- community https://www.w3.org/community/solid/
+- MIT page https://solid.mit.edu/
+
 ## Stream Processing
 
 ### Questioning the Lambda Architecture / Kappa Architecture
