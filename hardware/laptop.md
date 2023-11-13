@@ -4,6 +4,9 @@
 ### XMG
 https://www.xmg.gg/en/
 
+### Framework
+https://frame.work/de/en/products/laptop-13-gen-intel?q=processor
+
 ## Macbooks Tests
 ### 14" MacBook Pro vs M1 MacBook Air - Worth $1,000 MORE?
 https://www.youtube.com/watch?v=zePD4Sdf6yA
