@@ -4,6 +4,9 @@
 https://www.teamblind.com/post/Podcasts-for-system-design-interview-prep-[senior-SWE]-QpSSSG4j
 - audiobook version of for `Designing Data Intensive Applications`
 
+## Guides
+- https://dev.to/this-is-learning/from-developer-to-solutions-architect-a-simple-guide-2b91
+
 ## Solid (web decentralization project)
 - intro https://solidproject.org/about
 - official page https://solidproject.org/
