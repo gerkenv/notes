@@ -36,11 +36,12 @@ https://getkap.co/
 
 ## How To Record Internal Audio And Screen Simultaneously
 - https://www.youtube.com/watch?v=prUVS0HF2gU&ab_channel=ThinkMedia
-    - install `blackhole 16ch`
-    - set up aggregate device `quicktimeplayer-imput` with `blackhole 16ch`
-    - setup multi-output `screen-recording-with-audio` with
-        - your main audio on top
-        - and `blackhole 16ch` below
+    1. install `blackhole 16ch`
+    2. open `audio MIDI Setup`
+    3. set up aggregate device `quicktimeplayer-input` with `blackhole 16ch`
+    4. setup multi-output `screen-recording-with-audio` in order
+        1. your main audio on top (speakers or headphones)
+        2. and `blackhole 16ch` below
 
 ### How to record
 1. switch your output device to `screen-recording-with-audio`
