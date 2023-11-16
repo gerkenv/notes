@@ -3,6 +3,11 @@
 ## Releases, LTS
 https://nodejs.org/en/about/releases/
 
+## Issues
+By default node.js http client requests IP6 and if it fails, it calls IP4.
+- If your network has issues with IP6 - you can get a timeout only from node.js, but not from browser or another http client.
+There is an issue to allow to request IP4 and IP6 in parallel https://github.com/nodejs/node/issues/48145
+
 ## Updates
 
 ### Node 16
