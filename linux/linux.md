@@ -170,6 +170,10 @@ https://kinto.sh/
 #### Exact Key Remaping
 - https://github.com/rbreaves/kinto#what-does-this-do-exactly
 
+#### How to Check Which Key Is Invoked?
+1. open `kinto.sh`
+2. select `help` -> `debug`
+
 ## Clipboard Manager
 - https://www.tecmint.com/best-clipboard-managers-for-linux/
 - https://www.slant.co/topics/6280/~clipboard-managers-for-linux
