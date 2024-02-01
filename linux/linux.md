@@ -234,7 +234,7 @@ ssh-add ~/.ssh/id_ed25519
 ```
 then add a public key to github repository.
 
-## Install Homebrew On Linux
+## Install/Uninstall Homebrew On Linux
 - https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-linux
 
 ## Backup And Restore
