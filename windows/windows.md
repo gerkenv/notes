@@ -21,5 +21,5 @@ More here https://learn.microsoft.com/en-us/windows/wsl/basic-commands#install
   -  `Alt+Shift+plus` - open a new tab (split horizontally)
   -  `Alt+Shift+minus` - open a new tab (split vertically)
   -  `Ctrl+Tab` - switch tab
-  -  `Ctrl+W` - close tab
+  -  `Ctrl+Shift+W` - close tab
 
