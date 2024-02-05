@@ -3,7 +3,10 @@
 ## Windows Subsystem For Linux (WSL)
 - how to install wsl https://learn.microsoft.com/en-us/windows/wsl/install
 
-### WSL Cheat Sheet
+### WSL. Best Practices For Setup
+https://learn.microsoft.com/en-us/windows/wsl/setup/environment
+
+### WSL. Cheat Sheet
 - `wsl` - start wsl
 - `wsl --list --online` - check available online distributions
 - `wsl --list --verbose` - check available offline distributions and associated wsl version
@@ -14,6 +17,15 @@
 
 More here https://learn.microsoft.com/en-us/windows/wsl/basic-commands#install
 
+### WSL. Identify IP Address
+https://learn.microsoft.com/en-us/windows/wsl/basic-commands#identify-ip-address
+
+### WSL. Mount Disk Or Device
+https://learn.microsoft.com/en-us/windows/wsl/basic-commands#mount-a-disk-or-device
+
+### WSL. Set Up Windows Terminal
+https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-windows-terminal
+
 ## Windows Terminal
 - https://learn.microsoft.com/en-us/windows/terminal/install
   -  `Ctrl+Shift+P` - invoke the command palette
@@ -23,3 +35,8 @@ More here https://learn.microsoft.com/en-us/windows/wsl/basic-commands#install
   -  `Ctrl+Tab` - switch tab
   -  `Ctrl+Shift+W` - close tab
 
+## Windows Terminal. Set Up Custom Comands With A Key Binding
+https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks#send-input-commands-with-a-key-binding
+
+## Windows Terminal. Tips And Tricks
+https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks
