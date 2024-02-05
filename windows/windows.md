@@ -17,6 +17,9 @@ https://learn.microsoft.com/en-us/windows/wsl/setup/environment
 
 More here https://learn.microsoft.com/en-us/windows/wsl/basic-commands#install
 
+### WSL. Locate Linux Files In Windows
+https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks
+
 ### WSL. Identify IP Address
 https://learn.microsoft.com/en-us/windows/wsl/basic-commands#identify-ip-address
 
@@ -40,3 +43,4 @@ https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks#send-input-co
 
 ## Windows Terminal. Tips And Tricks
 https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks
+
