@@ -10,6 +10,7 @@
     - [wsl version comparison](https://learn.microsoft.com/en-us/windows/wsl/compare-versions) (wsl 2 is better than wsl 1)
 - `wsl --update`
 - `wsl --status` - get default wsl distribution and associated wsl version
+- `wsl --shutdown` - make a proper restart for limux system
 
 More here https://learn.microsoft.com/en-us/windows/wsl/basic-commands#install
 
