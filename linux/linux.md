@@ -212,10 +212,10 @@ curl https://pyenv.run | bash
 Will fail with `error: no acceptable C compiler found in $PATH`
 Install compiler via
 ```
-apt-get install build-essential
+sudo apt-get install --yes build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make python3-openssl
 ```
 More in https://stackoverflow.com/a/19816655
-        
+
 ## Turn off turbo boost on intel cpu
 _overheating_ _turboboost_
 https://askubuntu.com/questions/619875/disabling-intel-turbo-boost-in-ubuntu?newreg=a01decf73fd849af9a9b6fabce0353f2
@@ -268,3 +268,7 @@ then add a public key to github repository.
     - nice utility is already in the pop OS https://github.com/JoseExposito/touchegg
         - but extension that comes with it cannot be installed because a custome version of it with same id is already presented in the system
         - UI to control gestures https://flathub.org/apps/details/com.github.joseexposito.touche says that 4 fingers up/down are controlled by gnome and cannot be changed.
+
+## Node Version Manager
+### Volta
+https://docs.volta.sh/guide/getting-started
