@@ -1,5 +1,12 @@
 # Windows
 
+## Clipboard Manager
+It is built-in since windows 10.
+https://support.microsoft.com/en-us/windows/clipboard-in-windows-c436501e-985d-1c8d-97ea-fe46ddf338c6
+
+Use `win+V` to open it.
+Use arrow keys and `enter` to select what to paste.
+
 ## Windows Subsystem For Linux (WSL)
 ### Windows Subsystem For Linux (WSL). Install
 - how to install wsl https://learn.microsoft.com/en-us/windows/wsl/install
