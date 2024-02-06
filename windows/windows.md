@@ -33,6 +33,13 @@ https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-windows-t
 ### WSL. Visual Studio Code with Windows Subsystem for Linux
 https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode
 
+### WSL. Setting Up SSH-Agent
+After usual procedure from github docs run
+```
+ssh -T git@github.com
+```
+More details in https://stackoverflow.com/a/59430757
+
 ## Windows Terminal
 ### Windows Terminal. Install
 - how to set up https://learn.microsoft.com/en-us/windows/terminal/install
