@@ -193,6 +193,7 @@ https://kinto.sh/
     ```   
 
 ## Python Version Manager 
+### Option 1
 -  https://stackoverflow.com/questions/2547554/multiple-python-versions-on-the-same-machine
   - https://github.com/pyenv/pyenv
     - awesome installation guide 
@@ -202,6 +203,18 @@ https://kinto.sh/
         ```
         sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libgdbm-dev lzma lzma-dev tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl make build-essential python3-openssl
         ```
+
+### Option 2
+Also can be installed via
+```
+curl https://pyenv.run | bash
+```
+Will fail with `error: no acceptable C compiler found in $PATH`
+Install compiler via
+```
+apt-get install build-essential
+```
+More in https://stackoverflow.com/a/19816655
         
 ## Turn off turbo boost on intel cpu
 _overheating_ _turboboost_
