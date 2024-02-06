@@ -1,6 +1,7 @@
 # Windows
 
 ## Windows Subsystem For Linux (WSL)
+### Windows Subsystem For Linux (WSL). Install
 - how to install wsl https://learn.microsoft.com/en-us/windows/wsl/install
 
 ### WSL. Best Practices For Setup
@@ -29,18 +30,25 @@ https://learn.microsoft.com/en-us/windows/wsl/basic-commands#mount-a-disk-or-dev
 ### WSL. Set Up Windows Terminal
 https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-windows-terminal
 
-## Windows Terminal
-- https://learn.microsoft.com/en-us/windows/terminal/install
-  -  `Ctrl+Shift+P` - invoke the command palette
-  -  `Ctrl+Shift+T` - open a new tab
-  -  `Alt+Shift+plus` - open a new tab (split horizontally)
-  -  `Alt+Shift+minus` - open a new tab (split vertically)
-  -  `Ctrl+Tab` - switch tab
-  -  `Ctrl+Shift+W` - close tab
+### WSL. Visual Studio Code with Windows Subsystem for Linux
+https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode
 
-## Windows Terminal. Set Up Custom Comands With A Key Binding
+## Windows Terminal
+### Windows Terminal. Install
+- how to set up https://learn.microsoft.com/en-us/windows/terminal/install
+
+### Windows Terminal. Key Bindings
+-  `Ctrl+Shift+P` - invoke the command palette
+-  `Ctrl+Shift+T` - open a new tab
+-  `Alt+Shift+plus` - open a new tab (split horizontally)
+-  `Alt+Shift+minus` - open a new tab (split vertically)
+-  `Ctrl+Tab` - switch tab
+-  `Ctrl+Shift+W` - close tab
+
+### Windows Terminal. Set Up Custom Comands With A Key Binding
 https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks#send-input-commands-with-a-key-binding
 
-## Windows Terminal. Tips And Tricks
+### Windows Terminal. Tips And Tricks
 https://learn.microsoft.com/en-us/windows/terminal/tips-and-tricks
+
 
