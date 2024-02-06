@@ -132,6 +132,14 @@ sudo apt-get install ./google-chrome-stable_current_amd64.deb
 sudo apt install htop
 ```
 
+## Bash Extensions (If You Want To Avoid Zsh)
+1. Install auto-completion
+```
+sudo apt-get install bash-completion
+```
+2. Add suggestions from history
+https://superuser.com/a/1332850
+
 ## Install `zsh`
 https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#install-and-set-up-zsh-as-default
 ```
