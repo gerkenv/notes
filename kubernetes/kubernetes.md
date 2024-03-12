@@ -22,6 +22,14 @@ kubectl get pod -n some-namespace
 kubectl get all
 ```
 
+## Execute Command In Pod
+https://kubernetes.io/docs/reference/kubectl/generated/kubectl_exec/
+```
+zkubectl exec some-pod -n some-namespace -- ls -alh /
+zkubectl exec some-pod -n some-namespace -- pwd
+zkubectl exec some-pod -n some-namespace -- echo "1"
+```
+
 ## Print Out JSON Representation
 ```sh
 kubectl get pod some-pod -o json
@@ -49,7 +57,7 @@ kubectl describe pod some-pod
 kubectl edit pod some-pod
 ```
 
-### Vim Commands 
+### Vim Commands
 - `i` - insert mode
     - type what you need as usual
 - `esc` - view mode
@@ -63,6 +71,15 @@ __Note__: generally you want to edit a deployment which contains pod template. T
 
 ## Copy File From Pod
 https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#cp
+```
+zkubectl cp -c some-container-in-pod -n some-namespace some-pod:/path/to/file/in/pod local-file-name
+```
+
+## Port Forwarding
+https://kubernetes.io/docs/reference/kubectl/generated/kubectl_port-forward/
+```
+zkubectl port-forward some-pod local-port:container-port -n some-namespace
+```
 
 ## Megabyte MB vs Mebibyte MiB
 KiB, MiB, GiB
@@ -168,5 +185,5 @@ https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#defau
 - https://blog.colinbreck.com/kubernetes-liveness-and-readiness-probes-revisited-how-to-avoid-shooting-yourself-in-the-other-foot/
 - failure stories by Datadog https://www.youtube.com/watch?v=QKI-JRs2RIE
 
-## Managing Secrets using kubectl 
+## Managing Secrets using kubectl
 https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/
