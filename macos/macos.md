@@ -57,8 +57,10 @@ ls -alh ~/.ssh
 ssh-keygen -t ed25519 -C "your_email@example.com"
 # start an ssh agent
 eval "$(ssh-agent -s)
-# add a key to the ssh-agent (only requeired if you add a custom key)
-ssh-add ~/.ssh/id_ed25519
+# add a key to the ssh-agent
+# (`--apple-use-keychain` is requeired to avoid entering password after each reboot)
+# https://apple.stackexchange.com/questions/48502/how-can-i-permanently-add-my-ssh-private-key-to-keychain-so-it-is-automatically
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 ```
 then add a public key to github repository.
 
