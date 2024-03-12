@@ -41,11 +41,36 @@ https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-windows-t
 https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode
 
 ### WSL. Setting Up SSH-Agent
-After usual procedure from github docs run
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+```
+# check existing keys
+ls -alh ~/.ssh
+# generate a new key
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# start an ssh agent
+eval "$(ssh-agent -s)
+# add a key to the ssh-agent (only requeired if you add a custom key)
+ssh-add ~/.ssh/id_ed25519
+```
+then add a public key to github repository.
+
+After usual procedure from github docs run connection test
 ```
 ssh -T git@github.com
 ```
 More details in https://stackoverflow.com/a/59430757
+
+#### Troublesooting
+Whenever you start a new session of WSL2 (run a new or an additional terminal) you have to add your ssh agent and add keys again.
+```
+# start an ssh agent
+eval "$(ssh-agent -s)
+# add a key to the ssh-agent (only requeired if you add a custom key)
+ssh-add ~/.ssh/id_ed25519
+# check that you have test connection
+ssh -T git@github.com
+```
 
 ## Windows Terminal
 ### Windows Terminal. Install
