@@ -31,9 +31,6 @@ Install https://www.spectacleapp.com/
 - https://techpp.com/2022/01/11/best-clipboard-managers-for-mac/
 - https://www.makeuseof.com/tag/5-best-mac-clipboard-manager-apps-improve-workflow/
 
-## Screen Recorder (With convertion to GIF)
-https://getkap.co/
-
 ## How To Record Internal Audio And Screen Simultaneously
 - https://www.youtube.com/watch?v=prUVS0HF2gU&ab_channel=ThinkMedia
     1. install `blackhole 16ch`
@@ -47,6 +44,28 @@ https://getkap.co/
 1. switch your output device to `screen-recording-with-audio`
 2. in quicktimeplayer screen recording or open with `Cmd`+`Shift`+5 select microphone `quicktimeplayer-imput`
 3. press `record`
+
+## Screen Recorder (With convertion to GIF)
+https://getkap.co/
+
+## Setting Up SSH-Agent
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+```
+# check existing keys
+ls -alh ~/.ssh
+# generate a new key
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# start an ssh agent
+eval "$(ssh-agent -s)
+# add a key to the ssh-agent (only requeired if you add a custom key)
+ssh-add ~/.ssh/id_ed25519
+```
+then add a public key to github repository.
+
+After execute connection test
+```
+ssh -T git@github.com
+```
 
 ## Install `zsh`
 - https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
@@ -137,7 +156,7 @@ Multiple messanges in form
 ```
 cloudd wants to use the "login keychain"
 ```
-if restart dooes not help
+if restart does not help
 then https://forums.macrumors.com/threads/keychain-message-virus.1883336/
 
 ## View Files Of Another User
