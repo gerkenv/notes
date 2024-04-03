@@ -1,4 +1,4 @@
-# User Experience
+# User Experience (UX)
 
-## Developer Experience Guidelines
+## Developer Experience (DX) Guidelines
 https://addyosmani.com/dx/
