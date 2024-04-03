@@ -57,6 +57,19 @@ kubectl describe pod some-pod
 kubectl edit pod some-pod
 ```
 
+By default system editor will be used - usually `vim`.
+Alternatively you could set different editor with command
+```
+EDITOR='code --wait' kubectl edit pod some-pod
+```
+or you could select it forever by setting in your bash configuration file
+```
+# set VScode as defult kubernetes editor
+export KUBE_EDITOR='code --wait'
+# set VScode as defult system editor (for every app)
+export EDITOR='code --wait'
+```
+
 ### Vim Commands
 - `i` - insert mode
     - type what you need as usual
