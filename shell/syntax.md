@@ -86,7 +86,7 @@ echo "some2" | sudo tee abc1 # without `-a` it will overwrite the content (be ca
 rm abc1
 ```
 
-### redirect output `>` to protected files
+## redirect output `>` to protected files
 - https://stackoverflow.com/questions/82256/how-do-i-use-sudo-to-redirect-output-to-a-location-i-dont-have-permission-to-wr
 - https://stackoverflow.com/questions/84882/sudo-echo-something-etc-privilegedfile-doesnt-work
 
