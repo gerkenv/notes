@@ -90,6 +90,30 @@ rm abc1
 - https://stackoverflow.com/questions/82256/how-do-i-use-sudo-to-redirect-output-to-a-location-i-dont-have-permission-to-wr
 - https://stackoverflow.com/questions/84882/sudo-echo-something-etc-privilegedfile-doesnt-work
 
+## redirect output to files
+```
+command &> file
+```
+
+From https://www.gnu.org/software/bash/manual/bash.html#Redirecting-Output
+
+Redirecting Standard Output and Standard Error `>`
+This construct allows both the standard output (file descriptor `1`) and the standard error output (file descriptor `2`) to be redirected to the file whose name is the expansion of `word`.
+
+There are two formats for redirecting standard output and standard error:
+```
+&>word
+```
+and
+```
+>&word
+```
+Of the two forms, the first is preferred. This is semantically equivalent to
+```
+>word 2>&1
+```
+
+Also recommmended to use `>word 2>&1` outside of bash.
 
 ## cd
 Go to a previous directory
