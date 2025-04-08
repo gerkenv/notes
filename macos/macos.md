@@ -21,11 +21,17 @@ https://stackoverflow.com/a/26749000
 sudo xcode-select --switch /Library/Developer/CommandLineTools
 ```
 
+## Avoid Automatic Sleep 
+```
+caffeinate # until you stop this process
+caffeinate -t 1200 # for 20 minutes (x60 sec)
+```
+
+## Shuffle Windows Around The Screens (before MacOS 15)
+Install https://www.spectacleapp.com/
+
 ## Clipboard Manager
 https://github.com/Clipy/Clipy
-
-## Shuffle Windows Around The Screens
-Install https://www.spectacleapp.com/
 
 ### Alternatives
 - https://techpp.com/2022/01/11/best-clipboard-managers-for-mac/
